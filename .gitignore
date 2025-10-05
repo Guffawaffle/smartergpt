@@ -1,1 +1,8 @@
 SmarterGPT.code-workspace
+
+# Build artifacts
+dist/
+*.log
+
+# CI/CD
+.smartergpt/runs/
