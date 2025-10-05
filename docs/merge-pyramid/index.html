@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>What is Merge Pyramid? — SmarterGPT.dev</title>
+	<meta name="description" content="Learn about the Merge Pyramid concept: layered validation and gates for content and code evolution." />
+	<meta name="color-scheme" content="dark light" />
+	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
+	<link rel="stylesheet" href="../../assets/styles.css" />
+</head>
+<body>
+	<header class="container nav" role="navigation">
+		<div class="logo"><span class="logo-dot" aria-hidden="true"></span><span>SmarterGPT.dev</span></div>
+		<nav class="links" aria-label="Primary">
+			<a class="pill" href="../../index.html" title="Home">Home</a>
+			<a class="pill" href="https://github.com/Guffawaffle/lex-pr-runner#readme" target="_blank" rel="noopener noreferrer" title="Documentation">Docs</a>
+			<a class="pill" href="https://github.com/Guffawaffle/lex-pr-runner" target="_blank" rel="noopener noreferrer" title="GitHub Repository">GitHub</a>
+		</nav>
+	</header>
+
+	<main class="container">
+		<section class="hero">
+			<div class="hero-left">
+				<span class="badge" aria-label="Concept overview"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg> Concept</span>
+				<h1>What is Merge Pyramid?</h1>
+				<p class="tagline">Merge Pyramid is a layered validation strategy that ensures content and code quality through progressive gates before integration.</p>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="layers">
+			<h2 id="layers" class="kicker">The Three Layers</h2>
+			<div class="grid">
+				<article class="card">
+					<h3><span class="step">Layer 1:</span> Local Gates</h3>
+					<p>Pre-integration validation runs on the developer's machine or in CI. Includes linting, type-checking, unit tests, and formatting checks. Catches issues early before they enter the merge pipeline.</p>
+				</article>
+				<article class="card">
+					<h3><span class="step">Layer 2:</span> Integration Gates</h3>
+					<p>Post-merge validation ensures compatibility when combining multiple branches. Runs integration tests, builds full artifacts, and validates cross-component interactions. Prevents conflicts in the combined codebase.</p>
+				</article>
+				<article class="card">
+					<h3><span class="step">Layer 3:</span> Deployment Gates</h3>
+					<p>Final validation before production deployment. Executes smoke tests, security scans, performance benchmarks, and deployment readiness checks. Ensures the pyramid is stable at the apex.</p>
+				</article>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="rationale">
+			<h2 id="rationale" class="kicker">Why Pyramid?</h2>
+			<div class="card">
+				<h3>Progressive Quality Assurance</h3>
+				<p>The pyramid structure reflects increasing confidence and scope at each layer. Fast, focused checks at the base catch most issues early. Slower, comprehensive checks at higher layers validate integration and deployment readiness. This approach minimizes feedback loops while maximizing quality.</p>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="diagram">
+			<h2 id="diagram" class="kicker">Visual Overview</h2>
+			<div class="card" style="text-align:center;padding:48px 24px">
+				<div style="color:var(--muted);font-style:italic">
+					📊 Diagram placeholder: Merge Pyramid visualization
+				</div>
+				<p style="margin-top:16px;color:#c8d3ea">A visual representation of the three-layer validation strategy will be added here.</p>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="cta">
+			<div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap">
+				<div>
+					<h3 style="margin:0 0 6px">Ready to build your pyramid?</h3>
+					<p style="margin:0;color:#c8d3ea">Start with lex-pr-runner to implement layered validation.</p>
+				</div>
+				<div class="cta">
+					<a class="button primary" href="https://github.com/Guffawaffle/lex-pr-runner#quick-start" target="_blank" rel="noopener noreferrer" title="Get started">Get started</a>
+					<a class="button" href="../../index.html" title="Back to home">Back to home</a>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer class="container footer">
+		<div>&copy; <span id="year"></span> SmarterGPT.dev</div>
+		<div class="pill">Agent‑friendly • CI‑first • Human‑in‑the‑loop</div>
+	</footer>
+	<script src="../../assets/app.js"></script>
+</body>
+</html>
