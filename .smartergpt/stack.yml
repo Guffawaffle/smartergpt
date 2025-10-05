@@ -1,0 +1,33 @@
+version: 1
+target: production
+items:
+  - id: PR-27
+    name: Add lex-pr docs
+    branch: origin/pr/27
+    strategy: merge-weave
+    deps: []
+  - id: PR-28
+    name: Add lex-serve page
+    branch: origin/pr/28
+    strategy: merge-weave
+    deps: []
+  - id: PR-29
+    name: Add Status & Roadmap
+    branch: origin/pr/29
+    strategy: merge-weave
+    deps: []
+  - id: PR-30
+    name: Rewrite homepage
+    branch: origin/pr/30
+    strategy: merge-weave
+    deps: []
+  - id: PR-31
+    name: CI pipeline
+    branch: origin/pr/31
+    strategy: merge-weave
+    deps: []
+  - id: PR-32
+    name: Merge Pyramid explainer
+    branch: origin/pr/32
+    strategy: merge-weave
+    deps: []
