@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Status &amp; Roadmap — lex-pr-runner</title>
+	<meta name="description" content="Project status, high-level phases, and near-term milestones for lex-pr-runner." />
+	<meta name="color-scheme" content="dark light" />
+	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
+	<link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+	<header class="container nav" role="navigation">
+		<div class="logo"><span class="logo-dot" aria-hidden="true"></span><span>SmarterGPT.dev</span></div>
+		<nav class="links" aria-label="Primary">
+			<a class="pill" href="index.html" title="Home">Home</a>
+			<a class="pill" href="roadmap.html" title="Status &amp; Roadmap">Roadmap</a>
+			<a class="pill" href="https://github.com/Guffawaffle/lex-pr-runner#readme" target="_blank" rel="noopener noreferrer" title="Documentation">Docs</a>
+			<a class="pill" href="https://github.com/Guffawaffle/lex-pr-runner" target="_blank" rel="noopener noreferrer" title="GitHub Repository">GitHub</a>
+		</nav>
+	</header>
+
+	<main class="container">
+		<section style="padding-block:64px">
+			<div style="max-width:800px">
+				<span class="badge" aria-label="Page type"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg> Progress visibility</span>
+				<h1>Status &amp; Roadmap</h1>
+				<p class="tagline">High-level phases, current status, and near-term milestones for lex-pr-runner.</p>
+				<p style="color:var(--muted);font-size:14px;margin-top:20px">Last updated: <span id="lastUpdated"></span></p>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section style="padding-block:56px">
+			<h2 class="kicker">Current Status</h2>
+			<div class="card" style="margin-top:20px">
+				<h3 style="margin:0 0 8px;color:var(--ok)">✓ Phase 1: Core Infrastructure — Complete</h3>
+				<p>TypeScript-first architecture with Zod schemas, Commander CLI framework, and comprehensive Vitest testing infrastructure in place.</p>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section style="padding-block:56px">
+			<h2 class="kicker">Roadmap</h2>
+			<div style="overflow-x:auto;margin-top:20px">
+				<table style="width:100%;border-collapse:collapse;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:16px;overflow:hidden">
+					<thead>
+						<tr style="background:rgba(255,255,255,0.04);border-bottom:1px solid var(--border)">
+							<th style="text-align:left;padding:16px;font-weight:600;color:var(--text)">Phase</th>
+							<th style="text-align:left;padding:16px;font-weight:600;color:var(--text)">Milestone</th>
+							<th style="text-align:left;padding:16px;font-weight:600;color:var(--text)">Status</th>
+							<th style="text-align:left;padding:16px;font-weight:600;color:var(--text)">Target</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr style="border-bottom:1px solid var(--border)">
+							<td style="padding:16px;color:var(--muted)">Phase 2</td>
+							<td style="padding:16px">
+								<strong style="color:var(--text)">Schema Validation &amp; Planning</strong>
+								<p style="margin:4px 0 0;font-size:14px;color:var(--muted)">Implement strict plan.json validation with cycle detection and dependency resolution</p>
+							</td>
+							<td style="padding:16px">
+								<span class="badge" style="background:rgba(0,194,255,0.1);color:var(--brand);border-color:var(--brand)">In Progress</span>
+							</td>
+							<td style="padding:16px;color:var(--muted)">Q1 2025</td>
+						</tr>
+						<tr style="border-bottom:1px solid var(--border)">
+							<td style="padding:16px;color:var(--muted)">Phase 2</td>
+							<td style="padding:16px">
+								<strong style="color:var(--text)">Merge Order Computation</strong>
+								<p style="margin:4px 0 0;font-size:14px;color:var(--muted)">Topological sort using Kahn's algorithm for deterministic merge ordering</p>
+							</td>
+							<td style="padding:16px">
+								<span class="badge" style="background:rgba(168,179,207,0.1);color:var(--muted)">Planned</span>
+							</td>
+							<td style="padding:16px;color:var(--muted)">Q1 2025</td>
+						</tr>
+						<tr style="border-bottom:1px solid var(--border)">
+							<td style="padding:16px;color:var(--muted)">Phase 3</td>
+							<td style="padding:16px">
+								<strong style="color:var(--text)">Local Gate Execution</strong>
+								<p style="margin:4px 0 0;font-size:14px;color:var(--muted)">Run lint, typecheck, and test gates locally with timeout handling and structured output</p>
+							</td>
+							<td style="padding:16px">
+								<span class="badge" style="background:rgba(168,179,207,0.1);color:var(--muted)">Planned</span>
+							</td>
+							<td style="padding:16px;color:var(--muted)">Q2 2025</td>
+						</tr>
+						<tr style="border-bottom:1px solid var(--border)">
+							<td style="padding:16px;color:var(--muted)">Phase 3</td>
+							<td style="padding:16px">
+								<strong style="color:var(--text)">MCP Server Integration</strong>
+								<p style="margin:4px 0 0;font-size:14px;color:var(--muted)">Model Context Protocol adapter exposing plan.create, gates.run, and merge.apply tools</p>
+							</td>
+							<td style="padding:16px">
+								<span class="badge" style="background:rgba(168,179,207,0.1);color:var(--muted)">Planned</span>
+							</td>
+							<td style="padding:16px;color:var(--muted)">Q2 2025</td>
+						</tr>
+						<tr style="border-bottom:1px solid var(--border)">
+							<td style="padding:16px;color:var(--muted)">Phase 4</td>
+							<td style="padding:16px">
+								<strong style="color:var(--text)">GitHub Actions Integration</strong>
+								<p style="margin:4px 0 0;font-size:14px;color:var(--muted)">Automated merge pyramid execution in CI/CD workflows</p>
+							</td>
+							<td style="padding:16px">
+								<span class="badge" style="background:rgba(168,179,207,0.1);color:var(--muted)">Planned</span>
+							</td>
+							<td style="padding:16px;color:var(--muted)">Q2 2025</td>
+						</tr>
+						<tr>
+							<td style="padding:16px;color:var(--muted)">Phase 4</td>
+							<td style="padding:16px">
+								<strong style="color:var(--text)">Advanced Merge Strategies</strong>
+								<p style="margin:4px 0 0;font-size:14px;color:var(--muted)">Fast-forward optimization, conflict detection, and smart squash logic</p>
+							</td>
+							<td style="padding:16px">
+								<span class="badge" style="background:rgba(168,179,207,0.1);color:var(--muted)">Planned</span>
+							</td>
+							<td style="padding:16px;color:var(--muted)">Q3 2025</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section style="padding-block:56px">
+			<h2 class="kicker">Future Considerations</h2>
+			<div class="grid" style="margin-top:20px">
+				<article class="card">
+					<h3>Enhanced Parallelization</h3>
+					<p>Concurrent gate execution and parallel merge operations for larger stacks.</p>
+				</article>
+				<article class="card">
+					<h3>Web Dashboard</h3>
+					<p>Interactive visualization of merge pyramids, dependencies, and execution status.</p>
+				</article>
+				<article class="card">
+					<h3>Multi-Repository Support</h3>
+					<p>Coordinate PR workflows across multiple related repositories with cross-repo dependencies.</p>
+				</article>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section style="padding-block:56px">
+			<div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap">
+				<div>
+					<h3 style="margin:0 0 6px">Get started today</h3>
+					<p style="margin:0;color:#c8d3ea">Install lex-pr-runner and start managing your PR workflows.</p>
+				</div>
+				<div class="cta">
+					<a class="button primary" href="https://github.com/Guffawaffle/lex-pr-runner#quick-start" target="_blank" rel="noopener noreferrer" title="Quick Start">Quick Start</a>
+					<a class="button" href="index.html" title="Back to Home">Back to Home</a>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer class="container footer">
+		<div>&copy; <span id="year"></span> SmarterGPT.dev</div>
+		<div class="pill">Agent‑friendly • CI‑first • Human‑in‑the‑loop</div>
+	</footer>
+	<script src="assets/app.js"></script>
+</body>
+</html>
