@@ -13,8 +13,8 @@
 	<header class="container nav" role="navigation">
 		<div class="logo"><span class="logo-dot" aria-hidden="true"></span><span>SmarterGPT.dev</span></div>
 		<nav class="links" aria-label="Primary">
-			<a class="pill" href="/" title="Home">Home</a>
-			<a class="pill" href="https://github.com/Guffawaffle/lex-serve" target="_blank" rel="noopener noreferrer" title="GitHub Repository">GitHub</a>
+			<a class="pill" href="../../index.html" title="Home">Home</a>
+			<a class="pill" href="../lex-pr/index.html" title="lex-pr Project">lex-pr</a>
 		</nav>
 	</header>
 
@@ -25,7 +25,7 @@
 				<h1>lex-serve: FastAPI Orchestration Server</h1>
 				<p class="tagline">Python FastAPI server for orchestrating lex-pr-runner workflows with webhook handling, job queuing, and RESTful API endpoints.</p>
 				<div class="cta">
-					<a class="button primary" href="https://github.com/Guffawaffle/lex-serve" target="_blank" rel="noopener noreferrer" title="View on GitHub">View on GitHub</a>
+					<span class="button primary" title="Repository private">Private Repository</span>
 					<a class="button ghost" href="#runbook" title="View Runbook">Runbook</a>
 				</div>
 			</div>
@@ -161,8 +161,8 @@ redis-cli llen lex-serve:jobs</code></pre>
 				<h3>Environment Variables</h3>
 				<pre class="code"><code># Required environment variables
 REDIS_URL=redis://localhost:6379
-GITHUB_WEBHOOK_SECRET=your-webhook-secret
-API_KEY=your-api-key
+GITHUB_WEBHOOK_SECRET=your-webhook-secret-here
+API_KEY=replace-with-your-api-key
 LOG_LEVEL=info
 
 # Optional configuration
@@ -181,7 +181,7 @@ REQUEST_TIMEOUT=300</code></pre>
 					<p style="margin:0;color:#c8d3ea">Fast, reliable, and scalable workflow automation.</p>
 				</div>
 				<div class="cta">
-					<a class="button primary" href="https://github.com/Guffawaffle/lex-serve" target="_blank" rel="noopener noreferrer" title="View Repository">View Repository</a>
+					<span class="button primary" title="Repository private">Private Repository</span>
 					<a class="button" href="#runbook" title="View Runbook">View Runbook</a>
 				</div>
 			</div>
