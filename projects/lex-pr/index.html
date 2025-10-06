@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>lex-pr — PR Workflow System | SmarterGPT.dev</title>
+	<meta name="description" content="Documentation for lex-pr: schema v1, gating model, and merge algorithm for parallel PR workflows." />
+	<meta name="color-scheme" content="dark light" />
+	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
+	<link rel="stylesheet" href="../../assets/styles.css" />
+</head>
+<body>
+	<header class="container nav" role="navigation">
+		<div class="logo"><span class="logo-dot" aria-hidden="true"></span><span>SmarterGPT.dev</span></div>
+		<nav class="links" aria-label="Primary">
+			<a class="pill" href="../../index.html" title="Home">Home</a>
+			<a class="pill" href="https://github.com/Guffawaffle/lex-pr-runner#readme" target="_blank" rel="noopener noreferrer" title="Documentation">Docs</a>
+			<a class="pill" href="https://github.com/Guffawaffle/lex-pr-runner" target="_blank" rel="noopener noreferrer" title="GitHub Repository">GitHub</a>
+		</nav>
+	</header>
+
+	<main class="container">
+		<section class="hero">
+			<div class="hero-left">
+				<span class="badge" aria-label="Project status"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg> Technical Reference</span>
+				<h1>lex-pr: PR Workflow System</h1>
+				<p class="tagline">Canonical reference for lex-pr goals, data schema v1, gating model, and merge algorithm. Part of the SmarterGPT workflow ecosystem.</p>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="goals">
+			<h2 id="goals" class="kicker">Project Goals</h2>
+			<div class="grid">
+				<article class="card">
+					<h3>Parallel PR Workflows</h3>
+					<p>Enable multiple PRs to be developed, tested, and merged concurrently while maintaining dependency order and preventing conflicts.</p>
+				</article>
+				<article class="card">
+					<h3>Deterministic Merge Order</h3>
+					<p>Compute stable, reproducible merge sequences using topological sorting to ensure dependencies are always satisfied.</p>
+				</article>
+				<article class="card">
+					<h3>Local Gate Validation</h3>
+					<p>Run comprehensive quality gates locally before merge to catch issues early and reduce CI/CD failures.</p>
+				</article>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="schema">
+			<h2 id="schema" class="kicker">Schema v1</h2>
+			<p style="margin-bottom:24px;color:#c8d3ea">The plan.json schema defines the structure for PR workflow configuration and execution.</p>
+			
+			<article class="card" style="margin-bottom:20px">
+				<h3>Core Fields</h3>
+				<div class="code" style="margin-top:12px"><code>{
+  "version": "1.0.0",        // Schema version identifier
+  "items": [                 // Array of PR workflow items
+    {
+      "id": "string",        // Unique identifier for the PR
+      "branch": "string",    // Git branch name
+      "depends_on": [],      // Array of PR IDs this depends on
+      "gates": {},           // Gate execution configuration
+      "metadata": {}         // Additional context and information
+    }
+  ]
+}</code></div>
+			</article>
+
+			<article class="card" style="margin-bottom:20px">
+				<h3>Item Fields</h3>
+				<div style="margin-top:12px">
+					<p><strong>id:</strong> Unique string identifier for each PR item (required)</p>
+					<p><strong>branch:</strong> Git branch name for the PR (required)</p>
+					<p><strong>depends_on:</strong> Array of PR IDs that must be merged before this one (optional, default: [])</p>
+					<p><strong>gates:</strong> Object containing gate execution results and configuration (optional)</p>
+					<p><strong>metadata:</strong> Object for additional metadata like PR number, title, author (optional)</p>
+				</div>
+			</article>
+
+			<article class="card">
+				<h3>Validation Rules</h3>
+				<div style="margin-top:12px">
+					<p>• All <strong>id</strong> values must be unique within a plan</p>
+					<p>• All <strong>depends_on</strong> references must point to existing IDs in the same plan</p>
+					<p>• Dependency graph must be acyclic (no circular dependencies)</p>
+					<p>• Schema version must match supported versions (currently v1.0.0)</p>
+					<p>• Branch names must be valid Git ref names</p>
+				</div>
+			</article>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="gates">
+			<h2 id="gates" class="kicker">Gating Model</h2>
+			<p style="margin-bottom:24px;color:#c8d3ea">Gates are quality checks that run locally before merge to ensure code quality and correctness.</p>
+			
+			<div class="grid">
+				<article class="card">
+					<h3>Lint Gate</h3>
+					<p><strong>Purpose:</strong> Code style and quality validation</p>
+					<p><strong>Implementation:</strong> Runs configured linters (ESLint, Prettier, etc.)</p>
+					<p><strong>Timeout:</strong> Configurable, default 60s</p>
+					<p><strong>Exit criteria:</strong> Zero linting errors</p>
+				</article>
+				<article class="card">
+					<h3>Typecheck Gate</h3>
+					<p><strong>Purpose:</strong> Static type validation</p>
+					<p><strong>Implementation:</strong> TypeScript compiler in check mode</p>
+					<p><strong>Timeout:</strong> Configurable, default 120s</p>
+					<p><strong>Exit criteria:</strong> Zero type errors</p>
+				</article>
+				<article class="card">
+					<h3>Test Gate</h3>
+					<p><strong>Purpose:</strong> Unit and integration test execution</p>
+					<p><strong>Implementation:</strong> Test runner (Vitest, Jest, etc.)</p>
+					<p><strong>Timeout:</strong> Configurable, default 300s</p>
+					<p><strong>Exit criteria:</strong> All tests passing</p>
+				</article>
+			</div>
+
+			<article class="card" style="margin-top:20px">
+				<h3>Gate Execution Flow</h3>
+				<div class="code" style="margin-top:12px"><code>1. Parse plan.json and validate schema
+2. For each PR item in topological order:
+   a. Checkout the branch
+   b. Run configured gates in parallel
+   c. Capture stdout/stderr and exit codes
+   d. Store results in gates object
+   e. If any gate fails, halt execution
+3. Generate gate execution report
+4. Return success only if all gates pass</code></div>
+			</article>
+
+			<article class="card" style="margin-top:20px">
+				<h3>Gate Results Structure</h3>
+				<div class="code" style="margin-top:12px"><code>{
+  "gates": {
+    "lint": {
+      "status": "passed" | "failed" | "skipped",
+      "duration_ms": 1234,
+      "exit_code": 0,
+      "output": "string"
+    },
+    "typecheck": { /* same structure */ },
+    "test": { /* same structure */ }
+  }
+}</code></div>
+			</article>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="algorithm">
+			<h2 id="algorithm" class="kicker">Merge Algorithm</h2>
+			<p style="margin-bottom:24px;color:#c8d3ea">The merge algorithm computes deterministic merge order using topological sorting with Kahn's algorithm.</p>
+			
+			<article class="card" style="margin-bottom:20px">
+				<h3>High-Level Steps</h3>
+				<div class="code" style="margin-top:12px"><code>1. Parse and Validate
+   • Load plan.json and validate schema
+   • Build dependency graph from items
+   • Detect cycles and unknown dependencies
+   • Fail fast on validation errors
+
+2. Compute In-Degree
+   • For each node, count incoming edges
+   • Nodes with in-degree 0 have no dependencies
+   • Track in-degree for each item
+
+3. Initialize Queue
+   • Add all items with in-degree 0 to queue
+   • Sort queue alphabetically for determinism
+   • Queue represents items ready to merge
+
+4. Topological Sort (Kahn's Algorithm)
+   • While queue is not empty:
+     a. Remove item from queue (front)
+     b. Add to merge order (output)
+     c. For each dependent of current item:
+        - Decrement its in-degree
+        - If in-degree reaches 0, add to queue
+     d. Sort queue for determinism
+
+5. Validate Completeness
+   • If output contains all items: success
+   • Otherwise: cycle detected, fail with error
+   • Return ordered merge levels</code></div>
+			</article>
+
+			<article class="card" style="margin-bottom:20px">
+				<h3>Merge Levels</h3>
+				<p>The algorithm groups items into levels where all items in a level can be merged in parallel:</p>
+				<div class="code" style="margin-top:12px"><code>{
+  "levels": [
+    ["feat-a", "feat-b"],    // Level 0: No dependencies
+    ["feat-c"],              // Level 1: Depends on Level 0
+    ["feat-d", "feat-e"]     // Level 2: Depends on Level 1
+  ]
+}</code></div>
+				<p style="margin-top:12px">Items within the same level have no interdependencies and can be processed concurrently.</p>
+			</article>
+
+			<article class="card">
+				<h3>Merge Strategies</h3>
+				<div style="margin-top:12px">
+					<p><strong>Fast-forward:</strong> Used when target branch is direct ancestor. Preserves commit history.</p>
+					<p><strong>Squash:</strong> Combines all commits into one. Used for clean history when appropriate.</p>
+					<p><strong>Merge commit:</strong> Creates explicit merge commit. Used when preserving branch history is important.</p>
+					<p style="margin-top:12px"><strong>Strategy selection:</strong> Configurable per item or globally. Fast-forward preferred when possible for clean history.</p>
+				</div>
+			</article>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="cta">
+			<div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap">
+				<div>
+					<h3 style="margin:0 0 6px">Ready to use lex-pr?</h3>
+					<p style="margin:0;color:#c8d3ea">Check out the lex-pr-runner implementation and start optimizing your PR workflows.</p>
+				</div>
+				<div class="cta">
+					<a class="button primary" href="https://github.com/Guffawaffle/lex-pr-runner#quick-start" target="_blank" rel="noopener noreferrer" title="Get started">Get started</a>
+					<a class="button" href="../../index.html" title="Back to home">Home</a>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer class="container footer">
+		<div>&copy; <span id="year"></span> SmarterGPT.dev</div>
+		<div class="pill">Agent‑friendly • CI‑first • Human‑in‑the‑loop</div>
+	</footer>
+	<script src="../../assets/app.js"></script>
+</body>
+</html>
