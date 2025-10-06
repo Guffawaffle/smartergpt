@@ -1,4 +1,3 @@
-SmarterGPT.code-workspace
 .smartergpt/
 .vscode/
 .DS_Store
@@ -14,3 +13,10 @@ pnpm-debug.log*
 .idea/
 *.iml
 *.log
+
+# Build artifacts
+dist/
+*.log
+
+# CI/CD
+.smartergpt/runs/
