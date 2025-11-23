@@ -20,3 +20,9 @@ dist/
 
 # CI/CD
 .smartergpt/runs/
+
+.smartergpt-local/**/local-data/
+
+# Local developer workspace (optional)
+smartergpt.local/
+.smartergpt.local/
