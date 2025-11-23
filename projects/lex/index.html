@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Lex — Policy-Aware Work Continuity | SmarterGPT.dev</title>
+	<meta name="description" content="Lex (OSS): policy-as-code + episodic memory (Frames) with Atlas Frames. Local-first recall with receipts." />
+	<meta name="color-scheme" content="dark light" />
+	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
+	<link rel="stylesheet" href="../../assets/styles.css" />
+</head>
+<body>
+	<header class="container nav" role="navigation">
+		<div class="logo"><span class="logo-dot" aria-hidden="true"></span><a href="/" style="color:inherit;text-decoration:none">SmarterGPT.dev</a></div>
+		<nav class="links" aria-label="Primary">
+			<a class="pill" href="index.html" title="Lex" aria-current="page">Lex</a>
+			<a class="pill" href="../lex-pr/index.html" title="LexRunner">LexRunner</a>
+			<a class="pill" href="../../docs/research/index.html" title="Research">Research</a>
+			<a class="pill" href="../../docs/the-moat/index.html" title="Moat">Moat</a>
+			<a class="pill" href="../../docs/how-to-use/index.html" title="How to Use">Guide</a>
+			<a class="pill" href="../../roadmap.html" title="Roadmap">Roadmap</a>
+		</nav>
+	</header>
+
+	<main class="container">
+		<section class="hero">
+			<div class="hero-left">
+				<span class="badge" aria-label="Project status"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg> Open Source   v0.4.5-alpha on npm</span>
+				<h1>Lex: Policy-Aware Work Continuity</h1>
+				<p class="tagline">Lex is the open-source memory + policy engine in the smartergpt stack. It combines architecture policy-as-code with episodic memory (Frames) and Atlas Frames so you can ask "why is this blocked?" and get receipts from timestamped sessions, not vibes.</p>
+				<div class="cta" style="margin-top:16px">
+					<a class="button primary" href="https://www.npmjs.com/package/@smartergpt/lex" title="View on npm">npm install @smartergpt/lex</a>
+					<a class="button" href="https://github.com/Guffawaffle/lex" title="View Lex on GitHub">View on GitHub</a>
+					<a class="button ghost" href="https://github.com/Guffawaffle/lex/blob/main/docs/OVERVIEW.md" title="Overview">Read the overview</a>
+				</div>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+		<section aria-labelledby="what">
+			<h2 id="what" class="kicker">What is Lex?</h2>
+			<div class="grid">
+				<article class="card">
+					<h3>🧠 Frames</h3>
+					<p>Timestamped work session snapshots with summary, blockers, next action, and module_scope.</p>
+					<p style="margin-top:8px;color:#c8d3ea">Local SQLite. No telemetry. MCP stdio.</p>
+				</article>
+				<article class="card">
+					<h3>🗺️ Atlas Frames</h3>
+					<p>Fold-radius neighborhoods (default 1) around touched modules to keep context precise and small.</p>
+				</article>
+				<article class="card">
+					<h3>🔒 Policy</h3>
+					<p>Machine-readable boundaries in <code>lexmap.policy.json</code>: ownership, allowed/forbidden edges, flags, permissions.</p>
+				</article>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="features">
+			<h2 id="features" class="kicker">What's in v0.4.5-alpha</h2>
+			<div class="grid">
+				<article class="card">
+					<h3>📦 MCP Server</h3>
+					<p>Model Context Protocol server with stdio transport. Memory tools (<code>lex.remember</code>, <code>lex.recall</code>, <code>lex.list_frames</code>) and policy scanning integrated.</p>
+				</article>
+				<article class="card">
+					<h3>🔧 CLI Tools</h3>
+					<p>Command-line interface with <code>init</code>, <code>remember</code>, <code>recall</code>, <code>check</code>, and more. JSON output mode for automation. Prompts management included.</p>
+				</article>
+				<article class="card">
+					<h3>🗄️ SQLite Storage</h3>
+					<p>Local-first persistence with better-sqlite3. No cloud dependencies, no telemetry. Full control over your data.</p>
+				</article>
+				<article class="card">
+					<h3>📸 Image Support</h3>
+					<p>Attach images to Frames (base64-encoded with MIME type). Uses Sharp for image processing.</p>
+				</article>
+				<article class="card">
+					<h3>🎯 Module Exports</h3>
+					<p>Structured exports for <code>cli</code>, <code>logger</code>, <code>prompts</code>, <code>memory/*</code>, <code>policy/*</code>, and <code>shared/*</code>. Use as library or standalone CLI.</p>
+				</article>
+				<article class="card">
+					<h3>📋 JSON Schemas</h3>
+					<p>Included schemas: <code>profile.schema.json</code>, <code>feature-spec-v0.json</code>, <code>cli-output.v1.schema.json</code> for validation and tooling integration.</p>
+				</article>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="moat">
+			<h2 id="moat" class="kicker">Why it works</h2>
+			<article class="card">
+				<h3>Shared Vocabulary = Receipts</h3>
+				<p>Frames use the same module IDs as policy. Assistants and tools can cite policy violations from the exact time you left the work. That's explainable recall with receipts, not guesses.</p>
+			</article>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="status">
+			<h2 id="status" class="kicker">Status & Install</h2>
+			<div class="grid">
+				<article class="card">
+					<h3>Status</h3>
+					<p><strong>v0.4.5-alpha released!</strong> Available on npm as <code>@smartergpt/lex</code>. APIs and ergonomics may evolve as we dogfood Lex on real repos.</p>
+					<p style="margin-top:8px;color:#c8d3ea">Published: November 22, 2025 • Node ≥20 &lt;23 • MIT Licensed</p>
+				</article>
+				<article class="card">
+					<h3>Install</h3>
+					<p><strong>Lex v0.4.5-alpha is now on npm!</strong> Install globally for CLI access or as a dependency for programmatic use.</p>
+					<div class="code" style="margin-top:12px"><code># Global install (CLI)
+npm install -g @smartergpt/lex@alpha
+
+# Or as a project dependency
+npm install @smartergpt/lex@alpha</code></div>
+					<p style="margin-top:12px">After installation, run <code>npx lex init</code> to set up your workspace, then use <code>lex remember</code>, <code>lex recall</code>, <code>lex check</code>, and more.</p>
+					<p style="margin-top:8px">See the <a href="https://github.com/Guffawaffle/lex" style="color:var(--accent)">GitHub repo</a> for full documentation and examples.</p>
+				</article>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="links">
+			<h2 id="links" class="kicker">Links</h2>
+			<div class="grid">
+				<article class="card">
+					<h3>Package</h3>
+					<ul style="padding-left:20px;margin-top:8px">
+						<li><a href="https://www.npmjs.com/package/@smartergpt/lex" style="color:var(--accent)">npm: @smartergpt/lex</a></li>
+						<li><a href="https://github.com/Guffawaffle/lex" style="color:var(--accent)">GitHub Repository</a></li>
+						<li><a href="https://github.com/Guffawaffle/lex/releases" style="color:var(--accent)">Release Notes</a></li>
+					</ul>
+				</article>
+				<article class="card">
+					<h3>Docs</h3>
+					<ul style="padding-left:20px;margin-top:8px">
+						<li><a href="https://github.com/Guffawaffle/lex/blob/main/docs/OVERVIEW.md" style="color:var(--accent)">Overview</a></li>
+						<li><a href="https://github.com/Guffawaffle/lex/blob/main/docs/MIND_PALACE.md" style="color:var(--accent)">Mind Palace</a></li>
+						<li><a href="https://github.com/Guffawaffle/lex/blob/main/docs/ARCHITECTURE_LOOP.md" style="color:var(--accent)">Architecture Loop</a></li>
+						<li><a href="https://github.com/Guffawaffle/lex/blob/main/docs/FAQ.md" style="color:var(--accent)">FAQ</a></li>
+					</ul>
+				</article>
+				<article class="card">
+					<h3>Related</h3>
+					<p><a href="../lex-pr/index.html" style="color:var(--accent)">lex-pr-runner (LexRunner)</a> — merge pyramid engine that executes plans produced by you or your orchestrator.</p>
+				</article>
+			</div>
+		</section>
+
+	</main>
+
+	<footer class="container footer">
+		<div>&copy; <span id="year"></span> SmarterGPT.dev</div>
+		<div class="pill">Agent‑friendly • CI‑first • Human‑in‑the‑loop</div>
+	</footer>
+	<script src="../../assets/app.js"></script>
+</body>
+</html>

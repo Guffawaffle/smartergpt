@@ -3,47 +3,60 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>lex-pr — PR Workflow System | SmarterGPT.dev</title>
-	<meta name="description" content="Documentation for lex-pr: schema v1, gating model, and merge algorithm for parallel PR workflows." />
+	<!-- Updated 2025-11-07: Reflect LexRunner single-input contract, invariants, and private status -->
+	<title>lex-pr-runner — Deterministic Merge Pyramid | SmarterGPT.dev</title>
+	<meta name="description" content="LexRunner: proprietary merge-weave runner built on Lex. Single frozen merge plan, uniform gates, dependency-ordered merges." />
 	<meta name="color-scheme" content="dark light" />
 	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
 	<link rel="stylesheet" href="../../assets/styles.css" />
 </head>
 <body>
 	<header class="container nav" role="navigation">
-		<div class="logo"><span class="logo-dot" aria-hidden="true"></span><span>SmarterGPT.dev</span></div>
+		<div class="logo"><span class="logo-dot" aria-hidden="true"></span><a href="/" style="color:inherit;text-decoration:none">SmarterGPT.dev</a></div>
 		<nav class="links" aria-label="Primary">
-			<a class="pill" href="../../index.html" title="Home">Home</a>
-			<a class="pill" href="../../docs/merge-pyramid/index.html" title="Merge Pyramid Docs">Docs</a>
-			<a class="pill" href="index.html" title="lex-pr Reference">lex-pr</a>
+			<a class="pill" href="../lex/index.html" title="Lex">Lex</a>
+			<a class="pill" href="index.html" title="LexRunner" aria-current="page">LexRunner</a>
+			<a class="pill" href="../../docs/research/index.html" title="Research">Research</a>
+			<a class="pill" href="../../docs/the-moat/index.html" title="Moat">Moat</a>
+			<a class="pill" href="../../docs/how-to-use/index.html" title="How to Use">Guide</a>
+			<a class="pill" href="../../roadmap.html" title="Roadmap">Roadmap</a>
 		</nav>
 	</header>
 
 	<main class="container">
 		<section class="hero">
 			<div class="hero-left">
-				<span class="badge" aria-label="Project status"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg> Technical Reference</span>
-				<h1>lex-pr: PR Workflow System</h1>
-				<p class="tagline">Canonical reference for lex-pr goals, data schema v1, gating model, and merge algorithm. Part of the SmarterGPT workflow ecosystem.</p>
+				<span class="badge" aria-label="Project status"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg> Private runner</span>
+				<h1>LexRunner: Deterministic Merge Pyramid</h1>
+				<p class="tagline">LexRunner is a proprietary merge-weave runner built on Lex. It reads a single frozen merge plan, runs uniform gates locally and in CI, and applies dependency‑ordered merges so the same inputs always produce the same sequence.</p>
+				<p style="margin-top:12px;color:#c8d3ea">Status: Active development • Private repo (<a href="../../request-access.html" style="color:var(--accent)">request early access</a>) • Contract stabilized</p>
 			</div>
 		</section>
 
 		<section class="hr" role="separator"></section>
 
 		<section aria-labelledby="goals">
-			<h2 id="goals" class="kicker">Project Goals</h2>
+			<h2 id="goals" class="kicker">Core Goals & Invariants</h2>
 			<div class="grid">
 				<article class="card">
-					<h3>Parallel PR Workflows</h3>
-					<p>Enable multiple PRs to be developed, tested, and merged concurrently while maintaining dependency order and preventing conflicts.</p>
+					<h3>Single Frozen Input</h3>
+					<p>Integration runner consumes only a single, versioned merge plan document. No implicit state; no issue scraping at runtime.</p>
 				</article>
 				<article class="card">
-					<h3>Deterministic Merge Order</h3>
-					<p>Compute stable, reproducible merge sequences using topological sorting to ensure dependencies are always satisfied.</p>
+					<h3>Deterministic Merge Pyramid</h3>
+					<p>Topological order from leaves → root with stable sorting. Same plan → same ordered merge decisions.</p>
 				</article>
 				<article class="card">
-					<h3>Local Gate Validation</h3>
-					<p>Run comprehensive quality gates locally before merge to catch issues early and reduce CI/CD failures.</p>
+					<h3>Uniform Gates</h3>
+					<p>Identical gate semantics locally & in CI (linting, type/contract checks, tests, policy). A small, fixed status model (pass/fail/blocked/…) drives eligibility.</p>
+				</article>
+				<article class="card">
+					<h3>Separation of Concerns</h3>
+					<p>Lex owns memory and policy; LexRunner owns orchestration. That separation keeps reasoning explainable and behavior predictable.</p>
+				</article>
+				<article class="card">
+					<h3>Auditability & Receipts</h3>
+					<p>Gate results are structured artifacts; merge decisions trace back to explicit plan + policy fields.</p>
 				</article>
 			</div>
 		</section>
@@ -51,169 +64,92 @@
 		<section class="hr" role="separator"></section>
 
 		<section aria-labelledby="schema">
-			<h2 id="schema" class="kicker">Schema v1</h2>
-			<p style="margin-bottom:24px;color:#c8d3ea">The plan.json schema defines the structure for PR workflow configuration and execution.</p>
-			
-			<article class="card" style="margin-bottom:20px">
-				<h3>Core Fields</h3>
-				<div class="code" style="margin-top:12px"><code>{
-  "version": "1.0.0",        // Schema version identifier
-  "items": [                 // Array of PR workflow items
-    {
-      "id": "string",        // Unique identifier for the PR
-      "branch": "string",    // Git branch name
-      "depends_on": [],      // Array of PR IDs this depends on
-      "gates": {},           // Gate execution configuration
-      "metadata": {}         // Additional context and information
-    }
-  ]
-}</code></div>
-			</article>
+				<h2 id="schema" class="kicker">Integration Contract (high‑level)</h2>
+				<p style="margin-bottom:24px;color:#c8d3ea">At integration time, the runner consumes a single, versioned merge plan produced by your orchestrator. The public site describes concepts only; detailed structures and examples are private.</p>
 
-			<article class="card" style="margin-bottom:20px">
-				<h3>Item Fields</h3>
-				<div style="margin-top:12px">
-					<p><strong>id:</strong> Unique string identifier for each PR item (required)</p>
-					<p><strong>branch:</strong> Git branch name for the PR (required)</p>
-					<p><strong>depends_on:</strong> Array of PR IDs that must be merged before this one (optional, default: [])</p>
-					<p><strong>gates:</strong> Object containing gate execution results and configuration (optional)</p>
-					<p><strong>metadata:</strong> Object for additional metadata like PR number, title, author (optional)</p>
+				<div class="grid">
+					<article class="card">
+						<h3>Plan as Single Input</h3>
+						<p>One frozen merge plan drives ordering, gate execution, and eligibility. No implicit sources are read during integration.</p>
+					</article>
+					<article class="card">
+						<h3>Declared Dependencies</h3>
+						<p>Dependencies are explicit in the plan; the runner does not infer edges. Deterministic ordering respects those declarations.</p>
+					</article>
+					<article class="card">
+						<h3>Gates & Policy</h3>
+						<p>Named checks are evaluated per node with policy indicating which are required and how retries/concurrency are handled.</p>
+					</article>
+					<article class="card">
+						<h3>Versioned Contract</h3>
+						<p>The plan format is versioned for safety. Specific field names, file names, and validation rules are intentionally not published here.</p>
+					</article>
+					<article class="card">
+						<h3>Determinism</h3>
+						<p>Same inputs yield the same outcomes, including stable ordering. This enables reproducible local and CI runs.</p>
+					</article>
 				</div>
-			</article>
 
-			<article class="card">
-				<h3>Validation Rules</h3>
-				<div style="margin-top:12px">
-					<p>• All <strong>id</strong> values must be unique within a plan</p>
-					<p>• All <strong>depends_on</strong> references must point to existing IDs in the same plan</p>
-					<p>• Dependency graph must be acyclic (no circular dependencies)</p>
-					<p>• Schema version must match supported versions (currently v1.0.0)</p>
-					<p>• Branch names must be valid Git ref names</p>
-				</div>
-			</article>
-		</section>
+				<article class="card" style="margin-top:20px">
+					<h3>Note on Examples</h3>
+					<p style="margin:0;color:#c8d3ea">To protect IP, we intentionally omit concrete wire formats and field names on this page. If you need to integrate, request access and we’ll share the private reference.</p>
+				</article>
+			</section>
 
 		<section class="hr" role="separator"></section>
 
 		<section aria-labelledby="gates">
-			<h2 id="gates" class="kicker">Gating Model</h2>
-			<p style="margin-bottom:24px;color:#c8d3ea">Gates are quality checks that run locally before merge to ensure code quality and correctness.</p>
-			
-			<div class="grid">
-				<article class="card">
-					<h3>Lint Gate</h3>
-					<p><strong>Purpose:</strong> Code style and quality validation</p>
-					<p><strong>Implementation:</strong> Runs configured linters (ESLint, Prettier, etc.)</p>
-					<p><strong>Timeout:</strong> Configurable, default 60s</p>
-					<p><strong>Exit criteria:</strong> Zero linting errors</p>
-				</article>
-				<article class="card">
-					<h3>Typecheck Gate</h3>
-					<p><strong>Purpose:</strong> Static type validation</p>
-					<p><strong>Implementation:</strong> TypeScript compiler in check mode</p>
-					<p><strong>Timeout:</strong> Configurable, default 120s</p>
-					<p><strong>Exit criteria:</strong> Zero type errors</p>
-				</article>
-				<article class="card">
-					<h3>Test Gate</h3>
-					<p><strong>Purpose:</strong> Unit and integration test execution</p>
-					<p><strong>Implementation:</strong> Test runner (Vitest, Jest, etc.)</p>
-					<p><strong>Timeout:</strong> Configurable, default 300s</p>
-					<p><strong>Exit criteria:</strong> All tests passing</p>
-				</article>
-			</div>
+				<h2 id="gates" class="kicker">Gate Execution & Status Model</h2>
+				<p style="margin-bottom:24px;color:#c8d3ea">Gates run uniformly in local and CI environments under policy control (required vs optional, retries, concurrency). Tooling specifics and exit semantics are kept private; what follows is concept‑level only.</p>
 
-			<article class="card" style="margin-top:20px">
-				<h3>Gate Execution Flow</h3>
-				<div class="code" style="margin-top:12px"><code>1. Parse plan.json and validate schema
-2. For each PR item in topological order:
-   a. Checkout the branch
-   b. Run configured gates in parallel
-   c. Capture stdout/stderr and exit codes
-   d. Store results in gates object
-   e. If any gate fails, halt execution
-3. Generate gate execution report
-4. Return success only if all gates pass</code></div>
-			</article>
+				<div class="grid">
+					<article class="card">
+						<h3>Static Analysis</h3>
+						<p>Style and quality checks to maintain consistency and catch common issues early.</p>
+					</article>
+					<article class="card">
+						<h3>Type/Contract Validation</h3>
+						<p>Validates interfaces and contracts to prevent integration mismatches.</p>
+					</article>
+					<article class="card">
+						<h3>Tests</h3>
+						<p>Executes project tests. Policy determines which results are required for eligibility.</p>
+					</article>
+				</div>
 
-			<article class="card" style="margin-top:20px">
-				<h3>Gate Results Structure</h3>
-				<div class="code" style="margin-top:12px"><code>{
-  "gates": {
-    "lint": {
-      "status": "passed" | "failed" | "skipped",
-      "duration_ms": 1234,
-      "exit_code": 0,
-      "output": "string"
-    },
-    "typecheck": { /* same structure */ },
-    "test": { /* same structure */ }
-  }
-}</code></div>
-			</article>
-		</section>
+				<article class="card" style="margin-top:20px">
+					<h3>Status Semantics</h3>
+					<p>Gates report a small, fixed set of standardized states. Detailed mappings and artifacts are part of the private reference.</p>
+				</article>
+			</section>
 
 		<section class="hr" role="separator"></section>
 
-		<section aria-labelledby="algorithm">
-			<h2 id="algorithm" class="kicker">Merge Algorithm</h2>
-			<p style="margin-bottom:24px;color:#c8d3ea">The merge algorithm computes deterministic merge order using topological sorting with Kahn's algorithm.</p>
-			
-			<article class="card" style="margin-bottom:20px">
-				<h3>High-Level Steps</h3>
-				<div class="code" style="margin-top:12px"><code>1. Parse and Validate
-   • Load plan.json and validate schema
-   • Build dependency graph from items
-   • Detect cycles and unknown dependencies
-   • Fail fast on validation errors
+		<section aria-labelledby="workflow">
+			<h2 id="workflow" class="kicker">Merge Pyramid Flow</h2>
+			<p style="margin-bottom:24px;color:#c8d3ea">Fan‑out implementation PRs, then weave back deterministically from the base: validate plan, execute gates, merge eligible leaves upward.</p>
 
-2. Compute In-Degree
-   • For each node, count incoming edges
-   • Nodes with in-degree 0 have no dependencies
-   • Track in-degree for each item
+			<div class="grid">
+				<article class="card">
+					<h3>🎯 Smart Dependency Resolution</h3>
+					<p>Automatically determines the correct order for merging PRs based on declared dependencies. Prevents merge conflicts and ensures changes integrate cleanly without manual intervention.</p>
+				</article>
 
-3. Initialize Queue
-   • Add all items with in-degree 0 to queue
-   • Sort queue alphabetically for determinism
-   • Queue represents items ready to merge
+				<article class="card">
+					<h3>⚡ Parallel Execution</h3>
+					<p>Independent work streams merge concurrently, maximizing throughput. The system identifies which changes can safely proceed in parallel while respecting dependencies.</p>
+				</article>
 
-4. Topological Sort (Kahn's Algorithm)
-   • While queue is not empty:
-     a. Remove item from queue (front)
-     b. Add to merge order (output)
-     c. For each dependent of current item:
-        - Decrement its in-degree
-        - If in-degree reaches 0, add to queue
-     d. Sort queue for determinism
+				<article class="card">
+					<h3>🛡️ Conflict Prevention</h3>
+					<p>Intelligent ordering minimizes merge conflicts before they occur. By understanding the dependency graph, the platform sequences merges to avoid integration issues.</p>
+				</article>
 
-5. Validate Completeness
-   • If output contains all items: success
-   • Otherwise: cycle detected, fail with error
-   • Return ordered merge levels</code></div>
-			</article>
-
-			<article class="card" style="margin-bottom:20px">
-				<h3>Merge Levels</h3>
-				<p>The algorithm groups items into levels where all items in a level can be merged in parallel:</p>
-				<div class="code" style="margin-top:12px"><code>{
-  "levels": [
-    ["feat-a", "feat-b"],    // Level 0: No dependencies
-    ["feat-c"],              // Level 1: Depends on Level 0
-    ["feat-d", "feat-e"]     // Level 2: Depends on Level 1
-  ]
-}</code></div>
-				<p style="margin-top:12px">Items within the same level have no interdependencies and can be processed concurrently.</p>
-			</article>
-
-			<article class="card">
-				<h3>Merge Strategies</h3>
-				<div style="margin-top:12px">
-					<p><strong>Fast-forward:</strong> Used when target branch is direct ancestor. Preserves commit history.</p>
-					<p><strong>Squash:</strong> Combines all commits into one. Used for clean history when appropriate.</p>
-					<p><strong>Merge commit:</strong> Creates explicit merge commit. Used when preserving branch history is important.</p>
-					<p style="margin-top:12px"><strong>Strategy selection:</strong> Configurable per item or globally. Fast-forward preferred when possible for clean history.</p>
-				</div>
-			</article>
+				<article class="card">
+					<h3>📊 Predictable Results</h3>
+					<p>Same inputs always produce the same merge sequence. Reproducible builds and deterministic behavior ensure consistency across local development and CI environments.</p>
+				</article>
+			</div>
 		</section>
 
 		<section class="hr" role="separator"></section>
@@ -221,12 +157,15 @@
 		<section aria-labelledby="cta">
 			<div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap">
 				<div>
-					<h3 style="margin:0 0 6px">Ready to use lex-pr?</h3>
-					<p style="margin:0;color:#c8d3ea">Check out the lex-pr-runner implementation and start optimizing your PR workflows.</p>
+					<h3 style="margin:0 0 6px">Ready to adopt the merge pyramid?</h3>
+					<p style="margin:0;color:#c8d3ea">Model work as small dependent PRs and produce a single, versioned merge plan for the runner. Runner is private for now  request access or track the roadmap.</p>
 				</div>
 				<div class="cta">
-					<a class="button primary" href="#schema" title="Get started">Get started</a>
-					<a class="button" href="../../index.html" title="Back to home">Home</a>
+					<a class="button primary" href="../../request-access.html" title="Request access">Request Access</a>
+					<a class="button" href="../../roadmap.html" title="Roadmap">Roadmap</a>
+					<a class="button ghost" href="#schema" title="Integration contract overview">Integration Contract</a>
+					<a class="button ghost" href="../../index.html" title="Back to home">Home</a>
+					<a class="button" href="../lex/index.html" title="Lex OSS">Lex OSS</a>
 				</div>
 			</div>
 		</section>

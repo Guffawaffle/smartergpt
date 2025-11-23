@@ -1,90 +1,193 @@
 <!DOCTYPE html>
+<!-- Updated 2025-11-07: Refresh Lex/LexRunner positioning, add Lex OSS page links, and correct runner status to private active dev -->
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>SmarterGPT — Agent-First Development Platform</title>
-	<meta name="description" content="Build better software faster with AI agents. SmarterGPT provides the tools, workflows, and infrastructure to empower developers with intelligent automation." />
+	<title>SmarterGPT — Policy-Aware Work Continuity</title>
+	<meta name="description" content="Lex: Policy-aware work continuity with receipts. Architecture policy as code meets persistent working memory. AI assistants that cite policy violations from timestamped work sessions." />
 	<meta name="color-scheme" content="dark light" />
 	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
 	<link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
 	<header class="container nav" role="navigation">
-		<div class="logo"><span class="logo-dot" aria-hidden="true"></span><span>SmarterGPT.dev</span></div>
-				<nav class="links" aria-label="Primary">
-						<a class="pill" href="roadmap.html" title="Status &amp; Roadmap">Roadmap</a>
-						<a class="pill" href="docs/merge-pyramid/index.html" title="What is Merge Pyramid?">Merge Pyramid</a>
-						<a class="pill" href="docs/merge-pyramid/index.html" title="Documentation">Docs</a>
-						<a class="pill" href="projects/lex-pr/index.html" title="lex-pr Project">lex-pr</a>
-				</nav>
+		<div class="logo"><span class="logo-dot" aria-hidden="true"></span><a href="/" style="color:inherit;text-decoration:none">SmarterGPT.dev</a></div>
+		<nav class="links" aria-label="Primary">
+			<a class="pill" href="projects/lex/index.html" title="Lex">Lex</a>
+			<a class="pill" href="projects/lex-pr/index.html" title="LexRunner">LexRunner</a>
+			<a class="pill" href="docs/research/index.html" title="Research">Research</a>
+			<a class="pill" href="docs/the-moat/index.html" title="Moat">Moat</a>
+			<a class="pill" href="docs/how-to-use/index.html" title="How to Use">Guide</a>
+			<a class="pill" href="roadmap.html" title="Roadmap">Roadmap</a>
+		</nav>
 	</header>
+
 
 	<main class="container">
 		<section class="hero">
 			<div class="hero-left">
-				<span class="badge" aria-label="Project status"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg> Agent-first development</span>
-				<h1>Build Better Software with AI Agents</h1>
-				<p class="tagline">SmarterGPT empowers developers to ship faster and smarter by providing agent-friendly tools, workflows, and infrastructure. We make AI coding assistants more capable, reliable, and integrated into your development process—from planning to deployment.</p>
+				<span class="badge" aria-label="Project status"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg> v0.4.5-alpha on npm   Local-First   OSS core + private runner</span>
+				<h1>Work Continuity with Receipts, Not Vibes</h1>
+				<p class="tagline"><strong>smartergpt</strong> is the stack: <strong>Lex</strong>, an open-source memory + policy engine, and <strong>LexRunner</strong>, a proprietary merge-weave runner built on Lex. When you ask "Why is this button still disabled?", you get policy-aware answers backed by timestamped work receipts, not guesses.</p>
 				<div class="cta">
-					<a class="button primary" href="#value-props" title="Learn more">Learn more</a>
-					<span class="button" title="Source private">Private Source</span>
-					<a class="button ghost" href="projects/lex-pr/index.html" title="See it in action">See it in action</a>
+					<a class="button primary" href="https://www.npmjs.com/package/@smartergpt/lex" title="Install Lex from npm">npm install @smartergpt/lex</a>
+					<a class="button" href="https://github.com/Guffawaffle/lex" title="View on GitHub">GitHub</a>
+					<a class="button ghost" href="projects/lex-pr/index.html" title="LexRunner waitlist">Request LexRunner early access</a>
 				</div>
 			</div>
 			<div class="hero-card hero-right">
-				<div class="kicker">Platform Overview</div>
-				<pre class="code runner-snapshot" aria-label="Example workflow"><code># Agent-driven development workflow
-$ smartergpt init my-project
-✓ Project initialized with agent config
-✓ MCP tools configured
-✓ CI/CD pipelines ready
+				<div class="kicker">Policy-aware recall in action</div>
+				<pre class="code runner-snapshot" aria-label="Example policy-aware recall"><code># You ask your assistant at 9 AM:
+"Why is the Add User button still disabled?"
 
-# AI agents manage your workflow
-Agent: Analyzing codebase...
-Agent: Creating feature branches...
-Agent: Running tests and validation...
-✓ 3 PRs created and validated
-✓ Dependencies resolved
-✓ Ready for review
+# Without Lex (guessing):
+Assistant: "Maybe the permissions aren't set up?
+Try checking the role configuration."
 
-# Automated merge pyramid
-$ smartergpt merge --auto
-✓ Topological order computed
-✓ All gates passed
-🎉 Clean merge complete!</code></pre>
+# With Lex (citing with receipts):
+Assistant: "The button is disabled because
+ui/user-admin-panel is calling services/auth-core
+directly, which violates policy rule #8.
+
+Policy says it must go through services/user-access-api
+and be gated by can_manage_users permission.
+
+Here's your Frame from 11:04 PM last night where you
+diagnosed this blocker and left it in that state:
+
+📸 Frame_abc123 | 2025-11-01T23:04:12-05:00
+   Branch: feature/TICKET-123_auth_fix
+   Module scope: ui/user-admin-panel, services/auth-core
+   Next action: Wire through user-access-api
+   Blockers: UserAccessController wiring incomplete"
+
+That's not vibes. That's receipts.</code></pre>
 				<div class="hr" role="separator"></div>
 				<div class="grid">
-					<div class="tile"><div class="kicker">Agent-Friendly</div><strong>Built for AI</strong><p class="tagline" style="margin-top:6px">Tools and workflows optimized for AI coding assistants.</p></div>
-					<div class="tile"><div class="kicker">CI-First</div><strong>Automated</strong><p class="tagline" style="margin-top:6px">Continuous integration at the core of every workflow.</p></div>
-					<div class="tile"><div class="kicker">Human-in-Loop</div><strong>Collaborative</strong><p class="tagline" style="margin-top:6px">Humans guide, AI executes, everyone ships faster.</p></div>
-					<div class="tile"><div class="kicker">Open Source</div><strong>Transparent</strong><p class="tagline" style="margin-top:6px">Community-driven, extensible, and fully open.</p></div>
+					<div class="tile"><div class="kicker">Policy</div><strong>Architecture as Code</strong><p class="tagline" style="margin-top:6px">Machine-readable boundaries and contracts.</p></div>
+					<div class="tile"><div class="kicker">Memory</div><strong>Frames + Atlas</strong><p class="tagline" style="margin-top:6px">Timestamped snapshots with adjacency-bounded neighborhoods.</p></div>
+					<div class="tile"><div class="kicker">Moat</div><strong>Shared Vocabulary</strong><p class="tagline" style="margin-top:6px">Same module IDs across policy and memory.</p></div>
+					<div class="tile"><div class="kicker">Local</div><strong>No Cloud</strong><p class="tagline" style="margin-top:6px">Local-first storage, MCP stdio, opt-in recall.</p></div>
 				</div>
 			</div>
 		</section>
 
-		<section aria-labelledby="value-props" id="value-props">
-			<h2 id="value-props-heading" class="kicker">Core Value Propositions</h2>
-			<div class="grid">
-				<article class="card" aria-label="Value Proposition: Developer Velocity">
-					<h3>🚀 Accelerate Development Velocity</h3>
-					<p>Ship features faster with AI agents that understand your codebase, automate repetitive tasks, and maintain quality standards. From code generation to PR management, reduce cycle time from days to hours.</p>
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="north-star" id="north-star" style="background:linear-gradient(135deg, rgba(0,194,255,0.05) 0%, transparent 100%);padding:40px 0;margin:0 -16px;padding-left:16px;padding-right:16px">
+			<div style="max-width:920px">
+				<h2 id="north-star" class="kicker">Our North Star</h2>
+
+				<!-- Problem Statement -->
+				<article class="card" style="margin-bottom:24px;border-left:3px solid var(--accent)">
+					<h3 style="margin-top:0">The Constraint: Model Access as Gatekeeper</h3>
+					<p>Today, AI capability is gated by model access. Claude 3.7 Sonnet outperforms Llama 3.1 8B on complex reasoning tasks—not because of fundamentally different reasoning ability, but because of massive parameter advantages. This creates a two-tier system: developers with $200/month API budgets or 80GB+ GPUs get cutting-edge performance. Everyone else gets left behind.</p>
 				</article>
-				<article class="card" aria-label="Value Proposition: Quality Assurance">
-					<h3>✓ Maintain Quality at Scale</h3>
-					<p>Built-in validation, testing, and verification at every step. AI agents run comprehensive checks, detect issues early, and ensure consistency across your entire codebase—automatically.</p>
+
+				<!-- Vision/Thesis -->
+				<article class="card" style="margin-bottom:24px;border-left:3px solid var(--accent)">
+					<h3 style="margin-top:0">Our Thesis: Cognitive Architecture as Equalizer</h3>
+					<p>Just as human experts rely on external memory, structured reasoning, and policy-driven decision-making, AI agents can achieve near-parity performance with deliberate architectural support—<strong>even on consumer hardware</strong>.</p>
+					<p style="margin-bottom:0;opacity:0.85">The gap between frontier models and open-source isn't insurmountable with engineering. It requires memory (what happened), orchestration (what to do), and behavioral rules (how to behave).</p>
 				</article>
-				<article class="card" aria-label="Value Proposition: Team Collaboration">
-					<h3>🤝 Enhance Team Collaboration</h3>
-					<p>Human-in-the-loop workflows keep developers in control while AI handles the heavy lifting. Clear visibility, structured processes, and seamless handoffs between human decisions and agent execution.</p>
+
+				<!-- The Trinity -->
+				<div class="grid" style="margin-bottom:24px">
+					<article class="card">
+						<h4 style="margin-top:0">🧠 Lex (Mind)</h4>
+						<p style="margin-bottom:0">Episodic memory + policy indexing. Remember context, violations, and prior decisions with architectural precision.</p>
+					</article>
+					<article class="card">
+						<h4 style="margin-top:0">🔀 LexRunner (Body)</h4>
+						<p style="margin-bottom:0">Deterministic orchestration. Coordinate multi-step workflows with predictable ordering and auditable gates.</p>
+					</article>
+					<article class="card">
+						<h4 style="margin-top:0">💭 LexSona (Soul)</h4>
+						<p style="margin-bottom:0">Behavioral memory. Learn user preferences through reinforcement, not static instructions.</p>
+					</article>
+				</div>
+
+				<!-- Proof Point -->
+				<article class="card" style="background:linear-gradient(135deg, rgba(0,194,255,0.1) 0%, rgba(0,194,255,0.02) 100%);border-left:4px solid var(--accent)">
+					<h3 style="margin-top:0">Proof of Value: EsoBench Target</h3>
+					<p>We are designing toward a future where a <strong>locally-run Llama 3.1 8B agent</strong> (8 GB VRAM baseline), equipped with Lex + LexRunner + LexSona, achieves <strong>at least 85% of the best-reported EsoBench score</strong> of contemporary frontier models.</p>
+					<p style="margin-bottom:0;font-size:0.95rem;opacity:0.8">This isn't a current capability claim—it's a North Star. It represents the promise we're building toward: parity through architecture, not parameter count.</p>
 				</article>
+
+				<!-- Why It Matters -->
+				<div class="grid" style="margin-top:24px">
+					<article class="card" style="border:1px solid rgba(0,194,255,0.3)">
+						<h4 style="margin-top:0">🔓 Access Over Exclusivity</h4>
+						<p style="margin-bottom:0">Democratize advanced AI workflows for developers without $200/month API budgets or 80GB+ GPUs.</p>
+					</article>
+					<article class="card" style="border:1px solid rgba(0,194,255,0.3)">
+						<h4 style="margin-top:0">🏗️ Architecture Over Parameters</h4>
+						<p style="margin-bottom:0">Shift the conversation from "bigger models" to "smarter systems." Prove that deliberate engineering can compress decades of compute into architectural cleverness.</p>
+					</article>
+					<article class="card" style="border:1px solid rgba(0,194,255,0.3)">
+						<h4 style="margin-top:0">🌱 Raising the Floor</h4>
+						<p style="margin-bottom:0">Make sophisticated agent patterns accessible to students, hobbyists, and resource-constrained teams globally.</p>
+					</article>
+				</div>
 			</div>
 		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="highlights" id="highlights">
+			<h2 id="highlights-heading" class="kicker">Highlights</h2>
+			<div class="grid">
+				<article class="card"><h3>Lex OSS</h3><p>Open-source memory + policy engine with shared vocabulary for explainable recall. Now on npm: <code>@smartergpt/lex@alpha</code></p><p><a style="color:var(--accent)" href="projects/lex/index.html">Learn more →</a></p></article>
+				<article class="card"><h3>Quick Start</h3><p>Define policy, capture Frames, recall, ask why.</p><p><a style="color:var(--accent)" href="docs/how-to-use/index.html">Guide →</a></p></article>
+				<article class="card"><h3>Research</h3><p>Adjacency‑constrained episodic memory & Atlas Frames.</p><p><a style="color:var(--accent)" href="https://github.com/Guffawaffle/lex/blob/main/docs/research/adjacency-constrained-episodic-memory.pdf">Paper →</a></p></article>
+				<article class="card"><h3>More Research</h3><p>Frequency-Weighted Behavioral Memory for Persistent AI Agent Identity.</p><p><a style="color:var(--accent)" href="https://github.com/Guffawaffle/lex/blob/main/docs/research/LexSona/lexsona_paper.md">Paper →</a></p></article>
+				<article class="card"><h3>LexRunner</h3><p>Deterministic merge pyramid built on Lex: single versioned merge plan, uniform gates, predictable order.</p><p><a style="color:var(--accent)" href="projects/lex-pr/index.html">Reference →</a></p></article>
+				<article class="card"><h3>The Moat</h3><p>Shared vocabulary joins policy & memory: answers with receipts.</p><p><a style="color:var(--accent)" href="docs/the-moat/index.html">Concept →</a></p></article>
+			</div>
+		</section>
+
+		<!-- Mind & Body: Lex (mind) + lex-pr-runner (body) -->
+		<article class="card" style="margin-top:20px">
+			<h3>
+				Mind &amp; Body &amp; Soul: Lex + LexRunner + LexSona
+				<small style="font-weight:normal;font-size:0.75em;margin-left:6px;">
+					(LexSona coming soon)
+				</small>
+			</h3>
+			<p><strong>Three complementary layers.</strong> <code>lex and lexsona</code> are the long-term mind and soul (Frames + Atlas + policy + behavior). LexRunner is the execution body: fan-out small PRs, validate via gates, and weave them back in a deterministic merge pyramid using a single frozen merge plan.</p>
+			<ul style="padding-left:20px;margin-top:12px">
+				<li><strong>Lex (OSS)</strong>: policy-as-code + episodic memory with a shared module vocabulary.</li>
+				<li><strong>LexRunner (private)</strong>: merge pyramid runner - dependency-aware ordering, uniform gates (linting, type/contract checks, tests, policy), and a small, fixed status model (pass/fail/blocked/...) to drive eligibility.</li>
+				<li><strong>LexSona (coming soon)</strong>: scoped behavioral memory on top of Lex Frames and policy, so agents can adapt their behavior and guardrails per domain and mode without changing core code.</li>
+				<li><strong>Clear separation of concerns</strong>: Lex and LexSona focus on memory, behavior, and policy; LexRunner focuses on orchestrating merges over real PRs.</li>
+				<li><strong>Determinism</strong>: same inputs produce the same merge decisions; local and CI see the same behavior.</li>
+			</ul>
+			<p style="margin-top:12px">Result: explainable shipping - patches line up with architecture, policy, and prior work state, not guesswork.</p>
+			<div class="cta" style="margin-top:16px">
+				<a class="button primary" href="projects/lex/index.html" title="Lex OSS page">Lex OSS</a>
+				<a class="button ghost" href="projects/lex-pr/index.html" title="LexRunner reference">LexRunner Reference</a>
+			</div>
+		</article>
 
 
 		<section class="hr" role="separator"></section>
 
-		<section aria-labelledby="how">
+		<section class="hr" role="separator"></section>
+			<div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap">
+				<div>
+					<h3 style="margin:0 0 6px">Ready for work continuity with receipts?</h3>
+					<p style="margin:0;color:#c8d3ea">Start with Lex for policy-aware recall. Read the research paper. Build the moat.</p>
+				</div>
+				<div class="cta">
+					<a class="button primary" href="https://github.com/Guffawaffle/lex" title="View Lex on GitHub">View on GitHub</a>
+					<a class="button" href="https://github.com/Guffawaffle/lex/blob/main/docs/research/adjacency-constrained-episodic-memory.pdf" target="_blank" rel="noopener" title="Open research paper PDF">Research Paper</a>
+				</div>
+			</div>
+		</section>
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="how" style="display:none">
 			<h2 id="how" class="kicker">How it works</h2>
 			<div class="grid">
 				<article class="card">
@@ -102,32 +205,54 @@ $ smartergpt merge --auto
 			</div>
 		</section>
 
-		<section class="hr" role="separator"></section>
+	<section class="hr" role="separator"></section>
 
-		<section aria-labelledby="roadmap">
-			<h2 id="roadmap" class="kicker">Roadmap & Vision</h2>
+	<section aria-labelledby="projects" id="projects">
+		<h2 id="projects-heading" class="kicker">Projects</h2>
+		<p style="margin-bottom:24px;color:#c8d3ea">Building tools for deterministic, policy-aware development workflows.</p>
+		<div class="grid">
+			<article class="card">
+				<h3>🧠 Lex (OSS)</h3>
+				<p><strong>Memory + policy engine.</strong> Frames, Atlas Frames, and policy-as-code for explainable recall with receipts.</p>
+				<p style="margin-top:12px;color:#c8d3ea">Status: <strong>MIT-licensed, public</strong>.</p>
+				<div class="cta" style="margin-top:12px">
+					<a class="button primary" href="https://github.com/Guffawaffle/lex" title="Lex on GitHub">GitHub</a>
+					<a class="button ghost" href="projects/lex/index.html" title="Lex OSS page">Lex page</a>
+				</div>
+			</article>
+			<article class="card">
+				<h3>🔀 LexSona</h3>
+				<p><strong>Behavioral Memory Engine.</strong></p>
+				<p style="margin-top:12px;color:#c8d3ea">Status: <strong>Active development (1Q26?)</strong></p>
+				<br />
+				<br />
+				<div class="cta" style="margin-top:12px">
+					<a class="button primary" href="https://github.com/Guffawaffle/lex/blob/main/docs/research/LexSona/lexsona_paper.md" title="LexSona Paper">Read the Paper</a>
+				</div>
+			</article>
+			<article class="card">
+				<h3>🔀 LexRunner</h3>
+				<p><strong>Merge pyramid runner.</strong> Consumes a single merge plan built on Lex, runs uniform gates locally and in CI, and applies merges in a deterministic, dependency-aware order.</p>
+				<p style="margin-top:12px;color:#c8d3ea">Status: <strong>Active development (private)</strong> — request early access.</p>
+				<div class="cta" style="margin-top:12px">
+					<a class="button" href="projects/lex-pr/index.html" title="LexRunner page">LexRunner page</a>
+					<a class="button ghost" href="request-access.html" title="Request access">Request access</a>
+				</div>
+			</article>
+		</div>
+	</section>
+
+	<section class="hr" role="separator"></section>
+
+	<section aria-labelledby="cta">
 			<div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap">
 				<div>
-					<h3 style="margin:0 0 6px">Building the future of agent-driven development</h3>
-					<p style="margin:0;color:#c8d3ea">We're expanding the platform with new tools, deeper integrations, and smarter workflows. See what's coming next and help shape the future.</p>
+					<h3 style="margin:0 0 6px">Ready for policy-aware work continuity?</h3>
+					<p style="margin:0;color:#c8d3ea">Start with Lex, our open-source memory + policy engine, and explore LexRunner conceptually while it remains a private runner in active development.</p>
 				</div>
 				<div class="cta">
-					<a class="button primary" href="roadmap.html" title="View roadmap">View Roadmap</a>
-				</div>
-			</div>
-		</section>
-
-		<section class="hr" role="separator"></section>
-
-		<section aria-labelledby="cta">
-			<div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap">
-				<div>
-					<h3 style="margin:0 0 6px">Ready to accelerate your development?</h3>
-					<p style="margin:0;color:#c8d3ea">Start with lex-pr-runner, our open-source PR workflow engine, and experience agent-driven development today.</p>
-				</div>
-				<div class="cta">
-					<a class="button primary" href="docs/merge-pyramid/index.html" title="Get started">Get started</a>
-					<a class="button" href="projects/lex-pr/index.html" title="Explore projects">Explore Projects</a>
+					<a class="button primary" href="https://github.com/Guffawaffle/lex" title="Get started with Lex">Get started with Lex</a>
+					<a class="button" href="projects/lex-pr/index.html" title="Learn about LexRunner">LexRunner overview</a>
 				</div>
 			</div>
 		</section>

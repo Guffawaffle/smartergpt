@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Research — Adjacency‑Constrained Memory | SmarterGPT.dev</title>
+	<meta name="description" content="Adjacency‑constrained episodic memory: Atlas Frames, fold radius, policy‑aware pruning, and temporal+structural indexing." />
+	<meta name="color-scheme" content="dark light" />
+	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
+	<link rel="stylesheet" href="../../assets/styles.css" />
+</head>
+<body>
+	<header class="container nav" role="navigation">
+		<div class="logo"><span class="logo-dot" aria-hidden="true"></span><span><a href="/" style="color:inherit;text-decoration:none">SmarterGPT.dev</a></span></div>
+		<nav class="links" aria-label="Primary">
+			<a class="pill" href="../../projects/lex/index.html" title="Lex">Lex</a>
+			<a class="pill" href="../../projects/lex-pr/index.html" title="LexRunner">LexRunner</a>
+			<a class="pill" href="index.html" title="Research">Research</a>
+			<a class="pill" href="../the-moat/index.html" title="Moat">Moat</a>
+			<a class="pill" href="../how-to-use/index.html" title="How to Use">Guide</a>
+			<a class="pill" href="../../roadmap.html" title="Roadmap">Roadmap</a>
+		</nav>
+	</header>
+
+	<main class="container">
+		<section class="hero">
+			<div class="hero-left">
+				<span class="badge" aria-label="Page type"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg> Research</span>
+				<h1>Adjacency‑Constrained Episodic Memory</h1>
+				<p class="tagline">Formalizing Atlas Frames (fold radius), policy‑aware pruning, and temporal+structural indexing for explainable recall.</p>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="key-ideas">
+			<h2 id="key-ideas" class="kicker">Key Ideas</h2>
+			<div class="grid">
+				<article class="card"><h3>Fold Radius</h3><p>Bound recall to a neighborhood around touched modules (0, 1, 2 hops) instead of dumping entire codebases.</p></article>
+				<article class="card"><h3>Policy‑Aware Pruning</h3><p>Use architecture metadata to highlight allowed edges, flag forbidden ones, and omit irrelevant paths.</p></article>
+				<article class="card"><h3>Temporal + Structural Index</h3><p>Sort Frames by recency within <code>module_scope</code>, optionally filtered by flags, permissions, or ticket IDs.</p></article>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="links">
+			<h2 id="links" class="kicker">Paper & Sources</h2>
+			<div class="grid">
+				<article class="card">
+					<h3>Download</h3>
+					<p><a style="color:var(--accent)" href="https://github.com/Guffawaffle/lex/blob/main/docs/research/adjacency-constrained-episodic-memory.pdf">PDF</a> • <a style="color:var(--accent)" href="https://github.com/Guffawaffle/lex/blob/main/docs/research/adjacency-constrained-episodic-memory.tex">LaTeX</a></p>
+				</article>
+				<article class="card">
+					<h3>Lex OSS</h3>
+					<p><a style="color:var(--accent)" href="../../projects/lex/index.html">Learn Lex</a> — policy + memory with shared vocabulary.</p>
+				</article>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="lexsona">
+			<h2 id="lexsona" class="kicker">LexSona — Behavioral Memory</h2>
+
+			<!-- Casual audience hook -->
+			<div class="card" style="margin-bottom:24px;border-left:3px solid var(--accent);padding:20px">
+				<p style="margin:0 0 12px;font-size:1.1rem;line-height:1.6">
+					<strong>The soul to Lex's mind:</strong> AI agents forget your corrections the moment a session ends. LexSona remembers how you like to work—turning repeated corrections into stable behavioral rules that persist across sessions, projects, and even model updates.
+				</p>
+				<p style="margin:0;font-size:0.95rem;opacity:0.8">
+					Stop telling your AI "don't use sed" for the twelfth time. LexSona learns from repetition, builds confidence through reinforcement, and lets you inspect exactly why an agent behaves a certain way.
+				</p>
+			</div>
+
+			<!-- Research-level details -->
+			<div class="grid">
+				<article class="card">
+					<h3>Novel Contributions</h3>
+					<ul style="margin:0;padding-left:20px;line-height:1.7">
+						<li><strong>Bayesian confidence model:</strong> Beta distribution priors with frequency-weighted reinforcement (N≥3 threshold prevents one-off outliers)</li>
+						<li><strong>Hierarchical scope precedence:</strong> Deterministic conflict resolution via environment → project → agent_family → tags</li>
+						<li><strong>Bounded prompt injection:</strong> Active persona snapshots remain <500 tokens (10-20 rules) via confidence thresholding</li>
+						<li><strong>Introspectable provenance:</strong> Every rule links to correction history with full audit trail</li>
+					</ul>
+				</article>
+
+				<article class="card">
+					<h3>Key Results</h3>
+					<ul style="margin:0;padding-left:20px;line-height:1.7">
+						<li>87% classification precision at 0.85 cosine similarity threshold (sentence transformers)</li>
+						<li>80% recall on 200 real-world corrections across tool preferences, communication style, security policies</li>
+						<li>Median prompt overhead: 350 tokens (12 rules × 29 tokens/rule)</li>
+						<li>Classification latency <100ms; snapshot retrieval <20ms</li>
+					</ul>
+				</article>
+
+				<article class="card">
+					<h3>Architecture Integration</h3>
+					<p style="margin:0 0 12px">LexSona completes the cognitive trinity:</p>
+					<ul style="margin:0;padding-left:20px;line-height:1.7">
+						<li><strong>Lex (mind):</strong> Episodic memory—what happened</li>
+						<li><strong>LexRunner (body):</strong> Execution orchestration—what to do</li>
+						<li><strong>LexSona (soul):</strong> Behavioral identity—how to behave</li>
+					</ul>
+					<p style="margin:12px 0 0;font-size:0.95rem;opacity:0.8">
+						Integrates as a sidecar service; no model retraining required. Works across GPT, Claude, Copilot with agent-family scoping.
+					</p>
+				</article>
+
+				<article class="card">
+					<h3>Why It Matters</h3>
+					<p style="margin:0 0 8px">
+						Current approaches fail: ChatGPT's "Memory" pollutes personal projects with work rules. Session-local learning forgets everything on context reset. RLHF operates at population scale, not per-user workflows.
+					</p>
+					<p style="margin:0">
+						LexSona bridges episodic memory (Lex Frames: "you corrected sed usage on Nov 22") to procedural knowledge ("never use sed for file editing in monorepos"). The result: persistent, auditable, scoped behavioral preferences that survive model upgrades.
+					</p>
+				</article>
+			</div>
+
+			<!-- Access the paper -->
+			<div style="margin-top:24px;padding:20px;background:linear-gradient(135deg, rgba(0,194,255,0.08) 0%, rgba(0,194,255,0.02) 100%);border-radius:8px">
+				<h3 style="margin:0 0 12px">Access the Research</h3>
+				<div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+					<a class="button primary" href="https://github.com/Guffawaffle/lex/blob/main/docs/research/LexSona/lexsona_paper.md" target="_blank" rel="noopener" title="Read the LexSona paper">Read paper</a>
+					<a class="button" href="https://github.com/Guffawaffle/lex" target="_blank" rel="noopener" title="View implementation">Implementation</a>
+					<span style="font-size:0.9rem;opacity:0.7">47 pages • Canonical v1.0 • Nov 2025</span>
+				</div>
+				<p style="margin:12px 0 0;font-size:0.9rem;opacity:0.8">
+					Includes: problem formulation, Bayesian confidence calculus, reference implementation (SQL schema + TypeScript classifier), evaluation on 200 corrections, and integration patterns with Lex/LexRunner.
+				</p>
+			</div>
+		</section>
+	</main>
+
+	<footer class="container footer">
+		<div>&copy; <span id="year"></span> SmarterGPT.dev</div>
+		<div class="pill">Agent‑friendly • CI‑first • Human‑in‑the‑loop</div>
+	</footer>
+	<script src="../../assets/app.js"></script>
+</body>
+</html>
