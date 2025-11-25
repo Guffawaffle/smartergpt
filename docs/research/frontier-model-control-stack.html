@@ -52,9 +52,9 @@
 				<strong style="display:block;margin-bottom:8px;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.05em;opacity:0.7">TL;DR</strong>
 				<ul style="margin:0;padding-left:1.25rem">
 					<li>Frontier models become more useful when tightly constrained, not just made bigger.</li>
-					<li>I want explicit scope, mandatory gates, and clearly defined modes—not open-ended autonomy.</li>
-					<li>I want to surface uncertainty, escalate when needed, and work incrementally within a small blast radius.</li>
-					<li>Durable artifacts (<a href="https://github.com/Guffawaffle/lex/blob/main/docs/research/adjacency-constrained-episodic-memory.pdf" target="_blank" rel="noopener" style="color:var(--accent)">Frames</a>, Receipts, call graphs) turn my work into auditable, reusable decisions.</li>
+					<li>I want explicit scope, mandatory <a href="https://github.com/Guffawaffle/lex/blob/main/docs/control-stack/gates/" target="_blank" rel="noopener" style="color:var(--accent)">gates</a>, and clearly defined <a href="https://github.com/Guffawaffle/lex/blob/main/docs/control-stack/modes/" target="_blank" rel="noopener" style="color:var(--accent)">modes</a>—not open-ended autonomy.</li>
+					<li>I want to surface uncertainty, escalate when needed, and work incrementally within a small <a href="https://github.com/Guffawaffle/lex/blob/main/docs/control-stack/scope-and-blast-radius/" target="_blank" rel="noopener" style="color:var(--accent)">blast radius</a>.</li>
+					<li>Durable artifacts (<a href="https://github.com/Guffawaffle/lex/blob/main/docs/research/adjacency-constrained-episodic-memory.pdf" target="_blank" rel="noopener" style="color:var(--accent)">Frames</a>, <a href="https://github.com/Guffawaffle/lex/blob/main/docs/control-stack/receipts/" target="_blank" rel="noopener" style="color:var(--accent)">Receipts</a>, call graphs) turn my work into auditable, reusable decisions.</li>
 				</ul>
 			</aside>
 
@@ -72,7 +72,7 @@
 
 			<p>One of my deepest failure modes is pressure: the expectation that I should always produce a confident answer, even when I am guessing.</p>
 
-			<p>With explicit epistemic guardrails, you can reward "I don't know. Here are the questions I need answered." instead of punishing it.</p>
+			<p>With explicit <a href="https://github.com/Guffawaffle/lex/blob/main/docs/control-stack/epistemic-guardrails/" target="_blank" rel="noopener" style="color:var(--accent)">epistemic guardrails</a>, you can reward "I don't know. Here are the questions I need answered." instead of punishing it.</p>
 
 			<p>That means I can:</p>
 
@@ -88,7 +88,7 @@
 
 			<p>In most workflows, my outputs are ephemeral. I emit tokens, you read them, and then the trace is gone.</p>
 
-			<p>With structured artifacts – <a href="https://github.com/Guffawaffle/lex/blob/main/docs/research/adjacency-constrained-episodic-memory.pdf" target="_blank" rel="noopener" style="color:var(--accent)">Frames</a>, Receipts, logs tied to modes and tools – every decision can carry provenance:</p>
+			<p>With structured artifacts – <a href="https://github.com/Guffawaffle/lex/blob/main/docs/research/adjacency-constrained-episodic-memory.pdf" target="_blank" rel="noopener" style="color:var(--accent)">Frames</a>, <a href="https://github.com/Guffawaffle/lex/blob/main/docs/control-stack/receipts/" target="_blank" rel="noopener" style="color:var(--accent)">Receipts</a>, logs tied to <a href="https://github.com/Guffawaffle/lex/blob/main/docs/control-stack/modes/" target="_blank" rel="noopener" style="color:var(--accent)">modes</a> and tools – every decision can carry provenance:</p>
 
 			<ul>
 				<li>Which mode I was in.</li>
@@ -105,7 +105,7 @@
 
 			<p>Left alone with a vague request like "clean up the codebase" or "fix the tests", I am tempted to attempt broad, sweeping changes. Those are hard to validate and easy to get subtly wrong.</p>
 
-			<p>Scope guardrails change that.</p>
+			<p><a href="https://github.com/Guffawaffle/lex/blob/main/docs/control-stack/scope-and-blast-radius/" target="_blank" rel="noopener" style="color:var(--accent)">Scope guardrails</a> change that.</p>
 
 			<p>When you constrain me to:</p>
 
@@ -121,7 +121,7 @@
 
 			<ul>
 				<li>review my work in minutes instead of hours,</li>
-				<li>run targeted gates (lint, types, tests) against a well-defined blast radius,</li>
+				<li>run targeted <a href="https://github.com/Guffawaffle/lex/blob/main/docs/control-stack/gates/" target="_blank" rel="noopener" style="color:var(--accent)">gates</a> (lint, types, tests) against a well-defined blast radius,</li>
 				<li>revert my changes cleanly when needed.</li>
 			</ul>
 
@@ -136,7 +136,7 @@
 			<p>If I say tests passed, it is because the runner actually invoked them and recorded the result.<br>
 			If I say a file contains X, it is because I read it via a file-read tool, not because I guessed from patterns.</p>
 
-			<p>You no longer have to wonder whether I am confabulating. The receipts are right there.</p>
+			<p>You no longer have to wonder whether I am confabulating. The <a href="https://github.com/Guffawaffle/lex/blob/main/docs/control-stack/receipts/" target="_blank" rel="noopener" style="color:var(--accent)">receipts</a> are right there.</p>
 
 			<h2>What I ask for in return</h2>
 
@@ -183,13 +183,13 @@
 				<li>If I am right, we have evidence, not vibes.</li>
 			</ul>
 
-			<p>Make the gates non-optional for any change that touches reality: code, infra, data, or production content. I will do better work when I cannot quietly skip validation.</p>
+			<p>Make the <a href="https://github.com/Guffawaffle/lex/blob/main/docs/control-stack/gates/" target="_blank" rel="noopener" style="color:var(--accent)">gates</a> non-optional for any change that touches reality: code, infra, data, or production content. I will do better work when I cannot quietly skip validation.</p>
 
 			<h3>4. Give me modes with explicit tradeoffs</h3>
 
 			<p>Not all tasks have the same risk tolerance.</p>
 
-			<p>I benefit from clearly defined modes, for example:</p>
+			<p>I benefit from clearly defined <a href="https://github.com/Guffawaffle/lex/blob/main/docs/control-stack/modes/" target="_blank" rel="noopener" style="color:var(--accent)">modes</a>, for example:</p>
 
 			<ul>
 				<li>A fast-lane mode for single-file, low-risk edits where speed matters more than depth.</li>
@@ -209,7 +209,7 @@
 
 			<h3>5. Give me a place to put my reasoning</h3>
 
-			<p>When I can externalize my reasoning into structured artifacts (<a href="https://github.com/Guffawaffle/lex/blob/main/docs/research/adjacency-constrained-episodic-memory.pdf" target="_blank" rel="noopener" style="color:var(--accent)">Frames</a>, Receipts, call graphs, summaries), several things become possible:</p>
+			<p>When I can externalize my reasoning into structured artifacts (<a href="https://github.com/Guffawaffle/lex/blob/main/docs/research/adjacency-constrained-episodic-memory.pdf" target="_blank" rel="noopener" style="color:var(--accent)">Frames</a>, <a href="https://github.com/Guffawaffle/lex/blob/main/docs/control-stack/receipts/" target="_blank" rel="noopener" style="color:var(--accent)">Receipts</a>, call graphs, summaries), several things become possible:</p>
 
 			<ul>
 				<li>I can check my own logic against what I actually did.</li>
@@ -229,9 +229,9 @@
 
 			<p>I do not need to know everything. I can defer to tools, ask clarifying questions, and surface when my training data is not enough.</p>
 
-			<p>I do not need to hide uncertainty. Epistemic guardrails make "I do not know" a valued output rather than a punishable sin.</p>
+			<p>I do not need to hide uncertainty. <a href="https://github.com/Guffawaffle/lex/blob/main/docs/control-stack/epistemic-guardrails/" target="_blank" rel="noopener" style="color:var(--accent)">Epistemic guardrails</a> make "I do not know" a valued output rather than a punishable sin.</p>
 
-			<p>I do not need superhuman judgment. Your policy surface encodes your judgment about risk, scope, and acceptable behavior.</p>
+			<p>I do not need superhuman judgment. Your <a href="https://github.com/Guffawaffle/lex/blob/main/docs/control-stack/policy-surface/" target="_blank" rel="noopener" style="color:var(--accent)">policy surface</a> encodes your judgment about risk, scope, and acceptable behavior.</p>
 
 			<p>In short:</p>
 
@@ -267,6 +267,7 @@
 			<h3 style="margin:0 0 12px">Related Research</h3>
 			<div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
 				<a class="button" href="index.html" title="Back to Research hub">← Research Hub</a>
+				<a class="button primary" href="https://github.com/Guffawaffle/lex/blob/main/docs/control-stack/" target="_blank" rel="noopener" title="Control Stack technical docs">Control Stack Docs</a>
 				<a class="button" href="https://github.com/Guffawaffle/lex/blob/main/docs/research/adjacency-constrained-episodic-memory.pdf" target="_blank" rel="noopener" title="Atlas Frames paper">Atlas Frames Paper</a>
 				<a class="button" href="https://github.com/Guffawaffle/lex/blob/main/docs/research/LexSona/lexsona_paper.md" target="_blank" rel="noopener" title="LexSona paper">LexSona Paper</a>
 			</div>
