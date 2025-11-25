@@ -26,7 +26,7 @@ Added a "Licensing & Commercial Availability" section to the roadmap page to cle
    - Required for larger businesses (revenue ≥ $1M/year)
    - Tiered pricing based on organization size:
      - Startup <$10M ARR → $1,500/yr
-     - Growth $10–50M ARR → $5,000/yr
+     - Growth $10--50M ARR → $5,000/yr
      - Enterprise >$50M ARR → $12,000/yr
      - Indie-commercial (solo consultants) → $299/yr (optional)
 

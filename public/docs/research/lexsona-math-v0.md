@@ -61,11 +61,11 @@ e = (r, c, y, t, w)
 
 where:
 
-* (r \in \mathcal{R}) – the rule being taught or violated
-* (c \in \mathcal{C}) – context in which this correction occurs
-* (y \in {+1, -1}) – +1 = reinforcement, -1 = counterexample
-* (t \in \mathbb{R}_{\ge 0}) – timestamp
-* (w \in \mathbb{R}_{> 0}) – weight (usually 1, but could reflect explicit “this is important”)
+* (r \in \mathcal{R}) -- the rule being taught or violated
+* (c \in \mathcal{C}) -- context in which this correction occurs
+* (y \in {+1, -1}) -- +1 = reinforcement, -1 = counterexample
+* (t \in \mathbb{R}_{\ge 0}) -- timestamp
+* (w \in \mathbb{R}_{> 0}) -- weight (usually 1, but could reflect explicit “this is important”)
 
 Let the history up to time (T) be (H_T = { e_i : t_i \le T}).
 
@@ -75,7 +75,7 @@ Let the history up to time (T) be (H_T = { e_i : t_i \le T}).
 
 Now the important object: **persona state**.
 
-For each rule–context pair ((r,c)), we maintain a small state vector:
+For each rule--context pair ((r,c)), we maintain a small state vector:
 
 [
 S_T(r, c) = (\alpha_{T}(r,c),; \beta_{T}(r,c),; t_{T}(r,c))
@@ -108,7 +108,7 @@ These are deterministic functions of (S_T) and a few global hyperparameters.
 
 ## 3. Scoped reinforcement diffusion (the fun part)
 
-You said “efficient, creative, deterministic” – here’s the creative part that (as far as I know) isn’t standard:
+You said “efficient, creative, deterministic” -- here’s the creative part that (as far as I know) isn’t standard:
 
 When you give a correction in a *specific* context (c_*), it should:
 
@@ -241,7 +241,7 @@ with small hyperparameters (\alpha_0,\beta_0 > 0). Then define:
 = \frac{\tilde{\alpha}_T(r,d)}{\tilde{\alpha}_T(r,d) + \tilde{\beta}_T(r,d)}
 ]
 
-This is exactly the posterior mean of a **Beta-Bernoulli** model, *but* we never sample – we treat it as a deterministic map.
+This is exactly the posterior mean of a **Beta-Bernoulli** model, *but* we never sample -- we treat it as a deterministic map.
 
 Now incorporate **continuous recency** again at the confidence layer:
 

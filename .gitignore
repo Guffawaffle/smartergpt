@@ -26,4 +26,3 @@ dist/
 # Local developer workspace (optional)
 smartergpt.local/
 .smartergpt.local/
-public/
