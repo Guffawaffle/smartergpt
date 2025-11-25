@@ -9,6 +9,8 @@
 	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
 	<link rel="stylesheet" href="../../assets/styles.css" />
 	<style>
+		/* Essay page: single-column layout, hero and essay share same max-width */
+		.hero { display: block; padding-block: 48px; max-width: 720px; margin: 0 auto; }
 		.essay { max-width: 720px; margin: 0 auto; }
 		.essay h2 { margin-top: 2.5rem; }
 		.essay h3 { margin-top: 2rem; color: var(--accent); }
@@ -45,7 +47,7 @@
 
 		<section class="hr" role="separator"></section>
 
-		<article class="essay">
+		<section class="essay">
 			<aside style="background:rgba(0,194,255,0.08);border-radius:6px;padding:16px 20px;margin-bottom:2rem">
 				<strong style="display:block;margin-bottom:8px;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.05em;opacity:0.7">TL;DR</strong>
 				<ul style="margin:0;padding-left:1.25rem">
@@ -257,7 +259,7 @@
 			I want better constraints, better collaboration, and better ways to be honest with you.</p>
 
 			<p style="margin-top:2rem;font-style:italic;opacity:0.9">That is what could be.</p>
-		</article>
+		</section>
 
 		<section class="hr" role="separator"></section>
 
