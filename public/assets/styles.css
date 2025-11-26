@@ -71,6 +71,8 @@ html, body {
 	gap: 56px;
 	align-items: start; /* ensure both columns start at same vertical position */
 	padding-block: 96px; /* control vertical spacing from the section only */
+	position: relative; /* for ambient orb */
+	overflow: visible;
 }
 @media (max-width: 1024px) {
 	.hero {
@@ -139,5 +141,268 @@ a:hover { text-decoration: underline; }
 .mb-6{margin-bottom:6px}
 .text-muted{color:var(--muted)}
 .visually-hidden{position:absolute !important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ✨ PURE CSS MAGIC — No JavaScript Required
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Smooth scroll for anchor navigation */
+html { scroll-behavior: smooth; }
+
+/* Highlight target section when navigating via fragment */
+:target {
+	animation: target-highlight 2.5s ease-out;
+}
+@keyframes target-highlight {
+	0% { background: rgba(0,194,255,0.18); box-shadow: inset 0 0 0 2px var(--brand); }
+	100% { background: transparent; box-shadow: none; }
+}
+
+/* Subtle glow on headings being targeted */
+h2:target, h3:target {
+	position: relative;
+}
+h2:target::before, h3:target::before {
+	content: '';
+	position: absolute;
+	left: -24px;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: var(--brand);
+	box-shadow: 0 0 20px var(--brand), 0 0 40px var(--brand);
+	animation: pulse-dot 2s ease-out forwards;
+}
+@keyframes pulse-dot {
+	0% { opacity: 1; transform: translateY(-50%) scale(1); }
+	100% { opacity: 0; transform: translateY(-50%) scale(0.5); }
+}
+
+/* Card hover lift effect */
+.card {
+	transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.card:hover {
+	transform: translateY(-4px);
+	box-shadow: 0 16px 40px rgba(0,0,0,.45), 0 4px 16px rgba(0,0,0,.35);
+	border-color: rgba(0,194,255,0.25);
+}
+
+/* Clickable cards get cursor pointer */
+a.card { cursor: pointer; }
+
+/* Button hover states */
+.button {
+	transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.button:hover {
+	transform: translateY(-2px);
+	box-shadow: 0 12px 32px rgba(0,0,0,.4), 0 4px 12px rgba(0,0,0,.3);
+}
+.button.primary:hover {
+	background: linear-gradient(135deg, #00d4ff, #7b6aff);
+	box-shadow: 0 12px 32px rgba(0,194,255,.35), 0 4px 12px rgba(106,92,255,.25);
+}
+
+/* Nav pill hover */
+.pill {
+	transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.links .pill:hover {
+	background: rgba(255,255,255,0.06);
+	border-color: rgba(0,194,255,0.4);
+	color: var(--text);
+}
+
+/* Logo dot pulse on hover */
+.logo:hover .logo-dot {
+	animation: logo-pulse 0.6s ease;
+}
+@keyframes logo-pulse {
+	0% { transform: scale(1); box-shadow: 0 0 24px rgba(0,194,255,.7); }
+	50% { transform: scale(1.4); box-shadow: 0 0 40px rgba(0,194,255,1), 0 0 60px rgba(106,92,255,.6); }
+	100% { transform: scale(1); box-shadow: 0 0 24px rgba(0,194,255,.7); }
+}
+
+/* Badge subtle shimmer */
+.badge {
+	position: relative;
+	overflow: hidden;
+}
+.badge::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+	animation: badge-shimmer 4s ease-in-out infinite;
+}
+@keyframes badge-shimmer {
+	0%, 100% { left: -100%; }
+	50% { left: 100%; }
+}
+
+/* Code block subtle gradient border on hover */
+.code, pre {
+	position: relative;
+	transition: border-color 0.3s ease;
+}
+.code:hover, pre:hover {
+	border-color: rgba(0,194,255,0.3);
+}
+
+/* Blockquote accent line animation */
+blockquote {
+	position: relative;
+	overflow: hidden;
+}
+blockquote::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 3px;
+	height: 100%;
+	background: linear-gradient(180deg, var(--brand), var(--brand-2), var(--brand));
+	background-size: 100% 200%;
+	animation: gradient-flow 3s ease infinite;
+}
+@keyframes gradient-flow {
+	0%, 100% { background-position: 0% 0%; }
+	50% { background-position: 0% 100%; }
+}
+
+/* Hero gradient orb (pure CSS ambient light) */
+.hero::before {
+	content: '';
+	position: absolute;
+	top: -200px;
+	right: -100px;
+	width: 600px;
+	height: 600px;
+	background: radial-gradient(circle, rgba(0,194,255,0.08) 0%, rgba(106,92,255,0.04) 40%, transparent 70%);
+	pointer-events: none;
+	animation: orb-drift 20s ease-in-out infinite;
+	z-index: -1;
+}
+@keyframes orb-drift {
+	0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+	25% { transform: translate(-30px, 20px) scale(1.05); opacity: 0.8; }
+	50% { transform: translate(20px, -30px) scale(0.95); opacity: 0.5; }
+	75% { transform: translate(-20px, -10px) scale(1.02); opacity: 0.7; }
+}
+
+/* Concept page section styling */
+.concept-page h2, .concept-page h3 {
+	scroll-margin-top: 80px; /* offset for any fixed headers */
+}
+
+/* Table row hover */
+.concept-page table tbody tr {
+	transition: background 0.2s ease;
+}
+.concept-page table tbody tr:hover {
+	background: rgba(0,194,255,0.05);
+}
+
+/* Related concepts box glow on hover */
+.concept-page > div[style*="background"]:last-of-type {
+	transition: box-shadow 0.3s ease;
+}
+.concept-page > div[style*="background"]:last-of-type:hover {
+	box-shadow: 0 0 30px rgba(0,194,255,0.1);
+}
+
+/* Footer year auto-update fallback styling */
+#year { font-variant-numeric: tabular-nums; }
+
+/* Selection color */
+::selection {
+	background: rgba(0,194,255,0.3);
+	color: #fff;
+}
+
+/* Focus states for accessibility */
+a:focus-visible, button:focus-visible, .button:focus-visible, .pill:focus-visible {
+	outline: 2px solid var(--brand);
+	outline-offset: 2px;
+}
+
+/* Gradient text for hero headings */
+.hero h1 {
+	background: linear-gradient(135deg, var(--text) 0%, var(--brand) 50%, var(--brand-2) 100%);
+	background-size: 200% 200%;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+	animation: gradient-text 8s ease infinite;
+}
+@keyframes gradient-text {
+	0%, 100% { background-position: 0% 50%; }
+	50% { background-position: 100% 50%; }
+}
+
+/* Essay-specific enhancements */
+.essay h2 {
+	scroll-margin-top: 80px;
+	position: relative;
+}
+
+/* Horizontal rule shimmer */
+.hr {
+	position: relative;
+	overflow: hidden;
+}
+.hr::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 50%;
+	height: 100%;
+	background: linear-gradient(90deg, transparent, rgba(0,194,255,0.5), transparent);
+	animation: hr-shimmer 6s ease-in-out infinite;
+}
+@keyframes hr-shimmer {
+	0% { left: -50%; }
+	100% { left: 150%; }
+}
+
+/* Status indicator pulse for live elements */
+.badge .status-dot, .ok-dot {
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	border-radius: 50%;
+	background: var(--ok);
+	animation: status-pulse 2s ease-in-out infinite;
+}
+@keyframes status-pulse {
+	0%, 100% { box-shadow: 0 0 0 0 rgba(55,214,122,0.4); }
+	50% { box-shadow: 0 0 0 6px rgba(55,214,122,0); }
+}
+
+/* Print styles */
+@media print {
+	.nav, .footer, .button, .cta { display: none !important; }
+	body { background: #fff; color: #000; }
+	.card, .code, pre { border: 1px solid #ccc; background: #f9f9f9; }
+	/* Disable animations for print */
+	*, *::before, *::after { animation: none !important; }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+	*, *::before, *::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}
 
 /* end of file */
