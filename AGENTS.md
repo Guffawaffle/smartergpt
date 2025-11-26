@@ -126,7 +126,7 @@ Use relative paths from the current file:
 
 When linking to Lex repo docs:
 ```html
-<a href="https://github.com/Guffawaffle/lex/blob/main/docs/control-stack/" 
+<a href="https://github.com/Guffawaffle/lex/blob/main/docs/control-stack/"
    target="_blank" rel="noopener">Control Stack Docs</a>
 ```
 
@@ -139,10 +139,10 @@ Research papers in Lex repo:
 
 ## 7) Common Mistakes to Avoid
 
-❌ Creating `/docs/` at repo root (should be `/public/docs/`)  
-❌ Creating `/assets/` at repo root (should be `/public/assets/`)  
-❌ Editing files outside `/public/` expecting them to appear on site  
-❌ Adding `public/` to `.gitignore`  
+❌ Creating `/docs/` at repo root (should be `/public/docs/`)
+❌ Creating `/assets/` at repo root (should be `/public/assets/`)
+❌ Editing files outside `/public/` expecting them to appear on site
+❌ Adding `public/` to `.gitignore`
 ❌ Forgetting to push after edits (no build step, but git push required)
 
 ---
