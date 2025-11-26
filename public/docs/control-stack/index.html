@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>The Control Stack | SmarterGPT.dev</title>
+	<meta name="description" content="Not bigger, better constrained. An architecture for AI collaboration that treats model limitations as design constraints to build around." />
+	<meta name="color-scheme" content="dark light" />
+	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
+	<link rel="stylesheet" href="../../assets/styles.css" />
+</head>
+<body>
+	<header class="container nav" role="navigation">
+		<div class="logo"><span class="logo-dot" aria-hidden="true"></span><a href="/" style="color:inherit;text-decoration:none"><span>SmarterGPT.dev</span></a></div>
+		<nav class="links" aria-label="Primary">
+			<a class="pill" href="../../projects/lex/index.html" title="Lex">Lex</a>
+			<a class="pill" href="../../projects/lex-pr/index.html" title="LexRunner">LexRunner</a>
+			<a class="pill" href="../research/index.html" title="Research">Research</a>
+			<a class="pill" href="../the-moat/index.html" title="Moat">Moat</a>
+			<a class="pill" href="../how-to-use/index.html" title="How to Use">Guide</a>
+			<a class="pill" href="../../roadmap.html" title="Roadmap">Roadmap</a>
+		</nav>
+	</header>
+
+	<main class="container">
+		<section class="hero">
+			<div class="hero-left">
+				<span class="badge" aria-label="Page type"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg> Architecture</span>
+				<h1>The LLM Control Stack</h1>
+				<p class="tagline"><strong>Not bigger, better constrained.</strong> An architecture for AI collaboration that treats model limitations not as embarrassments to hide, but as design constraints to build around.</p>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="concepts">
+			<h2 id="concepts" class="kicker">Core Concepts</h2>
+			<p style="margin-bottom:24px;color:var(--muted)">The control stack is built from six interlocking ideas. Each one reinforces the others.</p>
+			<div class="grid">
+				<a href="receipts.html" class="card" style="text-decoration:none;color:inherit">
+					<h3 style="color:var(--accent)">Receipts</h3>
+					<p>Durable records of what <em>actually happened</em>—not claims, evidence. When the model says "tests passed," the receipt contains the actual test output.</p>
+				</a>
+				<a href="gates.html" class="card" style="text-decoration:none;color:inherit">
+					<h3 style="color:var(--accent)">Gates</h3>
+					<p>Objective checks that must pass before a change is accepted. If I'm wrong, the gates tell us. If I'm right, we have evidence.</p>
+				</a>
+				<a href="modes.html" class="card" style="text-decoration:none;color:inherit">
+					<h3 style="color:var(--accent)">Modes</h3>
+					<p>Behavioral profiles defining risk tolerance and allowed actions. Different tasks warrant different guardrails—not one-size-fits-all.</p>
+				</a>
+				<a href="policy-surface.html" class="card" style="text-decoration:none;color:inherit">
+					<h3 style="color:var(--accent)">Policy Surface</h3>
+					<p>Machine-readable encoding of human judgment about risk and scope. Your judgment, applied consistently across sessions.</p>
+				</a>
+				<a href="epistemic-guardrails.html" class="card" style="text-decoration:none;color:inherit">
+					<h3 style="color:var(--accent)">Epistemic Guardrails</h3>
+					<p>Mechanisms that make "I don't know" a valued output, not a failure. Honest uncertainty over false confidence.</p>
+				</a>
+				<a href="scope-and-blast-radius.html" class="card" style="text-decoration:none;color:inherit">
+					<h3 style="color:var(--accent)">Scope & Blast Radius</h3>
+					<p>Constraints on what can change and how much. The narrower the lane, the more reliable the work.</p>
+				</a>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="insight">
+			<h2 id="insight" class="kicker">The Key Insight</h2>
+			<article class="card" style="border-left:3px solid var(--accent)">
+				<p style="font-size:1.1rem;line-height:1.7;margin:0">Models don't need superhuman judgment—they need <strong>guardrails that encode the judgment their principals already have</strong> about risk, scope, and acceptable behavior.</p>
+			</article>
+			<div class="grid" style="margin-top:24px">
+				<div class="card">
+					<h4 style="margin-top:0">Give them...</h4>
+					<ul style="margin:0;padding-left:1.25rem;color:var(--muted)">
+						<li>Explicit scope instead of ambiguous prompts</li>
+						<li>Required gates instead of optional validation</li>
+						<li>Structured modes instead of one-size-fits-all</li>
+						<li>Audit trails instead of ephemeral outputs</li>
+					</ul>
+				</div>
+				<div class="card">
+					<h4 style="margin-top:0">And you get...</h4>
+					<ul style="margin:0;padding-left:1.25rem;color:var(--muted)">
+						<li>Work reviewable in minutes, not hours</li>
+						<li>Changes reversible with <code>git revert</code></li>
+						<li>Trustworthy results because the receipts are there</li>
+						<li>Models that succeed at narrow tasks</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="essay">
+			<h2 id="essay" class="kicker">The Full Story</h2>
+			<article class="card" style="background:linear-gradient(135deg, rgba(0,194,255,0.08) 0%, rgba(0,194,255,0.02) 100%)">
+				<h3 style="margin-top:0">📖 Not Bigger, Better Constrained</h3>
+				<p style="margin-bottom:16px;color:var(--muted)">For the complete narrative—told from a frontier model's perspective—read the essay that explains <em>why</em> constraints are what models actually want.</p>
+				<a class="button primary" href="../research/frontier-model-control-stack.html" title="Read the essay">Read the Essay →</a>
+			</article>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="implementation">
+			<h2 id="implementation" class="kicker">Implementation</h2>
+			<div class="grid">
+				<article class="card">
+					<h3 style="margin-top:0">Lex (Open Source)</h3>
+					<p style="color:var(--muted)">The foundation implementing many of these concepts: Frames for episodic memory, policy files for boundary definition, structured artifacts for audit trails.</p>
+					<a class="button" href="../../projects/lex/index.html" title="Learn about Lex">Explore Lex →</a>
+				</article>
+				<article class="card">
+					<h3 style="margin-top:0">LexRunner (Private)</h3>
+					<p style="color:var(--muted)">An experimental implementation exploring how these ideas compose into a complete control stack with merge pyramids and deterministic execution.</p>
+					<a class="button" href="../../projects/lex-pr/index.html" title="Learn about LexRunner">Explore LexRunner →</a>
+				</article>
+			</div>
+		</section>
+	</main>
+
+	<footer class="container footer">
+		<div>&copy; <span id="year"></span> SmarterGPT.dev</div>
+		<div class="pill">Agent-friendly • CI-first • Human-in-the-loop</div>
+	</footer>
+	<script src="../../assets/app.js"></script>
+</body>
+</html>
