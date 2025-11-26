@@ -126,14 +126,14 @@ Use relative paths from the current file:
 
 When linking to Lex repo docs:
 ```html
-<a href="https://github.com/Guffawaffle/lex/blob/main/docs/control-stack/"
+<a href="https://github.com/Guffawaffle/lex/blob/main/docs/control-stack/index.md"
    target="_blank" rel="noopener">Control Stack Docs</a>
 ```
 
 Research papers in Lex repo:
 - Atlas Frames: `https://github.com/Guffawaffle/lex/blob/main/docs/research/adjacency-constrained-episodic-memory.pdf`
 - LexSona: `https://github.com/Guffawaffle/lex/blob/main/docs/research/LexSona/lexsona_paper.md`
-- Control Stack: `https://github.com/Guffawaffle/lex/blob/main/docs/control-stack/`
+- Control Stack: `https://github.com/Guffawaffle/lex/blob/main/docs/control-stack/index.md`
 
 ---
 
