@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>Epistemic Guardrails — Control Stack | SmarterGPT.dev</title>
+	<title>Epistemic Guardrails — Control Deck | SmarterGPT.dev</title>
 	<meta name="description" content="Epistemic Guardrails make 'I don't know' a valued output, not a failure. Honest uncertainty over false confidence." />
 	<meta name="color-scheme" content="dark light" />
 	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
@@ -38,7 +38,7 @@
 
 	<main class="container">
 		<section class="concept-page">
-			<p style="margin-bottom:8px"><a href="index.html" style="color:var(--accent);text-decoration:none">← Control Stack</a> · <a href="../research/frontier-model-control-stack.html#stop-pretending" style="color:var(--muted);text-decoration:none">Back to essay</a></p>
+			<p style="margin-bottom:8px"><a href="index.html" style="color:var(--accent);text-decoration:none">← Control Deck</a> · <a href="../research/frontier-model-control-stack.html#stop-pretending" style="color:var(--muted);text-decoration:none">Back to essay</a></p>
 			<h1>Epistemic Guardrails</h1>
 			<blockquote>Making "I don't know" a valued output, not a failure.</blockquote>
 
@@ -98,6 +98,9 @@
 			<em>"I'll implement the validation using strict mode."</em></p>
 			<p><strong>With guardrails:</strong><br>
 			<em>"The spec is ambiguous about validation strictness. Option A (strict) rejects all edge cases. Option B (permissive) sanitizes and accepts. Which approach should I use?"</em></p>
+
+			<h2>Epistemic State in Lex</h2>
+			<p><a href="../../projects/lex/index.html">Lex 1.0.0</a> Frames include fields for capturing uncertainty: <code>blockers</code>, <code>merge_blockers</code>, and <code>status_snapshot.next_action</code>. When an agent doesn't know something, it records that state—the Frame becomes a receipt of honest uncertainty, not a guess.</p>
 			<p>The second response is more useful because it <em>names the decision</em> instead of hiding it.</p>
 
 			<h2>Relationship to Modes</h2>
@@ -124,7 +127,7 @@
 				<div style="display:flex;gap:12px;flex-wrap:wrap">
 					<a class="button" href="modes.html">Modes</a>
 					<a class="button" href="policy-surface.html">Policy Surface</a>
-					<a class="button" href="index.html">Control Stack Overview</a>
+					<a class="button" href="index.html">Control Deck Overview</a>
 				</div>
 			</div>
 		</section>

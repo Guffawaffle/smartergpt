@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<!-- Updated 2025-11-07: Refresh Lex/LexRunner positioning, add Lex OSS page links, and correct runner status to private active dev -->
+<!-- Updated 2025-11-28: Lex 1.0.0 release — contract-first story, lex.yaml contracts, stable contract surfaces -->
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>SmarterGPT — Policy-Aware Work Continuity</title>
-	<meta name="description" content="Lex: Policy-aware work continuity with receipts. Architecture policy as code meets persistent working memory. AI assistants that cite policy violations from timestamped work sessions." />
+	<meta name="description" content="Lex 1.0.0: The contract-bearing mind of the stack. Policy-aware work continuity with receipts. Episodic memory, policy-as-code, and repository-level contracts for AI assistants that cite with receipts, not vibes." />
 	<meta name="color-scheme" content="dark light" />
 	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
 	<link rel="stylesheet" href="assets/styles.css" />
@@ -27,9 +27,10 @@
 	<main class="container">
 		<section class="hero">
 			<div class="hero-left">
-				<span class="badge" aria-label="Project status"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg> v0.4.6-alpha on npm   Local-First   OSS core + private runner</span>
+				<span class="badge" aria-label="Project status"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg> v1.0.0 on npm • Local-First • OSS core + private runner</span>
 				<h1>Work Continuity with Receipts, Not Vibes</h1>
 				<p class="tagline"><strong>smartergpt</strong> is the stack: <strong>Lex</strong>, an open-source memory + policy engine, and <strong>LexRunner</strong>, a proprietary merge-weave runner built on Lex. When you ask "Why is this button still disabled?", you get policy-aware answers backed by timestamped work receipts, not guesses.</p>
+				<p class="tagline" style="margin-top:12px"><strong>Lex 1.0.0</strong> marks the moment we stopped treating Lex as "just a memory store" and finished the job of turning it into the contract-bearing mind of the system: Frames, policy, and repository-level contracts (<code>lex.yaml</code>) that other tools can rely on.</p>
 				<div class="cta">
 					<a class="button primary" href="https://www.npmjs.com/package/@smartergpt/lex" title="Install Lex from npm">npm install @smartergpt/lex</a>
 					<a class="button" href="https://github.com/Guffawaffle/lex" title="View on GitHub">GitHub</a>
@@ -138,11 +139,11 @@ That's not vibes. That's receipts.</code></pre>
 		<section aria-labelledby="highlights" id="highlights">
 			<h2 id="highlights-heading" class="kicker">Highlights</h2>
 			<div class="grid">
-				<article class="card"><h3>Lex OSS</h3><p>Open-source memory + policy engine with shared vocabulary for explainable recall. Now on npm: <code>@smartergpt/lex@alpha</code></p><p><a style="color:var(--accent)" href="projects/lex/index.html">Learn more →</a></p></article>
+				<article class="card"><h3>Lex 1.0.0</h3><p>Open-source memory + policy engine with stable contract surfaces. Frames, Atlas Frames, policy-as-code, and <code>lex.yaml</code> workflow contracts.</p><p><a style="color:var(--accent)" href="projects/lex/index.html">Learn more →</a></p></article>
 				<article class="card"><h3>Quick Start</h3><p>Define policy, capture Frames, recall, ask why.</p><p><a style="color:var(--accent)" href="docs/how-to-use/index.html">Guide →</a></p></article>
-				<article class="card"><h3>Research</h3><p>Papers and essays formalizing Lex memory, LexSona behavior, and control stack design.</p><p><a style="color:var(--accent)" href="docs/research/index.html">Research hub →</a></p></article>
-				<article class="card"><h3>More Research</h3><p>Frequency-Weighted Behavioral Memory for Persistent AI Agent Identity.</p><p><a style="color:var(--accent)" href="https://github.com/Guffawaffle/lex/blob/main/docs/research/LexSona/lexsona_paper.md">Paper →</a></p></article>
-				<article class="card"><h3>LexRunner</h3><p>Deterministic merge pyramid built on Lex: single versioned merge plan, uniform gates, predictable order.</p><p><a style="color:var(--accent)" href="projects/lex-pr/index.html">Reference →</a></p></article>
+				<article class="card"><h3>Research</h3><p>Papers and essays formalizing Lex memory, LexSona behavior, and Control Deck design.</p><p><a style="color:var(--accent)" href="docs/research/index.html">Research hub →</a></p></article>
+				<article class="card"><h3>The 1.0.0 Story</h3><p>Why 0.4.6-alpha → 1.0.0 wasn't a feature rush: it was boundary work and contract stabilization.</p><p><a style="color:var(--accent)" href="docs/lex-1.0-story.html">Read the story →</a></p></article>
+				<article class="card"><h3>LexRunner</h3><p>Deterministic merge pyramid built on Lex contracts: single versioned merge plan, uniform gates, predictable order.</p><p><a style="color:var(--accent)" href="projects/lex-pr/index.html">Reference →</a></p></article>
 				<article class="card"><h3>The Moat</h3><p>Shared vocabulary joins policy & memory: answers with receipts.</p><p><a style="color:var(--accent)" href="docs/the-moat/index.html">Concept →</a></p></article>
 			</div>
 		</section>
@@ -155,17 +156,18 @@ That's not vibes. That's receipts.</code></pre>
 					(LexSona coming soon)
 				</small>
 			</h3>
-			<p><strong>Three complementary layers.</strong> <code>lex and lexsona</code> are the long-term mind and soul (Frames + Atlas + policy + behavior). LexRunner is the execution body: fan-out small PRs, validate via gates, and weave them back in a deterministic merge pyramid using a single frozen merge plan.</p>
+			<p><strong>Three complementary layers.</strong> <code>Lex</code> is the contract-bearing mind (Frames + Atlas + policy + <code>lex.yaml</code> workflow contracts). LexRunner is the execution body: fan-out small PRs, validate via gates, and weave them back in a deterministic merge pyramid using a single frozen merge plan. LexSona is the soul: behavioral memory so agents can adapt without changing core code.</p>
 			<ul style="padding-left:20px;margin-top:12px">
-				<li><strong>Lex (OSS)</strong>: policy-as-code + episodic memory with a shared module vocabulary.</li>
-				<li><strong>LexRunner (private)</strong>: merge pyramid runner - dependency-aware ordering, uniform gates (linting, type/contract checks, tests, policy), and a small, fixed status model (pass/fail/blocked/...) to drive eligibility.</li>
+				<li><strong>Lex (OSS, v1.0.0)</strong>: policy-as-code + episodic memory with stable contract surfaces. <code>lex.yaml</code> describes workflows and expectations without embedding any runner's internal details.</li>
+				<li><strong>LexRunner (private)</strong>: merge pyramid runner — dependency-aware ordering, uniform gates (linting, type/contract checks, tests, policy), and a small, fixed status model (pass/fail/blocked/...) to drive eligibility.</li>
 				<li><strong>LexSona (coming soon)</strong>: scoped behavioral memory on top of Lex Frames and policy, so agents can adapt their behavior and guardrails per domain and mode without changing core code.</li>
-				<li><strong>Clear separation of concerns</strong>: Lex and LexSona focus on memory, behavior, and policy; LexRunner focuses on orchestrating merges over real PRs.</li>
+				<li><strong>Clear separation of concerns</strong>: Lex focuses on memory, policy, and contracts; runners like LexRunner consume those contracts without leaking implementation details back into the OSS core.</li>
 				<li><strong>Determinism</strong>: same inputs produce the same merge decisions; local and CI see the same behavior.</li>
 			</ul>
-			<p style="margin-top:12px">Result: explainable shipping - patches line up with architecture, policy, and prior work state, not guesswork.</p>
+			<p style="margin-top:12px">Result: explainable shipping — patches line up with architecture, policy, and prior work state, not guesswork.</p>
 			<div class="cta" style="margin-top:16px">
-				<a class="button primary" href="projects/lex/index.html" title="Lex OSS page">Lex OSS</a>
+				<a class="button primary" href="projects/lex/index.html" title="Lex OSS page">Lex 1.0.0</a>
+				<a class="button" href="docs/lex-yaml-contracts.html" title="lex.yaml contracts">lex.yaml Contracts</a>
 				<a class="button ghost" href="projects/lex-pr/index.html" title="LexRunner reference">LexRunner Reference</a>
 			</div>
 		</article>
@@ -173,7 +175,6 @@ That's not vibes. That's receipts.</code></pre>
 
 		<section class="hr" role="separator"></section>
 
-		<section class="hr" role="separator"></section>
 			<div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap">
 				<div>
 					<h3 style="margin:0 0 6px">Ready for work continuity with receipts?</h3>
@@ -212,19 +213,18 @@ That's not vibes. That's receipts.</code></pre>
 		<p style="margin-bottom:24px;color:#c8d3ea">Building tools for deterministic, policy-aware development workflows.</p>
 		<div class="grid">
 			<article class="card">
-				<h3>🧠 Lex (OSS)</h3>
-				<p><strong>Memory + policy engine.</strong> Frames, Atlas Frames, and policy-as-code for explainable recall with receipts.</p>
-				<p style="margin-top:12px;color:#c8d3ea">Status: <strong>MIT-licensed, public</strong>.</p>
+				<h3>🧠 Lex (OSS, v1.0.0)</h3>
+				<p><strong>Memory + policy engine.</strong> Frames, Atlas Frames, policy-as-code, and <code>lex.yaml</code> workflow contracts. The contract-bearing mind of the stack.</p>
+				<p style="margin-top:12px;color:#c8d3ea">Status: <strong>v1.0.0 • MIT-licensed</strong>.</p>
 				<div class="cta" style="margin-top:12px">
 					<a class="button primary" href="https://github.com/Guffawaffle/lex" title="Lex on GitHub">GitHub</a>
 					<a class="button ghost" href="projects/lex/index.html" title="Lex OSS page">Lex page</a>
 				</div>
 			</article>
 			<article class="card">
-				<h3>🔀 LexSona</h3>
-				<p><strong>Behavioral Memory Engine.</strong></p>
+				<h3>💭 LexSona</h3>
+				<p><strong>Behavioral Memory Engine.</strong> Scoped behavioral memory on top of Lex, so agents adapt without changing core code.</p>
 				<p style="margin-top:12px;color:#c8d3ea">Status: <strong>Active development (1Q26?)</strong></p>
-				<br />
 				<br />
 				<div class="cta" style="margin-top:12px">
 					<a class="button primary" href="https://github.com/Guffawaffle/lex/blob/main/docs/research/LexSona/lexsona_paper.md" title="LexSona Paper">Read the Paper</a>
@@ -232,7 +232,7 @@ That's not vibes. That's receipts.</code></pre>
 			</article>
 			<article class="card">
 				<h3>🔀 LexRunner</h3>
-				<p><strong>Merge pyramid runner.</strong> Consumes a single merge plan built on Lex, runs uniform gates locally and in CI, and applies merges in a deterministic, dependency-aware order.</p>
+				<p><strong>Merge pyramid runner.</strong> Consumes Lex contracts, runs uniform gates locally and in CI, and applies merges in a deterministic, dependency-aware order.</p>
 				<p style="margin-top:12px;color:#c8d3ea">Status: <strong>Active development (private)</strong> — request early access.</p>
 				<div class="cta" style="margin-top:12px">
 					<a class="button" href="projects/lex-pr/index.html" title="LexRunner page">LexRunner page</a>

@@ -4,7 +4,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>The Moat — Policy-Aware Reasoning | SmarterGPT.dev</title>
-	<meta name="description" content="Why shared vocabulary (policy + memory) enables explainable, receipt-driven reasoning across teams." />
+	<meta name="description" content="Why shared vocabulary (policy + memory + lex.yaml contracts) enables explainable, receipt-driven reasoning across teams." />
 	<meta name="color-scheme" content="dark light" />
 	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
 	<link rel="stylesheet" href="../../assets/styles.css" />
@@ -27,7 +27,7 @@
 			<div class="hero-left">
 				<span class="badge" aria-label="Page type"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg> Concept</span>
 				<h1>The Moat: Policy-Aware Reasoning with Receipts</h1>
-				<p class="tagline">The same module vocabulary connects architecture policy and episodic memory, letting assistants answer "why" with citations.</p>
+				<p class="tagline">The same module vocabulary connects architecture policy, episodic memory, and workflow contracts (<code>lex.yaml</code>), letting assistants answer "why" with citations.</p>
 			</div>
 		</section>
 
@@ -36,10 +36,26 @@
 		<section aria-labelledby="why">
 			<h2 id="why" class="kicker">Why this matters</h2>
 			<div class="grid">
-				<article class="card"><h3>Single Vocabulary</h3><p>Modules in Frames match modules in <code>lexmap.policy.json</code>. No drift, no guesswork.</p></article>
-				<article class="card"><h3>Explainability</h3><p>Answers come with receipts: timestamps, blockers, and policy edges that explain blockers.</p></article>
+				<article class="card"><h3>Single Vocabulary</h3><p>Modules in Frames match modules in <code>lexmap.policy.json</code> and workflows in <code>lex.yaml</code>. No drift, no guesswork.</p></article>
+				<article class="card"><h3>Explainability</h3><p>Answers come with receipts: timestamps, blockers, policy edges, and workflow context that explain blockers.</p></article>
 				<article class="card"><h3>Org Scale</h3><p>Frames across teams align with org policy to provide consistent, auditable reasoning.</p></article>
+				<article class="card"><h3>Contract Stability</h3><p>With Lex 1.0.0, the contract surfaces are stable. Agents and runners can depend on Frames, policy, and <code>lex.yaml</code> without surprises.</p></article>
 			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="contracts">
+			<h2 id="contracts" class="kicker">The Contract Surface</h2>
+			<article class="card" style="border-left:3px solid var(--accent)">
+				<p>Lex 1.0.0 provides three stable contract surfaces that form the moat:</p>
+				<ul style="padding-left:20px;margin-top:12px">
+					<li><strong>Frames</strong>: timestamped work session snapshots with module_scope that matches policy vocabulary.</li>
+					<li><strong>lexmap.policy.json</strong>: machine-readable architecture boundaries using the same module IDs.</li>
+					<li><strong>lex.yaml</strong>: intent-level workflow contracts describing what work exists and what policies apply.</li>
+				</ul>
+				<p style="margin-top:12px">Because all three use the same vocabulary, an assistant can cite which policy rule was violated, which Frame observed it, and which workflow it is blocking — all with receipts.</p>
+			</article>
 		</section>
 
 		<section class="hr" role="separator"></section>
@@ -47,7 +63,8 @@
 		<section aria-labelledby="links">
 			<h2 id="links" class="kicker">Learn More</h2>
 			<div class="grid">
-				<article class="card"><h3>Lex OSS</h3><p><a style="color:var(--accent)" href="../../projects/lex/index.html">About Lex</a> — policy + memory with shared vocabulary.</p></article>
+				<article class="card"><h3>Lex 1.0.0</h3><p><a style="color:var(--accent)" href="../../projects/lex/index.html">About Lex</a> — policy + memory + contracts with shared vocabulary.</p></article>
+				<article class="card"><h3>lex.yaml Contracts</h3><p><a style="color:var(--accent)" href="../lex-yaml-contracts.html">lex.yaml</a> — intent-level workflow contracts for your repo.</p></article>
 				<article class="card"><h3>Research</h3><p><a style="color:var(--accent)" href="../research/index.html">Adjacency-Constrained Memory</a> — fold radius and policy-aware pruning.</p></article>
 			</div>
 		</section>

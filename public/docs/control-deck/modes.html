@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>Modes — Control Stack | SmarterGPT.dev</title>
+	<title>Modes — Control Deck | SmarterGPT.dev</title>
 	<meta name="description" content="Modes are behavioral profiles that define what a model is allowed to do, what validation is required, and how much risk is acceptable." />
 	<meta name="color-scheme" content="dark light" />
 	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
@@ -38,7 +38,7 @@
 
 	<main class="container">
 		<section class="concept-page">
-			<p style="margin-bottom:8px"><a href="index.html" style="color:var(--accent);text-decoration:none">← Control Stack</a> · <a href="../research/frontier-model-control-stack.html#give-modes" style="color:var(--muted);text-decoration:none">Back to essay</a></p>
+			<p style="margin-bottom:8px"><a href="index.html" style="color:var(--accent);text-decoration:none">← Control Deck</a> · <a href="../research/frontier-model-control-stack.html#give-modes" style="color:var(--muted);text-decoration:none">Back to essay</a></p>
 			<h1>Modes</h1>
 			<blockquote>Different tasks warrant different risk tolerances.</blockquote>
 
@@ -84,6 +84,9 @@
 			</ul>
 			<p><em>Use when:</em> Trying out ideas, generating options, investigating approaches. The output is a draft, not a deliverable.</p>
 
+			<h2>Modes in the Lex Ecosystem</h2>
+			<p><a href="../../projects/lex/index.html">Lex 1.0.0</a> workflows can declare modes via <code>lex.yaml</code>. LexRunner respects these mode declarations when executing gates—so an exploratory task skips required gates, while a conservative task enforces them all.</p>
+
 			<h2>What Each Mode Defines</h2>
 			<table>
 				<thead>
@@ -102,7 +105,7 @@
 			<ol>
 				<li><strong>Set at operation start</strong> — either explicitly or by inferring from the task</li>
 				<li><strong>Recorded in the receipt</strong> — so reviewers know what rules applied</li>
-				<li><strong>Enforced by the control stack</strong> — violations are blocked, not just warned</li>
+				<li><strong>Enforced by the Control Deck</strong> — violations are blocked, not just warned</li>
 			</ol>
 			<p>A model in conservative mode that tries to skip tests will fail. A model in exploratory mode that tries to merge directly will be blocked. The modes aren't suggestions—they're constraints.</p>
 
@@ -123,7 +126,7 @@
 					<a class="button" href="policy-surface.html">Policy Surface</a>
 					<a class="button" href="receipts.html">Receipts</a>
 					<a class="button" href="scope-and-blast-radius.html">Scope & Blast Radius</a>
-					<a class="button" href="index.html">Control Stack Overview</a>
+					<a class="button" href="index.html">Control Deck Overview</a>
 				</div>
 			</div>
 		</section>

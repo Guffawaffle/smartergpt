@@ -4,7 +4,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>Research | SmarterGPT.dev</title>
-	<meta name="description" content="Research papers and essays formalizing the ideas behind Lex (mind), LexRunner (body), and LexSona (soul). Policy-aware work continuity with receipts, not vibes." />
+	<meta name="description" content="The Cognitive Trinity: Lex (mind), LexRunner (body), LexSona (soul). Research formalizing policy-aware AI collaboration with receipts, not vibes." />
 	<meta name="color-scheme" content="dark light" />
 	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
 	<link rel="stylesheet" href="../../assets/styles.css" />
@@ -23,38 +23,118 @@
 	</header>
 
 	<main class="container">
+		<!-- Hero: Lead with the Trinity -->
 		<section class="hero">
 			<div class="hero-left">
 				<span class="badge" aria-label="Page type"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg> Research Hub</span>
-				<h1>Research</h1>
-				<p class="tagline">SmarterGPT research formalizes the ideas behind <strong>Lex</strong> (mind), <strong>LexRunner</strong> (body), and <strong>LexSona</strong> (soul). These papers and essays share one goal: <em>policy-aware work continuity with receipts, not vibes.</em></p>
+				<h1>The Cognitive Trinity</h1>
+				<p class="tagline" style="font-size:1.25rem"><strong>Mind · Body · Soul</strong></p>
+				<p class="tagline">Three systems that give AI agents memory, execution, and identity. Not bigger models—<em>better constrained ones</em>.</p>
 			</div>
 		</section>
 
 		<section class="hr" role="separator"></section>
 
-		<!-- Core Papers -->
-		<section aria-labelledby="core-papers">
-			<h2 id="core-papers" class="kicker">Core Papers</h2>
+		<!-- The Trinity Cards - Prominent placement -->
+		<section aria-labelledby="trinity" style="background:linear-gradient(135deg, rgba(0,194,255,0.06) 0%, transparent 100%);padding:48px 0;margin:0 -16px;padding-left:16px;padding-right:16px;border-radius:24px">
+			<h2 id="trinity" class="kicker">The Architecture</h2>
+			<p style="margin-bottom:28px;max-width:720px;color:var(--muted)">Each layer solves a distinct problem. Together they compose into agents that remember, execute, and learn.</p>
 			<div class="grid">
-				<article class="card">
-					<h3>Adjacency-Constrained Episodic Memory</h3>
-					<p>Formalizes Atlas Frames: fold-radius neighborhoods for adjacency-bounded recall. Instead of dumping entire codebases into context, retrieve only the policy-aware neighborhood around touched modules.</p>
-					<p style="font-size:0.9rem;opacity:0.7;margin-top:8px">Type: Foundational paper • Lex memory architecture</p>
-					<div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
-						<a class="button primary" href="https://github.com/Guffawaffle/lex/blob/main/docs/research/adjacency-constrained-episodic-memory.pdf" target="_blank" rel="noopener" title="Read the paper (PDF)">Read paper (PDF)</a>
-						<a class="button" href="https://github.com/Guffawaffle/lex/blob/main/docs/research/adjacency-constrained-episodic-memory.tex" target="_blank" rel="noopener" title="LaTeX source">LaTeX source</a>
-						<a class="button ghost" href="https://github.com/Guffawaffle/lex" target="_blank" rel="noopener" title="Lex implementation">Lex implementation</a>
+				<article class="card" style="border-top:3px solid var(--brand)">
+					<h3 style="margin-top:0">🧠 Lex <span style="font-weight:400;color:var(--muted)">(Mind)</span></h3>
+					<p><strong>Episodic + structural memory.</strong> Frames capture what happened. Atlas indexes by policy-aware neighborhoods. <code>lexmap.policy.json</code> defines module boundaries.</p>
+					<p style="font-size:0.85rem;color:var(--ok);margin-top:12px">✓ Open source · npm @smartergpt/lex · v1.0.0</p>
+					<a class="button" href="../../projects/lex/index.html" style="margin-top:12px">Explore Lex →</a>
+				</article>
+				<article class="card" style="border-top:3px solid #f59e0b">
+					<h3 style="margin-top:0">🔀 LexRunner <span style="font-weight:400;color:var(--muted)">(Body)</span></h3>
+					<p><strong>Deterministic orchestration.</strong> Reads Lex contracts, computes dependency order, runs uniform gates, builds merge pyramids. Predictable outcomes.</p>
+					<p style="font-size:0.85rem;color:var(--muted);margin-top:12px">Private · Built on Lex 1.0.0 contracts</p>
+					<a class="button" href="../../projects/lex-pr/index.html" style="margin-top:12px">Learn about LexRunner →</a>
+				</article>
+				<article class="card" style="border-top:3px solid #ec4899">
+					<h3 style="margin-top:0">💭 LexSona <span style="font-weight:400;color:var(--muted)">(Soul)</span></h3>
+					<p><strong>Behavioral identity.</strong> Turns repeated corrections into scoped rules via Bayesian reinforcement. Persona survives sessions and model upgrades.</p>
+					<p style="font-size:0.85rem;color:var(--muted);margin-top:12px">Research · 87% precision · <500 token overhead</p>
+					<a class="button" href="#lexsona-paper" style="margin-top:12px">Read the paper →</a>
+				</article>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<!-- The PILOT Loop - Differentiator -->
+		<section aria-labelledby="pilot">
+			<h2 id="pilot" class="kicker">The PILOT Loop</h2>
+			<p style="margin-bottom:20px;max-width:720px;color:var(--muted)">The Control Deck orchestrates work through a structured planning cycle. The model <em>never</em> directly edits—it plans and allocates.</p>
+			<div class="card" style="overflow-x:auto">
+				<table style="width:100%;border-collapse:collapse;font-size:0.95rem">
+					<thead>
+						<tr style="border-bottom:1px solid var(--border);text-align:left">
+							<th style="padding:12px 16px;font-weight:600">Phase</th>
+							<th style="padding:12px 16px;font-weight:600">What it does</th>
+							<th style="padding:12px 16px;font-weight:600;color:var(--muted)">Math</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr style="border-bottom:1px solid var(--border)">
+							<td style="padding:12px 16px"><strong style="color:var(--brand)">P</strong>erceive</td>
+							<td style="padding:12px 16px;color:var(--muted)">Parse intent, extract features, classify risk</td>
+							<td style="padding:12px 16px;font-family:monospace;font-size:0.85rem;color:var(--muted)">$\vec{I} = g(h(x), s(x))$</td>
+						</tr>
+						<tr style="border-bottom:1px solid var(--border)">
+							<td style="padding:12px 16px"><strong style="color:var(--brand)">I</strong>ntegrate</td>
+							<td style="padding:12px 16px;color:var(--muted)">Pull Lex state, check version contracts, validate scope</td>
+							<td style="padding:12px 16px;font-family:monospace;font-size:0.85rem;color:var(--muted)">$\phi(\vec{I}, \mathcal{L}, \mathcal{S}, \mathcal{C})$</td>
+						</tr>
+						<tr style="border-bottom:1px solid var(--border)">
+							<td style="padding:12px 16px"><strong style="color:var(--brand)">L</strong>ayout</td>
+							<td style="padding:12px 16px;color:var(--muted)">Design task graph, assign providers, set budgets</td>
+							<td style="padding:12px 16px;font-family:monospace;font-size:0.85rem;color:var(--muted)">$\lambda(\mathcal{I}, \mathcal{P}, \mathcal{B})$</td>
+						</tr>
+						<tr style="border-bottom:1px solid var(--border)">
+							<td style="padding:12px 16px"><strong style="color:var(--brand)">O</strong>rchestrate</td>
+							<td style="padding:12px 16px;color:var(--muted)">Emit plan to LexRunner, configure gates</td>
+							<td style="padding:12px 16px;font-family:monospace;font-size:0.85rem;color:var(--muted)">$\omega(\mathcal{T})$ <span style="opacity:0.6">(pure)</span></td>
+						</tr>
+						<tr>
+							<td style="padding:12px 16px"><strong style="color:var(--brand)">T</strong>rack</td>
+							<td style="padding:12px 16px;color:var(--muted)">Consume Receipts, decide: accept / re-plan / escalate</td>
+							<td style="padding:12px 16px;font-family:monospace;font-size:0.85rem;color:var(--muted)">$\tau(\mathcal{O}, \mathcal{R}, \mathcal{C})$</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<p style="margin-top:16px;font-size:0.9rem;color:var(--muted)">📖 Full documentation in the <a href="https://github.com/Guffawaffle/lex/blob/main/docs/control-stack/pilot/index.md" target="_blank" rel="noopener">Lex repo</a> (research papers use "Control Stack")</p>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<!-- Core Papers - Consolidated -->
+		<section aria-labelledby="papers">
+			<h2 id="papers" class="kicker">Research Papers</h2>
+			<div class="grid" style="grid-template-columns: 1fr 1fr">
+				<article class="card" id="atlas-paper">
+					<span class="badge" style="margin-bottom:12px">Foundational · PDF</span>
+					<h3 style="margin-top:0">Adjacency-Constrained Episodic Memory</h3>
+					<p>Formalizes <strong>Atlas Frames</strong>: fold-radius neighborhoods for adjacency-bounded recall. Instead of dumping entire codebases into context, retrieve only the policy-aware neighborhood around touched modules.</p>
+					<p style="font-size:0.85rem;color:var(--muted);margin-top:12px">The mathematical foundation for Lex's memory model.</p>
+					<div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap">
+						<a class="button primary" href="https://github.com/Guffawaffle/lex/blob/main/docs/research/adjacency-constrained-episodic-memory.pdf" target="_blank" rel="noopener">Read paper (PDF)</a>
+						<a class="button" href="https://github.com/Guffawaffle/lex/blob/main/docs/research/adjacency-constrained-episodic-memory.tex" target="_blank" rel="noopener">LaTeX source</a>
 					</div>
 				</article>
 
-				<article class="card">
-					<h3>LexSona: Frequency-Weighted Behavioral Memory</h3>
-					<p>Persistent AI agent identity through frequency-weighted behavioral memory. Bayesian confidence model, hierarchical scope precedence, and bounded prompt injection (~500 tokens). Turns repeated corrections into stable behavioral rules.</p>
-					<p style="font-size:0.9rem;opacity:0.7;margin-top:8px">Type: Research paper • Behavioral memory • 47 pages</p>
-					<div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
-						<a class="button primary" href="https://github.com/Guffawaffle/lex/blob/main/docs/research/LexSona/lexsona_paper.md" target="_blank" rel="noopener" title="Read the paper">Read paper</a>
-						<a class="button" href="https://github.com/Guffawaffle/lex" target="_blank" rel="noopener" title="Lex implementation">Implementation</a>
+				<article class="card" id="lexsona-paper" style="border-left:3px solid #ec4899">
+					<span class="badge" style="margin-bottom:12px;background:rgba(236,72,153,0.15);color:#ec4899;border-color:#ec4899">47 pages · Evaluated</span>
+					<h3 style="margin-top:0">LexSona: Frequency-Weighted Behavioral Memory</h3>
+					<p>Persistent AI agent identity through <strong>frequency-weighted behavioral memory</strong>. Bayesian confidence model turns repeated corrections into scoped rules. Hierarchical scope precedence. Bounded prompt injection.</p>
+					<div style="margin-top:12px;padding:12px;background:rgba(46,160,67,0.1);border-radius:8px">
+						<p style="margin:0;font-size:0.9rem"><strong style="color:var(--ok)">Evaluation results:</strong> 87% precision, 80% recall at cosine 0.85 threshold. Prompt overhead <500 tokens for 10-20 active rules.</p>
+					</div>
+					<div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap">
+						<a class="button primary" href="https://github.com/Guffawaffle/lex/blob/main/docs/research/LexSona/lexsona_paper.md" target="_blank" rel="noopener">Read paper</a>
+						<a class="button" href="https://github.com/Guffawaffle/lex/blob/main/docs/research/LexSona/MATH_FRAMEWORK_v0.1.md" target="_blank" rel="noopener">Math framework</a>
 					</div>
 				</article>
 			</div>
@@ -62,16 +142,29 @@
 
 		<section class="hr" role="separator"></section>
 
-		<!-- Essays and Think Pieces -->
+<!-- Essays & Control Deck -->
 		<section aria-labelledby="essays">
-			<h2 id="essays" class="kicker">Essays &amp; Control Stack Think Pieces</h2>
+			<h2 id="essays" class="kicker">Essays & Think Pieces</h2>
 			<div class="grid">
 				<article class="card" style="border-left:3px solid var(--accent)">
-					<h3>Not Bigger, Better Constrained</h3>
-					<p><em>A Frontier Model's View of the Control Stack</em> — A fictional open letter from a frontier model describing the guardrails and control stack it wants. Covers scope, gates, modes, and receipts.</p>
-					<p style="font-size:0.9rem;opacity:0.7;margin-top:8px">Type: Essay / Think piece • November 2025</p>
+					<h3 style="margin-top:0">Not Bigger, Better Constrained</h3>
+					<p><em>A Frontier Model's View of the Control Stack</em> — A fictional open letter describing the guardrails and control stack that models actually want. Covers scope, gates, modes, and receipts.</p>
 					<div style="margin-top:12px">
-						<a class="button primary" href="frontier-model-control-stack.html" title="Read the essay">Read essay</a>
+						<a class="button primary" href="frontier-model-control-stack.html">Read essay</a>
+					</div>
+				</article>
+				<article class="card">
+					<h3 style="margin-top:0">The Control Deck</h3>
+					<p>Six interlocking concepts: <strong>Receipts</strong>, <strong>Gates</strong>, <strong>Modes</strong>, <strong>Policy Surface</strong>, <strong>Epistemic Guardrails</strong>, and <strong>Scope & Blast Radius</strong>.</p>
+					<div style="margin-top:12px">
+						<a class="button" href="../control-deck/index.html">Explore concepts</a>
+					</div>
+				</article>
+				<article class="card">
+					<h3 style="margin-top:0">The 0.4.6 → 1.0.0 Story</h3>
+					<p>How Lex went from alpha to stable contracts. The real story: not features added, but <strong>boundaries drawn</strong>. What makes 1.0.0 trustworthy.</p>
+					<div style="margin-top:12px">
+						<a class="button" href="../lex-1.0-story.html">Read the story</a>
 					</div>
 				</article>
 			</div>
@@ -79,25 +172,22 @@
 
 		<section class="hr" role="separator"></section>
 
-		<!-- Math & Formalism -->
-		<section aria-labelledby="math-formalism">
-			<h2 id="math-formalism" class="kicker">Math &amp; Formalism</h2>
+		<!-- Case Studies & Applied Research -->
+		<section aria-labelledby="applied">
+			<h2 id="applied" class="kicker">Case Studies & Applied Research</h2>
 			<div class="grid">
 				<article class="card">
-					<h3>LexSona Math Framework v0.1</h3>
-					<p>Formal mathematics for behavioral memory: context lattices, persona state as a scoped rule field, Bayesian confidence calculus, and hierarchical scope precedence. The mathematical foundation for LexSona.</p>
-					<p style="font-size:0.9rem;opacity:0.7;margin-top:8px">Type: Math framework • Foundational</p>
+					<h3 style="margin-top:0">Agent Behavioral Failure Analysis</h3>
+					<p>Real-world case study analyzing agent behavioral failures and how LexSona addresses them through frequency-weighted learning and scoped rules.</p>
 					<div style="margin-top:12px">
-						<a class="button primary" href="https://github.com/Guffawaffle/lex/blob/main/docs/research/LexSona/MATH_FRAMEWORK_v0.1.md" target="_blank" rel="noopener" title="View math framework">View framework</a>
+						<a class="button" href="https://github.com/Guffawaffle/lex/blob/main/docs/research/LexSona/CASE_STUDY_AGENT_BEHAVIORAL_FAILURE.md" target="_blank" rel="noopener">View case study</a>
 					</div>
 				</article>
-
 				<article class="card">
-					<h3>LexSona Math v0 (Site Copy)</h3>
-					<p>Local copy of the core mathematical objects: context lattice, rule space, corrections as events, and persona as a scoped rule field.</p>
-					<p style="font-size:0.9rem;opacity:0.7;margin-top:8px">Type: Math notes • Reference</p>
+					<h3 style="margin-top:0">Literature Review</h3>
+					<p>Comprehensive review of related work: MemGPT, ChatGPT Memory, RLHF personalization, and academic approaches to behavioral memory.</p>
 					<div style="margin-top:12px">
-						<a class="button" href="lexsona-math-v0.md" title="View local copy">View local copy</a>
+						<a class="button" href="https://github.com/Guffawaffle/lex/blob/main/docs/research/LexSona/CptPlnt/LITERATURE_REVIEW.md" target="_blank" rel="noopener">View review</a>
 					</div>
 				</article>
 			</div>
@@ -105,59 +195,15 @@
 
 		<section class="hr" role="separator"></section>
 
-		<!-- Design Memos -->
-		<section aria-labelledby="design-memos">
-			<h2 id="design-memos" class="kicker">Design Memos</h2>
-			<div class="grid">
-				<article class="card">
-					<h3>Lex Policy Ai-tomation™</h3>
-					<p>Feature spec for keeping policy files synchronized with issue requirements. Secure system prompts, variable gating, and PR-based workflows. Dry-run by default.</p>
-					<p style="font-size:0.9rem;opacity:0.7;margin-top:8px">Type: Design memo • Policy-as-code</p>
-					<div style="margin-top:12px">
-						<a class="button primary" href="https://github.com/Guffawaffle/lex/blob/main/docs/research/ai-tomation.md" target="_blank" rel="noopener" title="View design memo">View memo</a>
-					</div>
-				</article>
-
-				<article class="card">
-					<h3>LexSona Literature Review</h3>
-					<p>Comprehensive review of related work in behavioral memory, preference learning, and AI identity persistence. Covers MemGPT, ChatGPT Memory, and academic approaches.</p>
-					<p style="font-size:0.9rem;opacity:0.7;margin-top:8px">Type: Literature review • Background</p>
-					<div style="margin-top:12px">
-						<a class="button" href="https://github.com/Guffawaffle/lex/blob/main/docs/research/LexSona/CptPlnt/LITERATURE_REVIEW.md" target="_blank" rel="noopener" title="View literature review">View review</a>
-					</div>
-				</article>
-
-				<article class="card">
-					<h3>LexSona Case Study: Behavioral Failure</h3>
-					<p>Real-world case study analyzing agent behavioral failures and how LexSona would address them through frequency-weighted learning and scoped rules.</p>
-					<p style="font-size:0.9rem;opacity:0.7;margin-top:8px">Type: Case study • Applied research</p>
-					<div style="margin-top:12px">
-						<a class="button" href="https://github.com/Guffawaffle/lex/blob/main/docs/research/LexSona/CASE_STUDY_AGENT_BEHAVIORAL_FAILURE.md" target="_blank" rel="noopener" title="View case study">View case study</a>
-					</div>
-				</article>
-			</div>
-		</section>
-
-		<section class="hr" role="separator"></section>
-
-		<!-- The Trinity -->
-		<section aria-labelledby="trinity" style="background:linear-gradient(135deg, rgba(0,194,255,0.05) 0%, transparent 100%);padding:40px 0;margin:0 -16px;padding-left:16px;padding-right:16px">
-			<h2 id="trinity" class="kicker">The Cognitive Trinity</h2>
-			<p style="margin-bottom:24px;max-width:720px">These research artifacts formalize three complementary layers of AI agent architecture:</p>
-			<div class="grid">
-				<article class="card">
-					<h4 style="margin-top:0">🧠 Lex (Mind)</h4>
-					<p>Episodic memory + policy indexing. Atlas Frames with adjacency-constrained recall. Remember what happened with architectural precision.</p>
-				</article>
-				<article class="card">
-					<h4 style="margin-top:0">🔀 LexRunner (Body)</h4>
-					<p>Deterministic orchestration. Merge pyramid with dependency-aware ordering, uniform gates, and predictable outcomes. A private layer built on Lex.</p>
-				</article>
-				<article class="card">
-					<h4 style="margin-top:0">💭 LexSona (Soul)</h4>
-					<p>Behavioral memory. Learn user preferences through Bayesian reinforcement. Persistent identity that survives sessions and model upgrades.</p>
-				</article>
-			</div>
+		<!-- The Thesis -->
+		<section aria-labelledby="thesis">
+			<h2 id="thesis" class="kicker">The Thesis</h2>
+			<article class="card" style="border-left:4px solid var(--brand);background:linear-gradient(135deg, rgba(0,194,255,0.05) 0%, transparent 100%)">
+				<blockquote style="margin:0;font-size:1.1rem;line-height:1.7">
+					<p style="margin:0">Models don't need superhuman judgment—they need <strong>guardrails that encode the judgment their principals already have</strong> about risk, scope, and acceptable behavior.</p>
+				</blockquote>
+				<p style="margin-top:16px;color:var(--muted)">Give them explicit scope, required gates, structured modes, and audit trails. You get work that's reviewable in minutes, reversible with <code>git revert</code>, and trustworthy because the receipts are there.</p>
+			</article>
 		</section>
 	</main>
 

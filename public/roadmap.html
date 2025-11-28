@@ -37,14 +37,15 @@
 		<section style="padding-block:56px">
 			<h2 class="kicker">Current Status</h2>
 			<div class="card" style="margin-top:20px;border-left:3px solid var(--ok)">
-				<h3 style="margin:0 0 8px;color:var(--ok)">✓ Lex Core — Open Source &amp; Usable Today</h3>
-				<p style="margin-bottom:12px"><strong>Lex</strong> is available as an open-source TypeScript library with a stable core model (Frames, Atlas Frames, policy, and receipts) and a CLI that is already in active dogfooding.</p>
+				<h3 style="margin:0 0 8px;color:var(--ok)">✓ Lex 1.0.0 — Stable Contracts, Open Source</h3>
+				<p style="margin-bottom:12px"><strong>Lex 1.0.0</strong> is available on npm (<code>@smartergpt/lex</code>) as the contract-bearing mind of SmarterGPT's agent infrastructure. The core contracts are stable enough to build on.</p>
 				<ul style="margin:0;padding-left:20px;color:var(--muted);font-size:14px">
-					<li>Core data model for Frames and Atlas Frames with policy-aware recall</li>
-					<li>Local-first storage with receipts and deterministic replay</li>
-					<li>CLI commands for remember/recall/check flows suitable for experimentation</li>
+					<li><strong>Frames</strong> — episodic memory with typed receipts and deterministic recall</li>
+					<li><strong>lexmap.policy.json</strong> — module boundaries and architectural contracts</li>
+					<li><strong>lex.yaml</strong> — intent-level workflow contracts for agent coordination</li>
+					<li>CLI commands: <code>remember</code>, <code>recall</code>, <code>check</code></li>
 					<li>Typed TypeScript API with Zod-validated schemas</li>
-					<li>Actively used to back internal smartergpt tooling</li>
+					<li>MIT license, Node ≥20, actively used in internal tooling</li>
 				</ul>
 			</div>
 		</section>
@@ -68,13 +69,13 @@
 						<tr style="border-bottom:1px solid var(--border)">
 							<td style="padding:16px;color:var(--muted)">Foundation</td>
 							<td style="padding:16px">
-								<strong style="color:var(--text)">Core Model &amp; CLI Stabilization</strong>
-								<p style="margin:4px 0 0;font-size:14px;color:var(--muted)">Frames, Atlas Frames, policy wiring, receipts, and initial CLI (`remember`, `recall`, `check`) usable for real work.</p>
+								<strong style="color:var(--text)">Lex 1.0.0 — Stable Contracts</strong>
+								<p style="margin:4px 0 0;font-size:14px;color:var(--muted)">Core contracts (Frames, lexmap.policy.json, lex.yaml) stabilized and published to npm. Boundary-first architecture validated through dogfooding.</p>
 							</td>
 							<td style="padding:16px">
 								<span class="badge" style="background:rgba(46,160,67,0.25);color:var(--ok);border-color:var(--ok)">Complete</span>
 							</td>
-							<td style="padding:16px;color:var(--muted)">2024--2025</td>
+							<td style="padding:16px;color:var(--muted)">Jun 2025</td>
 						</tr>
 						<tr style="border-bottom:1px solid var(--border)">
 							<td style="padding:16px;color:var(--muted)">Documentation</td>
@@ -85,7 +86,7 @@
 							<td style="padding:16px">
 								<span class="badge" style="background:rgba(0,194,255,0.1);color:var(--brand);border-color:var(--brand)">In Progress</span>
 							</td>
-							<td style="padding:16px;color:var(--muted)">Dec 2025</td>
+							<td style="padding:16px;color:var(--muted)">Q3 2025</td>
 						</tr>
 						<tr style="border-bottom:1px solid var(--border)">
 							<td style="padding:16px;color:var(--muted)">Integration</td>
@@ -96,7 +97,7 @@
 							<td style="padding:16px">
 								<span class="badge" style="background:rgba(168,179,207,0.1);color:var(--muted)">Planned</span>
 							</td>
-							<td style="padding:16px;color:var(--muted)">Q1 2026</td>
+							<td style="padding:16px;color:var(--muted)">Q4 2025</td>
 						</tr>
 						<tr style="border-bottom:1px solid var(--border)">
 							<td style="padding:16px;color:var(--muted)">Quality</td>
@@ -107,7 +108,7 @@
 							<td style="padding:16px">
 								<span class="badge" style="background:rgba(0,194,255,0.1);color:var(--brand);border-color:var(--brand)">In Progress</span>
 							</td>
-							<td style="padding:16px;color:var(--muted)">Q1--Q2 2026</td>
+							<td style="padding:16px;color:var(--muted)">Q4 2025</td>
 						</tr>
 						<tr>
 							<td style="padding:16px;color:var(--muted)">Ecosystem</td>
@@ -118,7 +119,7 @@
 							<td style="padding:16px">
 								<span class="badge" style="background:rgba(168,179,207,0.1);color:var(--muted)">Planned</span>
 							</td>
-							<td style="padding:16px;color:var(--muted)">Q2 2026</td>
+							<td style="padding:16px;color:var(--muted)">Q1 2026</td>
 						</tr>
 					</tbody>
 				</table>

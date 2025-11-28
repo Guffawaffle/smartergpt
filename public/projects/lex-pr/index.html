@@ -3,9 +3,9 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<!-- Updated 2025-11-07: Reflect LexRunner single-input contract, invariants, and private status -->
-	<title>lex-pr-runner — Deterministic Merge Pyramid | SmarterGPT.dev</title>
-	<meta name="description" content="LexRunner: proprietary merge-weave runner built on Lex. Single frozen merge plan, uniform gates, dependency-ordered merges." />
+	<!-- Updated 2025-11-28: Reflect Lex 1.0.0 contract consumption, lex.yaml integration -->
+	<title>LexRunner — Deterministic Merge Pyramid | SmarterGPT.dev</title>
+	<meta name="description" content="LexRunner: proprietary merge-weave runner built on Lex 1.0.0 contracts. Single frozen merge plan, uniform gates, dependency-ordered merges." />
 	<meta name="color-scheme" content="dark light" />
 	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
 	<link rel="stylesheet" href="../../assets/styles.css" />
@@ -26,11 +26,29 @@
 	<main class="container">
 		<section class="hero">
 			<div class="hero-left">
-				<span class="badge" aria-label="Project status"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg> Private runner</span>
+				<span class="badge" aria-label="Project status"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg> Private runner • Built on Lex 1.0.0</span>
 				<h1>LexRunner: Deterministic Merge Pyramid</h1>
-				<p class="tagline">LexRunner is a proprietary merge-weave runner built on Lex. It reads a single frozen merge plan, runs uniform gates locally and in CI, and applies dependency-ordered merges so the same inputs always produce the same sequence.</p>
-				<p style="margin-top:12px;color:#c8d3ea">Status: Active development • Private repo (<a href="../../request-access.html" style="color:var(--accent)">request early access</a>) • Contract stabilized</p>
+				<p class="tagline">LexRunner is a proprietary merge-weave runner built on <a href="../lex/index.html" style="color:var(--accent)">Lex 1.0.0</a> contracts. It reads a single frozen merge plan, runs uniform gates locally and in CI, and applies dependency-ordered merges so the same inputs always produce the same sequence.</p>
+				<p style="margin-top:12px;color:#c8d3ea">Status: Active development • Private repo (<a href="../../request-access.html" style="color:var(--accent)">request early access</a>) • Consumes stable Lex contract surfaces</p>
 			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="lex-contracts">
+			<h2 id="lex-contracts" class="kicker">Built on Lex Contracts</h2>
+			<article class="card" style="border-left:3px solid var(--accent)">
+				<p>LexRunner is a <strong>consumer</strong> of Lex's stable contract surfaces, not a hidden author of them. The boundary is clear:</p>
+				<ul style="padding-left:20px;margin-top:12px">
+					<li><strong>Lex (OSS)</strong> owns Frames (episodic memory), <code>lexmap.policy.json</code> (architecture boundaries), and <code>lex.yaml</code> (workflow contracts).</li>
+					<li><strong>LexRunner (private)</strong> consumes those contracts and implements a deterministic merge pyramid. Its internal plan formats stay private.</li>
+				</ul>
+				<p style="margin-top:12px">This separation means you can adopt Lex for policy-aware recall today without ever touching LexRunner. If you do integrate LexRunner, it uses contracts that are already part of the OSS story.</p>
+				<div class="cta" style="margin-top:16px">
+					<a class="button" href="../lex/index.html" title="Lex 1.0.0">Lex 1.0.0</a>
+					<a class="button ghost" href="../../docs/lex-yaml-contracts.html" title="lex.yaml contracts">lex.yaml Contracts</a>
+				</div>
+			</article>
 		</section>
 
 		<section class="hr" role="separator"></section>
@@ -52,11 +70,11 @@
 				</article>
 				<article class="card">
 					<h3>Separation of Concerns</h3>
-					<p>Lex owns memory and policy; LexRunner owns orchestration. That separation keeps reasoning explainable and behavior predictable.</p>
+					<p>Lex owns memory, policy, and contracts; LexRunner owns orchestration. That separation keeps reasoning explainable and behavior predictable.</p>
 				</article>
 				<article class="card">
 					<h3>Auditability & Receipts</h3>
-					<p>Gate results are structured artifacts; merge decisions trace back to explicit plan + policy fields.</p>
+					<p>Gate results are structured artifacts; merge decisions trace back to explicit plan + policy fields. Lex Frames provide the memory substrate.</p>
 				</article>
 			</div>
 		</section>
@@ -158,14 +176,13 @@
 			<div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap">
 				<div>
 					<h3 style="margin:0 0 6px">Ready to adopt the merge pyramid?</h3>
-					<p style="margin:0;color:#c8d3ea">Model work as small dependent PRs and produce a single, versioned merge plan for the runner. Runner is private for now  request access or track the roadmap.</p>
+					<p style="margin:0;color:#c8d3ea">Start with Lex 1.0.0 for policy-aware recall, define your workflows in <code>lex.yaml</code>, and produce a single, versioned merge plan for the runner. LexRunner is private for now — request access or track the roadmap.</p>
 				</div>
 				<div class="cta">
 					<a class="button primary" href="../../request-access.html" title="Request access">Request Access</a>
-					<a class="button" href="../../roadmap.html" title="Roadmap">Roadmap</a>
-					<a class="button ghost" href="#schema" title="Integration contract overview">Integration Contract</a>
-					<a class="button ghost" href="../../index.html" title="Back to home">Home</a>
-					<a class="button" href="../lex/index.html" title="Lex OSS">Lex OSS</a>
+					<a class="button" href="../lex/index.html" title="Lex 1.0.0">Lex 1.0.0</a>
+					<a class="button ghost" href="../../docs/lex-yaml-contracts.html" title="lex.yaml contracts">lex.yaml</a>
+					<a class="button ghost" href="../../roadmap.html" title="Roadmap">Roadmap</a>
 				</div>
 			</div>
 		</section>

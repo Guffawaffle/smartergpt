@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>Scope & Blast Radius — Control Stack | SmarterGPT.dev</title>
+	<title>Scope & Blast Radius — Control Deck | SmarterGPT.dev</title>
 	<meta name="description" content="Scope is what you intend to change. Blast radius is what actually changed. The narrower the lane, the more reliable the work." />
 	<meta name="color-scheme" content="dark light" />
 	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
@@ -38,7 +38,7 @@
 
 	<main class="container">
 		<section class="concept-page">
-			<p style="margin-bottom:8px"><a href="index.html" style="color:var(--accent);text-decoration:none">← Control Stack</a> · <a href="../research/frontier-model-control-stack.html#work-incrementally" style="color:var(--muted);text-decoration:none">Back to essay</a></p>
+			<p style="margin-bottom:8px"><a href="index.html" style="color:var(--accent);text-decoration:none">← Control Deck</a> · <a href="../research/frontier-model-control-stack.html#work-incrementally" style="color:var(--muted);text-decoration:none">Back to essay</a></p>
 			<h1>Scope and Blast Radius</h1>
 			<blockquote>The narrower the lane, the more reliable the work.</blockquote>
 
@@ -95,6 +95,9 @@ Forbidden: node_modules/, .env</code></pre>
 }</code></pre>
 			<p>If the actual blast radius exceeds the declared scope, this is flagged for review.</p>
 
+			<h2>Scope in the Lex Ecosystem</h2>
+			<p><a href="../../projects/lex/index.html">Lex 1.0.0</a> uses <code>lexmap.policy.json</code> to define module boundaries—the architectural scope that determines what "inside" and "outside" mean. Frames record which modules were touched, creating a verifiable audit trail of blast radius.</p>
+
 			<h2>Scope vs Blast Radius</h2>
 			<table>
 				<thead>
@@ -140,7 +143,7 @@ Forbidden: node_modules/, .env</code></pre>
 					<a class="button" href="gates.html">Gates</a>
 					<a class="button" href="modes.html">Modes</a>
 					<a class="button" href="receipts.html">Receipts</a>
-					<a class="button" href="index.html">Control Stack Overview</a>
+					<a class="button" href="index.html">Control Deck Overview</a>
 				</div>
 			</div>
 		</section>

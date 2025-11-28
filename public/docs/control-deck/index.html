@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>The Control Stack | SmarterGPT.dev</title>
+	<title>The Control Deck | SmarterGPT.dev</title>
 	<meta name="description" content="Not bigger, better constrained. An architecture for AI collaboration that treats model limitations as design constraints to build around." />
 	<meta name="color-scheme" content="dark light" />
 	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
@@ -26,8 +26,10 @@
 		<section class="hero">
 			<div class="hero-left">
 				<span class="badge" aria-label="Page type"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg> Architecture</span>
-				<h1>The LLM Control Stack</h1>
+				<h1>The Control Deck</h1>
 				<p class="tagline"><strong>Not bigger, better constrained.</strong> An architecture for AI collaboration that treats model limitations not as embarrassments to hide, but as design constraints to build around.</p>
+				<p class="tagline" style="margin-top:12px">Implemented through the <strong>Cognitive Trinity</strong>: <a href="../research/index.html" style="color:inherit;text-decoration:underline">Lex (mind) + LexRunner (body) + LexSona (soul)</a>.</p>
+				<p style="font-size:0.85rem;color:var(--muted);margin-top:8px"><em>Note: Research papers use "Control Stack" — same concepts, different name.</em></p>
 			</div>
 		</section>
 
@@ -35,7 +37,7 @@
 
 		<section aria-labelledby="concepts">
 			<h2 id="concepts" class="kicker">Core Concepts</h2>
-			<p style="margin-bottom:24px;color:var(--muted)">The control stack is built from six interlocking ideas. Each one reinforces the others.</p>
+			<p style="margin-bottom:24px;color:var(--muted)">The Control Deck is built from six interlocking ideas. Each one reinforces the others.</p>
 			<div class="grid">
 				<a href="receipts.html" class="card" style="text-decoration:none;color:inherit">
 					<h3 style="color:var(--accent)">Receipts</h3>
@@ -62,6 +64,47 @@
 					<p>Constraints on what can change and how much. The narrower the lane, the more reliable the work.</p>
 				</a>
 			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<!-- PILOT Loop - Differentiator -->
+		<section aria-labelledby="pilot">
+			<h2 id="pilot" class="kicker">The PILOT Loop</h2>
+			<p style="margin-bottom:20px;color:var(--muted)">The Control Deck orchestrates work through a structured planning cycle. The model <em>never</em> directly edits—it plans and allocates.</p>
+			<div class="card" style="overflow-x:auto">
+				<table style="width:100%;border-collapse:collapse;font-size:0.95rem">
+					<thead>
+						<tr style="border-bottom:1px solid var(--border);text-align:left">
+							<th style="padding:12px 16px;font-weight:600">Phase</th>
+							<th style="padding:12px 16px;font-weight:600">What it does</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr style="border-bottom:1px solid var(--border)">
+							<td style="padding:12px 16px"><strong style="color:var(--brand)">P</strong>erceive</td>
+							<td style="padding:12px 16px;color:var(--muted)">Parse intent, extract features, classify risk</td>
+						</tr>
+						<tr style="border-bottom:1px solid var(--border)">
+							<td style="padding:12px 16px"><strong style="color:var(--brand)">I</strong>ntegrate</td>
+							<td style="padding:12px 16px;color:var(--muted)">Pull Lex state, check version contracts, validate scope</td>
+						</tr>
+						<tr style="border-bottom:1px solid var(--border)">
+							<td style="padding:12px 16px"><strong style="color:var(--brand)">L</strong>ayout</td>
+							<td style="padding:12px 16px;color:var(--muted)">Design task graph, assign providers, set budgets</td>
+						</tr>
+						<tr style="border-bottom:1px solid var(--border)">
+							<td style="padding:12px 16px"><strong style="color:var(--brand)">O</strong>rchestrate</td>
+							<td style="padding:12px 16px;color:var(--muted)">Emit plan to LexRunner, configure gates</td>
+						</tr>
+						<tr>
+							<td style="padding:12px 16px"><strong style="color:var(--brand)">T</strong>rack</td>
+							<td style="padding:12px 16px;color:var(--muted)">Consume Receipts, decide: accept / re-plan / escalate</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<p style="margin-top:16px;font-size:0.9rem;color:var(--muted)">📖 Full documentation in the <a href="https://github.com/Guffawaffle/lex/blob/main/docs/control-stack/pilot/index.md" target="_blank" rel="noopener">Lex repo</a></p>
 		</section>
 
 		<section class="hr" role="separator"></section>
@@ -110,13 +153,13 @@
 			<h2 id="implementation" class="kicker">Implementation</h2>
 			<div class="grid">
 				<article class="card">
-					<h3 style="margin-top:0">Lex (Open Source)</h3>
-					<p style="color:var(--muted)">The foundation implementing many of these concepts: Frames for episodic memory, policy files for boundary definition, structured artifacts for audit trails.</p>
+					<h3 style="margin-top:0">Lex 1.0.0 (Open Source)</h3>
+					<p style="color:var(--muted)">The contract-bearing mind. Frames for episodic memory, <code>lexmap.policy.json</code> for module boundaries, <code>lex.yaml</code> for workflow contracts. Stable on npm.</p>
 					<a class="button" href="../../projects/lex/index.html" title="Learn about Lex">Explore Lex →</a>
 				</article>
 				<article class="card">
 					<h3 style="margin-top:0">LexRunner (Private)</h3>
-					<p style="color:var(--muted)">An experimental implementation exploring how these ideas compose into a complete control stack with merge pyramids and deterministic execution.</p>
+					<p style="color:var(--muted)">Consumes Lex contracts to implement merge pyramids with deterministic execution. The body that reads from the mind's contract surfaces.</p>
 					<a class="button" href="../../projects/lex-pr/index.html" title="Learn about LexRunner">Explore LexRunner →</a>
 				</article>
 			</div>

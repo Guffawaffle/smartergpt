@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Lex 1.0.0: Contracts First, Velocity Second | SmarterGPT.dev</title>
+	<meta name="description" content="The story of Lex 1.0.0: why the jump from 0.4.6-alpha wasn't a feature rush but careful boundary work and contract stabilization." />
+	<meta name="color-scheme" content="dark light" />
+	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
+	<link rel="stylesheet" href="../assets/styles.css" />
+</head>
+<body>
+	<header class="container nav" role="navigation">
+		<div class="logo"><span class="logo-dot" aria-hidden="true"></span><a href="/" style="color:inherit;text-decoration:none"><span>SmarterGPT.dev</span></a></div>
+		<nav class="links" aria-label="Primary">
+			<a class="pill" href="../projects/lex/index.html" title="Lex">Lex</a>
+			<a class="pill" href="../projects/lex-pr/index.html" title="LexRunner">LexRunner</a>
+			<a class="pill" href="research/index.html" title="Research">Research</a>
+			<a class="pill" href="the-moat/index.html" title="Moat">Moat</a>
+			<a class="pill" href="how-to-use/index.html" title="How to Use">Guide</a>
+			<a class="pill" href="../roadmap.html" title="Roadmap">Roadmap</a>
+		</nav>
+	</header>
+
+	<main class="container">
+		<section class="hero" style="display:block">
+			<div class="hero-left" style="max-width:100%">
+				<span class="badge" aria-label="Article"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg> The 1.0.0 Story</span>
+				<h1>Lex 1.0.0: Contracts First, Velocity Second</h1>
+				<p class="tagline">Lex started life as "the memory piece" of a bigger idea: an AI-assisted development stack where work moves forward with receipts, not vibes. Early versions focused on Frames, Atlas Frames, and policy-as-code. Useful, but incomplete.</p>
+				<p class="tagline" style="margin-top:12px"><strong>Lex 1.0.0</strong> is where we draw a clear line: Lex is not just a memory store. It is the contract-bearing mind of the smartergpt stack.</p>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="version-jump">
+			<h2 id="version-jump" class="kicker">Why the Version Jump Looks Wild</h2>
+			<article class="card">
+				<p>From the outside, going from v0.4.6-alpha to v1.0.0 in a short window can look suspicious:</p>
+				<ul style="padding-left:20px;margin-top:12px">
+					<li>"Did they ship a ton of features all at once?"</li>
+					<li>"Is this just a vanity version bump?"</li>
+				</ul>
+				<p style="margin-top:16px">The reality is almost the opposite. Most of the hard work between those numbers was <strong>subtractive</strong>:</p>
+				<ul style="padding-left:20px;margin-top:12px">
+					<li>Stripping out things that did not belong in Lex,</li>
+					<li>Clarifying boundaries with LexRunner, and</li>
+					<li>Freezing the contract surfaces that other tools depend on.</li>
+				</ul>
+				<p style="margin-top:16px"><strong>1.0.0 is not "we did everything." It is "we stopped changing the parts that other people need to trust."</strong></p>
+			</article>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="lexrunner-forced">
+			<h2 id="lexrunner-forced" class="kicker">The Moment LexRunner Forced Us to Decide</h2>
+			<article class="card">
+				<p>LexRunner is a private, deterministic merge pyramid runner built on Lex. To make it real, we had to answer a simple, brutal question:</p>
+				<blockquote style="border-left:3px solid var(--accent);padding-left:16px;margin:16px 0;font-style:italic;color:#c8d3ea">
+					What does Lex absolutely owe to any runner, and what should never leak out of the runner back into the open-source core?
+				</blockquote>
+				<p>That question led to three clear responsibilities for Lex:</p>
+				<ol style="padding-left:20px;margin-top:12px">
+					<li><strong>Frames</strong>: episodic memory of what happened, with module-level scope and next actions.</li>
+					<li><strong>Policy</strong>: <code>lexmap.policy.json</code> describing architecture boundaries and constraints.</li>
+					<li><strong>Contracts</strong>: <code>lex.yaml</code> describing workflows and expectations at the repository level.</li>
+				</ol>
+				<p style="margin-top:16px">Everything else lives on top.</p>
+				<ul style="padding-left:20px;margin-top:12px">
+					<li>LexRunner consumes these contracts and implements a deterministic merge pyramid, but its detailed plan formats stay private.</li>
+					<li>Other orchestrators can do something entirely different as long as they respect the same contracts.</li>
+				</ul>
+				<p style="margin-top:16px">Once we committed to that split, Lex finally had a shape that made sense long term.</p>
+			</article>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="github-throttle">
+			<h2 id="github-throttle" class="kicker">When GitHub Told Us to Slow Down</h2>
+			<article class="card">
+				<p>With the contracts in place, we could wire Lex, LexRunner, and AI coding agents together in serious workflows:</p>
+				<ul style="padding-left:20px;margin-top:12px">
+					<li>Lex keeps track of what happened and what is allowed.</li>
+					<li>Orchestrators generate plans.</li>
+					<li>LexRunner drives merges through gates.</li>
+					<li>Agents do the local refactors and implementation work.</li>
+				</ul>
+				<p style="margin-top:16px">At peak, this combination produced so much automated activity that GitHub throttled us. That is a real story, not a marketing exaggeration.</p>
+				<p style="margin-top:16px">We do <em>not</em> frame that as "we are so extreme that we broke GitHub." We frame it as:</p>
+				<ul style="padding-left:20px;margin-top:12px">
+					<li><strong>Proof</strong> that the architecture can saturate hosted tooling, and</li>
+					<li><strong>A sign</strong> that we need to be more careful about how we use those tools.</li>
+				</ul>
+				<p style="margin-top:16px">In practical terms, it pushed us toward:</p>
+				<ul style="padding-left:20px;margin-top:12px">
+					<li><strong>Smaller, lower-token prompts.</strong> Lex's Frames and Atlas Frames are tuned for compact, high-signal context instead of giant mega-prompts.</li>
+					<li><strong>Agent-first flows.</strong> Hosted coding agents should be the first stop, not the last resort, but they need disciplined inputs.</li>
+					<li><strong>Respecting shared infrastructure.</strong> CI and hosted agents are shared resources. Hitting rate limits is a coordination bug, not a flex.</li>
+				</ul>
+				<p style="margin-top:16px"><strong>Lex 1.0.0 is where we commit to this posture: intelligent velocity over brute-force throughput.</strong></p>
+			</article>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="yaml-contracts">
+			<h2 id="yaml-contracts" class="kicker">YAML as Core Contracts</h2>
+			<article class="card">
+				<p>The most important new idea to surface cleanly during this period was simple:</p>
+				<blockquote style="border-left:3px solid var(--accent);padding-left:16px;margin:16px 0;font-style:italic;color:#c8d3ea">
+					We need a way to describe what work <em>means</em> in a repo, without shipping any particular executor.
+				</blockquote>
+				<p>That is what <code>lex.yaml</code> is for.</p>
+				<p style="margin-top:16px">Think of it as the "intent map" for a repository:</p>
+				<ul style="padding-left:20px;margin-top:12px">
+					<li>It names workflows that matter: <code>review-pr</code>, <code>ship-release</code>, <code>refactor-module</code>, <code>clean-debt</code>.</li>
+					<li>It describes the inputs they expect (like <code>pr_number</code>, <code>ticket_id</code>, or <code>module_scope</code>).</li>
+					<li>It links those workflows back to policy and memory surfaces.</li>
+				</ul>
+				<p style="margin-top:16px">What it does <em>not</em> do:</p>
+				<ul style="padding-left:20px;margin-top:12px">
+					<li>It does not embed merge strategies, fan-out details, or gate wiring for any particular runner.</li>
+					<li>It does not "contain LexRunner inside YAML."</li>
+				</ul>
+				<p style="margin-top:16px">Instead, it plays the same role as standards like OpenAPI or Docker Compose:</p>
+				<ul style="padding-left:20px;margin-top:12px">
+					<li><strong>Describe what exists</strong>, not how any implementation works.</li>
+					<li><strong>Stay stable and public</strong>, so that multiple implementations can exist.</li>
+					<li><strong>Remain small and human-readable</strong>, so that people can reason about it without tools.</li>
+				</ul>
+				<p style="margin-top:16px">Lex remains the OSS keeper of those contracts. Any runner, including LexRunner, is a consumer, not a hidden author.</p>
+				<p style="margin-top:16px"><a href="lex-yaml-contracts.html" style="color:var(--accent)">Learn more about lex.yaml →</a></p>
+			</article>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="commitments">
+			<h2 id="commitments" class="kicker">What 1.0.0 Actually Commits To</h2>
+			<article class="card">
+				<p>By calling this 1.0.0, we are making a set of promises:</p>
+				<ol style="padding-left:20px;margin-top:12px">
+					<li><strong>The contract surfaces are stable.</strong> Frames, Atlas Frames, <code>lexmap.policy.json</code>, and <code>lex.yaml</code> are here to stay. They may evolve, but they will not thrash.</li>
+					<li><strong>The CLI and MCP behavior are safe to automate.</strong> The way Lex reports status, outputs JSON, and surfaces policy/memory is intended to be CI- and agent-friendly, not a moving target.</li>
+					<li><strong>Lex stays local-first and MIT.</strong> The core will keep running with local SQLite, MCP stdio, and no telemetry.</li>
+					<li><strong>LexRunner and other runners remain optional.</strong> You can adopt Lex for policy-aware recall today without ever touching LexRunner. If you do integrate a runner, it will use contracts that are already part of the OSS story.</li>
+				</ol>
+			</article>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="why-fast">
+			<h2 id="why-fast" class="kicker">Why Lex Hit 1.0 So "Fast"</h2>
+			<article class="card">
+				<p>On paper, it looks abrupt: we shipped an alpha, and days later we're talking about 1.0.</p>
+				<p style="margin-top:16px">In reality, Lex 1.0 isn't a brand-new idea getting rushed out the door. It's the formalization of a spine we've already been running in real frontier-model workflows for months.</p>
+				<p style="margin-top:16px">Lex exists for one reason: <strong>to give coding agents a stable memory and policy substrate so orchestrators don't have to rebuild it every time.</strong></p>
+				<p style="margin-top:16px">That substrate has been quietly battle-tested:</p>
+				<ul style="padding-left:20px;margin-top:12px">
+					<li>Frames, policies, and the store API have been driving real work across multiple repos.</li>
+					<li>Frontier models (GPT-class, Claude-class, Gemini-class) are already using Lex via MCP and CLI as their "long-term memory + guardrail context."</li>
+					<li>The Atlas view, module IDs, and policy checks are already catching architectural mistakes before they become production regrets.</li>
+				</ul>
+				<p style="margin-top:16px">The "fast" move to 1.0 is not about pretending Lex is feature-complete. It's about being honest about what is already true:</p>
+				<ul style="padding-left:20px;margin-top:12px">
+					<li>The <strong>core contract is stable</strong>: Frame schema, Policy model, Store API, MCP tools, CLI JSON output, Atlas + module-ID validation.</li>
+					<li>We've <strong>drawn a hard line</strong> between what orchestrators can safely depend on (the 1.0 contract) and what is still experimental.</li>
+				</ul>
+				<p style="margin-top:16px">Lex 1.0 doesn't claim "this project is done." It claims something more useful:</p>
+				<blockquote style="border-left:3px solid var(--accent);padding-left:16px;margin:16px 0;font-style:italic;color:#c8d3ea">
+					"If you're wiring Lex into a serious coding-agent or frontier-model workflow, the parts you care about will not surprise you between 1.0.x releases. You can build on this."
+				</blockquote>
+			</article>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="throughline">
+			<h2 id="throughline" class="kicker">The Throughline</h2>
+			<article class="card" style="background:linear-gradient(135deg, rgba(0,194,255,0.1) 0%, rgba(0,194,255,0.02) 100%);border-left:4px solid var(--accent)">
+				<p>The throughline should stay the same as day one:</p>
+				<h3 style="margin-top:16px;font-size:1.5rem;text-align:center">Work continuity with receipts, not vibes.</h3>
+				<p style="margin-top:16px;text-align:center">Lex 1.0.0 is just the moment we can say, with a straight face, that the contracts behind those receipts are solid enough for other people to build on.</p>
+			</article>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="cta">
+			<div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap">
+				<div>
+					<h3 style="margin:0 0 6px">Ready to try Lex 1.0.0?</h3>
+					<p style="margin:0;color:#c8d3ea">Install from npm, set up your workspace, and start building with receipts.</p>
+				</div>
+				<div class="cta">
+					<a class="button primary" href="../projects/lex/index.html" title="Lex 1.0.0 page">Lex 1.0.0</a>
+					<a class="button" href="lex-yaml-contracts.html" title="lex.yaml contracts">lex.yaml Contracts</a>
+					<a class="button ghost" href="https://github.com/Guffawaffle/lex" title="GitHub">GitHub</a>
+				</div>
+			</div>
+		</section>
+
+	</main>
+
+	<footer class="container footer">
+		<div>&copy; <span id="year"></span> SmarterGPT.dev</div>
+		<div class="pill">Agent-friendly • CI-first • Human-in-the-loop</div>
+	</footer>
+	<script src="../assets/app.js"></script>
+</body>
+</html>
