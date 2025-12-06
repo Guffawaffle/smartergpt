@@ -6,7 +6,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>SmarterGPT — Policy-Aware Work Continuity</title>
-	<meta name="description" content="Lex 1.0.0: The contract-bearing mind of the stack. Policy-aware work continuity with receipts. Episodic memory, policy-as-code, and repository-level contracts for AI assistants that cite with receipts, not vibes." />
+	<meta name="description" content="Lex 2.0.0: AX-native memory and policy engine. Policy-aware work continuity with receipts, structured errors, and a behavioral socket for safe persona integrations." />
 	<meta name="color-scheme" content="dark light" />
 	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
 	<link rel="stylesheet" href="assets/styles.css" />
@@ -46,7 +46,7 @@
 				<span class="badge" aria-label="Project status"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg> v2.0.0 on npm • Local-First • OSS core + private runner</span>
 				<h1>Work Continuity with Receipts, Not Vibes</h1>
 				<p class="tagline"><strong>smartergpt</strong> is the stack: <strong>Lex</strong>, an open-source memory + policy engine, and <strong>LexRunner</strong>, a proprietary merge-weave runner built on Lex. When you ask "Why is this button still disabled?", you get policy-aware answers backed by timestamped work receipts, not guesses.</p>
-				<p class="tagline" style="margin-top:12px"><strong>Lex 2.0</strong> completed the transition from "just a memory store" to the contract-bearing mind of the system: Frames, policy, and repository-level contracts (<code>lex.yaml</code>) that other tools can rely on.</p>
+				<p class="tagline" style="margin-top:12px"><strong>Lex 2.0</strong> completed the transition from "just a memory store" to the contract-bearing mind of the system: Frames, policy, and repository-level contracts (<code>lex.yaml</code>) that other tools can rely on. It also exposes a lightweight behavioral socket to enable safe persona-style integrations (LexSona), and ongoing work makes those persona systems resilient to disconnected/local modes.</p>
 				<div class="cta">
 					<a class="button primary" href="https://www.npmjs.com/package/@smartergpt/lex" title="Install Lex from npm">npm install @smartergpt/lex</a>
 					<a class="button" href="https://github.com/Guffawaffle/lex" title="View on GitHub">GitHub</a>
@@ -156,7 +156,7 @@ That's not vibes. That's receipts.</code></pre>
 			<h2 id="highlights-heading" class="kicker">Highlights</h2>
 			<div class="grid">
 				<article class="card" style="border-left:3px solid var(--brand)"><h3>🆕 Agent eXperience (AX)</h3><p>The third user class has arrived. UX → DX → AX. Designing systems where agents are first-class consumers of tools, APIs, and memory.</p><p><a style="color:var(--brand);font-weight:600" href="docs/research/agent-experience-ax.html">Read the essay →</a></p></article>
-				<article class="card"><h3>Lex 1.0.0</h3><p>Open-source memory + policy engine with stable contract surfaces. Frames, Atlas Frames, policy-as-code, and <code>lex.yaml</code> workflow contracts.</p><p><a style="color:var(--accent)" href="projects/lex/index.html">Learn more →</a></p></article>
+				<article class="card"><h3>Lex 2.0.0 (AX)</h3><p>Open-source AX-native memory + policy engine — Frames, Atlas Frames, AXError structured responses, Frame Schema v3, and a LexSona behavioral socket to enable safe, disconnected-capable persona integrations.</p><p><a style="color:var(--accent)" href="projects/lex/index.html">Learn more →</a></p></article>
 				<article class="card"><h3>Quick Start</h3><p>Define policy, capture Frames, recall, ask why.</p><p><a style="color:var(--accent)" href="docs/how-to-use/index.html">Guide →</a></p></article>
 				<article class="card"><h3>Research</h3><p>Papers and essays formalizing Lex memory, LexSona behavior, and Control Deck design.</p><p><a style="color:var(--accent)" href="docs/research/index.html">Research hub →</a></p></article>
 				<article class="card"><h3>The 1.0.0 Story</h3><p>Why 0.4.6-alpha → 1.0.0 wasn't a feature rush: it was boundary work and contract stabilization.</p><p><a style="color:var(--accent)" href="docs/lex-1.0-story.html">Read the story →</a></p></article>
@@ -174,9 +174,9 @@ That's not vibes. That's receipts.</code></pre>
 			</h3>
 			<p><strong>Three complementary layers.</strong> <code>Lex</code> is the contract-bearing mind (Frames + Atlas + policy + <code>lex.yaml</code> workflow contracts). LexRunner is the execution body: fan-out small PRs, validate via gates, and weave them back in a deterministic merge pyramid using a single frozen merge plan. LexSona is the soul: behavioral memory so agents can adapt without changing core code.</p>
 			<ul style="padding-left:20px;margin-top:12px">
-				<li><strong>Lex (OSS, v1.0.0)</strong>: policy-as-code + episodic memory with stable contract surfaces. <code>lex.yaml</code> describes workflows and expectations without embedding any runner's internal details.</li>
+				<li><strong>Lex (OSS, v2.0.0)</strong>: AX-native memory and policy engine with stable contract surfaces. <code>lex.yaml</code> describes workflows and expectations without embedding any runner's internal details.</li>
 				<li><strong>LexRunner (private)</strong>: merge pyramid runner — dependency-aware ordering, uniform gates (linting, type/contract checks, tests, policy), and a small, fixed status model (pass/fail/blocked/...) to drive eligibility.</li>
-				<li><strong>LexSona (coming soon)</strong>: behavioral layer that plugs into Lex. Focused on scoped behavioral constraints and correction-aware adaptation. Can operate in disconnected mode when Lex memory is unavailable, but builds on Lex as its foundation.</li>
+				<li><strong>LexSona (0.2.0 — planned integrations)</strong>: behavioral layer that plugs into Lex. Focused on scoped behavioral constraints and correction-aware adaptation. Recent work adds offline-capable persona modes (0.2.0) so behavior can be resilient when memory access is unavailable; richer standalone integrations are planned in private workflows.</li>
 				<li><strong>Clear separation of concerns</strong>: Lex focuses on memory, policy, and contracts; runners like LexRunner consume those contracts without leaking implementation details back into the OSS core.</li>
 				<li><strong>Determinism</strong>: same inputs produce the same merge decisions; local and CI see the same behavior.</li>
 			</ul>
