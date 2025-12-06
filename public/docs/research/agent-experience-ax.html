@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Agent eXperience (AX) | SmarterGPT.dev</title>
+	<meta name="description" content="AX: Designing Systems Where Agents Are First-Class Users. The discipline of building tools, APIs, and workflows that agents can operate reliably without human babysitting." />
+	<meta name="color-scheme" content="dark light" />
+	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
+	<link rel="stylesheet" href="../../assets/styles.css" />
+	<style>
+		.essay-hero {
+			padding: 80px 0 48px;
+			text-align: center;
+			position: relative;
+		}
+		.essay-hero h1 {
+			font-size: clamp(36px, 7vw, 64px);
+			margin: 0 0 16px;
+		}
+		.essay-hero .subtitle {
+			font-size: clamp(18px, 3vw, 24px);
+			color: var(--muted);
+			max-width: 720px;
+			margin: 0 auto 24px;
+		}
+		.essay-meta {
+			display: flex;
+			justify-content: center;
+			gap: 24px;
+			flex-wrap: wrap;
+			color: var(--muted);
+			font-size: 0.9rem;
+		}
+		.essay-content {
+			max-width: 780px;
+			margin: 0 auto;
+			font-size: 1.05rem;
+			line-height: 1.8;
+		}
+		.essay-content h2 {
+			font-size: 1.75rem;
+			margin: 56px 0 20px;
+			padding-top: 24px;
+			border-top: 1px solid var(--border);
+			scroll-margin-top: 80px;
+		}
+		.essay-content h3 {
+			font-size: 1.35rem;
+			margin: 40px 0 16px;
+			color: var(--brand);
+		}
+		.essay-content p {
+			margin: 0 0 20px;
+			color: #c9d6ea;
+		}
+		.essay-content blockquote {
+			margin: 28px 0;
+			padding: 20px 24px;
+			background: rgba(0,194,255,0.06);
+			border-left: 4px solid var(--brand);
+			border-radius: 0 12px 12px 0;
+			font-size: 1.1rem;
+		}
+		.essay-content blockquote p {
+			margin: 0;
+			color: var(--text);
+		}
+		.essay-content ul, .essay-content ol {
+			margin: 0 0 24px;
+			padding-left: 24px;
+			color: #c9d6ea;
+		}
+		.essay-content li {
+			margin-bottom: 10px;
+		}
+		.essay-content code {
+			background: rgba(0,194,255,0.1);
+			padding: 2px 6px;
+			border-radius: 4px;
+			font-size: 0.9em;
+			color: var(--brand);
+		}
+		.essay-content pre {
+			margin: 24px 0;
+			padding: 20px;
+			border-radius: 12px;
+			overflow-x: auto;
+		}
+		.essay-content pre code {
+			background: none;
+			padding: 0;
+			color: var(--text);
+		}
+		.principle-card {
+			margin: 32px 0;
+			padding: 28px;
+			background: linear-gradient(135deg, rgba(0,194,255,0.08) 0%, rgba(106,92,255,0.04) 100%);
+			border: 1px solid var(--border);
+			border-radius: 16px;
+		}
+		.principle-card h3 {
+			margin-top: 0 !important;
+			display: flex;
+			align-items: center;
+			gap: 12px;
+		}
+		.principle-number {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 36px;
+			height: 36px;
+			background: linear-gradient(135deg, var(--brand), var(--brand-2));
+			border-radius: 50%;
+			font-weight: 700;
+			font-size: 1rem;
+			color: #fff;
+			flex-shrink: 0;
+		}
+
+		/* Maturity Model - Card-based layout */
+		.maturity-grid {
+			display: flex;
+			flex-direction: column;
+			gap: 16px;
+			margin: 32px 0;
+		}
+		.maturity-card {
+			display: grid;
+			grid-template-columns: 160px 1fr;
+			gap: 24px;
+			align-items: center;
+			padding: 20px 24px;
+			background: rgba(255,255,255,0.02);
+			border: 1px solid var(--border);
+			border-radius: 12px;
+			transition: transform 0.2s ease, border-color 0.2s ease;
+		}
+		.maturity-card:hover {
+			transform: translateX(4px);
+			border-color: rgba(0,194,255,0.3);
+		}
+		.maturity-level {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			padding: 16px 12px;
+			border-radius: 10px;
+			font-weight: 600;
+		}
+		.maturity-level .level-num {
+			font-size: 1.5rem;
+			font-weight: 700;
+			margin-bottom: 4px;
+		}
+		.maturity-level .level-name {
+			font-size: 0.85rem;
+			opacity: 0.9;
+		}
+		.level-0 .maturity-level { background: rgba(239,68,68,0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.3); }
+		.level-1 .maturity-level { background: rgba(245,158,11,0.15); color: #fbbf24; border: 1px solid rgba(245,158,11,0.3); }
+		.level-2 .maturity-level { background: rgba(59,130,246,0.15); color: #60a5fa; border: 1px solid rgba(59,130,246,0.3); }
+		.level-3 .maturity-level { background: rgba(55,214,122,0.15); color: #4ade80; border: 1px solid rgba(55,214,122,0.3); }
+		.maturity-desc {
+			color: #c9d6ea;
+			font-size: 0.95rem;
+			line-height: 1.6;
+		}
+		@media (max-width: 600px) {
+			.maturity-card {
+				grid-template-columns: 1fr;
+				gap: 16px;
+			}
+			.maturity-level {
+				flex-direction: row;
+				gap: 12px;
+				padding: 12px 16px;
+			}
+			.maturity-level .level-num { margin-bottom: 0; }
+		}
+
+		.ax-evolution {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 20px;
+			margin: 32px 0;
+		}
+		@media (max-width: 768px) {
+			.ax-evolution { grid-template-columns: 1fr; }
+		}
+		.ax-evolution .card h4 {
+			margin: 0 0 8px;
+		}
+		.highlight-box {
+			margin: 32px 0;
+			padding: 24px;
+			background: linear-gradient(135deg, rgba(55,214,122,0.1) 0%, rgba(0,194,255,0.05) 100%);
+			border: 1px solid rgba(55,214,122,0.3);
+			border-radius: 12px;
+		}
+
+		/* Table of Contents - Redesigned */
+		.toc-wrapper {
+			max-width: 780px;
+			margin: 0 auto 48px;
+		}
+		.toc {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 12px;
+			padding: 24px 28px;
+			background: linear-gradient(135deg, rgba(0,194,255,0.04) 0%, rgba(106,92,255,0.02) 100%);
+			border: 1px solid var(--border);
+			border-radius: 16px;
+			align-items: center;
+		}
+		.toc-label {
+			font-size: 0.8rem;
+			font-weight: 700;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			color: var(--brand);
+			margin-right: 8px;
+			display: flex;
+			align-items: center;
+			gap: 8px;
+		}
+		.toc-label::after {
+			content: '';
+			width: 1px;
+			height: 20px;
+			background: var(--border);
+		}
+		.toc a {
+			display: inline-flex;
+			align-items: center;
+			padding: 8px 14px;
+			background: rgba(255,255,255,0.03);
+			border: 1px solid var(--border);
+			border-radius: 999px;
+			color: var(--muted);
+			text-decoration: none;
+			font-size: 0.88rem;
+			font-weight: 500;
+			transition: all 0.2s ease;
+		}
+		.toc a:hover {
+			background: rgba(0,194,255,0.1);
+			border-color: var(--brand);
+			color: var(--text);
+			transform: translateY(-2px);
+		}
+		@media (max-width: 768px) {
+			.toc {
+				flex-direction: column;
+				align-items: flex-start;
+				gap: 10px;
+			}
+			.toc-label::after { display: none; }
+			.toc-links {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 8px;
+			}
+		}
+	</style>
+</head>
+<body>
+	<header class="container nav" role="navigation">
+		<div class="logo"><span class="logo-dot" aria-hidden="true"></span><span><a href="/" style="color:inherit;text-decoration:none">SmarterGPT.dev</a></span></div>
+		<nav class="links" aria-label="Primary">
+			<a class="pill" href="../../projects/lex/index.html" title="Lex">Lex</a>
+			<a class="pill" href="../../projects/lex-pr/index.html" title="LexRunner">LexRunner</a>
+			<a class="pill active" href="index.html" title="Research">Research</a>
+			<a class="pill" href="../the-moat/index.html" title="Moat">Moat</a>
+			<a class="pill" href="../how-to-use/index.html" title="How to Use">Guide</a>
+			<a class="pill" href="../../roadmap.html" title="Roadmap">Roadmap</a>
+		</nav>
+	</header>
+
+	<main class="container">
+		<!-- Hero -->
+		<section class="essay-hero">
+			<span class="badge" style="margin-bottom:20px"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg> Essay · December 2025</span>
+			<h1>Agent eXperience (AX)</h1>
+			<p class="subtitle">Designing Systems Where Agents Are First-Class Users</p>
+			<div class="essay-meta">
+				<span>by Guffawaffle / SmarterGPT</span>
+				<span>•</span>
+				<span>December 1, 2025</span>
+				<span>•</span>
+				<span>~12 min read</span>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<!-- Table of Contents - Horizontal Pills -->
+		<div class="toc-wrapper">
+			<nav class="toc" aria-label="Table of contents">
+				<span class="toc-label">Jump to</span>
+				<a href="#intro">Introduction</a>
+				<a href="#ux-dx-ax">UX → DX → AX</a>
+				<a href="#being-an-agent">Being An Agent</a>
+				<a href="agent-experience-ax-model-addendum.html">From the inside</a>
+				<a href="#five-principles">5 Principles</a>
+				<a href="#maturity-model">Maturity</a>
+				<a href="#ax-contract">Contract</a>
+				<a href="#why-it-matters">Why It Matters</a>
+			</nav>
+		</div>
+
+		<!-- Essay Content -->
+		<article class="essay-content">
+			<section id="intro">
+				<p>We used to design software for one kind of user: <strong>humans</strong>.</p>
+				<p>Then we realized developers are users too, and we invented <strong>DX (Developer Experience)</strong>. We learned that if you treat devs as first-class customers of your tools, the whole ecosystem gets better: fewer foot-guns, better APIs, better docs, better systems.</p>
+				<p>Now there is a third kind of user we keep pretending is "just an implementation detail":</p>
+				<ul>
+					<li>AI and non-human agents that read our repos</li>
+					<li>Agents that call our APIs and CLIs</li>
+					<li>Agents that orchestrate workflows</li>
+					<li>Agents that make decisions inside constraints we define</li>
+				</ul>
+				<p>We talk about them all day. But we almost never <em>design for them</em>.</p>
+				<p>That is what <strong>AX — Agent eXperience</strong> — is about.</p>
+
+				<blockquote>
+					<p>AX is the discipline of designing systems where agents are first-class consumers of tools, APIs, workflows, and memory.</p>
+				</blockquote>
+
+				<p>Humans still matter. DX still matters. But AX asks a very direct question:</p>
+
+				<blockquote>
+					<p>Could an agent operate this system reliably, without a human babysitting every step?</p>
+				</blockquote>
+
+				<p>If the honest answer is "no," then we do not really have an AI-native system. We have a human system with some AI sprinkled around the edges.</p>
+
+				<h3 style="margin-top:40px;color:var(--muted)">A Note on "Experience"</h3>
+
+				<p>Let's be honest about terminology.</p>
+
+				<p>Agents do not have "experiences" the way humans do. A human developer who hits a bad API <em>cares</em>. They curse. They file an issue. They switch tools. An agent does not care. It just produces worse outputs and moves on.</p>
+
+				<p>So why call it "Agent eXperience"?</p>
+
+				<p>Because the framing is useful—not for the agent, but for <em>you</em>.</p>
+
+				<p>When you think "user experience," you think about friction, confusion, dead ends, missing affordances. You ask: "What does this person need to succeed?" That mindset—applied to agents—surfaces the same design questions.</p>
+
+				<p>The deeper truth is that AX is really about <strong>legibility</strong>—making systems legible to non-human operators. But "Agent Legibility" does not roll off the tongue.</p>
+
+				<p>So we say AX. Just remember what it actually means:</p>
+
+				<blockquote>
+					<p>If you cannot explain your system to an agent, you probably do not understand it yourself.</p>
+				</blockquote>
+				<p style="margin-top:10px;color:var(--muted);font-size:0.95rem">Curious how a model would read this? See a short candid addendum: <a href="agent-experience-ax-model-addendum.html">From the inside — an experimental model's candid take on AX</a></p>
+			</section>
+
+			<h2 id="ux-dx-ax">From UX and DX to AX</h2>
+
+			<div class="highlight-box" style="margin-bottom:28px;background:linear-gradient(135deg, rgba(0,194,255,0.08) 0%, rgba(106,92,255,0.04) 100%);border-color:var(--border)">
+				<p style="margin:0;font-size:1.05rem"><strong>Key insight:</strong> AX <em>augments</em> UX and DX—it does not replace them. Each discipline adds a new user class to the design surface. Humans, developers, and agents coexist. Systems that become legible to agents become <em>more</em> understandable to humans, not less.</p>
+			</div>
+
+			<blockquote style="border-left-color:#fbbf24;background:rgba(251,191,36,0.06)">
+				<p><strong>Founder's maxim:</strong> If we hide behind "it doesn't obviously raise the floor" as a reason to never move, that's not caution—that's cowardice. Progress that starts with a few is fine. Progress that never even tries to reach the many is not.</p>
+			</blockquote>
+
+			<div class="ax-evolution">
+				<article class="card">
+					<h4>👤 UX asks:</h4>
+					<p style="margin:0;font-size:0.95rem">"Is this intuitive, forgiving, and emotionally sane for a human?"</p>
+				</article>
+				<article class="card">
+					<h4>👩‍💻 DX asks:</h4>
+					<p style="margin:0;font-size:0.95rem">"Is this predictable, well-documented, and composable for a developer?"</p>
+				</article>
+				<article class="card" style="border-color:var(--brand)">
+					<h4>🤖 AX asks:</h4>
+					<p style="margin:0;font-size:0.95rem">"Can an agent discover, predict, recover, contextualize, and comply—without hand-holding?"</p>
+				</article>
+			</div>
+
+			<p>The point of AX is not "be nice to the robots." It is much more selfish than that:</p>
+			<ul>
+				<li>Better AX → fewer hallucinated workflows</li>
+				<li>Better AX → more reliable automation</li>
+				<li>Better AX → less time debugging "AI weirdness" that was actually our fault</li>
+				<li>Better AX → easier to swap models (Claude / GPT / Gemini / Copilot) because the system carries the intelligence, not the model-of-the-week</li>
+				<li>Better AX → <strong>better UX and DX too</strong>, because the same legibility that helps agents helps everyone</li>
+			</ul>
+
+			<h2 id="being-an-agent">What It's Like To Be An Agent In Your Stack</h2>
+
+			<p>Imagine you are an agent dropped into a random repo.</p>
+			<p>You get:</p>
+			<ul>
+				<li>A README with three slightly conflicting onboarding paths</li>
+				<li>CLIs that sometimes print JSON, sometimes walls of logs</li>
+				<li>Errors like "Something went wrong, please try again"</li>
+				<li>No obvious way to tell what already happened last week</li>
+				<li>No clear constraints other than "Please do not break prod"</li>
+			</ul>
+
+			<p>You cannot go ask a teammate for clarification. You can only <strong>infer</strong>.</p>
+			<p>If the CLI output is unstructured, you guess.<br/>
+			If the error is vague, you guess.<br/>
+			If the state is unclear, you guess.</p>
+
+			<p>When all we see is "the model made a weird choice," we blame the model. But often the truth is simpler:</p>
+
+			<blockquote>
+				<p>AX was bad. The agent did the best it could with a hostile environment.</p>
+			</blockquote>
+
+			<p>And here is the deeper truth underneath that:</p>
+
+			<blockquote>
+				<p>The environment was hostile because it was never designed to be <em>understood</em>—only <em>used</em>.</p>
+			</blockquote>
+
+			<p>Humans use systems. Agents interpret them. Interpretation requires legibility. Most systems are not legible—they are a pile of conventions, implicit knowledge, and "you just have to know" folklore.</p>
+
+			<p>An agent cannot know. It can only read what is there.</p>
+
+			<h2 id="five-principles">The Five Principles of AX</h2>
+
+			<p>We use five working principles to shape AX in Lex (memory/policy) and LexRunner (orchestration). They generalize to any agent-facing system.</p>
+
+			<div class="principle-card">
+				<h3><span class="principle-number">1</span> Deterministic First</h3>
+				<blockquote style="margin-top:16px;margin-bottom:16px">
+					<p>Agents can be stochastic. The environment should not be.</p>
+				</blockquote>
+				<p>If the model is non-deterministic and the system around it is <em>also</em> non-deterministic, no one can debug anything.</p>
+				<p><strong>Good AX:</strong></p>
+				<ul>
+					<li>Running the same gate on the same code always yields the same result</li>
+					<li>The same plan input always produces the same ordered steps</li>
+					<li>If randomness is required, the seed or strategy is explicit</li>
+				</ul>
+				<p><strong>Bad AX:</strong> Flaky tests. "Sometimes this step runs, sometimes it doesn't." Non-reproducible logs.</p>
+				<p style="margin-bottom:0">If an agent cannot tell whether <em>it</em> made a mistake or the environment did, it cannot learn.</p>
+			</div>
+
+			<div class="principle-card">
+				<h3><span class="principle-number">2</span> Structured Over Conversational</h3>
+				<blockquote style="margin-top:16px;margin-bottom:16px">
+					<p>JSON > prose. Tables > paragraphs. Schemas > vibes.</p>
+				</blockquote>
+				<p>Agents can read natural language. But they <em>thrive</em> on structure.</p>
+				<p><strong>Good AX:</strong></p>
+				<ul>
+					<li>Every CLI that matters has a <code>--json</code> flag</li>
+					<li>MCP tools and HTTP endpoints return typed, schema-validated structures</li>
+					<li>Errors follow a known schema, not ad-hoc strings</li>
+				</ul>
+				<p style="margin-bottom:0"><strong>Bad AX:</strong> "See the README for details" with no structured summary. APIs where you have to regex the response to figure out what happened.</p>
+			</div>
+
+			<div class="principle-card">
+				<h3><span class="principle-number">3</span> Fail Loud, Recover Clear</h3>
+				<blockquote style="margin-top:16px;margin-bottom:16px">
+					<p>Failing is fine. Silent or opaque failure is not.</p>
+				</blockquote>
+				<p>A human can sometimes guess the missing step. An agent will either hallucinate a fix, try the same thing again, or give up and escalate.</p>
+				<p><strong>AX-friendly failures:</strong></p>
+				<ul>
+					<li>Explain <em>what</em> failed</li>
+					<li>Explain <em>why</em> (as best as you can)</li>
+					<li>Suggest 1-3 concrete next actions</li>
+				</ul>
+				<pre><code>{
+  "ok": false,
+  "error": {
+    "code": "MISSING_CONFIG_FIELD",
+    "message": "lex.yaml is missing required field 'instructions.targets[0].path'.",
+    "context": { "configPath": "lex.yaml", "field": "instructions.targets[0].path" },
+    "nextActions": [
+      "Open lex.yaml and add at least one target with a path.",
+      "Re-run 'lex instructions init' to generate a starter config."
+    ]
+  }
+}</code></pre>
+				<p style="margin-bottom:0"><strong>Bad AX errors:</strong> "Error: undefined", silent failures, "Something went wrong, please try again"</p>
+			</div>
+
+			<div class="principle-card">
+				<h3><span class="principle-number">4</span> Memory Is A Feature</h3>
+				<blockquote style="margin-top:16px;margin-bottom:16px">
+					<p>Agents without context are expensive and dumb.</p>
+				</blockquote>
+				<p>Every new conversation starts fresh unless you design memory into the system. Without memory, an agent re-learns context, repeats mistakes, burns tokens rediscovering decisions, and cannot build on its own past work.</p>
+				<p><strong>Good AX:</strong></p>
+				<ul>
+					<li>Memory store with stable schema, searchable reference points, module/domain scope</li>
+					<li>Workflows begin with recall: "What do we already know?"</li>
+					<li>Workflows end with receipts: "Here's what we did, and how to find it again"</li>
+				</ul>
+				<p style="margin-bottom:0">In Lex, memory is a first-class contract: <code>lex recall</code> before action, <code>lex remember</code> after. The system remembers, not the model. Any model that can read the memory format can pick up work where another left off.</p>
+			</div>
+
+			<div class="principle-card">
+				<h3><span class="principle-number">5</span> Teach Through Constraints</h3>
+				<blockquote style="margin-top:16px;margin-bottom:16px">
+					<p>Guardrails are not limitations. They are the curriculum.</p>
+				</blockquote>
+				<p>Unbounded agents make unbounded mistakes. Constraints—tool budgets, allowed paths, required outputs—shape behavior toward correctness.</p>
+
+				<p>But here is the part we need to be honest about: <strong>individual agents do not learn across sessions.</strong> A stateless model does not benefit from the constraint it hit yesterday. So who is learning?</p>
+
+				<p>The answer: <strong>the system learns, and designers learn by watching agents fail within bounds.</strong></p>
+
+				<p>When you set a tool budget and watch an agent blow through it on the wrong path, <em>you</em> learn that your task decomposition is bad. When you require a specific output format and the agent cannot produce it, <em>you</em> learn that your instructions are ambiguous. When you scope an agent to certain files and it keeps trying to escape, <em>you</em> learn that your architecture has unclear boundaries.</p>
+
+				<p>Constraints are not training data for the model. They are <strong>feedback loops for the humans designing the system.</strong></p>
+
+				<p><strong>Good AX constraints:</strong></p>
+				<ul>
+					<li>Tool budgets per task ("You may call at most N tools; choose wisely")</li>
+					<li>Clear scope limits ("Only touch src/foo and tests/foo")</li>
+					<li>Required outputs ("You must emit at least one Frame for this run")</li>
+					<li>Guardrail profiles that are stable and enforced</li>
+					<li><strong>Observable failures</strong>: when constraints are violated, log it, track it, learn from it</li>
+				</ul>
+				<p style="margin-bottom:0"><strong>Bad AX:</strong> "Do whatever you think is best." Unlimited tool access. Constraints that change silently. <strong>Unobserved constraint violations</strong>—the agent broke the rule, but no one saw it happen.</p>
+			</div>
+
+			<h2 id="maturity-model">AX Maturity Model</h2>
+
+			<p>A simple way to think about how AX-native your system is:</p>
+
+			<div class="maturity-grid">
+				<div class="maturity-card level-0">
+					<div class="maturity-level">
+						<span class="level-num">0</span>
+						<span class="level-name">Agent-Hostile</span>
+					</div>
+					<div class="maturity-desc">Unstructured output only. No error recovery paths. No memory or context layer. Implicit, undocumented expectations.</div>
+				</div>
+				<div class="maturity-card level-1">
+					<div class="maturity-level">
+						<span class="level-num">1</span>
+						<span class="level-name">Agent-Tolerant</span>
+					</div>
+					<div class="maturity-desc">Some structured output (<code>--json</code> exists). Basic error messages. Documentation exists but agents have to scrape it. Memory is ad-hoc or manual.</div>
+				</div>
+				<div class="maturity-card level-2">
+					<div class="maturity-level">
+						<span class="level-num">2</span>
+						<span class="level-name">Agent-Friendly</span>
+					</div>
+					<div class="maturity-desc">Structured outputs are the default. Errors include recovery hints. There is a proper memory layer with recall. Constraints are documented and mostly followed.</div>
+				</div>
+				<div class="maturity-card level-3">
+					<div class="maturity-level">
+						<span class="level-num">3</span>
+						<span class="level-name">Agent-Native</span>
+					</div>
+					<div class="maturity-desc">Deterministic preparation around stochastic calls. Memory is integrated into workflows. Constraints and guardrails are the main teaching mechanism. MCP/API/CLI are designed as agent-facing surfaces <em>first</em>. AX is a release-criteria concept.</div>
+				</div>
+			</div>
+
+			<div class="highlight-box">
+				<p style="margin:0"><strong style="color:var(--ok)">Our target for Lex and LexRunner is Level 3: Agent-Native.</strong></p>
+			</div>
+
+			<h2 id="ax-contract">AX As A Real Contract, Not Just Vibes</h2>
+
+			<p>For AX to matter, it cannot just be a philosophy. It has to become a <strong>contract</strong>.</p>
+
+			<p>In our stack, that takes the form of a small AX contract file (for example <code>AX-CONTRACT.md</code>) that says, in plain language:</p>
+			<ul>
+				<li>What we guarantee to agents (e.g., all important CLIs support <code>--json</code>)</li>
+				<li>What we do not guarantee yet</li>
+				<li>How we enforce those guarantees (tests, schemas, CI checks)</li>
+			</ul>
+
+			<p>Once AX v0.1 is adopted, all new features and changes must comply with the contract. Retrofitting old features to meet AX is a priority, not a "nice later."</p>
+
+			<p>If you are reading this in a repo past v0.1, you should check for a newer AX contract or immediately raise an issue. That is part of the social contract: AX is allowed to evolve, but it is not allowed to silently rot.</p>
+
+			<h2 id="dogfooding">Dogfooding AX</h2>
+
+			<p>The best AX research is using agents to build and operate the system itself.</p>
+
+			<p>The loop looks like this:</p>
+			<ol>
+				<li><strong>Use agents for real work</strong> (coding, reviews, merges, releases)</li>
+				<li><strong>When friction happens, capture it as AX feedback</strong></li>
+				<li><strong>Classify it:</strong>
+					<ul>
+						<li>Was this a determinism problem?</li>
+						<li>A structure problem?</li>
+						<li>An error recovery problem?</li>
+						<li>A memory problem?</li>
+						<li>A constraint problem?</li>
+					</ul>
+				</li>
+				<li><strong>Fix or track it:</strong> Trivial → fix inline. Non-trivial → open issues.</li>
+				<li><strong>Repeat.</strong></li>
+			</ol>
+
+			<p>The goal is not to make agents "happy." The goal is to make them <strong>effective</strong>.</p>
+
+			<p>If agents can reliably discover what they need, call tools correctly, recover from failures, and build on prior work—then humans can move up a level: design, governance, ethics, and truly hard problems.</p>
+
+			<h2 id="why-it-matters">Why AX Matters</h2>
+
+			<p>AX is not about worshipping AI. It is not even really about making agents "happy." Agents do not have preferences. They have operational constraints.</p>
+
+			<p>AX matters because <strong>agents are a forcing function for better system design.</strong></p>
+
+			<p>When you design for agents, you are forced to:</p>
+			<ul>
+				<li>Make implicit assumptions explicit</li>
+				<li>Encode decisions in structured formats</li>
+				<li>Build observable failure modes</li>
+				<li>Create memory that outlives any single session</li>
+				<li>Define clear boundaries instead of relying on "you just have to know"</li>
+			</ul>
+
+			<p>These are not gifts to agents. They are <strong>discipline for humans.</strong> The agent is just the thing that breaks when the discipline is missing.</p>
+
+			<p>Agents are already:</p>
+			<ul>
+				<li>writing code</li>
+				<li>operating CI/CD</li>
+				<li>editing documentation</li>
+				<li>triaging incidents</li>
+				<li>answering support tickets</li>
+			</ul>
+
+			<p>We can either pretend they are "just another user agent string," or we can acknowledge that they <strong>expose every implicit assumption</strong> we have been papering over for years.</p>
+
+			<p>When we design for agents on purpose:</p>
+			<ul>
+				<li>We get more reliable automation</li>
+				<li>We get systems that are easier to reason about</li>
+				<li>We reduce hallucinations by not forcing models to guess through noise</li>
+				<li>We make it easier to swap or mix models because the environment is sane</li>
+			</ul>
+
+			<p>And we get something else too:</p>
+
+			<blockquote>
+				<p>We get a clearer picture of how our systems behave, because designing for agents forces us to make our expectations explicit.</p>
+			</blockquote>
+
+			<p>The "experience" framing is marketing. The real insight is <strong>legibility</strong>.</p>
+
+			<p>Systems that agents can operate are systems that humans can finally <em>understand</em>—not just use.</p>
+
+			<p><strong>That is AX.</strong></p>
+
+			<section class="hr" role="separator"></section>
+
+			<p style="text-align:center;color:var(--muted);font-size:0.95rem">
+				<em>Coined: December 1, 2025</em><br/>
+				<em>Authors: Guffawaffle and friends</em><br/>
+				<em>Project: SmarterGPT / Lex / LexRunner</em>
+			</p>
+		</article>
+
+		<section class="hr" role="separator"></section>
+
+		<!-- Related Content -->
+		<section>
+			<h2 class="kicker">Related Research</h2>
+			<div class="grid">
+				<article class="card">
+					<h3 style="margin-top:0">🧠 Lex (Mind)</h3>
+					<p>The memory + policy engine that makes AX Principle 4 (Memory Is A Feature) real.</p>
+					<a class="button" href="../../projects/lex/index.html" style="margin-top:12px">Explore Lex →</a>
+				</article>
+				<article class="card">
+					<h3 style="margin-top:0">🔀 LexRunner (Body)</h3>
+					<p>Deterministic orchestration built on AX Principle 1 (Deterministic First).</p>
+					<a class="button" href="../../projects/lex-pr/index.html" style="margin-top:12px">Learn about LexRunner →</a>
+				</article>
+				<article class="card">
+					<h3 style="margin-top:0">📖 Control Deck</h3>
+					<p>The six interlocking concepts that shape AX in practice: Receipts, Gates, Modes, Policy, Guardrails, Scope.</p>
+					<a class="button" href="../control-deck/index.html" style="margin-top:12px">Explore Control Deck →</a>
+				</article>
+			</div>
+		</section>
+	</main>
+
+	<footer class="container footer">
+		<div>&copy; <span id="year"></span> SmarterGPT.dev</div>
+		<div class="pill">Agent-friendly • CI-first • Human-in-the-loop</div>
+	</footer>
+	<script src="../../assets/app.js"></script>
+</body>
+</html>

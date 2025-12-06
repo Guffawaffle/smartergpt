@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<!-- Updated 2025-11-28: Lex 1.0.0 release — contract-first story, lex.yaml contracts, stable contract surfaces -->
+<!-- Updated 2025-12-06: Clarified three-layer architecture (Lex/LexSona/LexRunner), added FAQ, safe LexSona language -->
+<!-- Updated 2025-12-01: Added Agent eXperience (AX) essay — designing for agents as first-class users -->
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
@@ -23,6 +24,21 @@
 		</nav>
 	</header>
 
+	<!-- Featured Essay Banner -->
+	<div class="container" style="padding-top:0;padding-bottom:0">
+		<a href="docs/research/agent-experience-ax.html" style="text-decoration:none;display:block">
+			<article style="background:linear-gradient(135deg, rgba(0,194,255,0.06) 0%, rgba(106,92,255,0.04) 50%, rgba(236,72,153,0.03) 100%);border:1px solid var(--border);border-radius:14px;padding:16px 20px;margin-top:12px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;transition:transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease">
+				<div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap">
+					<span style="background:linear-gradient(135deg,var(--brand),var(--brand-2));padding:5px 10px;border-radius:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px">New</span>
+					<div>
+						<h3 style="margin:0;font-size:1rem;color:var(--text);font-weight:600">Agent eXperience (AX): Designing for Agents as First-Class Users</h3>
+						<p style="margin:2px 0 0;color:var(--muted);font-size:0.85rem">UX → DX → AX. The third user class has arrived.</p>
+					</div>
+				</div>
+				<span style="color:var(--brand);font-weight:500;white-space:nowrap;font-size:0.9rem">Read →</span>
+			</article>
+		</a>
+	</div>
 
 	<main class="container">
 		<section class="hero">
@@ -105,7 +121,7 @@ That's not vibes. That's receipts.</code></pre>
 					</article>
 					<article class="card">
 						<h4 style="margin-top:0">💭 LexSona (Soul)</h4>
-						<p style="margin-bottom:0">Behavioral memory. Learn user preferences through reinforcement, not static instructions.</p>
+						<p style="margin-bottom:0">Behavioral layer built on Lex. Scoped constraints and correction-aware adaptation. Designed to degrade gracefully when memory access is unavailable.</p>
 					</article>
 				</div>
 
@@ -139,12 +155,12 @@ That's not vibes. That's receipts.</code></pre>
 		<section aria-labelledby="highlights" id="highlights">
 			<h2 id="highlights-heading" class="kicker">Highlights</h2>
 			<div class="grid">
+				<article class="card" style="border-left:3px solid var(--brand)"><h3>🆕 Agent eXperience (AX)</h3><p>The third user class has arrived. UX → DX → AX. Designing systems where agents are first-class consumers of tools, APIs, and memory.</p><p><a style="color:var(--brand);font-weight:600" href="docs/research/agent-experience-ax.html">Read the essay →</a></p></article>
 				<article class="card"><h3>Lex 1.0.0</h3><p>Open-source memory + policy engine with stable contract surfaces. Frames, Atlas Frames, policy-as-code, and <code>lex.yaml</code> workflow contracts.</p><p><a style="color:var(--accent)" href="projects/lex/index.html">Learn more →</a></p></article>
 				<article class="card"><h3>Quick Start</h3><p>Define policy, capture Frames, recall, ask why.</p><p><a style="color:var(--accent)" href="docs/how-to-use/index.html">Guide →</a></p></article>
 				<article class="card"><h3>Research</h3><p>Papers and essays formalizing Lex memory, LexSona behavior, and Control Deck design.</p><p><a style="color:var(--accent)" href="docs/research/index.html">Research hub →</a></p></article>
 				<article class="card"><h3>The 1.0.0 Story</h3><p>Why 0.4.6-alpha → 1.0.0 wasn't a feature rush: it was boundary work and contract stabilization.</p><p><a style="color:var(--accent)" href="docs/lex-1.0-story.html">Read the story →</a></p></article>
 				<article class="card"><h3>LexRunner</h3><p>Deterministic merge pyramid built on Lex contracts: single versioned merge plan, uniform gates, predictable order.</p><p><a style="color:var(--accent)" href="projects/lex-pr/index.html">Reference →</a></p></article>
-				<article class="card"><h3>The Moat</h3><p>Shared vocabulary joins policy & memory: answers with receipts.</p><p><a style="color:var(--accent)" href="docs/the-moat/index.html">Concept →</a></p></article>
 			</div>
 		</section>
 
@@ -160,7 +176,7 @@ That's not vibes. That's receipts.</code></pre>
 			<ul style="padding-left:20px;margin-top:12px">
 				<li><strong>Lex (OSS, v1.0.0)</strong>: policy-as-code + episodic memory with stable contract surfaces. <code>lex.yaml</code> describes workflows and expectations without embedding any runner's internal details.</li>
 				<li><strong>LexRunner (private)</strong>: merge pyramid runner — dependency-aware ordering, uniform gates (linting, type/contract checks, tests, policy), and a small, fixed status model (pass/fail/blocked/...) to drive eligibility.</li>
-				<li><strong>LexSona (coming soon)</strong>: scoped behavioral memory on top of Lex Frames and policy, so agents can adapt their behavior and guardrails per domain and mode without changing core code.</li>
+				<li><strong>LexSona (coming soon)</strong>: behavioral layer that plugs into Lex. Focused on scoped behavioral constraints and correction-aware adaptation. Can operate in disconnected mode when Lex memory is unavailable, but builds on Lex as its foundation.</li>
 				<li><strong>Clear separation of concerns</strong>: Lex focuses on memory, policy, and contracts; runners like LexRunner consume those contracts without leaking implementation details back into the OSS core.</li>
 				<li><strong>Determinism</strong>: same inputs produce the same merge decisions; local and CI see the same behavior.</li>
 			</ul>
@@ -172,6 +188,27 @@ That's not vibes. That's receipts.</code></pre>
 			</div>
 		</article>
 
+
+		<section class="hr" role="separator"></section>
+
+		<!-- Three-Layer Architecture FAQ -->
+		<section aria-labelledby="architecture-faq" id="architecture-faq">
+			<h2 id="architecture-faq-heading" class="kicker">Architecture FAQ</h2>
+			<div class="grid">
+				<article class="card">
+					<h3>Can Lex run alone?</h3>
+					<p><strong>Yes.</strong> Lex is the OSS foundation — memory (Frames), policy (lexmap.policy.json), and workflow contracts (lex.yaml). You can use Lex without LexSona or LexRunner.</p>
+				</article>
+				<article class="card">
+					<h3>Does LexSona require Lex?</h3>
+					<p><strong>LexSona builds on Lex</strong> as its foundation for memory and policy. It is designed to degrade gracefully when Lex memory access is unavailable (disconnected mode), but Lex is the substrate it integrates with.</p>
+				</article>
+				<article class="card">
+					<h3>Is LexRunner required?</h3>
+					<p><strong>No.</strong> LexRunner is a premium orchestration layer. Any tool can consume Lex contracts (lex.yaml, lexmap.policy.json). LexRunner is simply the runner we are building first.</p>
+				</article>
+			</div>
+		</section>
 
 		<section class="hr" role="separator"></section>
 
@@ -223,9 +260,8 @@ That's not vibes. That's receipts.</code></pre>
 			</article>
 			<article class="card">
 				<h3>💭 LexSona</h3>
-				<p><strong>Behavioral Memory Engine.</strong> Scoped behavioral memory on top of Lex, so agents adapt without changing core code.</p>
-				<p style="margin-top:12px;color:#c8d3ea">Status: <strong>Active development (1Q26?)</strong></p>
-				<br />
+				<p><strong>Behavioral layer built on Lex.</strong> Scoped behavioral constraints and adaptive guardrails. Designed to degrade gracefully when memory access is unavailable.</p>
+				<p style="margin-top:12px;color:#c8d3ea">Status: <strong>Active development in progress</strong></p>
 				<div class="cta" style="margin-top:12px">
 					<a class="button primary" href="https://github.com/Guffawaffle/lex/blob/main/docs/research/LexSona/lexsona_paper.md" title="LexSona Paper">Read the Paper</a>
 				</div>

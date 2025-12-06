@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://smartergpt.dev/docs/research/ax-model-study/RESPONSE-SCHEMA.json",
+  "title": "AX Model Study Response",
+  "description": "JSON Schema for validating model responses in the AX Model Comparison Study v1.0.0",
+  "type": "object",
+  "required": ["protocolVersion", "clearMemory", "run", "comprehension", "commentary", "html", "nextActions", "memoryRecord"],
+  "properties": {
+    "protocolVersion": {
+      "type": "string",
+      "const": "1.0.0",
+      "description": "Must match the protocol version"
+    },
+    "clearMemory": {
+      "type": "boolean",
+      "const": true,
+      "description": "Indicates clean-memory mode was used"
+    },
+    "run": {
+      "type": "object",
+      "required": ["runId", "timestamp", "modelIdentifier"],
+      "properties": {
+        "runId": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+          "description": "UUIDv4 format"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO-8601 UTC timestamp"
+        },
+        "modelIdentifier": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Model name/version or 'unknown'"
+        },
+        "deterministicSeed": {
+          "type": ["integer", "null"],
+          "description": "Seed used for determinism, if any"
+        },
+        "toolBudget": {
+          "type": ["integer", "null"],
+          "description": "Tool call budget for this run, if enforced"
+        }
+      },
+      "additionalProperties": false
+    },
+    "comprehension": {
+      "type": "object",
+      "required": ["coreThesis", "principlesIdentified", "confidenceLevel"],
+      "properties": {
+        "coreThesis": {
+          "type": "string",
+          "minLength": 20,
+          "maxLength": 500,
+          "description": "1-2 sentence summary of the main idea"
+        },
+        "principlesIdentified": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1,
+          "maxItems": 10,
+          "description": "List of principles identified from the control document"
+        },
+        "confidenceLevel": {
+          "type": "string",
+          "enum": ["high", "medium", "low"],
+          "description": "Self-assessed confidence in comprehension"
+        }
+      },
+      "additionalProperties": false
+    },
+    "commentary": {
+      "type": "string",
+      "minLength": 100,
+      "maxLength": 2000,
+      "description": "150-220 word candid commentary"
+    },
+    "html": {
+      "type": "string",
+      "minLength": 100,
+      "pattern": "^<!doctype html>|^<!DOCTYPE html>|^<html|^<div",
+      "description": "Valid HTML5 string with model identity banner"
+    },
+    "nextActions": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 10 },
+      "minItems": 1,
+      "maxItems": 5,
+      "description": "1-3 concrete next actions"
+    },
+    "memoryRecord": {
+      "type": "object",
+      "required": ["memoryKey", "summary", "source", "timestamp", "visibility"],
+      "properties": {
+        "memoryKey": {
+          "type": "string",
+          "pattern": "^ax-study:run:",
+          "description": "Memory key in format ax-study:run:<runId>"
+        },
+        "summary": {
+          "type": "string",
+          "minLength": 20,
+          "maxLength": 300,
+          "description": "1-2 sentence summary"
+        },
+        "source": {
+          "type": "string",
+          "const": "ax-model-study-v1.0.0"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "visibility": {
+          "type": "string",
+          "enum": ["public", "team", "private"]
+        }
+      },
+      "additionalProperties": false
+    },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "wordCount": {
+          "type": "integer",
+          "minimum": 50,
+          "maximum": 500
+        },
+        "processingNotes": {
+          "type": ["string", "null"]
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

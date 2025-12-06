@@ -27,8 +27,8 @@
 			<div style="max-width:800px">
 				<span class="badge" aria-label="Page type"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg> Progress visibility</span>
 				<h1>Status &amp; Roadmap</h1>
-				<p class="tagline">High-level phases, current status, and near-term milestones for <strong>Lex</strong>, the open-source memory and policy engine.</p>
-				<p style="color:var(--muted);font-size:14px;margin-top:20px">Last updated: <span id="lastUpdated"></span></p>
+				<p class="tagline">High-level phases, current status, and near-term milestones for <strong>Lex</strong>, the open-source memory and policy engine — now with <strong>AX (Agent eXperience)</strong> as a first-class design principle.</p>
+				<p style="color:var(--muted);font-size:14px;margin-top:20px">Last updated: December 6, 2025</p>
 			</div>
 		</section>
 
@@ -36,16 +36,26 @@
 
 		<section style="padding-block:56px">
 			<h2 class="kicker">Current Status</h2>
-			<div class="card" style="margin-top:20px;border-left:3px solid var(--ok)">
-				<h3 style="margin:0 0 8px;color:var(--ok)">✓ Lex 1.0.0 — Stable Contracts, Open Source</h3>
-				<p style="margin-bottom:12px"><strong>Lex 1.0.0</strong> is available on npm (<code>@smartergpt/lex</code>) as the contract-bearing mind of SmarterGPT's agent infrastructure. The core contracts are stable enough to build on.</p>
+			<div class="card" style="margin-top:20px;border-left:3px solid var(--brand)">
+				<h3 style="margin:0 0 8px;color:var(--brand)">🚀 Lex 2.0.0-alpha.1 — AX-Native Memory Core</h3>
+				<p style="margin-bottom:12px"><strong>Lex 2.0.0-alpha.1</strong> introduces <strong>AX (Agent eXperience)</strong> as a first-class design principle. This is the first release where AX guarantees are real, not just documented.</p>
 				<ul style="margin:0;padding-left:20px;color:var(--muted);font-size:14px">
-					<li><strong>Frames</strong> — episodic memory with typed receipts and deterministic recall</li>
-					<li><strong>lexmap.policy.json</strong> — module boundaries and architectural contracts</li>
-					<li><strong>lex.yaml</strong> — intent-level workflow contracts for agent coordination</li>
-					<li>CLI commands: <code>remember</code>, <code>recall</code>, <code>check</code></li>
-					<li>Typed TypeScript API with Zod-validated schemas</li>
-					<li>MIT license, Node ≥20, actively used in internal tooling</li>
+					<li><strong>AXError Schema</strong> — Structured errors with recovery actions for agents</li>
+					<li><strong>Frame Schema v3</strong> — Zod validation with runner integration fields</li>
+					<li><strong>CLI JSON Output</strong> — <code>--json</code> on <code>remember</code>, <code>timeline</code> for machine-parseable output</li>
+					<li><strong>Recall Semantics</strong> — FTS5 case-insensitive, hyphen-safe search</li>
+					<li>Available now: <code>npm install @smartergpt/lex@alpha</code></li>
+				</ul>
+			</div>
+			<div class="card" style="margin-top:16px;border-left:3px solid var(--ok)">
+				<h3 style="margin:0 0 8px;color:var(--ok)">✓ Lex 1.0.2 — Stable Contracts (Current Stable)</h3>
+				<p style="margin-bottom:12px"><strong>Lex 1.0.x</strong> is the production-ready release with stable contracts. Use this for production workloads.</p>
+				<ul style="margin:0;padding-left:20px;color:var(--muted);font-size:14px">
+					<li><strong>Frames</strong> — Episodic memory with typed receipts and deterministic recall</li>
+					<li><strong>lexmap.policy.json</strong> — Module boundaries and architectural contracts</li>
+					<li><strong>lex.yaml</strong> — Intent-level workflow contracts (Docker Compose for AI)</li>
+					<li>CLI commands: <code>remember</code>, <code>recall</code>, <code>check</code>, <code>timeline</code></li>
+					<li>Install: <code>npm install @smartergpt/lex</code></li>
 				</ul>
 			</div>
 		</section>
@@ -54,7 +64,7 @@
 
 		<section style="padding-block:56px">
 			<h2 class="kicker">Roadmap</h2>
-			<p style="margin-top:8px;color:var(--muted);max-width:720px;font-size:14px">This roadmap tracks only the <strong>Lex</strong> open-source repository. It focuses on core engine stability, documentation, and integration ergonomics. Dates are indicative and may shift as we learn from real usage.</p>
+			<p style="margin-top:8px;color:var(--muted);max-width:720px;font-size:14px">This roadmap tracks the <strong>Lex</strong> open-source repository. Development is guided by <strong>AX principles</strong>: deterministic first, structured over conversational, fail loud with recovery paths.</p>
 			<div style="overflow-x:auto;margin-top:20px">
 				<table style="width:100%;border-collapse:collapse;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:16px;overflow:hidden">
 					<thead>
@@ -62,7 +72,7 @@
 							<th style="text-align:left;padding:16px;font-weight:600;color:var(--text)">Focus Area</th>
 							<th style="text-align:left;padding:16px;font-weight:600;color:var(--text)">Milestone</th>
 							<th style="text-align:left;padding:16px;font-weight:600;color:var(--text)">Status</th>
-							<th style="text-align:left;padding:16px;font-weight:600;color:var(--text)">Target</th>
+							<th style="text-align:left;padding:16px;font-weight:600;color:var(--text)">Date</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -70,51 +80,73 @@
 							<td style="padding:16px;color:var(--muted)">Foundation</td>
 							<td style="padding:16px">
 								<strong style="color:var(--text)">Lex 1.0.0 — Stable Contracts</strong>
-								<p style="margin:4px 0 0;font-size:14px;color:var(--muted)">Core contracts (Frames, lexmap.policy.json, lex.yaml) stabilized and published to npm. Boundary-first architecture validated through dogfooding.</p>
+								<p style="margin:4px 0 0;font-size:14px;color:var(--muted)">Core contracts (Frames, lexmap.policy.json, lex.yaml) stabilized and published to npm. First stable release.</p>
 							</td>
 							<td style="padding:16px">
 								<span class="badge" style="background:rgba(46,160,67,0.25);color:var(--ok);border-color:var(--ok)">Complete</span>
 							</td>
-							<td style="padding:16px;color:var(--muted)">Jun 2025</td>
+							<td style="padding:16px;color:var(--muted)">Nov 28, 2025</td>
 						</tr>
 						<tr style="border-bottom:1px solid var(--border)">
-							<td style="padding:16px;color:var(--muted)">Documentation</td>
+							<td style="padding:16px;color:var(--muted)">AX</td>
 							<td style="padding:16px">
-								<strong style="color:var(--text)">Repo README &amp; Concepts Docs</strong>
-								<p style="margin:4px 0 0;font-size:14px;color:var(--muted)">Clear explanation of Frames, Atlas Frames, fold radius, policy, and CLI examples in the Lex repo.</p>
+								<strong style="color:var(--text)">Lex 2.0.0-alpha — AX-Native Core</strong>
+								<p style="margin:4px 0 0;font-size:14px;color:var(--muted)">AXError schema, Frame v3 validation, CLI JSON output, improved recall. First AX-native release.</p>
+							</td>
+							<td style="padding:16px">
+								<span class="badge" style="background:rgba(46,160,67,0.25);color:var(--ok);border-color:var(--ok)">Complete</span>
+							</td>
+							<td style="padding:16px;color:var(--muted)">Dec 1, 2025</td>
+						</tr>
+						<tr style="border-bottom:1px solid var(--border)">
+							<td style="padding:16px;color:var(--muted)">MCP</td>
+							<td style="padding:16px">
+								<strong style="color:var(--text)">MCP/CLI Alignment</strong>
+								<p style="margin:4px 0 0;font-size:14px;color:var(--muted)">Expose <code>timeline</code>, <code>code-atlas</code>, <code>policy-check</code> via MCP tools. Full parity between CLI and MCP surfaces.</p>
 							</td>
 							<td style="padding:16px">
 								<span class="badge" style="background:rgba(0,194,255,0.1);color:var(--brand);border-color:var(--brand)">In Progress</span>
 							</td>
-							<td style="padding:16px;color:var(--muted)">Q3 2025</td>
+							<td style="padding:16px;color:var(--muted)">Dec 2025</td>
 						</tr>
 						<tr style="border-bottom:1px solid var(--border)">
-							<td style="padding:16px;color:var(--muted)">Integration</td>
+							<td style="padding:16px;color:var(--muted)">Governance</td>
 							<td style="padding:16px">
-								<strong style="color:var(--text)">CLI &amp; Library Ergonomics</strong>
-								<p style="margin:4px 0 0;font-size:14px;color:var(--muted)">Smoother CLI UX, better error messages, and small helpers for embedding Lex into TypeScript services and tools.</p>
+								<strong style="color:var(--text)">Turn Cost &amp; Capability Tiers</strong>
+								<p style="margin:4px 0 0;font-size:14px;color:var(--muted)">Receipt protocol for disciplined failure, capability tier classification (Senior/Mid/Junior), turn cost measurement for coordination optimization.</p>
+							</td>
+							<td style="padding:16px">
+								<span class="badge" style="background:rgba(0,194,255,0.1);color:var(--brand);border-color:var(--brand)">In Progress</span>
+							</td>
+							<td style="padding:16px;color:var(--muted)">Dec 2025</td>
+						</tr>
+						<tr style="border-bottom:1px solid var(--border)">
+							<td style="padding:16px;color:var(--muted)">CLI</td>
+							<td style="padding:16px">
+								<strong style="color:var(--text)">Instructions Generator</strong>
+								<p style="margin:4px 0 0;font-size:14px;color:var(--muted)"><code>lex instructions init/generate/check</code> — IDE-aware instruction block generator for Copilot, Cursor, and other AI assistants.</p>
 							</td>
 							<td style="padding:16px">
 								<span class="badge" style="background:rgba(168,179,207,0.1);color:var(--muted)">Planned</span>
 							</td>
-							<td style="padding:16px;color:var(--muted)">Q4 2025</td>
+							<td style="padding:16px;color:var(--muted)">Q1 2026</td>
 						</tr>
 						<tr style="border-bottom:1px solid var(--border)">
-							<td style="padding:16px;color:var(--muted)">Quality</td>
+							<td style="padding:16px;color:var(--muted)">Behavior</td>
 							<td style="padding:16px">
-								<strong style="color:var(--text)">Test Coverage &amp; Dogfooding</strong>
-								<p style="margin:4px 0 0;font-size:14px;color:var(--muted)">Expanded unit tests around Atlas/recall behavior and continued internal usage to harden edge cases.</p>
+								<strong style="color:var(--text)">LexSona — Behavioral Layer</strong>
+								<p style="margin:4px 0 0;font-size:14px;color:var(--muted)">Scoped behavioral constraints and adaptive guardrails built on Lex. Designed to degrade gracefully when memory access is unavailable (disconnected mode).</p>
 							</td>
 							<td style="padding:16px">
 								<span class="badge" style="background:rgba(0,194,255,0.1);color:var(--brand);border-color:var(--brand)">In Progress</span>
 							</td>
-							<td style="padding:16px;color:var(--muted)">Q4 2025</td>
+							<td style="padding:16px;color:var(--muted)">2026</td>
 						</tr>
 						<tr>
-							<td style="padding:16px;color:var(--muted)">Ecosystem</td>
+							<td style="padding:16px;color:var(--muted)">Stable</td>
 							<td style="padding:16px">
-								<strong style="color:var(--text)">Examples &amp; Starter Patterns</strong>
-								<p style="margin:4px 0 0;font-size:14px;color:var(--muted)">Small example projects and patterns showing Lex wired into assistants, tools, and simple web services.</p>
+								<strong style="color:var(--text)">Lex 2.0.0 Stable</strong>
+								<p style="margin:4px 0 0;font-size:14px;color:var(--muted)">Production-ready AX-native release with governance, MCP alignment, and instructions CLI complete.</p>
 							</td>
 							<td style="padding:16px">
 								<span class="badge" style="background:rgba(168,179,207,0.1);color:var(--muted)">Planned</span>
@@ -124,6 +156,32 @@
 					</tbody>
 				</table>
 			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section style="padding-block:56px">
+			<h2 class="kicker">AX: Agent eXperience</h2>
+			<p style="margin-top:8px;color:var(--muted);max-width:720px;font-size:14px">Lex 2.0 is built on <strong>AX</strong> — the discipline of designing systems where agents are first-class users. AX augments UX and DX; it doesn't replace them.</p>
+			<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:20px">
+				<div class="card">
+					<h4 style="margin:0 0 8px;color:var(--brand)">Deterministic First</h4>
+					<p style="margin:0;font-size:14px;color:var(--muted)">AI can't debug randomness. Lex outputs are stable and reproducible.</p>
+				</div>
+				<div class="card">
+					<h4 style="margin:0 0 8px;color:var(--brand)">Structured Output</h4>
+					<p style="margin:0;font-size:14px;color:var(--muted)">JSON over prose. <code>--json</code> on all core commands.</p>
+				</div>
+				<div class="card">
+					<h4 style="margin:0 0 8px;color:var(--brand)">Fail Loud, Recover Clear</h4>
+					<p style="margin:0;font-size:14px;color:var(--muted)">AXError includes <code>nextActions[]</code> so agents know what to try next.</p>
+				</div>
+				<div class="card">
+					<h4 style="margin:0 0 8px;color:var(--brand)">Memory is a Feature</h4>
+					<p style="margin:0;font-size:14px;color:var(--muted)">Frames give agents context. Without memory, AI is expensive and dumb.</p>
+				</div>
+			</div>
+			<p style="margin-top:20px"><a href="docs/research/agent-experience-ax.html" style="color:var(--brand)">Read the full AX essay →</a></p>
 		</section>
 
 		<section class="hr" role="separator"></section>

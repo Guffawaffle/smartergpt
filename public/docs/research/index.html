@@ -23,6 +23,24 @@
 	</header>
 
 	<main class="container">
+		<!-- Featured Essay Banner -->
+		<section style="margin-bottom:32px">
+			<a href="agent-experience-ax.html" style="text-decoration:none;display:block">
+				<article style="background:linear-gradient(135deg, rgba(0,194,255,0.08) 0%, rgba(106,92,255,0.05) 50%, rgba(236,72,153,0.03) 100%);border:1px solid var(--border);border-radius:16px;padding:28px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;transition:transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease">
+					<div>
+						<div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+							<span style="background:linear-gradient(135deg,var(--brand),var(--brand-2));padding:5px 12px;border-radius:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px">Featured</span>
+							<span style="color:var(--muted);font-size:0.85rem">December 2025</span>
+						</div>
+						<h2 style="margin:0 0 8px;font-size:1.5rem;color:var(--text)">Agent eXperience (AX)</h2>
+						<p style="margin:0;color:#c9d6ea;font-size:1rem;max-width:600px">Designing Systems Where Agents Are First-Class Users. The discipline of building tools, APIs, and workflows that agents can operate reliably.</p>
+						<p style="margin:10px 0 0;color:var(--muted);font-size:0.9rem"><strong>UX → DX → AX.</strong> The third user class has arrived.</p>
+					</div>
+					<span style="color:var(--brand);font-weight:600;font-size:1rem;white-space:nowrap;display:flex;align-items:center;gap:6px">Read essay <span style="font-size:1.2rem">→</span></span>
+				</article>
+			</a>
+		</section>
+
 		<!-- Hero: Lead with the Trinity -->
 		<section class="hero">
 			<div class="hero-left">
@@ -142,10 +160,41 @@
 
 		<section class="hr" role="separator"></section>
 
+<!-- Active Studies -->
+		<section aria-labelledby="studies" style="background:linear-gradient(135deg, rgba(55,214,122,0.06) 0%, transparent 100%);padding:32px;margin:0 -16px 32px;border-radius:16px">
+			<h2 id="studies" class="kicker" style="display:flex;align-items:center;gap:12px">
+				<span style="width:10px;height:10px;background:#4ade80;border-radius:50%;animation:pulse 2s infinite"></span>
+				Active Studies
+			</h2>
+			<div class="grid" style="grid-template-columns:1fr">
+				<article class="card" style="border:1px solid rgba(55,214,122,0.3)">
+					<div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px">
+						<div>
+							<span class="badge" style="margin-bottom:12px;background:rgba(55,214,122,0.15);color:#4ade80;border-color:rgba(55,214,122,0.4)">Open · Enrolling</span>
+							<h3 style="margin-top:0">AX Model Comparison Study</h3>
+							<p>A rigorous, open scientific study comparing how different AI models (Claude, GPT, Gemini, open-weight) comprehend and operationalize the Agent eXperience framework. Identical prompts, identical control documents, structured responses.</p>
+							<p style="font-size:0.9rem;color:var(--muted);margin-top:8px"><strong>Research questions:</strong> Comprehension fidelity, actionability, self-identification accuracy, cross-model variance.</p>
+						</div>
+						<a class="button primary" href="ax-model-study/index.html" style="white-space:nowrap">View study →</a>
+					</div>
+				</article>
+			</div>
+		</section>
+
+		<style>@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }</style>
+
 <!-- Essays & Control Deck -->
 		<section aria-labelledby="essays">
 			<h2 id="essays" class="kicker">Essays & Think Pieces</h2>
 			<div class="grid">
+				<article class="card" style="border-left:3px solid var(--brand)">
+					<span class="badge" style="margin-bottom:12px">New · December 2025</span>
+					<h3 style="margin-top:0">Agent eXperience (AX)</h3>
+					<p><em>Designing Systems Where Agents Are First-Class Users</em> — The discipline of building tools, APIs, and workflows that agents can operate reliably. Five principles, a maturity model, and why AX matters.</p>
+					<div style="margin-top:12px">
+						<a class="button primary" href="agent-experience-ax.html">Read essay</a>
+					</div>
+				</article>
 				<article class="card" style="border-left:3px solid var(--accent)">
 					<h3 style="margin-top:0">Not Bigger, Better Constrained</h3>
 					<p><em>A Frontier Model's View of the Control Stack</em> — A fictional open letter describing the guardrails and control stack that models actually want. Covers scope, gates, modes, and receipts.</p>

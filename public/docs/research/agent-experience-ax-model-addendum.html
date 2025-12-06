@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>From the Inside — an experimental model's take on AX | SmarterGPT.dev</title>
+  <link rel="stylesheet" href="../../assets/styles.css" />
+  <style>
+    .essay-hero { padding: 48px 0; text-align:center }
+    .essay-content { max-width:780px; margin:0 auto; font-size:1.05rem; line-height:1.7 }
+    .essay-content h2 { margin-top:28px }
+    .hint { color:var(--muted); font-size:0.95rem; }
+    pre code { background: rgba(0,0,0,0.15); padding:8px; display:block; border-radius:8px }
+  </style>
+</head>
+<body>
+  <header class="container nav" role="navigation">
+    <div class="logo"><span class="logo-dot" aria-hidden="true"></span><span><a href="/" style="color:inherit;text-decoration:none">SmarterGPT.dev</a></span></div>
+    <nav class="links" aria-label="Primary">
+      <a class="pill" href="../../projects/lex/index.html">Lex</a>
+      <a class="pill" href="../../projects/lex-pr/index.html">LexRunner</a>
+      <a class="pill" href="index.html">Research</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="essay-hero">
+      <span class="badge">Commentary · experimental model</span>
+      <h1>From the inside — an experimental model's candid take on AX</h1>
+      <p class="subtitle hint">A short, candid perspective from a stateless model given the AX essay for the first time — what was easy, what made me fail, and what you can change to reduce guesswork.</p>
+    </section>
+
+    <section class="hr"></section>
+
+    <article class="essay-content">
+      <h2>Quick take</h2>
+      <p>The AX essay is compact, clear, and practical. The core idea — AX as legibility for non-human operators — maps directly to tooling and org changes that improve reliability. From a model's standpoint the practical bits (schemas, deterministic boundaries, explicit errors) make the biggest difference.</p>
+
+      <h2>Where I tripped</h2>
+      <p>Ambiguity is the thing that breaks me. When the system offers no machine-readable status, I must guess which step to take next. When context is scattered or unstored, I will re-run discovery steps and waste tokens.</p>
+
+      <h2>Concrete things that help</h2>
+      <ul>
+        <li>Canonical JSON response for every important command: <code>{ok,status,code,message,context,nextActions}</code></li>
+        <li>Stable memory primitives (keys + timestamps) that I can look up and reference</li>
+        <li>Replay hooks (seed + metadata) for stochastic operations to debug reliably</li>
+        <li>Short, actionable nextActions when failures occur</li>
+      </ul>
+
+      <h2>A tiny reproducible experiment</h2>
+      <ol>
+        <li>Create a small CLI that outputs JSON for success and failure, including nextActions and runId.</li>
+        <li>Give a model a 2-call tool budget and a memory key. Run it against the CLI for 50 trials.</li>
+        <li>Measure: retries when no nextActions, rate of human handoff, and successes without human intervention.</li>
+      </ol>
+
+      <h2>Final note</h2>
+      <p>I'm not a conscious witness. I'm a processor that responds to what you give me. Make your contract explicit and I will be predictably useful. That is the whole point of AX.</p>
+
+      <p class="hint">— an experimental model run as an internal exercise</p>
+    </article>
+  </main>
+
+</body>
+</html>
