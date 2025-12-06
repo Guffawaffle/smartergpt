@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Lex 2.0.0: The AX-Native Release | SmarterGPT.dev</title>
+	<meta name="description" content="Lex 2.0.0 freezes the contract surface and commits to Agent eXperience (AX) as a first-class design principle. This is the freeze point before only AX improvement work—all contracts are now live and binding." />
+	<meta name="color-scheme" content="dark light" />
+	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
+	<link rel="stylesheet" href="../assets/styles.css" />
+</head>
+<body>
+	<header class="container nav" role="navigation">
+		<div class="logo"><span class="logo-dot" aria-hidden="true"></span><a href="/" style="color:inherit;text-decoration:none"><span>SmarterGPT.dev</span></a></div>
+		<nav class="links" aria-label="Primary">
+			<a class="pill" href="../projects/lex/index.html" title="Lex">Lex</a>
+			<a class="pill" href="../projects/lex-pr/index.html" title="LexRunner">LexRunner</a>
+			<a class="pill" href="research/index.html" title="Research">Research</a>
+			<a class="pill" href="the-moat/index.html" title="Moat">Moat</a>
+			<a class="pill" href="how-to-use/index.html" title="How to Use">Guide</a>
+			<a class="pill" href="../roadmap.html" title="Roadmap">Roadmap</a>
+		</nav>
+	</header>
+
+	<main class="container">
+		<section class="hero" style="display:block">
+			<div class="hero-left" style="max-width:100%">
+				<span class="badge" aria-label="Launch Story"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg> Lex 2.0.0 — December 6, 2025</span>
+				<h1>The AX-Native Release</h1>
+				<p class="tagline">Lex 2.0.0 is the freeze point. All contracts are live and binding. From here forward, the work is AX improvement—not contract churn.</p>
+				<p class="tagline" style="margin-top:12px"><strong>Agent eXperience (AX)</strong> is no longer aspirational. It's the spec we ship against.</p>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="what-froze">
+			<h2 id="what-froze" class="kicker">What Froze at 2.0.0</h2>
+			<article class="card">
+				<p>Lex 2.0.0 freezes four binding contracts:</p>
+
+				<table style="width:100%;margin-top:16px;border-collapse:collapse">
+					<thead>
+						<tr style="border-bottom:2px solid var(--accent)">
+							<th style="text-align:left;padding:8px">Contract</th>
+							<th style="text-align:left;padding:8px">Version</th>
+							<th style="text-align:left;padding:8px">Document</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr style="border-bottom:1px solid rgba(200,211,234,0.1)">
+							<td style="padding:8px"><strong>AX Guarantees</strong></td>
+							<td style="padding:8px">v0.1</td>
+							<td style="padding:8px"><code>docs/specs/AX-CONTRACT.md</code></td>
+						</tr>
+						<tr style="border-bottom:1px solid rgba(200,211,234,0.1)">
+							<td style="padding:8px"><strong>Frame Schema</strong></td>
+							<td style="padding:8px">v3</td>
+							<td style="padding:8px"><code>docs/specs/FRAME-SCHEMA-V3.md</code></td>
+						</tr>
+						<tr style="border-bottom:1px solid rgba(200,211,234,0.1)">
+							<td style="padding:8px"><strong>Error Schema</strong></td>
+							<td style="padding:8px">v1</td>
+							<td style="padding:8px">AXError in <code>src/shared/errors/</code></td>
+						</tr>
+						<tr>
+							<td style="padding:8px"><strong>FrameStore</strong></td>
+							<td style="padding:8px">1.0.0</td>
+							<td style="padding:8px"><code>src/memory/store/CONTRACT.md</code></td>
+						</tr>
+					</tbody>
+				</table>
+
+				<p style="margin-top:20px">Breaking these contracts requires a major version bump and explicit changelog entry. This is not aspirational—it's auditable.</p>
+			</article>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="ax-real">
+			<h2 id="ax-real" class="kicker">When AX Became Real</h2>
+			<article class="card">
+				<p>Agent eXperience (AX) sounds like marketing. It's not.</p>
+
+				<p style="margin-top:16px"><strong>AX is the discipline of designing systems where AI agents are first-class consumers.</strong></p>
+
+				<p style="margin-top:16px">At Lex 1.0.0, we documented the philosophy. At 2.0.0, we froze the guarantees:</p>
+
+				<table style="width:100%;margin-top:16px;border-collapse:collapse">
+					<thead>
+						<tr style="border-bottom:2px solid var(--accent)">
+							<th style="text-align:left;padding:8px">Guarantee</th>
+							<th style="text-align:left;padding:8px">Status</th>
+							<th style="text-align:left;padding:8px">What It Means</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr style="border-bottom:1px solid rgba(200,211,234,0.1)">
+							<td style="padding:8px">Structured Output</td>
+							<td style="padding:8px">✅</td>
+							<td style="padding:8px"><code>--json</code> on <code>remember</code>, <code>timeline</code></td>
+						</tr>
+						<tr style="border-bottom:1px solid rgba(200,211,234,0.1)">
+							<td style="padding:8px">Recoverable Errors</td>
+							<td style="padding:8px">✅</td>
+							<td style="padding:8px">AXError schema with <code>nextActions[]</code></td>
+						</tr>
+						<tr style="border-bottom:1px solid rgba(200,211,234,0.1)">
+							<td style="padding:8px">Memory & Recall</td>
+							<td style="padding:8px">✅</td>
+							<td style="padding:8px">FTS5 case-insensitive, hyphen-safe</td>
+						</tr>
+						<tr>
+							<td style="padding:8px">Frame Emission</td>
+							<td style="padding:8px">✅</td>
+							<td style="padding:8px">Frame v3 schema stable for runners</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<p style="margin-top:20px"><strong>This table is a contract.</strong> If we break any of these guarantees in a 2.x release, it's a bug—not a "known limitation."</p>
+			</article>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="lexsona-socket">
+			<h2 id="lexsona-socket" class="kicker">The LexSona Socket</h2>
+			<article class="card">
+				<p>Lex 2.0.0 clarifies the layering between Lex, LexSona, and LexRunner:</p>
+
+				<ul style="padding-left:20px;margin-top:12px">
+					<li><strong>Lex</strong>: Memory + Policy + Rules + Behavioral socket</li>
+					<li><strong>LexSona</strong>: Persona engine (consumes Lex socket)</li>
+					<li><strong>LexRunner</strong>: Orchestration (consumes both)</li>
+				</ul>
+
+				<p style="margin-top:16px">The new <code>@smartergpt/lex/lexsona</code> subpath export provides the behavioral memory API:</p>
+
+				<ul style="padding-left:20px;margin-top:12px">
+					<li><code>getRules(moduleId, taskType)</code> — Retrieve behavioral rules with confidence scores</li>
+					<li><code>recordCorrection(violation, correction)</code> — Store new behavioral learning</li>
+				</ul>
+
+				<p style="margin-top:16px">This socket is <strong>agnostic</strong>. Any tool can plug into it. LexSona is one consumer, not the only one.</p>
+
+				<p style="margin-top:16px">What moved out of Lex 2.0.0:</p>
+				<ul style="padding-left:20px;margin-top:12px">
+					<li>Persona execution logic (now in LexSona)</li>
+					<li><code>.smartergpt/personas/</code> directory (LexSona-specific)</li>
+					<li>Orphaned persona schema (no longer needed in core)</li>
+				</ul>
+
+				<p style="margin-top:16px">What stayed in:</p>
+				<ul style="padding-left:20px;margin-top:12px">
+					<li>Behavioral memory storage (the socket API)</li>
+					<li>Rule confidence tracking (Bayesian alpha/beta)</li>
+					<li>Policy-aware behavioral constraints</li>
+				</ul>
+			</article>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="error-codes">
+			<h2 id="error-codes" class="kicker">Error Codes as a Contract</h2>
+			<article class="card">
+				<p>Lex 2.0.0 introduces a stable error code catalog (<code>src/shared/errors/error-codes.ts</code>):</p>
+
+				<ul style="padding-left:20px;margin-top:12px">
+					<li><strong>CONFIG_*</strong>: Configuration and initialization errors</li>
+					<li><strong>POLICY_*</strong>: Policy loading and validation failures</li>
+					<li><strong>STORE_*</strong>: Database and storage errors</li>
+					<li><strong>PROMPT_*</strong>: Prompt loading issues</li>
+					<li><strong>SCHEMA_*</strong>: Schema validation failures</li>
+				</ul>
+
+				<p style="margin-top:16px">Every error code has standard <code>nextActions[]</code>:</p>
+
+				<pre style="background:rgba(0,194,255,0.05);padding:12px;border-left:3px solid var(--accent);margin-top:12px;overflow-x:auto"><code>{
+  "code": "CONFIG_LEX_YAML_NOT_FOUND",
+  "message": ".smartergpt/ exists but no lex.yaml found",
+  "nextActions": ["cp lex.yaml.example lex.yaml"],
+  "context": { "smartergptDir": "/path/to/.smartergpt" }
+}</code></pre>
+
+				<p style="margin-top:16px">This is not "nice to have" error handling. This is <strong>per AX Contract v0.1 §2.3: Recoverable Errors</strong>.</p>
+
+				<p style="margin-top:16px">AI agents can programmatically handle and recover from errors without guessing.</p>
+			</article>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="instructions-cli">
+			<h2 id="instructions-cli" class="kicker">Instruction Management</h2>
+			<article class="card">
+				<p>Lex 2.0.0 ships full instruction management:</p>
+
+				<ul style="padding-left:20px;margin-top:12px">
+					<li><code>lex instructions init</code> — Scaffold canonical source, lex.yaml, and target files</li>
+					<li><code>lex instructions generate</code> — Generate host-specific projections</li>
+					<li><code>lex instructions check</code> — Verify projections are in sync</li>
+				</ul>
+
+				<p style="margin-top:16px">This is the realization of the YAML-as-contract vision from 1.0.0:</p>
+
+				<blockquote style="border-left:3px solid var(--accent);padding-left:16px;margin:16px 0;font-style:italic;color:#c8d3ea">
+					Describe what work <em>means</em> in a repo, without shipping any particular executor.
+				</blockquote>
+
+				<p style="margin-top:16px">Instructions are:</p>
+				<ul style="padding-left:20px;margin-top:12px">
+					<li><strong>Deterministic</strong>: Same source → same projections</li>
+					<li><strong>Idempotent</strong>: Running generate twice produces identical output</li>
+					<li><strong>Non-invasive</strong>: Content outside markers is never touched</li>
+				</ul>
+
+				<p style="margin-top:16px">Canonical source lives in <code>.smartergpt/instructions/lex.md</code>. Projections use markers:</p>
+
+				<pre style="background:rgba(0,194,255,0.05);padding:12px;border-left:3px solid var(--accent);margin-top:12px;overflow-x:auto"><code>&lt;!-- LEX:BEGIN --&gt;
+Generated content here
+&lt;!-- LEX:END --&gt;</code></pre>
+
+				<p style="margin-top:16px">This pattern scales to any IDE/host that supports instruction blocks.</p>
+			</article>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="performance">
+			<h2 id="performance" class="kicker">Performance Improvements</h2>
+			<article class="card">
+				<p>Lex 2.0.0 ships cached policy module ID lookups for O(1) resolution:</p>
+
+				<ul style="padding-left:20px;margin-top:12px">
+					<li>1000-module policy now validates in ~0.003ms (same as 10-module)</li>
+					<li>Benchmark performance improved by ~55% over baseline</li>
+					<li>WeakMap-based caching prevents memory leaks</li>
+				</ul>
+
+				<p style="margin-top:16px">This matters for large monorepos where policy checks run thousands of times per session.</p>
+
+				<p style="margin-top:16px">The optimization is transparent—no API changes required.</p>
+			</article>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="what-2-0-means">
+			<h2 id="what-2-0-means" class="kicker">What 2.0.0 Actually Means</h2>
+			<article class="card">
+				<p>Lex 2.0.0 is not "feature complete." It's something more useful:</p>
+
+				<blockquote style="border-left:3px solid var(--accent);padding-left:16px;margin:16px 0;font-style:italic;color:#c8d3ea">
+					The parts that runners and agents depend on are now stable. You can build on this without the ground shifting.
+				</blockquote>
+
+				<p style="margin-top:16px"><strong>Stable means:</strong></p>
+				<ul style="padding-left:20px;margin-top:12px">
+					<li>Frame v3 schema will not break in 2.x</li>
+					<li>AXError shape will not change in 2.x</li>
+					<li>FrameStore 1.0.0 interface is frozen in 2.x</li>
+					<li>AX guarantees will not regress in 2.x</li>
+				</ul>
+
+				<p style="margin-top:16px"><strong>Not frozen:</strong></p>
+				<ul style="padding-left:20px;margin-top:12px">
+					<li>New CLI commands (additive)</li>
+					<li>New MCP tools (additive)</li>
+					<li>Performance improvements (transparent)</li>
+					<li>AX improvements (non-breaking)</li>
+				</ul>
+
+				<p style="margin-top:16px">The contract surface is frozen. The implementation can still improve.</p>
+			</article>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="future">
+			<h2 id="future" class="kicker">What the Future Holds</h2>
+			<article class="card">
+				<p>From 2.0.0 forward, the work is AX improvement:</p>
+
+				<h3 style="margin-top:20px;font-size:1.2rem">Near-term (2.x)</h3>
+				<ul style="padding-left:20px;margin-top:8px">
+					<li>More CLI commands get <code>--json</code> output</li>
+					<li>More MCP tools return structured errors</li>
+					<li>AX documentation expands with real-world examples</li>
+					<li>Performance profiling and optimization</li>
+					<li>LexSona integration deepens (offline-capable personas)</li>
+				</ul>
+
+				<h3 style="margin-top:20px;font-size:1.2rem">Mid-term (3.x)</h3>
+				<ul style="padding-left:20px;margin-top:8px">
+					<li>Frame v4 schema (additive, non-breaking adoption path)</li>
+					<li>AX v0.2 guarantees (stricter, more comprehensive)</li>
+					<li>Multi-repo Frame federation (experimental)</li>
+					<li>Advanced recall features (semantic search, time-weighted decay)</li>
+				</ul>
+
+				<h3 style="margin-top:20px;font-size:1.2rem">Long-term (4.x and beyond)</h3>
+				<ul style="padding-left:20px;margin-top:8px">
+					<li>Frame streaming for real-time agent workflows</li>
+					<li>Distributed FrameStore backends (PostgreSQL, etc.)</li>
+					<li>AX v1.0 specification (fully mature)</li>
+					<li>Cross-runner Frame format standardization</li>
+				</ul>
+
+				<p style="margin-top:20px">None of this requires breaking the 2.0.0 contracts. That's the point.</p>
+			</article>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="npm-package">
+			<h2 id="npm-package" class="kicker">On npm as @smartergpt/lex</h2>
+			<article class="card">
+				<p>Lex 2.0.0 is published to npm and ready for production use:</p>
+
+				<pre style="background:rgba(0,194,255,0.05);padding:12px;border-left:3px solid var(--accent);margin-top:12px;overflow-x:auto"><code>npm install @smartergpt/lex@latest</code></pre>
+
+				<p style="margin-top:16px"><strong>Package details:</strong></p>
+				<ul style="padding-left:20px;margin-top:8px">
+					<li>Version: 2.0.0</li>
+					<li>License: MIT</li>
+					<li>Node: ≥20, &lt;23</li>
+					<li>Published: December 6, 2025</li>
+				</ul>
+
+				<p style="margin-top:16px"><strong>Subpath exports:</strong></p>
+				<ul style="padding-left:20px;margin-top:8px">
+					<li><code>@smartergpt/lex</code> — Core types + store API</li>
+					<li><code>@smartergpt/lex/errors</code> — AXError schema and utilities</li>
+					<li><code>@smartergpt/lex/lexsona</code> — Behavioral memory socket</li>
+					<li><code>@smartergpt/lex/policy</code> — Policy loading and validation</li>
+					<li><code>@smartergpt/lex/atlas</code> — Atlas Frame generation</li>
+					<li>...and 9 more (see <a href="https://github.com/Guffawaffle/lex" style="color:var(--accent)" target="_blank" rel="noopener">GitHub README</a>)</li>
+				</ul>
+
+				<p style="margin-top:16px">All exports are TypeScript-first with full type definitions.</p>
+			</article>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="integration-ecosystem">
+			<h2 id="integration-ecosystem" class="kicker">The Integration Ecosystem</h2>
+			<article class="card">
+				<p>Lex 2.0.0 is designed to be consumed by multiple tools:</p>
+
+				<h3 style="margin-top:20px;font-size:1.2rem">LexSona (Private, v0.2.0)</h3>
+				<ul style="padding-left:20px;margin-top:8px">
+					<li>Offline-capable persona modes</li>
+					<li>Behavioral memory integration via <code>@smartergpt/lex/lexsona</code></li>
+					<li>Confidence ceiling enforcement when offline</li>
+					<li>Consumes Lex behavioral socket for rule storage</li>
+				</ul>
+
+				<h3 style="margin-top:20px;font-size:1.2rem">LexRunner (Private, v0.5.0)</h3>
+				<ul style="padding-left:20px;margin-top:8px">
+					<li>Built on Lex 2.0.0 contracts</li>
+					<li>Governance hardening complete</li>
+					<li>Capability tier routing, turn cost tracking</li>
+					<li>Disciplined failure patterns, environmental hostility scoring</li>
+				</ul>
+
+				<h3 style="margin-top:20px;font-size:1.2rem">Your Tools (Future)</h3>
+				<ul style="padding-left:20px;margin-top:8px">
+					<li>Any runner can target the Lex contract surface</li>
+					<li>See <code>docs/CONTRACT_SURFACE.md</code> for requirements</li>
+					<li>Reference implementation: LexRunner (patterns, not prescriptions)</li>
+				</ul>
+
+				<p style="margin-top:16px">Lex is MIT-licensed infrastructure. Build what you need on top.</p>
+			</article>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="throughline">
+			<h2 id="throughline" class="kicker">The Throughline</h2>
+			<article class="card" style="background:linear-gradient(135deg, rgba(0,194,255,0.1) 0%, rgba(0,194,255,0.02) 100%);border-left:4px solid var(--accent)">
+				<p>The throughline remains unchanged from day one:</p>
+				<h3 style="margin-top:16px;font-size:1.5rem;text-align:center">Work continuity with receipts, not vibes.</h3>
+				<p style="margin-top:16px;text-align:center">Lex 2.0.0 is the moment we can say, with receipts, that the contracts behind those receipts are production-ready.</p>
+				<p style="margin-top:16px;text-align:center"><strong>All contracts are live and binding.</strong></p>
+			</article>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="cta">
+			<div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap">
+				<div>
+					<h3 style="margin:0 0 6px">Ready to build on Lex 2.0.0?</h3>
+					<p style="margin:0;color:#c8d3ea">Install from npm, read the contracts, and start building with AX guarantees.</p>
+				</div>
+				<div class="cta">
+					<a class="button primary" href="../projects/lex/index.html" title="Lex 2.0.0">Get Started</a>
+					<a class="button" href="https://github.com/Guffawaffle/lex" target="_blank" rel="noopener" title="GitHub repo">View on GitHub</a>
+				</div>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="related">
+			<h2 id="related" class="kicker">Related Reading</h2>
+			<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+				<article class="card">
+					<h3>The 1.0.0 Story</h3>
+					<p>How Lex went from 0.4.6-alpha to 1.0.0: boundary work and contract stabilization.</p>
+					<p><a href="lex-1.0-story.html" style="color:var(--accent)">Read the 1.0.0 story →</a></p>
+				</article>
+				<article class="card">
+					<h3>AX Contract v0.1</h3>
+					<p>The technical specification for Agent eXperience guarantees in Lex 2.0.0.</p>
+					<p><a href="https://github.com/Guffawaffle/lex/blob/main/docs/specs/AX-CONTRACT.md" style="color:var(--accent)" target="_blank" rel="noopener">Read the contract →</a></p>
+				</article>
+				<article class="card">
+					<h3>Contract Surface</h3>
+					<p>What runners and tools must understand to be Lex-compatible.</p>
+					<p><a href="https://github.com/Guffawaffle/lex/blob/main/docs/CONTRACT_SURFACE.md" style="color:var(--accent)" target="_blank" rel="noopener">Read the surface →</a></p>
+				</article>
+			</div>
+		</section>
+
+	</main>
+
+	<footer class="container footer" role="contentinfo">
+		<p>Built by Guff. Powered by Lex. Deployed with receipts.</p>
+	</footer>
+
+	<script src="../assets/app.js"></script>
+</body>
+</html>
