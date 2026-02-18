@@ -3,7 +3,7 @@ name: Build & Deploy
 on:
   push:
     branches:
-      - main
+      - production
   workflow_dispatch:
 
 jobs:
@@ -12,49 +12,21 @@ jobs:
     permissions:
       contents: read
       deployments: write
-    
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      
+
       - name: Build artifacts
-        id: build
         run: |
-          echo "Building static site artifacts..."
-          mkdir -p dist
-          
-          # Copy all static assets to dist
-          cp index.html dist/
-          cp -r assets dist/
-          
-          # Generate build metadata
-          echo "Build completed at $(date -u '+%Y-%m-%d %H:%M:%S UTC')" > dist/build-info.txt
+          echo "Copying public/ to dist/..."
+          cp -r public dist
+          echo "Build: $(date -u '+%Y-%m-%d %H:%M:%S UTC')" > dist/build-info.txt
           echo "Commit: ${{ github.sha }}" >> dist/build-info.txt
-          echo "Branch: ${{ github.ref_name }}" >> dist/build-info.txt
-          
-          # List contents for verification
-          echo "Build contents:"
-          ls -lah dist/
-          
-          echo "✓ Build artifacts prepared"
-      
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-artifacts-${{ github.sha }}
-          path: dist/
-          retention-days: 30
-      
-      - name: Upload build logs
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-logs-${{ github.sha }}
-          path: |
-            dist/build-info.txt
-          retention-days: 30
-      
+          echo "Contents:"
+          find dist -type f | sort
+
       - name: Publish to Cloudflare Pages
-        id: cloudflare_deploy
         uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -62,15 +34,9 @@ jobs:
           projectName: smartergpt
           directory: dist
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
-      
+          branch: production
+
       - name: Deployment summary
         run: |
-          echo "### Deployment Summary :rocket:" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**Environment:** Cloudflare Pages" >> $GITHUB_STEP_SUMMARY
+          echo "### Deployed to Cloudflare Pages :rocket:" >> $GITHUB_STEP_SUMMARY
           echo "**Commit:** \`${{ github.sha }}\`" >> $GITHUB_STEP_SUMMARY
-          echo "**Branch:** \`${{ github.ref_name }}\`" >> $GITHUB_STEP_SUMMARY
-          echo "**Deployment URL:** ${{ steps.cloudflare_deploy.outputs.url }}" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "Build artifacts are available in the Actions artifacts tab." >> $GITHUB_STEP_SUMMARY
