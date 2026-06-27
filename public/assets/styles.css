@@ -393,6 +393,8 @@ a:focus-visible, button:focus-visible, .button:focus-visible, .pill:focus-visibl
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 	background-clip: text;
+	line-height: 1.16;
+	padding-bottom: 0.08em;
 	animation: gradient-text 8s ease infinite;
 }
 @keyframes gradient-text {
