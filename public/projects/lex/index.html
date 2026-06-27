@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>Lex 2.0.0 — Policy-Aware Work Continuity | SmarterGPT.dev</title>
-	<meta name="description" content="Lex 2.0.0: AX-native memory + policy engine. Frames, AX errors, Frame Schema v3, LexSona socket for behavioral rules, and local-first recall with receipts." />
+	<title>Lex - Repo-Local Memory and Policy Context | SmarterGPT.dev</title>
+	<meta name="description" content="Lex is the MIT-licensed memory and policy context layer for AI coding agents: Frames, recall, Atlas neighborhoods, policy checks, instructions, CLI, MCP, and API." />
 	<meta name="color-scheme" content="dark light" />
 	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
 	<link rel="stylesheet" href="../../assets/styles.css" />
@@ -13,11 +13,11 @@
 	<header class="container nav" role="navigation">
 		<div class="logo"><span class="logo-dot" aria-hidden="true"></span><a href="/" style="color:inherit;text-decoration:none"><span>SmarterGPT.dev</span></a></div>
 		<nav class="links" aria-label="Primary">
+			<a class="pill" href="../../stack.html" title="Operating Stack">Stack</a>
 			<a class="pill" href="index.html" title="Lex">Lex</a>
-			<a class="pill" href="../lex-pr/index.html" title="LexRunner">LexRunner</a>
+			<a class="pill" href="../axf/index.html" title="AXF">AXF</a>
+			<a class="pill" href="../lexthority/index.html" title="LexThority">LexThority</a>
 			<a class="pill" href="../../docs/research/index.html" title="Research">Research</a>
-			<a class="pill" href="../../docs/the-moat/index.html" title="Moat">Moat</a>
-			<a class="pill" href="../../docs/how-to-use/index.html" title="How to Use">Guide</a>
 			<a class="pill" href="../../roadmap.html" title="Roadmap">Roadmap</a>
 		</nav>
 	</header>
@@ -25,197 +25,82 @@
 	<main class="container">
 		<section class="hero">
 			<div class="hero-left">
-				<span class="badge" aria-label="Project status"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg> v2.0.0 on npm • MIT-licensed • Node ≥20</span>
-				<h1>Lex: Policy-Aware Work Continuity</h1>
-				<p class="tagline">Lex is the open-source memory + policy engine in the smartergpt stack. It combines architecture policy-as-code with episodic memory (Frames) and Atlas Frames so you can ask "why is this blocked?" and get receipts from timestamped sessions, not vibes.</p>
-				<p class="tagline" style="margin-top:12px"><strong>Transport:</strong> MCP stdio • <strong>Storage:</strong> Local SQLite • <strong>Telemetry:</strong> None</p>
-				<div class="cta" style="margin-top:16px">
-					<a class="button primary" href="https://www.npmjs.com/package/@smartergpt/lex" title="View on npm">npm install @smartergpt/lex</a>
-					<a class="button" href="https://github.com/Guffawaffle/lex" title="View Lex on GitHub">View on GitHub</a>
-					<a class="button ghost" href="../../docs/lex-2.0-story.html" title="Read the 2.0.0 story">The 2.0.0 Story</a>
+				<span class="badge">Public MIT core • <span class="npm-version" data-npm-package="@smartergpt/lex">npm latest</span></span>
+				<h1>Lex gives agents repo-local memory and policy context.</h1>
+				<p class="tagline">Lex stores structured work snapshots, recalls relevant prior context, and connects that context to repository policy when a policy file is available.</p>
+				<p class="tagline" style="margin-top:12px">It is the public foundation of the stack: durable Frames, Atlas neighborhoods, policy checks, local SQLite, CLI, MCP, and TypeScript APIs.</p>
+				<div class="cta">
+					<a class="button primary" href="https://www.npmjs.com/package/@smartergpt/lex">npm package</a>
+					<a class="button" href="https://github.com/Guffawaffle/lex">GitHub</a>
+					<a class="button ghost" href="../../docs/how-to-use/index.html">Quick start</a>
 				</div>
 			</div>
+			<div class="hero-card hero-right">
+				<div class="kicker">First useful test</div>
+				<pre class="code"><code>Ask your coding agent:
+
+"Would repo-local memory and policy context help
+you avoid repeated setup, forgotten constraints,
+or poor handoffs in this repository?"
+
+If yes, Lex is where that context lives.</code></pre>
+			</div>
 		</section>
 
 		<section class="hr" role="separator"></section>
-		<section aria-labelledby="what">
-			<h2 id="what" class="kicker">What is Lex?</h2>
+
+		<section aria-labelledby="capabilities">
+			<h2 id="capabilities" class="kicker">What Lex does</h2>
+			<div class="grid">
+				<article class="card"><h3>Frames</h3><p>Durable work memory: reference point, summary, blockers, next action, branch, ticket, and module scope.</p></article>
+				<article class="card"><h3>Recall</h3><p>Prior context on demand, shaped for agent handoffs and everyday work continuity.</p></article>
+				<article class="card"><h3>Atlas neighborhoods</h3><p>Nearby module context around a recalled Frame, without flooding the model with an entire codebase.</p></article>
+				<article class="card"><h3>Policy</h3><p>Architecture boundaries as code: modules, ownership, allowed edges, forbidden edges, flags, and permissions.</p></article>
+				<article class="card"><h3>Instructions</h3><p>Canonical assistant guidance projected into host-specific files such as Copilot and Cursor instructions.</p></article>
+				<article class="card"><h3>Agent surfaces</h3><p>Scriptable CLI, MCP wrapper, structured JSON output, recoverable errors, and TypeScript APIs.</p></article>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="install">
+			<h2 id="install" class="kicker">Install</h2>
 			<div class="grid">
 				<article class="card">
-					<h3>🧠 Frames</h3>
-					<p>Timestamped work session snapshots with summary, blockers, next action, and module_scope.</p>
-					<p style="margin-top:8px;color:#c8d3ea">Stored locally in SQLite. Indexed by the same module vocabulary used in policy. Designed to be small, explicit, and agent-friendly.</p>
+					<h3>CLI</h3>
+					<div class="code" style="margin-top:12px"><code>npm install -g @smartergpt/lex
+lex init --yes
+lex remember --reference-point "handoff" --summary "..."</code></div>
 				</article>
 				<article class="card">
-					<h3>🗺️ Atlas Frames</h3>
-					<p>Fold-radius neighborhoods (default 1) around touched modules to keep context precise and small.</p>
-					<p style="margin-top:8px;color:#c8d3ea">When you recall a Frame, you can also recall its neighboring modules—just enough context, not the whole repo.</p>
+					<h3>MCP</h3>
+					<div class="code" style="margin-top:12px"><code>npm install -g @smartergpt/lex-mcp
+npx @smartergpt/lex-mcp</code></div>
 				</article>
 				<article class="card">
-					<h3>🔒 Policy</h3>
-					<p>Machine-readable boundaries in <code>lexmap.policy.json</code>: ownership, allowed/forbidden edges, flags, permissions.</p>
-					<p style="margin-top:8px;color:#c8d3ea">Lex surfaces policy violations as first-class data in Frames and CLI output.</p>
+					<h3>Project dependency</h3>
+					<div class="code" style="margin-top:12px"><code>npm install @smartergpt/lex</code></div>
 				</article>
 			</div>
 		</section>
 
 		<section class="hr" role="separator"></section>
 
-		<section aria-labelledby="contracts">
-			<h2 id="contracts" class="kicker">Contracts: lexmap.policy.json + lex.yaml</h2>
-			<div class="grid">
-				<article class="card">
-					<h3>📜 lexmap.policy.json</h3>
-					<p>Describes architectural boundaries: which modules exist, who owns them, what edges are allowed or forbidden.</p>
-				</article>
-				<article class="card">
-					<h3>📋 lex.yaml</h3>
-					<p>Describes workflows and expectations: what kinds of work exist in this repo, what inputs they expect, and which policies apply.</p>
-					<p style="margin-top:8px"><a href="../../docs/lex-yaml-contracts.html" style="color:var(--accent)">Learn about lex.yaml →</a></p>
-				</article>
-				<article class="card">
-					<h3>🔗 Contract Surface</h3>
-					<p>Together they form the contract surface that agents, CI, and runners consume. <code>lex.yaml</code> is intent-level—it does <em>not</em> describe how any runner implements orchestration.</p>
-				</article>
-			</div>
-			<article class="card" style="margin-top:16px">
-				<p>Lex is the part that knows what you said is allowed, what actually happened, and why something is blocked. Anyone can build an executor that consumes <code>lex.yaml</code>; LexRunner just happens to be the one we are building first.</p>
-			</article>
+		<section aria-labelledby="place">
+			<h2 id="place" class="kicker">Where it fits</h2>
+			<table class="comparison-table">
+				<tbody>
+					<tr><th>Lex is</th><td>Memory, policy context, local storage, and stable contracts for agents.</td></tr>
+					<tr><th>Lex is not</th><td>A runner, an IAM broker, a credential store, or a hosted memory service.</td></tr>
+					<tr><th>Pairs with</th><td>AXF for workspace capabilities, LexThority for authority decisions, LexSona for behavior, and LexRunner for orchestration.</td></tr>
+				</tbody>
+			</table>
 		</section>
-
-		<section class="hr" role="separator"></section>
-
-		<section aria-labelledby="features">
-			<h2 id="features" class="kicker">What's in v2.0.0 (AX‑Native)</h2>
-			<article class="card" style="margin-bottom:16px">
-				<p>Lex 2.0.0 is the AX‑native release that matures agent experience guarantees: structured AX errors, Frame Schema v3, CLI improvements, and a behavioral socket for LexSona integration.</p>
-			</article>
-			<div class="grid">
-				<article class="card">
-					<h3>📦 Stable Contract Surfaces</h3>
-					<p>Frames, Atlas Frames, <code>lexmap.policy.json</code>, and <code>lex.yaml</code> form a stable, documented surface for agents and runners.</p>
-				</article>
-				<article class="card">
-					<h3>🔧 CLI & MCP Predictability</h3>
-					<p>Commands like <code>lex remember</code>, <code>lex recall</code>, and <code>lex check</code> are shaped for automation: JSON output, schema-checked payloads, and consistent status fields.</p>
-				</article>
-				<article class="card">
-					<h3>🎯 Policy + Memory Alignment</h3>
-					<p>Violations, ownership, and module IDs line up across policy files and Frames, so answers always come with receipts.</p>
-				</article>
-				<article class="card">
-					<h3>📸 Image Support</h3>
-					<p>Attach images to Frames (base64-encoded with MIME type). Uses Sharp for image processing.</p>
-				</article>
-				<article class="card">
-					<h3>🗄️ Local SQLite</h3>
-					<p>Local-first persistence with better-sqlite3. No cloud dependencies, no telemetry. Full control over your data.</p>
-				</article>
-				<article class="card">
-					<h3>📋 JSON Schemas</h3>
-					<p>Included schemas: <code>profile.schema.json</code>, <code>feature-spec-v0.json</code>, <code>cli-output.v1.schema.json</code> for validation and tooling integration.</p>
-				</article>
-			</div>
-		</section>
-
-		<section class="hr" role="separator"></section>
-
-		<section aria-labelledby="story">
-			<h2 id="story" class="kicker">From 0.4.6-alpha to 1.0.0</h2>
-			<article class="card">
-				<h3>The Lex / LexRunner Boundary</h3>
-				<p>The surprising part of Lex 1.0.0 is not the version number; it is how quickly we moved once we stopped treating Lex as "just memory" and started treating it as the <strong>contractual backbone</strong> of the stack.</p>
-				<ul style="padding-left:20px;margin-top:12px">
-					<li><strong>LexRunner forced the question:</strong> what does Lex absolutely owe to any runner, and what must remain private?</li>
-					<li><strong>Clear responsibilities:</strong> Lex owns Frames (episodic memory), policy (<code>lexmap.policy.json</code>), and contracts (<code>lex.yaml</code>).</li>
-					<li><strong>Velocity spiked:</strong> with the contracts in place, we could iterate on Lex, LexRunner, and orchestration prompts in parallel.</li>
-					<li><strong>GitHub throttling:</strong> at one point, GitHub literally restricted our activity—evidence that the architecture and low-token strategies are real, and a reminder to treat hosted agents and CI as shared infrastructure.</li>
-				</ul>
-				<p style="margin-top:12px">We do not present the GitHub throttling as "look how hardcore we are." We present it as evidence that the architecture works, and as a reminder that responsible velocity means respecting platform limits and leaning on coding agents intelligently, not just pushing harder.</p>
-				<p style="margin-top:12px"><a href="../../docs/lex-2.0-story.html" style="color:var(--accent)">Read the full 2.0.0 story →</a></p>
-			</article>
-		</section>
-
-		<section class="hr" role="separator"></section>
-
-		<section aria-labelledby="moat">
-			<h2 id="moat" class="kicker">Why it works</h2>
-			<div class="grid">
-				<article class="card">
-					<h3>Shared Vocabulary = Receipts</h3>
-					<p>Frames use the same module IDs as policy and the same workflow names as <code>lex.yaml</code>. Assistants and tools can cite which policy rule was violated, which Frame observed it, and which workflow it is blocking.</p>
-					<p style="margin-top:8px;color:#c8d3ea">That's explainable recall with receipts, not guesses.</p>
-				</article>
-				<article class="card">
-					<h3>Local-First, Agent-Friendly</h3>
-					<p>Local SQLite. No cloud dependency. MCP stdio transport so agents can talk to Lex like any other tool. No telemetry; your history stays on your machine.</p>
-				</article>
-			</div>
-		</section>
-
-		<section class="hr" role="separator"></section>
-
-		<section aria-labelledby="status">
-			<h2 id="status" class="kicker">Status & Install</h2>
-			<div class="grid">
-				<article class="card">
-					<h3>Status</h3>
-				<p><strong>v2.0.0 released!</strong> Available on npm as <code>@smartergpt/lex</code>. AX guarantees are stable and documented — see AX Contract & Frame Schema v3. Lex now exports a LexSona behavioral socket for persona integrations. Recent private work (LexSona 0.2.0) adds offline-capable persona modes that can run with limited memory availability; standalone LexSona packages and deeper integrations remain controlled-access.</p>
-					<p style="margin-top:8px;color:#c8d3ea">Node ≥20 • MIT Licensed</p>
-				</article>
-				<article class="card">
-					<h3>Install</h3>
-					<p>Install globally for CLI access or as a dependency for programmatic use.</p>
-					<div class="code" style="margin-top:12px"><code># Global install (CLI)
-npm install -g @smartergpt/lex
-
-# Or as a project dependency
-npm install @smartergpt/lex</code></div>
-					<p style="margin-top:12px">After installation, run <code>npx lex init</code> to set up your workspace, then use <code>lex remember</code>, <code>lex recall</code>, <code>lex check</code>, <code>lex instructions</code> and more. For AX details see <a href="https://github.com/Guffawaffle/lex/blob/main/docs/specs/AX-CONTRACT.md" style="color:var(--accent)">AX Contract v0.1</a>.</p>
-					<p style="margin-top:8px">See the <a href="https://github.com/Guffawaffle/lex" style="color:var(--accent)">GitHub repo</a> for full documentation and examples.</p>
-				</article>
-			</div>
-		</section>
-
-		<section class="hr" role="separator"></section>
-
-		<section aria-labelledby="links">
-			<h2 id="links" class="kicker">Links</h2>
-			<div class="grid">
-				<article class="card">
-					<h3>Package</h3>
-					<ul style="padding-left:20px;margin-top:8px">
-						<li><a href="https://www.npmjs.com/package/@smartergpt/lex" style="color:var(--accent)">npm: @smartergpt/lex</a></li>
-						<li><a href="https://github.com/Guffawaffle/lex" style="color:var(--accent)">GitHub Repository</a></li>
-						<li><a href="https://github.com/Guffawaffle/lex/releases" style="color:var(--accent)">Release Notes</a></li>
-					</ul>
-				</article>
-				<article class="card">
-					<h3>Docs</h3>
-					<ul style="padding-left:20px;margin-top:8px">
-						<li><a href="../../docs/lex-yaml-contracts.html" style="color:var(--accent)">lex.yaml Contracts</a></li>
-						<li><a href="../../docs/lex-2.0-story.html" style="color:var(--accent)">The 2.0.0 Story</a></li>
-						<li><a href="../../docs/lex-1.0-story.html" style="color:var(--accent)">The 1.0.0 Story (Historical)</a></li>
-						<li><a href="https://github.com/Guffawaffle/lex/blob/main/docs/OVERVIEW.md" style="color:var(--accent)">Overview</a></li>
-						<li><a href="https://github.com/Guffawaffle/lex/blob/main/docs/MIND_PALACE.md" style="color:var(--accent)">Mind Palace</a></li>
-						<li><a href="https://github.com/Guffawaffle/lex/blob/main/docs/FAQ.md" style="color:var(--accent)">FAQ</a></li>
-					</ul>
-				</article>
-				<article class="card">
-					<h3>Related</h3>
-					<ul style="padding-left:20px;margin-top:8px">
-						<li><a href="../lex-pr/index.html" style="color:var(--accent)">LexRunner</a> — merge pyramid engine that executes plans produced by you or your orchestrator.</li>
-						<li><a href="https://github.com/Guffawaffle/lex/blob/main/docs/research/LexSona/lexsona_paper.md" style="color:var(--accent)">LexSona Paper</a> — behavioral layer built on Lex. Scoped constraints and adaptive guardrails. Lex 2.0.0 includes a LexSona socket export (recordCorrection, getRules) to enable integrations.</li>
-					</ul>
-				</article>
-			</div>
-		</section>
-
 	</main>
 
 	<footer class="container footer">
 		<div>&copy; <span id="year"></span> SmarterGPT.dev</div>
-		<div class="pill">Agent-friendly • CI-first • Human-in-the-loop</div>
+		<div class="pill">MIT • Local-first • Agent-readable</div>
 	</footer>
 	<script src="../../assets/app.js"></script>
 </body>

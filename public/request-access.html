@@ -3,13 +3,13 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>LexRunner Access Request | SmarterGPT.dev</title>
-	<meta name="description" content="Request access to the private LexRunner (lex-pr-runner) merge pyramid engine." />
+	<title>Controlled Access | SmarterGPT.dev</title>
+	<meta name="description" content="Request controlled access to non-public SmarterGPT tooling such as LexRunner, LexSona, pilots, and private integration references." />
 	<meta name="color-scheme" content="dark light" />
 	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
 	<link rel="stylesheet" href="assets/styles.css" />
 	<style>
-	form.access-form{max-width:640px;display:grid;gap:14px;margin-top:32px}
+	form.access-form{max-width:720px;display:grid;gap:14px;margin-top:32px}
 	form.access-form label{display:flex;flex-direction:column;font-size:14px;font-weight:600;gap:6px;color:var(--muted)}
 	form.access-form input, form.access-form textarea{padding:12px 14px;border:1px solid var(--border);border-radius:12px;background:#0f1520;color:var(--text);font:inherit;resize:vertical}
 	form.access-form textarea{min-height:120px}
@@ -21,13 +21,13 @@
 </head>
 <body>
 	<header class="container nav" role="navigation">
-		<div class="logo"><span class="logo-dot" aria-hidden="true"></span><span><a href="/" style="color:inherit;text-decoration:none">SmarterGPT.dev</a></span></div>
+		<div class="logo"><span class="logo-dot" aria-hidden="true"></span><a href="/" style="color:inherit;text-decoration:none"><span>SmarterGPT.dev</span></a></div>
 		<nav class="links" aria-label="Primary">
+			<a class="pill" href="stack.html" title="Operating Stack">Stack</a>
 			<a class="pill" href="projects/lex/index.html" title="Lex">Lex</a>
-			<a class="pill" href="projects/lex-pr/index.html" title="LexRunner">LexRunner</a>
+			<a class="pill" href="projects/axf/index.html" title="AXF">AXF</a>
+			<a class="pill" href="projects/lexthority/index.html" title="LexThority">LexThority</a>
 			<a class="pill" href="docs/research/index.html" title="Research">Research</a>
-			<a class="pill" href="docs/the-moat/index.html" title="Moat">Moat</a>
-			<a class="pill" href="docs/how-to-use/index.html" title="How to Use">Guide</a>
 			<a class="pill" href="roadmap.html" title="Roadmap">Roadmap</a>
 		</nav>
 	</header>
@@ -35,9 +35,9 @@
 	<main class="container">
 		<section class="hero">
 			<div class="hero-left">
-				<span class="badge" aria-label="Form"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg> Private Access</span>
-				<h1>Request LexRunner Access</h1>
-				<p class="tagline">LexRunner consumes contracts from <strong>Lex 2.0.0</strong> (open source on npm). Access is limited while we validate integration patterns. Share a bit about your use case and we'll follow up.</p>
+				<span class="badge">Controlled access</span>
+				<h1>Request access to non-public stack pieces.</h1>
+				<p class="tagline">Lex and AXF are public packages. LexThority is a public preview. LexRunner, LexSona, contained-flow references, and private integration pilots are still controlled while the security and execution boundaries mature.</p>
 				<form id="accessForm" class="access-form" novalidate>
 					<div class="row">
 						<label>Name
@@ -47,21 +47,24 @@
 							<input name="email" type="email" required placeholder="you@example.com" />
 						</label>
 					</div>
-					<label>Organization (optional)
-						<input name="org" placeholder="Company / Team" />
+					<label>Organization
+						<input name="org" placeholder="Company / team / independent" />
 					</label>
-					<label>Intended Use / Goals
-						<textarea name="use" required placeholder="Briefly describe what you hope to do with LexRunner"></textarea>
+					<label>Which tooling are you interested in?
+						<input name="interest" placeholder="LexRunner, LexSona, LexThority pilots, AXF integration, other" />
 					</label>
-					<label>GitHub Username (optional)
-						<input name="github" placeholder="your-github-handle" />
+					<label>Use case and constraints
+						<textarea name="use" required placeholder="Briefly describe the workflow, security constraints, and what you need the tooling to help with."></textarea>
+					</label>
+					<label>GitHub username
+						<input name="github" placeholder="Optional GitHub handle" />
 					</label>
 					<div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:4px">
-						<button type="submit" class="button primary" style="cursor:pointer">Send Request</button>
-						<a id="fallbackMailto" class="button ghost" href="mailto:hello@smartergpt.dev?subject=LexRunner%20Access%20Request" title="Fallback direct email">Fallback Email</a>
+						<button type="submit" class="button primary" style="cursor:pointer">Send request</button>
+						<a id="fallbackMailto" class="button ghost" href="mailto:hello@smartergpt.dev?subject=SmarterGPT%20Controlled%20Access%20Request" title="Fallback direct email">Fallback email</a>
 					</div>
-					<p class="notice">Submitting opens your mail client with a prefilled message (no data is sent directly from the site). You can edit before sending.</p>
-					<div id="successMsg" class="success-msg" role="status">Mail client opened — if it didn't, use the fallback email link.</div>
+					<p class="notice">Submitting opens your mail client with a prefilled message. No form data is transmitted by this static site.</p>
+					<div id="successMsg" class="success-msg" role="status">Mail client opened. If it did not, use the fallback email link.</div>
 				</form>
 			</div>
 		</section>
@@ -69,7 +72,7 @@
 
 	<footer class="container footer">
 		<div>&copy; <span id="year"></span> SmarterGPT.dev</div>
-		<div class="pill">Agent-friendly • CI-first • Human-in-the-loop</div>
+		<div class="pill">Controlled pilots • Private references • Public core</div>
 	</footer>
 	<script src="assets/app.js"></script>
 </body>

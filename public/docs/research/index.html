@@ -3,262 +3,154 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>Research | SmarterGPT.dev</title>
-	<meta name="description" content="The Cognitive Trinity: Lex (mind), LexRunner (body), LexSona (soul). Research formalizing policy-aware AI collaboration with receipts, not vibes." />
+	<title>Research and Technical Notes | SmarterGPT.dev</title>
+	<meta name="description" content="Research and technical notes behind the SmarterGPT operating stack: agent experience, memory, receipts, authority, behavior, and bounded orchestration." />
 	<meta name="color-scheme" content="dark light" />
 	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
 	<link rel="stylesheet" href="../../assets/styles.css" />
 </head>
 <body>
 	<header class="container nav" role="navigation">
-		<div class="logo"><span class="logo-dot" aria-hidden="true"></span><span><a href="/" style="color:inherit;text-decoration:none">SmarterGPT.dev</a></span></div>
+		<div class="logo"><span class="logo-dot" aria-hidden="true"></span><a href="/" style="color:inherit;text-decoration:none"><span>SmarterGPT.dev</span></a></div>
 		<nav class="links" aria-label="Primary">
+			<a class="pill" href="../../stack.html" title="Operating Stack">Stack</a>
 			<a class="pill" href="../../projects/lex/index.html" title="Lex">Lex</a>
-			<a class="pill" href="../../projects/lex-pr/index.html" title="LexRunner">LexRunner</a>
+			<a class="pill" href="../../projects/axf/index.html" title="AXF">AXF</a>
+			<a class="pill" href="../../projects/lexthority/index.html" title="LexThority">LexThority</a>
 			<a class="pill" href="index.html" title="Research">Research</a>
-			<a class="pill" href="../the-moat/index.html" title="Moat">Moat</a>
-			<a class="pill" href="../how-to-use/index.html" title="How to Use">Guide</a>
 			<a class="pill" href="../../roadmap.html" title="Roadmap">Roadmap</a>
 		</nav>
 	</header>
 
 	<main class="container">
-		<!-- Featured Essay Banner -->
-		<section style="margin-bottom:32px">
-			<a href="agent-experience-ax.html" style="text-decoration:none;display:block">
-				<article style="background:linear-gradient(135deg, rgba(0,194,255,0.08) 0%, rgba(106,92,255,0.05) 50%, rgba(236,72,153,0.03) 100%);border:1px solid var(--border);border-radius:16px;padding:28px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;transition:transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease">
-					<div>
-						<div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
-							<span style="background:linear-gradient(135deg,var(--brand),var(--brand-2));padding:5px 12px;border-radius:6px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px">Featured</span>
-							<span style="color:var(--muted);font-size:0.85rem">December 2025</span>
-						</div>
-						<h2 style="margin:0 0 8px;font-size:1.5rem;color:var(--text)">Agent eXperience (AX)</h2>
-						<p style="margin:0;color:#c9d6ea;font-size:1rem;max-width:600px">Designing Systems Where Agents Are First-Class Users. The discipline of building tools, APIs, and workflows that agents can operate reliably.</p>
-						<p style="margin:10px 0 0;color:var(--muted);font-size:0.9rem"><strong>UX → DX → AX.</strong> The third user class has arrived.</p>
-					</div>
-					<span style="color:var(--brand);font-weight:600;font-size:1rem;white-space:nowrap;display:flex;align-items:center;gap:6px">Read essay <span style="font-size:1.2rem">→</span></span>
-				</article>
-			</a>
-		</section>
-
-		<!-- Hero: Lead with the Trinity -->
 		<section class="hero">
 			<div class="hero-left">
-				<span class="badge" aria-label="Page type"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg> Research Hub</span>
-				<h1>The Cognitive Trinity</h1>
-				<p class="tagline" style="font-size:1.25rem"><strong>Mind · Body · Soul</strong></p>
-				<p class="tagline">Three systems that give AI agents memory, execution, and identity. Not bigger models—<em>better constrained ones</em>.</p>
+				<span class="badge">Technical notes</span>
+				<h1>The research question is operational.</h1>
+				<p class="tagline">How do agents operate in real workspaces without being reduced to rigid automation or granted unbounded tool access?</p>
+				<p class="tagline" style="margin-top:12px">The current answer is an operating stack: memory, capabilities, authority, behavior, and flow, each with explicit contracts and receipts.</p>
 			</div>
 		</section>
 
 		<section class="hr" role="separator"></section>
 
-		<!-- The Trinity Cards - Prominent placement -->
-		<section aria-labelledby="trinity" style="background:linear-gradient(135deg, rgba(0,194,255,0.06) 0%, transparent 100%);padding:48px 0;margin:0 -16px;padding-left:16px;padding-right:16px;border-radius:24px">
-			<h2 id="trinity" class="kicker">The Architecture</h2>
-			<p style="margin-bottom:28px;max-width:720px;color:var(--muted)">Each layer solves a distinct problem. Together they compose into agents that remember, execute, and learn.</p>
+		<section aria-labelledby="thesis">
+			<h2 id="thesis" class="kicker">Current thesis</h2>
 			<div class="grid">
-				<article class="card" style="border-top:3px solid var(--brand)">
-					<h3 style="margin-top:0">🧠 Lex <span style="font-weight:400;color:var(--muted)">(Mind)</span></h3>
-					<p><strong>Episodic + structural memory.</strong> Frames capture what happened. Atlas indexes by policy-aware neighborhoods. <code>lexmap.policy.json</code> defines module boundaries.</p>
-					<p style="font-size:0.85rem;color:var(--ok);margin-top:12px">✓ Open source · npm @smartergpt/lex · v2.0.0</p>
-					<a class="button" href="../../projects/lex/index.html" style="margin-top:12px">Explore Lex →</a>
-				</article>
-				<article class="card" style="border-top:3px solid #f59e0b">
-					<h3 style="margin-top:0">🔀 LexRunner <span style="font-weight:400;color:var(--muted)">(Body)</span></h3>
-					<p><strong>Deterministic orchestration.</strong> Reads Lex contracts, computes dependency order, runs uniform gates, builds merge pyramids. Predictable outcomes.</p>
-					<p style="font-size:0.85rem;color:var(--muted);margin-top:12px">Private · Built on Lex 2.0.0 contracts</p>
-					<a class="button" href="../../projects/lex-pr/index.html" style="margin-top:12px">Learn about LexRunner →</a>
-				</article>
-				<article class="card" style="border-top:3px solid #ec4899">
-					<h3 style="margin-top:0">💭 LexSona <span style="font-weight:400;color:var(--muted)">(Soul)</span></h3>
-					<p><strong>Behavioral identity.</strong> Turns repeated corrections into scoped rules via Bayesian reinforcement. Persona survives sessions and model upgrades.</p>
-					<p style="font-size:0.85rem;color:var(--muted);margin-top:12px">Research · 87% precision · <500 token overhead</p>
-					<a class="button" href="#lexsona-paper" style="margin-top:12px">Read the paper →</a>
-				</article>
+				<article class="card"><h3>Memory is infrastructure</h3><p>Agents need local, inspectable state: previous decisions, blockers, receipts, and policy context. That is Lex.</p></article>
+				<article class="card"><h3>Capabilities are local</h3><p>A useful agent needs the workspace to declare how work is done here. That is AXF.</p></article>
+				<article class="card"><h3>Authority is effect-level</h3><p>Authority is not a vibe or a job title. It is a decision about a concrete effect in a concrete envelope. That is LexThority.</p></article>
+				<article class="card"><h3>Behavior is constraint material</h3><p>Personas should produce deterministic constraints that can be inspected and scoped. That is LexSona.</p></article>
+				<article class="card"><h3>Flow needs containment</h3><p>Multi-agent work needs isolated execution roots, gates, receipts, and promotion rules. That is LexRunner.</p></article>
 			</div>
 		</section>
 
 		<section class="hr" role="separator"></section>
 
-		<!-- The PILOT Loop - Differentiator -->
-		<section aria-labelledby="pilot">
-			<h2 id="pilot" class="kicker">The PILOT Loop</h2>
-			<p style="margin-bottom:20px;max-width:720px;color:var(--muted)">The Control Deck orchestrates work through a structured planning cycle. The model <em>never</em> directly edits—it plans and allocates.</p>
-			<div class="card" style="overflow-x:auto">
-				<table style="width:100%;border-collapse:collapse;font-size:0.95rem">
-					<thead>
-						<tr style="border-bottom:1px solid var(--border);text-align:left">
-							<th style="padding:12px 16px;font-weight:600">Phase</th>
-							<th style="padding:12px 16px;font-weight:600">What it does</th>
-							<th style="padding:12px 16px;font-weight:600;color:var(--muted)">Math</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr style="border-bottom:1px solid var(--border)">
-							<td style="padding:12px 16px"><strong style="color:var(--brand)">P</strong>erceive</td>
-							<td style="padding:12px 16px;color:var(--muted)">Parse intent, extract features, classify risk</td>
-							<td style="padding:12px 16px;font-family:monospace;font-size:0.85rem;color:var(--muted)">$\vec{I} = g(h(x), s(x))$</td>
-						</tr>
-						<tr style="border-bottom:1px solid var(--border)">
-							<td style="padding:12px 16px"><strong style="color:var(--brand)">I</strong>ntegrate</td>
-							<td style="padding:12px 16px;color:var(--muted)">Pull Lex state, check version contracts, validate scope</td>
-							<td style="padding:12px 16px;font-family:monospace;font-size:0.85rem;color:var(--muted)">$\phi(\vec{I}, \mathcal{L}, \mathcal{S}, \mathcal{C})$</td>
-						</tr>
-						<tr style="border-bottom:1px solid var(--border)">
-							<td style="padding:12px 16px"><strong style="color:var(--brand)">L</strong>ayout</td>
-							<td style="padding:12px 16px;color:var(--muted)">Design task graph, assign providers, set budgets</td>
-							<td style="padding:12px 16px;font-family:monospace;font-size:0.85rem;color:var(--muted)">$\lambda(\mathcal{I}, \mathcal{P}, \mathcal{B})$</td>
-						</tr>
-						<tr style="border-bottom:1px solid var(--border)">
-							<td style="padding:12px 16px"><strong style="color:var(--brand)">O</strong>rchestrate</td>
-							<td style="padding:12px 16px;color:var(--muted)">Emit plan to LexRunner, configure gates</td>
-							<td style="padding:12px 16px;font-family:monospace;font-size:0.85rem;color:var(--muted)">$\omega(\mathcal{T})$ <span style="opacity:0.6">(pure)</span></td>
-						</tr>
-						<tr>
-							<td style="padding:12px 16px"><strong style="color:var(--brand)">T</strong>rack</td>
-							<td style="padding:12px 16px;color:var(--muted)">Consume Receipts, decide: accept / re-plan / escalate</td>
-							<td style="padding:12px 16px;font-family:monospace;font-size:0.85rem;color:var(--muted)">$\tau(\mathcal{O}, \mathcal{R}, \mathcal{C})$</td>
-						</tr>
-					</tbody>
-				</table>
+		<section aria-labelledby="lmv">
+			<h2 id="lmv" class="kicker">LMV precepts</h2>
+			<p class="section-lede">Source: Lex RFC, <code>docs/specs/LMV-AXF-UPSTREAM-RFC.md</code>. LMV is evidence-backed operational memory: useful memory must preserve claims, evidence, uncertainty, contradiction, lineage, and validation state.</p>
+			<div class="lmv-grid">
+				<article class="card"><h3>Evidence is not truth.</h3><p>Evidence is a typed witness, not final authority.</p></article>
+				<article class="card"><h3>Memory is not evidence.</h3><p>A remembered claim without evidence is useful context, not proof.</p></article>
+				<article class="card"><h3>Recall is not certainty.</h3><p>Recall returns candidates that still need current validation.</p></article>
+				<article class="card"><h3>Uncertainty is part of truth.</h3><p>Unknown, partial, stale, and invalidated states belong in the record.</p></article>
+				<article class="card"><h3>Contradiction is signal.</h3><p>Contradictions should be linked and resolved, not erased.</p></article>
+				<article class="card"><h3>Forgetting is a feature.</h3><p>Memory should support expiry, demotion, supersession, and promotion.</p></article>
+				<article class="card"><h3>Assimilation must add distinctiveness.</h3><p>Promoted memory should change future behavior or prevent repeated work.</p></article>
+				<article class="card"><h3>Provenance is dignity.</h3><p>Claims should cite their files, commands, logs, receipts, commits, URLs, or Frames.</p></article>
+				<article class="card"><h3>Boundaries are consent.</h3><p>Records and capabilities must state what they do and do not authorize.</p></article>
+				<article class="card"><h3>Power requires audit.</h3><p>Meaningful effects need structured audit records.</p></article>
+				<article class="card"><h3>The operator remains sovereign.</h3><p>Humans remain responsible for destructive, secret-bearing, remote, or unbounded actions.</p></article>
+				<article class="card"><h3>Failure under discipline is inquiry.</h3><p>Accounted failure can become evidence-bearing work.</p></article>
 			</div>
-			<p style="margin-top:16px;font-size:0.9rem;color:var(--muted)">📖 Full documentation in the <a href="https://github.com/Guffawaffle/lex/blob/main/docs/control-stack/pilot/index.md" target="_blank" rel="noopener">Lex repo</a> (research papers use "Control Stack")</p>
 		</section>
 
 		<section class="hr" role="separator"></section>
 
-		<!-- Core Papers - Consolidated -->
 		<section aria-labelledby="papers">
-			<h2 id="papers" class="kicker">Research Papers</h2>
-			<div class="grid" style="grid-template-columns: 1fr 1fr">
-				<article class="card" id="atlas-paper">
-					<span class="badge" style="margin-bottom:12px">Foundational · PDF</span>
-					<h3 style="margin-top:0">Adjacency-Constrained Episodic Memory</h3>
-					<p>Formalizes <strong>Atlas Frames</strong>: fold-radius neighborhoods for adjacency-bounded recall. Instead of dumping entire codebases into context, retrieve only the policy-aware neighborhood around touched modules.</p>
-					<p style="font-size:0.85rem;color:var(--muted);margin-top:12px">The mathematical foundation for Lex's memory model.</p>
-					<div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap">
-						<a class="button primary" href="https://github.com/Guffawaffle/lex/blob/main/docs/research/adjacency-constrained-episodic-memory.pdf" target="_blank" rel="noopener">Read paper (PDF)</a>
-						<a class="button" href="https://github.com/Guffawaffle/lex/blob/main/docs/research/adjacency-constrained-episodic-memory.tex" target="_blank" rel="noopener">LaTeX source</a>
-					</div>
-				</article>
-
-				<article class="card" id="lexsona-paper" style="border-left:3px solid #ec4899">
-					<span class="badge" style="margin-bottom:12px;background:rgba(236,72,153,0.15);color:#ec4899;border-color:#ec4899">47 pages · Evaluated</span>
-					<h3 style="margin-top:0">LexSona: Frequency-Weighted Behavioral Memory</h3>
-					<p>Persistent AI agent identity through <strong>frequency-weighted behavioral memory</strong>. Bayesian confidence model turns repeated corrections into scoped rules. Hierarchical scope precedence. Bounded prompt injection.</p>
-					<div style="margin-top:12px;padding:12px;background:rgba(46,160,67,0.1);border-radius:8px">
-						<p style="margin:0;font-size:0.9rem"><strong style="color:var(--ok)">Evaluation results:</strong> 87% precision, 80% recall at cosine 0.85 threshold. Prompt overhead <500 tokens for 10-20 active rules.</p>
-					</div>
-					<div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap">
-						<a class="button primary" href="https://github.com/Guffawaffle/lex/blob/main/docs/research/LexSona/lexsona_paper.md" target="_blank" rel="noopener">Read paper</a>
-						<a class="button" href="https://github.com/Guffawaffle/lex/blob/main/docs/research/LexSona/MATH_FRAMEWORK_v0.1.md" target="_blank" rel="noopener">Math framework</a>
-					</div>
-				</article>
-			</div>
-		</section>
-
-		<section class="hr" role="separator"></section>
-
-<!-- Active Studies -->
-		<section aria-labelledby="studies" style="background:linear-gradient(135deg, rgba(55,214,122,0.06) 0%, transparent 100%);padding:32px;margin:0 -16px 32px;border-radius:16px">
-			<h2 id="studies" class="kicker" style="display:flex;align-items:center;gap:12px">
-				<span style="width:10px;height:10px;background:#4ade80;border-radius:50%;animation:pulse 2s infinite"></span>
-				Active Studies
-			</h2>
-			<div class="grid" style="grid-template-columns:1fr">
-				<article class="card" style="border:1px solid rgba(55,214,122,0.3)">
-					<div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:12px">
-						<div>
-							<span class="badge" style="margin-bottom:12px;background:rgba(55,214,122,0.15);color:#4ade80;border-color:rgba(55,214,122,0.4)">Open · Enrolling</span>
-							<h3 style="margin-top:0">AX Model Comparison Study</h3>
-							<p>A rigorous, open scientific study comparing how different AI models (Claude, GPT, Gemini, open-weight) comprehend and operationalize the Agent eXperience framework. Identical prompts, identical control documents, structured responses.</p>
-							<p style="font-size:0.9rem;color:var(--muted);margin-top:8px"><strong>Research questions:</strong> Comprehension fidelity, actionability, self-identification accuracy, cross-model variance.</p>
-						</div>
-						<a class="button primary" href="ax-model-study/index.html" style="white-space:nowrap">View study →</a>
-					</div>
-				</article>
-			</div>
-		</section>
-
-		<style>@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }</style>
-
-<!-- Essays & Control Deck -->
-		<section aria-labelledby="essays">
-			<h2 id="essays" class="kicker">Essays & Think Pieces</h2>
+			<h2 id="papers" class="kicker">Essays and papers</h2>
 			<div class="grid">
 				<article class="card" style="border-left:3px solid var(--brand)">
-					<span class="badge" style="margin-bottom:12px">New · December 2025</span>
-					<h3 style="margin-top:0">Agent eXperience (AX)</h3>
-					<p><em>Designing Systems Where Agents Are First-Class Users</em> — The discipline of building tools, APIs, and workflows that agents can operate reliably. Five principles, a maturity model, and why AX matters.</p>
-					<div style="margin-top:12px">
-						<a class="button primary" href="agent-experience-ax.html">Read essay</a>
-					</div>
-				</article>
-				<article class="card" style="border-left:3px solid var(--accent)">
-					<h3 style="margin-top:0">Not Bigger, Better Constrained</h3>
-					<p><em>A Frontier Model's View of the Control Stack</em> — A fictional open letter describing the guardrails and control stack that models actually want. Covers scope, gates, modes, and receipts.</p>
-					<div style="margin-top:12px">
-						<a class="button primary" href="frontier-model-control-stack.html">Read essay</a>
-					</div>
+					<h3>Agent eXperience</h3>
+					<p>The discipline of designing tools, APIs, and workflows where agents are first-class operators rather than screen readers for human UX.</p>
+					<a class="button primary" href="agent-experience-ax.html">Read essay</a>
 				</article>
 				<article class="card">
-					<h3 style="margin-top:0">The Control Deck</h3>
-					<p>Six interlocking concepts: <strong>Receipts</strong>, <strong>Gates</strong>, <strong>Modes</strong>, <strong>Policy Surface</strong>, <strong>Epistemic Guardrails</strong>, and <strong>Scope & Blast Radius</strong>.</p>
-					<div style="margin-top:12px">
-						<a class="button" href="../control-deck/index.html">Explore concepts</a>
-					</div>
+					<h3>AX model addendum</h3>
+					<p>Notes on how different models understand agent-oriented control surfaces and structured work environments.</p>
+					<a class="button" href="agent-experience-ax-model-addendum.html">Read addendum</a>
 				</article>
 				<article class="card">
-					<h3 style="margin-top:0">The 0.4.6 → 1.0.0 Story</h3>
-					<p>How Lex went from alpha to stable contracts. The real story: not features added, but <strong>boundaries drawn</strong>. What makes 1.0.0 trustworthy.</p>
-					<div style="margin-top:12px">
-						<a class="button" href="../lex-2.0-story.html">Read the 2.0 story</a>
-					</div>
+					<h3>Frontier model control stack</h3>
+					<p>A technical framing for scope, gates, modes, policy surfaces, and receipts as the working substrate around frontier models.</p>
+					<a class="button" href="frontier-model-control-stack.html">Read note</a>
+				</article>
+				<article class="card">
+					<h3>Control deck</h3>
+					<p>A concept set for receipts, gates, operating modes, policy surfaces, epistemic guardrails, and blast radius.</p>
+					<a class="button" href="../control-deck/index.html">Open deck</a>
 				</article>
 			</div>
 		</section>
 
 		<section class="hr" role="separator"></section>
 
-		<!-- Case Studies & Applied Research -->
-		<section aria-labelledby="applied">
-			<h2 id="applied" class="kicker">Case Studies & Applied Research</h2>
+		<section aria-labelledby="stack">
+			<h2 id="stack" class="kicker">Stack research threads</h2>
+			<table class="comparison-table">
+				<thead>
+					<tr>
+						<th>Thread</th>
+						<th>Question</th>
+						<th>Public surface</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><strong>Memory and recall</strong></td>
+						<td>How much local context can agents reliably use without flooding the model?</td>
+						<td><a href="../../projects/lex/index.html">Lex</a></td>
+					</tr>
+					<tr>
+						<td><strong>Workspace capability contracts</strong></td>
+						<td>How does a repository teach an agent its real build, test, search, and recovery paths?</td>
+						<td><a href="../../projects/axf/index.html">AXF</a></td>
+					</tr>
+					<tr>
+						<td><strong>Authority decisions</strong></td>
+						<td>How can an agent ask for permission to attempt an effect without replacing the company's IAM?</td>
+						<td><a href="../../projects/lexthority/index.html">LexThority</a></td>
+					</tr>
+					<tr>
+						<td><strong>Behavioral constraints</strong></td>
+						<td>How should persona, job duty, and learned corrections become deterministic constraints?</td>
+						<td><a href="../../projects/lexsona/index.html">LexSona concept</a></td>
+					</tr>
+					<tr>
+						<td><strong>Contained flow</strong></td>
+						<td>How do multiple agents work in parallel without unsafe shared state?</td>
+						<td><a href="../../projects/lexrunner/index.html">LexRunner concept</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="position">
+			<h2 id="position" class="kicker">What this is not</h2>
 			<div class="grid">
-				<article class="card">
-					<h3 style="margin-top:0">Agent Behavioral Failure Analysis</h3>
-					<p>Real-world case study analyzing agent behavioral failures and how LexSona addresses them through frequency-weighted learning and scoped rules.</p>
-					<div style="margin-top:12px">
-						<a class="button" href="https://github.com/Guffawaffle/lex/blob/main/docs/research/LexSona/CASE_STUDY_AGENT_BEHAVIORAL_FAILURE.md" target="_blank" rel="noopener">View case study</a>
-					</div>
-				</article>
-				<article class="card">
-					<h3 style="margin-top:0">Literature Review</h3>
-					<p>Comprehensive review of related work: MemGPT, ChatGPT Memory, RLHF personalization, and academic approaches to behavioral memory.</p>
-					<div style="margin-top:12px">
-						<a class="button" href="https://github.com/Guffawaffle/lex/blob/main/docs/research/LexSona/CptPlnt/LITERATURE_REVIEW.md" target="_blank" rel="noopener">View review</a>
-					</div>
-				</article>
+				<article class="card"><h3>Not a model wrapper</h3><p>The stack should work with many model providers. The durable value is in workspace context and control surfaces.</p></article>
+				<article class="card"><h3>Not a replacement for security teams</h3><p>IAM, audit, compliance, and production controls remain external sources of truth. The stack should make agent intent and failure clearer to those systems.</p></article>
+				<article class="card"><h3>Not development-only</h3><p>Software is the first proving ground. The same structure applies to analysts, operators, support, product, and regulated workflows.</p></article>
 			</div>
-		</section>
-
-		<section class="hr" role="separator"></section>
-
-		<!-- The Thesis -->
-		<section aria-labelledby="thesis">
-			<h2 id="thesis" class="kicker">The Thesis</h2>
-			<article class="card" style="border-left:4px solid var(--brand);background:linear-gradient(135deg, rgba(0,194,255,0.05) 0%, transparent 100%)">
-				<blockquote style="margin:0;font-size:1.1rem;line-height:1.7">
-					<p style="margin:0">Models don't need superhuman judgment—they need <strong>guardrails that encode the judgment their principals already have</strong> about risk, scope, and acceptable behavior.</p>
-				</blockquote>
-				<p style="margin-top:16px;color:var(--muted)">Give them explicit scope, required gates, structured modes, and audit trails. You get work that's reviewable in minutes, reversible with <code>git revert</code>, and trustworthy because the receipts are there.</p>
-			</article>
 		</section>
 	</main>
 
 	<footer class="container footer">
 		<div>&copy; <span id="year"></span> SmarterGPT.dev</div>
-		<div class="pill">Agent-friendly • CI-first • Human-in-the-loop</div>
+		<div class="pill">Research in service of operation</div>
 	</footer>
 	<script src="../../assets/app.js"></script>
 </body>

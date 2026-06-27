@@ -118,7 +118,7 @@ pre, code, .code-block {overflow-x:auto; -webkit-overflow-scrolling:touch; white
 @media (max-width:900px){.grid{grid-template-columns:1fr;gap:16px}}
 
 /* Section spacing to keep vertical rhythm */
-main > section{padding-block:56px}
+main > section{padding-block:40px}
 main > section.hr{padding-block:0;margin-block:0}
 .card{border:1px solid var(--border);border-radius:16px;background:rgba(255,255,255,0.02);padding:18px;box-shadow:var(--shadow)}
 .card h3{margin:4px 0 8px;font-size:18px}
@@ -127,13 +127,60 @@ main > section.hr{padding-block:0;margin-block:0}
 /* Rules + footer */
 .external-link:hover { text-decoration: underline; }
 a:hover { text-decoration: underline; }
-.hr{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.14),transparent);margin:34px 0}
+.hr{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.14),transparent);margin:18px 0}
 .footer{display:flex;gap:14px;justify-content:space-between;align-items:center;color:var(--muted);font-size:13px;padding:22px 0}
 .footer a{color:var(--muted);text-decoration:none}
 .pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);border-radius:999px;padding:6px 10px;color:#a9b5d0;font-size:12px}
 
 /* Prevent step number wrapping */
 .step{white-space:nowrap;margin-right:6px;color:var(--brand);font-weight:700}
+
+/* Stack pages */
+.section-lede{max-width:760px;color:#c8d3ea;font-size:17px;margin:8px 0 24px}
+.stack-hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,420px);gap:36px;align-items:center;padding-block:52px}
+.stack-hero h1{font-size:clamp(34px,6vw,58px)}
+.architecture-figure{border:1px solid var(--border);border-radius:18px;overflow:hidden;background:#070b11;box-shadow:var(--shadow);max-width:420px;justify-self:end;margin:0}
+.architecture-figure img{display:block;width:100%;height:auto}
+.architecture-figure figcaption{padding:12px 14px;color:var(--muted);font-size:13px;border-top:1px solid var(--border);background:rgba(255,255,255,0.03)}
+.stack-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.stack-card{border:1px solid var(--border);border-radius:14px;padding:16px;background:rgba(255,255,255,0.02);min-height:100%}
+.stack-card h3{margin:0 0 8px;font-size:17px}
+.stack-card p{margin:0;color:#c8d3ea;font-size:14px}
+.lmv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.status-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.status-chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);border-radius:999px;padding:7px 10px;color:#cbd6ea;background:rgba(255,255,255,0.03);font-size:12px}
+.status-chip.public{border-color:rgba(55,214,122,0.45);color:#bff4d4}
+.status-chip.controlled{border-color:rgba(245,158,11,0.45);color:#f7d58e}
+.status-chip.private{border-color:rgba(168,179,207,0.35);color:#c8d3ea}
+.comparison-table{width:100%;border-collapse:collapse;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.comparison-table th,.comparison-table td{padding:14px 16px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top}
+.comparison-table th{color:var(--text);font-weight:650;background:rgba(255,255,255,0.04)}
+.comparison-table tr:last-child td{border-bottom:0}
+.numbered-list{counter-reset:item;display:grid;gap:12px}
+.numbered-list .card{position:relative;padding-left:54px}
+.numbered-list .card::before{counter-increment:item;content:counter(item);position:absolute;left:18px;top:18px;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--brand),var(--brand-2));color:white;font-size:12px;font-weight:700}
+.project-kv{display:grid;grid-template-columns:160px 1fr;gap:10px 18px;margin-top:16px;color:#c8d3ea}
+.project-kv dt{color:var(--muted);font-weight:650}
+.project-kv dd{margin:0}
+.npm-version[data-state="loaded"]{color:#bff4d4}
+.npm-version[data-state="missing"]{color:#f7d58e}
+.npm-version[data-state="error"]{color:#c8d3ea}
+
+@media (max-width: 1024px) {
+	.stack-hero{grid-template-columns:1fr;gap:28px;padding-block:48px}
+	.architecture-figure{max-width:560px;justify-self:start}
+	.stack-grid{grid-template-columns:1fr 1fr}
+	.lmv-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width: 700px) {
+	main > section{padding-block:32px}
+	.stack-grid{grid-template-columns:1fr}
+	.lmv-grid{grid-template-columns:1fr}
+	.architecture-figure{max-width:100%}
+	.project-kv{grid-template-columns:1fr;gap:4px}
+	.comparison-table{font-size:14px}
+	.comparison-table th,.comparison-table td{padding:12px}
+}
 
 /* tiny utilities (replace former style="...") */
 .mt-6{margin-top:6px}

@@ -3,148 +3,39 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>Policy Surface — Control Deck | SmarterGPT.dev</title>
-	<meta name="description" content="The Policy Surface is the machine-readable encoding of human judgment about risk, scope, and acceptable behavior." />
+	<title>Policy Surface | SmarterGPT.dev</title>
+	<meta name="description" content="A policy surface is the machine-readable boundary layer agents use before choosing an action." />
 	<meta name="color-scheme" content="dark light" />
-	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
 	<link rel="stylesheet" href="../../assets/styles.css" />
-	<style>
-		.concept-page { max-width: 720px; margin: 0 auto; }
-		.concept-page h2 { margin-top: 2.5rem; }
-		.concept-page h3 { margin-top: 2rem; color: var(--accent); }
-		.concept-page p { line-height: 1.8; margin-bottom: 1.25rem; }
-		.concept-page ul, .concept-page ol { padding-left: 1.5rem; margin-bottom: 1.25rem; }
-		.concept-page li { line-height: 1.7; margin-bottom: 0.5rem; }
-		.concept-page blockquote { border-left: 3px solid var(--accent); padding-left: 1.25rem; margin: 1.5rem 0; font-style: italic; font-size: 1.15rem; opacity: 0.95; }
-		.concept-page pre { background: rgba(0,0,0,0.3); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 1.25rem 0; }
-		.concept-page code { font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace; font-size: 0.9em; }
-		.concept-page table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; }
-		.concept-page th, .concept-page td { text-align: left; padding: 12px; border-bottom: 1px solid var(--border); }
-		.concept-page th { font-weight: 600; }
-	</style>
 </head>
 <body>
 	<header class="container nav" role="navigation">
 		<div class="logo"><span class="logo-dot" aria-hidden="true"></span><a href="/" style="color:inherit;text-decoration:none"><span>SmarterGPT.dev</span></a></div>
 		<nav class="links" aria-label="Primary">
-			<a class="pill" href="../../projects/lex/index.html" title="Lex">Lex</a>
-			<a class="pill" href="../../projects/lex-pr/index.html" title="LexRunner">LexRunner</a>
-			<a class="pill" href="../research/index.html" title="Research">Research</a>
-			<a class="pill" href="../the-moat/index.html" title="Moat">Moat</a>
-			<a class="pill" href="../how-to-use/index.html" title="How to Use">Guide</a>
-			<a class="pill" href="../../roadmap.html" title="Roadmap">Roadmap</a>
+			<a class="pill" href="../../stack.html">Stack</a>
+			<a class="pill" href="../../projects/lex/index.html">Lex</a>
+			<a class="pill" href="../../projects/axf/index.html">AXF</a>
+			<a class="pill" href="../../projects/lexthority/index.html">LexThority</a>
+			<a class="pill" href="../research/index.html">Research</a>
+			<a class="pill" href="../../roadmap.html">Roadmap</a>
 		</nav>
 	</header>
-
 	<main class="container">
-		<section class="concept-page">
-			<p style="margin-bottom:8px"><a href="index.html" style="color:var(--accent);text-decoration:none">← Control Deck</a> · <a href="../research/frontier-model-control-stack.html#what-i-could-become" style="color:var(--muted);text-decoration:none">Back to essay</a></p>
-			<h1>Policy Surface</h1>
-			<blockquote>The machine-readable encoding of human judgment.</blockquote>
-
-			<h2>What it is</h2>
-			<p>The <strong>Policy Surface</strong> is the boundary layer where human judgment about risk, scope, and acceptable behavior gets encoded into rules the Control Deck can enforce. It's the configuration that tells the system: what's allowed, what's forbidden, and what requires escalation.</p>
-			<p>Policy isn't enforced by hoping the model follows instructions. It's enforced by the structure around the model.</p>
-
-			<h2>Why it exists</h2>
-			<p>Models don't have inherent judgment about:</p>
-			<ul>
-				<li>Which modules are high-risk and need extra review</li>
-				<li>What blast radius is acceptable for different task types</li>
-				<li>Which file patterns should never be edited automatically</li>
-				<li>When to escalate instead of proceeding</li>
-			</ul>
-			<p>Humans have this judgment. The policy surface captures it in a form that:</p>
-			<ul>
-				<li>Can be version-controlled alongside code</li>
-				<li>Is readable by both humans and machines</li>
-				<li>Applies consistently across sessions</li>
-				<li>Updates without retraining the model</li>
-			</ul>
-
-			<h2>What it defines</h2>
-
-			<h3>Module Ownership & Risk Tiers</h3>
-			<pre><code>modules:
-  auth/:
-    risk: high
-    owners: ["security-team"]
-    requires_review: true
-
-  docs/:
-    risk: low
-    owners: ["*"]</code></pre>
-
-			<h3>Allowed and Forbidden Edges</h3>
-			<pre><code>boundaries:
-  forbidden:
-    - from: "src/**"
-      to: "node_modules/**"
-      action: "write"
-
-  allowed:
-    - from: "tests/**"
-      to: "src/**"
-      action: "read"</code></pre>
-
-			<h3>Blast Radius Limits</h3>
-			<pre><code>limits:
-  max_files_per_operation: 5
-  max_lines_changed: 200
-  max_new_dependencies: 0</code></pre>
-
-			<h3>Mode Configurations</h3>
-			<pre><code>modes:
-  conservative:
-    required_gates: ["lint", "typecheck", "tests"]
-    allowed_tools: ["read_file", "edit_file", "run_tests"]
-
-  fast_lane:
-    required_gates: ["lint"]
-    allowed_tools: ["read_file", "edit_file"]</code></pre>
-
-			<h2>How it feeds other concepts</h2>
-			<p>The policy surface is the source of truth that configures everything else:</p>
-			<table>
-				<thead>
-					<tr><th>Concept</th><th>What policy provides</th></tr>
-				</thead>
-				<tbody>
-					<tr><td><a href="modes.html">Modes</a></td><td>What's allowed in each mode, which gates required</td></tr>
-					<tr><td><a href="gates.html">Gates</a></td><td>Which gates exist, which are required vs optional</td></tr>
-					<tr><td><a href="scope-and-blast-radius.html">Scope & Blast Radius</a></td><td>Maximum allowable changes</td></tr>
-					<tr><td><a href="epistemic-guardrails.html">Epistemic Guardrails</a></td><td>When to escalate vs proceed</td></tr>
-				</tbody>
-			</table>
-
-			<h2>The Key Insight</h2>
-			<p>Policy surfaces externalize judgment. Instead of embedding "be careful with auth code" in a prompt and hoping the model complies, you encode it as a rule:</p>
-			<pre><code>auth/:
-  risk: high
-  requires_review: true</code></pre>
-			<p>Now the Control Deck enforces it. The model doesn't need to remember—the structure remembers for it.</p>
-
-			<h2>Implementation: lexmap.policy.json</h2>
-			<p>In <a href="../../projects/lex/index.html">Lex 1.0.0</a>, the policy surface is encoded in <code>lexmap.policy.json</code>. This file defines module boundaries, ownership, and allowed edges—the architectural contracts that runners and tools can depend on.</p>
-			<p>See also: <a href="../lex-yaml-contracts.html">lex.yaml contracts</a> for workflow-level policy declarations.</p>
-
-			<div style="margin-top:3rem;padding:20px;background:rgba(0,194,255,0.08);border-radius:8px">
-				<h3 style="margin-top:0">Related Concepts</h3>
-				<div style="display:flex;gap:12px;flex-wrap:wrap">
-					<a class="button" href="modes.html">Modes</a>
-					<a class="button" href="gates.html">Gates</a>
-					<a class="button" href="scope-and-blast-radius.html">Scope & Blast Radius</a>
-					<a class="button" href="epistemic-guardrails.html">Epistemic Guardrails</a>
-					<a class="button" href="index.html">Control Deck Overview</a>
-				</div>
+		<section class="hero"><div class="hero-left"><span class="badge">Control Deck</span><h1>The policy surface is what agents can inspect before they act.</h1><p class="tagline">Policy is useful when it is concrete enough for tools and agents to read: module boundaries, capability metadata, authority envelopes, and escalation rules.</p></div></section>
+		<section class="hr" role="separator"></section>
+		<section aria-labelledby="layers">
+			<h2 id="layers" class="kicker">Policy layers</h2>
+			<div class="grid">
+				<article class="card"><h3>Repository policy</h3><p>Lex policy files describe module IDs, boundaries, allowed edges, forbidden edges, and other architectural constraints.</p></article>
+				<article class="card"><h3>Capability policy</h3><p>AXF capabilities can describe inputs, lifecycle state, expected side effects, and safe usage notes.</p></article>
+				<article class="card"><h3>Authority policy</h3><p>LexThority envelopes describe what this run may attempt and what must escalate.</p></article>
+				<article class="card"><h3>Run policy</h3><p>LexRunner applies the relevant gates and promotion rules for the current plan.</p></article>
 			</div>
 		</section>
+		<section class="hr" role="separator"></section>
+		<section aria-labelledby="rule"><h2 id="rule" class="kicker">Working rule</h2><article class="card"><p>Do not ask an agent to infer policy from company folklore when a small structured file or envelope can state the boundary directly.</p></article></section>
 	</main>
-
-	<footer class="container footer">
-		<div>&copy; <span id="year"></span> SmarterGPT.dev</div>
-		<div class="pill">Agent-friendly • CI-first • Human-in-the-loop</div>
-	</footer>
+	<footer class="container footer"><div>&copy; <span id="year"></span> SmarterGPT.dev</div><div class="pill"><a href="index.html">Control Deck</a></div></footer>
 	<script src="../../assets/app.js"></script>
 </body>
 </html>

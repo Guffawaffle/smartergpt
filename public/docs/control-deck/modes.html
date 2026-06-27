@@ -3,139 +3,39 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>Modes — Control Deck | SmarterGPT.dev</title>
-	<meta name="description" content="Modes are behavioral profiles that define what a model is allowed to do, what validation is required, and how much risk is acceptable." />
+	<title>Modes | SmarterGPT.dev</title>
+	<meta name="description" content="Modes describe an agent run's posture: exploration, implementation, review, operation, or constrained recovery." />
 	<meta name="color-scheme" content="dark light" />
-	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
 	<link rel="stylesheet" href="../../assets/styles.css" />
-	<style>
-		.concept-page { max-width: 720px; margin: 0 auto; }
-		.concept-page h2 { margin-top: 2.5rem; }
-		.concept-page h3 { margin-top: 2rem; color: var(--accent); }
-		.concept-page p { line-height: 1.8; margin-bottom: 1.25rem; }
-		.concept-page ul, .concept-page ol { padding-left: 1.5rem; margin-bottom: 1.25rem; }
-		.concept-page li { line-height: 1.7; margin-bottom: 0.5rem; }
-		.concept-page blockquote { border-left: 3px solid var(--accent); padding-left: 1.25rem; margin: 1.5rem 0; font-style: italic; font-size: 1.15rem; opacity: 0.95; }
-		.concept-page pre { background: rgba(0,0,0,0.3); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 1.25rem 0; }
-		.concept-page code { font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace; font-size: 0.9em; }
-		.concept-page table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; }
-		.concept-page th, .concept-page td { text-align: left; padding: 12px; border-bottom: 1px solid var(--border); }
-		.concept-page th { font-weight: 600; }
-	</style>
 </head>
 <body>
 	<header class="container nav" role="navigation">
 		<div class="logo"><span class="logo-dot" aria-hidden="true"></span><a href="/" style="color:inherit;text-decoration:none"><span>SmarterGPT.dev</span></a></div>
 		<nav class="links" aria-label="Primary">
-			<a class="pill" href="../../projects/lex/index.html" title="Lex">Lex</a>
-			<a class="pill" href="../../projects/lex-pr/index.html" title="LexRunner">LexRunner</a>
-			<a class="pill" href="../research/index.html" title="Research">Research</a>
-			<a class="pill" href="../the-moat/index.html" title="Moat">Moat</a>
-			<a class="pill" href="../how-to-use/index.html" title="How to Use">Guide</a>
-			<a class="pill" href="../../roadmap.html" title="Roadmap">Roadmap</a>
+			<a class="pill" href="../../stack.html">Stack</a>
+			<a class="pill" href="../../projects/lex/index.html">Lex</a>
+			<a class="pill" href="../../projects/axf/index.html">AXF</a>
+			<a class="pill" href="../../projects/lexthority/index.html">LexThority</a>
+			<a class="pill" href="../research/index.html">Research</a>
+			<a class="pill" href="../../roadmap.html">Roadmap</a>
 		</nav>
 	</header>
-
 	<main class="container">
-		<section class="concept-page">
-			<p style="margin-bottom:8px"><a href="index.html" style="color:var(--accent);text-decoration:none">← Control Deck</a> · <a href="../research/frontier-model-control-stack.html#give-modes" style="color:var(--muted);text-decoration:none">Back to essay</a></p>
-			<h1>Modes</h1>
-			<blockquote>Different tasks warrant different risk tolerances.</blockquote>
-
-			<h2>What it is</h2>
-			<p>A <strong>Mode</strong> is a behavioral profile that defines what a model is allowed to do, what validation is required, and how much risk is acceptable. Modes are policy knobs—they don't change the model, they change the guardrails around it.</p>
-			<p>Think of modes as presets: instead of configuring every parameter for every operation, you select a mode that bundles sensible defaults for a class of tasks.</p>
-
-			<h2>Why it exists</h2>
-			<p>Not all work is the same:</p>
-			<ul>
-				<li>Fixing a typo in a README is low-risk</li>
-				<li>Refactoring a core module is high-risk</li>
-				<li>Brainstorming ideas has no risk (until you try to merge)</li>
-			</ul>
-			<p>Without modes, you either apply maximum caution to everything (slow) or minimum caution to everything (dangerous). Modes let you match the guardrails to the task.</p>
-
-			<h2>The Three Modes</h2>
-
-			<h3>Fast-Lane Mode</h3>
-			<p><strong>For:</strong> Single-file, low-risk edits where speed matters</p>
-			<ul>
-				<li>Minimal gates (lint only, or none)</li>
-				<li>Limited tools (read/write, no terminal)</li>
-				<li>Tight scope (one file, small changes)</li>
-			</ul>
-			<p><em>Use when:</em> Fixing a typo, updating a config value, small formatting fixes.</p>
-
-			<h3>Conservative Mode (Default)</h3>
-			<p><strong>For:</strong> Production-quality changes that need full validation</p>
-			<ul>
-				<li>All required gates (lint, typecheck, tests)</li>
-				<li>Full tool access within scope</li>
-				<li>Multi-file changes allowed within policy limits</li>
-			</ul>
-			<p><em>Use when:</em> Implementing features, fixing bugs, any change that will be merged.</p>
-
-			<h3>Exploratory Mode</h3>
-			<p><strong>For:</strong> Brainstorming, prototyping, experimentation</p>
-			<ul>
-				<li>Relaxed gates (or none)</li>
-				<li>Wider tool access</li>
-				<li>Clear label: "Do not merge without human review"</li>
-			</ul>
-			<p><em>Use when:</em> Trying out ideas, generating options, investigating approaches. The output is a draft, not a deliverable.</p>
-
-			<h2>Modes in the Lex Ecosystem</h2>
-			<p><a href="../../projects/lex/index.html">Lex 1.0.0</a> workflows can declare modes via <code>lex.yaml</code>. LexRunner respects these mode declarations when executing gates—so an exploratory task skips required gates, while a conservative task enforces them all.</p>
-
-			<h2>What Each Mode Defines</h2>
-			<table>
-				<thead>
-					<tr><th>Dimension</th><th>Fast-Lane</th><th>Conservative</th><th>Exploratory</th></tr>
-				</thead>
-				<tbody>
-					<tr><td><strong>Gates Required</strong></td><td>Minimal</td><td>All</td><td>Optional</td></tr>
-					<tr><td><strong>Side Effects</strong></td><td>Read/write only</td><td>Full within scope</td><td>Full</td></tr>
-					<tr><td><strong>Scope Limits</strong></td><td>1 file, small</td><td>Policy-defined</td><td>Relaxed</td></tr>
-					<tr><td><strong>Merge Eligibility</strong></td><td>Yes (if gates pass)</td><td>Yes (if gates pass)</td><td>No (requires review)</td></tr>
-				</tbody>
-			</table>
-
-			<h2>How it shows up</h2>
-			<p>The active mode is:</p>
-			<ol>
-				<li><strong>Set at operation start</strong> — either explicitly or by inferring from the task</li>
-				<li><strong>Recorded in the receipt</strong> — so reviewers know what rules applied</li>
-				<li><strong>Enforced by the Control Deck</strong> — violations are blocked, not just warned</li>
-			</ol>
-			<p>A model in conservative mode that tries to skip tests will fail. A model in exploratory mode that tries to merge directly will be blocked. The modes aren't suggestions—they're constraints.</p>
-
-			<h2>The Key Insight</h2>
-			<p>Modes are <strong>policy knobs, not different models</strong>. The same model can operate in any mode. What changes is the structure around it:</p>
-			<ul>
-				<li>What tools are available</li>
-				<li>What gates must pass</li>
-				<li>How much scope is allowed</li>
-				<li>Whether the output is merge-eligible</li>
-			</ul>
-			<p>This means you don't need a "safe model" and an "exploratory model." You need one model with well-designed mode switches.</p>
-
-			<div style="margin-top:3rem;padding:20px;background:rgba(0,194,255,0.08);border-radius:8px">
-				<h3 style="margin-top:0">Related Concepts</h3>
-				<div style="display:flex;gap:12px;flex-wrap:wrap">
-					<a class="button" href="gates.html">Gates</a>
-					<a class="button" href="policy-surface.html">Policy Surface</a>
-					<a class="button" href="receipts.html">Receipts</a>
-					<a class="button" href="scope-and-blast-radius.html">Scope & Blast Radius</a>
-					<a class="button" href="index.html">Control Deck Overview</a>
-				</div>
+		<section class="hero"><div class="hero-left"><span class="badge">Control Deck</span><h1>Modes shape how much risk a run can take.</h1><p class="tagline">A mode is a posture for the current job, not a personality. It tells the stack whether the agent is exploring, implementing, reviewing, operating, or recovering.</p></div></section>
+		<section class="hr" role="separator"></section>
+		<section aria-labelledby="examples">
+			<h2 id="examples" class="kicker">Mode examples</h2>
+			<div class="grid">
+				<article class="card"><h3>Explore</h3><p>Read, inspect, summarize, and propose. Low mutation, lower authority, broad discovery.</p></article>
+				<article class="card"><h3>Implement</h3><p>Edit within declared scope, run checks, and leave Frames for handoff.</p></article>
+				<article class="card"><h3>Review</h3><p>Prefer evidence and findings. Avoid large edits unless explicitly requested.</p></article>
+				<article class="card"><h3>Operate</h3><p>High-risk effects require narrow envelopes, external credentials, and explicit gates.</p></article>
 			</div>
 		</section>
+		<section class="hr" role="separator"></section>
+		<section aria-labelledby="sona"><h2 id="sona" class="kicker">LexSona boundary</h2><article class="card"><p>LexSona can derive behavioral constraints for a mode. LexThority still decides whether concrete effects are allowed. LexRunner consumes both while coordinating work.</p></article></section>
 	</main>
-
-	<footer class="container footer">
-		<div>&copy; <span id="year"></span> SmarterGPT.dev</div>
-		<div class="pill">Agent-friendly • CI-first • Human-in-the-loop</div>
-	</footer>
+	<footer class="container footer"><div>&copy; <span id="year"></span> SmarterGPT.dev</div><div class="pill"><a href="index.html">Control Deck</a></div></footer>
 	<script src="../../assets/app.js"></script>
 </body>
 </html>

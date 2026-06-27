@@ -3,156 +3,39 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>Scope & Blast Radius — Control Deck | SmarterGPT.dev</title>
-	<meta name="description" content="Scope is what you intend to change. Blast radius is what actually changed. The narrower the lane, the more reliable the work." />
+	<title>Scope and Blast Radius | SmarterGPT.dev</title>
+	<meta name="description" content="Scope and blast radius define how much state, authority, and surface area an agent run may affect." />
 	<meta name="color-scheme" content="dark light" />
-	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
 	<link rel="stylesheet" href="../../assets/styles.css" />
-	<style>
-		.concept-page { max-width: 720px; margin: 0 auto; }
-		.concept-page h2 { margin-top: 2.5rem; }
-		.concept-page h3 { margin-top: 2rem; color: var(--accent); }
-		.concept-page p { line-height: 1.8; margin-bottom: 1.25rem; }
-		.concept-page ul, .concept-page ol { padding-left: 1.5rem; margin-bottom: 1.25rem; }
-		.concept-page li { line-height: 1.7; margin-bottom: 0.5rem; }
-		.concept-page blockquote { border-left: 3px solid var(--accent); padding-left: 1.25rem; margin: 1.5rem 0; font-style: italic; font-size: 1.15rem; opacity: 0.95; }
-		.concept-page pre { background: rgba(0,0,0,0.3); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 1.25rem 0; }
-		.concept-page code { font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace; font-size: 0.9em; }
-		.concept-page table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; }
-		.concept-page th, .concept-page td { text-align: left; padding: 12px; border-bottom: 1px solid var(--border); }
-		.concept-page th { font-weight: 600; }
-	</style>
 </head>
 <body>
 	<header class="container nav" role="navigation">
 		<div class="logo"><span class="logo-dot" aria-hidden="true"></span><a href="/" style="color:inherit;text-decoration:none"><span>SmarterGPT.dev</span></a></div>
 		<nav class="links" aria-label="Primary">
-			<a class="pill" href="../../projects/lex/index.html" title="Lex">Lex</a>
-			<a class="pill" href="../../projects/lex-pr/index.html" title="LexRunner">LexRunner</a>
-			<a class="pill" href="../research/index.html" title="Research">Research</a>
-			<a class="pill" href="../the-moat/index.html" title="Moat">Moat</a>
-			<a class="pill" href="../how-to-use/index.html" title="How to Use">Guide</a>
-			<a class="pill" href="../../roadmap.html" title="Roadmap">Roadmap</a>
+			<a class="pill" href="../../stack.html">Stack</a>
+			<a class="pill" href="../../projects/lex/index.html">Lex</a>
+			<a class="pill" href="../../projects/axf/index.html">AXF</a>
+			<a class="pill" href="../../projects/lexthority/index.html">LexThority</a>
+			<a class="pill" href="../research/index.html">Research</a>
+			<a class="pill" href="../../roadmap.html">Roadmap</a>
 		</nav>
 	</header>
-
 	<main class="container">
-		<section class="concept-page">
-			<p style="margin-bottom:8px"><a href="index.html" style="color:var(--accent);text-decoration:none">← Control Deck</a> · <a href="../research/frontier-model-control-stack.html#work-incrementally" style="color:var(--muted);text-decoration:none">Back to essay</a></p>
-			<h1>Scope and Blast Radius</h1>
-			<blockquote>The narrower the lane, the more reliable the work.</blockquote>
-
-			<h2>What it is</h2>
-			<p><strong>Scope</strong> is what you <em>intend</em> to change—the files, modules, or boundaries you're working within.</p>
-			<p><strong>Blast Radius</strong> is what <em>actually</em> changed—the lines touched, files modified, and effects produced.</p>
-			<p>Together, they constrain how much a single operation can affect, making changes reviewable, testable, and reversible.</p>
-
-			<h2>Why it exists</h2>
-			<p>Ambiguous prompts like "fix the tests" or "clean up the code" have unbounded scope. The model doesn't know where to stop. This leads to:</p>
-			<ul>
-				<li>Large diffs that take hours to review</li>
-				<li>Unexpected side effects in unrelated files</li>
-				<li>Changes that are hard to reverse without losing good work</li>
-			</ul>
-			<p>Explicit scope constraints flip this dynamic:</p>
-			<ul>
-				<li>Small, focused changes that take minutes to review</li>
-				<li>Predictable effects within declared boundaries</li>
-				<li>Clean reversibility with <code>git revert</code></li>
-			</ul>
-			<p>The constraint isn't limiting—it's <em>liberating</em>. When the lane is narrow, the model can be confident about what it should and shouldn't touch.</p>
-
-			<h2>How it shows up</h2>
-
-			<h3>Scope Declaration</h3>
-			<p>Scope is declared upfront, either explicitly or by policy:</p>
-			<p><strong>File lists:</strong></p>
-			<pre><code>Edit: src/cli.ts, src/core/gates.ts</code></pre>
-			<p><strong>Boundary markers:</strong></p>
-			<pre><code>Stay within: auth/
-Forbidden: node_modules/, .env</code></pre>
-			<p><strong>Module scope:</strong></p>
-			<pre><code>Modules: ["auth/core", "auth/password"]</code></pre>
-
-			<h3>Blast Radius Limits</h3>
-			<p>Policy defines maximum acceptable change size:</p>
-			<pre><code>limits:
-  max_files_changed: 5
-  max_lines_changed: 200
-  max_hunks: 10</code></pre>
-			<p>If an operation would exceed these limits, it's blocked—not warned, blocked. The model must break the work into smaller pieces.</p>
-
-			<h3>Verification</h3>
-			<p>After an operation, blast radius is measured and recorded in the <a href="receipts.html">receipt</a>:</p>
-			<pre><code>{
-  "scope_declared": ["src/cli.ts"],
-  "blast_radius": {
-    "files_changed": 1,
-    "lines_added": 23,
-    "lines_removed": 8
-  },
-  "within_limits": true
-}</code></pre>
-			<p>If the actual blast radius exceeds the declared scope, this is flagged for review.</p>
-
-			<h2>Scope in the Lex Ecosystem</h2>
-			<p><a href="../../projects/lex/index.html">Lex 1.0.0</a> uses <code>lexmap.policy.json</code> to define module boundaries—the architectural scope that determines what "inside" and "outside" mean. Frames record which modules were touched, creating a verifiable audit trail of blast radius.</p>
-
-			<h2>Scope vs Blast Radius</h2>
-			<table>
-				<thead>
-					<tr><th>Dimension</th><th>Scope</th><th>Blast Radius</th></tr>
-				</thead>
-				<tbody>
-					<tr><td>When defined</td><td>Before operation</td><td>After operation</td></tr>
-					<tr><td>Who defines it</td><td>User/policy</td><td>Measured from diff</td></tr>
-					<tr><td>Purpose</td><td>Constraint</td><td>Verification</td></tr>
-					<tr><td>Example</td><td>"Edit auth/ only"</td><td>"Changed 3 files, 47 lines"</td></tr>
-				</tbody>
-			</table>
-			<p>The ideal state: blast radius stays well within declared scope. If they diverge significantly, something unexpected happened.</p>
-
-			<h2>Examples in Practice</h2>
-			<p><strong>Good scope declaration:</strong><br>
-			<em>"Edit <code>src/cli.ts</code> and <code>src/core/gates.ts</code> only. Add error handling to the exit path. No more than 50 lines changed."</em></p>
-			<p><strong>Poor scope declaration:</strong><br>
-			<em>"Fix the CLI."</em> (Where? How much? What counts as "fixed"?)</p>
-			<p><strong>Blast radius limit violation:</strong><br>
-			<em>"This change touches 12 files and 400 lines. Policy limit is 5 files and 200 lines. Breaking into smaller operations."</em></p>
-
-			<h2>The Key Insight</h2>
-			<p>Scope constraints are how you trade ambiguity for reliability.</p>
-			<p>When you tell a model:</p>
-			<ul>
-				<li>Exactly which files to touch</li>
-				<li>The maximum acceptable change size</li>
-				<li>The boundaries it must not cross</li>
-			</ul>
-			<p>...you get work that is:</p>
-			<ul>
-				<li><strong>Reviewable</strong> in minutes, not hours</li>
-				<li><strong>Testable</strong> against a focused gate set</li>
-				<li><strong>Reversible</strong> with a single command</li>
-			</ul>
-			<p>The model doesn't need to decide how big the change should be. The policy decides. The model executes within those bounds.</p>
-
-			<div style="margin-top:3rem;padding:20px;background:rgba(0,194,255,0.08);border-radius:8px">
-				<h3 style="margin-top:0">Related Concepts</h3>
-				<div style="display:flex;gap:12px;flex-wrap:wrap">
-					<a class="button" href="policy-surface.html">Policy Surface</a>
-					<a class="button" href="gates.html">Gates</a>
-					<a class="button" href="modes.html">Modes</a>
-					<a class="button" href="receipts.html">Receipts</a>
-					<a class="button" href="index.html">Control Deck Overview</a>
-				</div>
+		<section class="hero"><div class="hero-left"><span class="badge">Control Deck</span><h1>Scope is the boundary; blast radius is the consequence.</h1><p class="tagline">Agent work should know what it may touch, what it must avoid, and what review is required before changes leave a contained workspace.</p></div></section>
+		<section class="hr" role="separator"></section>
+		<section aria-labelledby="dimensions">
+			<h2 id="dimensions" class="kicker">Dimensions of scope</h2>
+			<div class="grid">
+				<article class="card"><h3>Code and files</h3><p>Modules, paths, packages, services, and generated artifacts that a run is allowed to inspect or modify.</p></article>
+				<article class="card"><h3>Data</h3><p>Datasets, regulated information, production records, exported files, and synthetic or redacted alternatives.</p></article>
+				<article class="card"><h3>Credentials</h3><p>Which environment-provided credentials are present, absent, or deliberately unavailable for this run.</p></article>
+				<article class="card"><h3>External effects</h3><p>Pushes, deploys, ticket writes, cloud mutations, notifications, billing changes, and other effects outside local state.</p></article>
 			</div>
 		</section>
+		<section class="hr" role="separator"></section>
+		<section aria-labelledby="containment"><h2 id="containment" class="kicker">Containment</h2><article class="card"><p>LexRunner's contained execution direction is about keeping blast radius small while allowing parallel agent work. Promotion out of containment should be gated, receipted, and easy to review.</p></article></section>
 	</main>
-
-	<footer class="container footer">
-		<div>&copy; <span id="year"></span> SmarterGPT.dev</div>
-		<div class="pill">Agent-friendly • CI-first • Human-in-the-loop</div>
-	</footer>
+	<footer class="container footer"><div>&copy; <span id="year"></span> SmarterGPT.dev</div><div class="pill"><a href="index.html">Control Deck</a></div></footer>
 	<script src="../../assets/app.js"></script>
 </body>
 </html>

@@ -3,21 +3,21 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>How to Use Lex 2.0.0 | SmarterGPT.dev</title>
-	<meta name="description" content="Quick start: install Lex 2.0.0, define policy and lex.yaml, capture Frames, recall Atlas Frames, ask why with receipts (AX-native)." />
+	<title>How to Use the Public SmarterGPT Core | SmarterGPT.dev</title>
+	<meta name="description" content="Install Lex, add repo-local memory, expose policy context, and introduce AXF workspace capabilities for agent work." />
 	<meta name="color-scheme" content="dark light" />
 	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
 	<link rel="stylesheet" href="../../assets/styles.css" />
 </head>
 <body>
 	<header class="container nav" role="navigation">
-		<div class="logo"><span class="logo-dot" aria-hidden="true"></span><span><a href="/" style="color:inherit;text-decoration:none">SmarterGPT.dev</a></span></div>
+		<div class="logo"><span class="logo-dot" aria-hidden="true"></span><a href="/" style="color:inherit;text-decoration:none"><span>SmarterGPT.dev</span></a></div>
 		<nav class="links" aria-label="Primary">
+			<a class="pill" href="../../stack.html" title="Operating Stack">Stack</a>
 			<a class="pill" href="../../projects/lex/index.html" title="Lex">Lex</a>
-			<a class="pill" href="../../projects/lex-pr/index.html" title="LexRunner">LexRunner</a>
+			<a class="pill" href="../../projects/axf/index.html" title="AXF">AXF</a>
+			<a class="pill" href="../../projects/lexthority/index.html" title="LexThority">LexThority</a>
 			<a class="pill" href="../research/index.html" title="Research">Research</a>
-			<a class="pill" href="../the-moat/index.html" title="Moat">Moat</a>
-			<a class="pill" href="index.html" title="How to Use">Guide</a>
 			<a class="pill" href="../../roadmap.html" title="Roadmap">Roadmap</a>
 		</nav>
 	</header>
@@ -25,9 +25,9 @@
 	<main class="container">
 		<section class="hero">
 			<div class="hero-left">
-				<span class="badge" aria-label="Page type"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg> Guide • Lex 2.0.0</span>
-				<h1>How to Use Lex</h1>
-				<p class="tagline">Five steps to policy-aware work continuity with receipts.</p>
+				<span class="badge">Guide • Lex <span class="npm-version" data-npm-package="@smartergpt/lex">npm latest</span> • AXF <span class="npm-version" data-npm-package="@smartergpt/axf">npm latest</span></span>
+				<h1>Start with memory, then add capabilities.</h1>
+				<p class="tagline">The public path is simple: install Lex for repo-local memory and policy context. Add AXF when the agent needs reliable workspace actions. Follow LexThority as authority decisions become a first-class layer.</p>
 			</div>
 		</section>
 
@@ -35,51 +35,70 @@
 
 		<section aria-labelledby="install">
 			<h2 id="install" class="kicker">Install</h2>
-			<article class="card">
-				<div class="code" style="margin-bottom:12px"><code># Global install (CLI)
-npm install -g @smartergpt/lex
-
-# Or as a project dependency
-npm install @smartergpt/lex</code></div>
-				<p>After installation, run <code>npx lex init</code> to set up your workspace.</p>
-			</article>
-		</section>
-
-		<section class="hr" role="separator"></section>
-
-		<section aria-labelledby="steps">
-			<h2 id="steps" class="kicker">Quick Start</h2>
 			<div class="grid">
-				<article class="card"><h3>1) Define Policy</h3><p>Add minimal <code>lexmap.policy.json</code> with module rules defining architecture boundaries, ownership, and allowed/forbidden edges.</p></article>
-				<article class="card"><h3>2) Define Workflows</h3><p>Add <code>lex.yaml</code> to describe workflows (review-pr, ship-release, etc.) with their inputs and policy constraints. <a href="../lex-yaml-contracts.html" style="color:var(--accent)">Learn about lex.yaml →</a></p></article>
-				<article class="card"><h3>3) Capture Frames</h3><p>Use <code>lex remember</code> at meaningful moments; include next action, blockers, and module_scope. Frames become your episodic memory.</p></article>
-				<article class="card"><h3>4) Recall Context</h3><p><code>lex recall TICKET-123</code> to get rendered memory card + Atlas Frame (fold radius 1) showing neighboring modules.</p></article>
-				<article class="card"><h3>5) Ask Why</h3><p>Assistants cite policy violations from timestamped Frames — answers with receipts, not vibes.</p></article>
+				<article class="card">
+					<h3>Lex CLI</h3>
+					<div class="code" style="margin-top:12px"><code>npm install -g @smartergpt/lex
+lex init --yes
+lex doctor</code></div>
+				</article>
+				<article class="card">
+					<h3>Lex MCP</h3>
+					<div class="code" style="margin-top:12px"><code>npm install -g @smartergpt/lex-mcp
+npx @smartergpt/lex-mcp</code></div>
+				</article>
+				<article class="card">
+					<h3>AXF</h3>
+					<div class="code" style="margin-top:12px"><code>npm install -g @smartergpt/axf
+axf doctor
+axf list</code></div>
+				</article>
 			</div>
 		</section>
 
 		<section class="hr" role="separator"></section>
 
-		<section aria-labelledby="contracts">
-			<h2 id="contracts" class="kicker">Contract Surfaces</h2>
-			<article class="card">
-				<p>Lex 2.0.0 provides three stable contract surfaces and AX guarantees that agents, CI, and runners can depend on:</p>
-				<ul style="padding-left:20px;margin-top:12px">
-					<li><strong>Frames</strong>: timestamped work session snapshots with summary, blockers, next action, and module_scope.</li>
-					<li><strong>lexmap.policy.json</strong>: machine-readable architecture boundaries.</li>
-					<li><strong>lex.yaml</strong>: intent-level workflow contracts describing what work exists and what policies apply.</li>
-				</ul>
-				<div class="cta" style="margin-top:16px">
-					<a class="button" href="../../projects/lex/index.html" title="Lex 2.0.0">Lex 2.0.0 Details</a>
-					<a class="button ghost" href="../lex-yaml-contracts.html" title="lex.yaml contracts">lex.yaml Reference</a>
-				</div>
-			</article>
+		<section aria-labelledby="steps">
+			<h2 id="steps" class="kicker">Working loop</h2>
+			<div class="numbered-list">
+				<article class="card">
+					<h3>1. Initialize Lex in the workspace.</h3>
+					<p>Let Lex create the local structure it needs, then keep its files in the repo when the memory and policy should travel with the project.</p>
+				</article>
+				<article class="card">
+					<h3>2. Capture real work state.</h3>
+					<p>Use Frames for meaningful checkpoints: what changed, what is blocked, what module is involved, and what the next agent should do.</p>
+				</article>
+				<article class="card">
+					<h3>3. Add policy only where it pays rent.</h3>
+					<p>A small <code>lexmap.policy.json</code> is better than a giant aspirational one. Start with module ownership, forbidden edges, and known risk boundaries.</p>
+				</article>
+				<article class="card">
+					<h3>4. Promote repeated work into AXF.</h3>
+					<p>If agents keep rediscovering the same build, test, search, or diagnostic command, make it an inspectable AXF capability.</p>
+				</article>
+				<article class="card">
+					<h3>5. Route authority questions explicitly.</h3>
+					<p>For actions with side effects, start modeling the effect and envelope. LexThority is the preview surface for that decision layer.</p>
+				</article>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="links">
+			<h2 id="links" class="kicker">Reference links</h2>
+			<div class="grid">
+				<article class="card"><h3>Lex</h3><p>Memory, policy context, CLI, MCP, and API.</p><a class="button" href="../../projects/lex/index.html">Project page</a></article>
+				<article class="card"><h3>AXF</h3><p>Workspace-owned capabilities and adapter contracts.</p><a class="button" href="../../projects/axf/index.html">Project page</a></article>
+				<article class="card"><h3>LexThority</h3><p>Authority envelopes and effect receipts.</p><a class="button" href="../../projects/lexthority/index.html">Preview page</a></article>
+			</div>
 		</section>
 	</main>
 
 	<footer class="container footer">
 		<div>&copy; <span id="year"></span> SmarterGPT.dev</div>
-		<div class="pill">Agent-friendly • CI-first • Human-in-the-loop</div>
+		<div class="pill">Install • Remember • Declare • Promote • Gate</div>
 	</footer>
 	<script src="../../assets/app.js"></script>
 </body>

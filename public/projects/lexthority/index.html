@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>LexThority - Authority Seam for Agent Work | SmarterGPT.dev</title>
+	<meta name="description" content="LexThority is the authority seam for agent work: authority envelopes, effect requests, allow/escalate/deny decisions, and receipts." />
+	<meta name="color-scheme" content="dark light" />
+	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
+	<link rel="stylesheet" href="../../assets/styles.css" />
+</head>
+<body>
+	<header class="container nav" role="navigation">
+		<div class="logo"><span class="logo-dot" aria-hidden="true"></span><a href="/" style="color:inherit;text-decoration:none"><span>SmarterGPT.dev</span></a></div>
+		<nav class="links" aria-label="Primary">
+			<a class="pill" href="../../stack.html" title="Operating Stack">Stack</a>
+			<a class="pill" href="../lex/index.html" title="Lex">Lex</a>
+			<a class="pill" href="../axf/index.html" title="AXF">AXF</a>
+			<a class="pill" href="index.html" title="LexThority">LexThority</a>
+			<a class="pill" href="../../docs/research/index.html" title="Research">Research</a>
+			<a class="pill" href="../../roadmap.html" title="Roadmap">Roadmap</a>
+		</nav>
+	</header>
+
+	<main class="container">
+		<section class="hero">
+			<div class="hero-left">
+				<span class="badge">Public preview • Source-available • Not on npm yet</span>
+				<h1>LexThority is the authority seam for agent work.</h1>
+				<p class="tagline">Agents should be free to operate inside the environment they are given. They also need a concrete way to ask whether an effect is allowed before they mutate something important.</p>
+				<p class="tagline" style="margin-top:12px">LexThority does not manage identity, credentials, scheduling, or swarms. It evaluates authority envelopes and effect requests, then returns allow, escalate, or deny with a receipt.</p>
+				<div class="cta">
+					<a class="button primary" href="https://github.com/Guffawaffle/lexthority">GitHub preview</a>
+					<a class="button" href="../../stack.html">Stack context</a>
+				</div>
+			</div>
+			<div class="hero-card hero-right">
+				<div class="kicker">Core contract</div>
+				<pre class="code"><code>ThorityEnvelope
+  what this run may attempt
+
+EffectRequest
+  what an agent or adapter is about to do
+
+ThorityDecision
+  allow | escalate | deny
+
+EffectReceipt
+  what was decided and what happened</code></pre>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="why">
+			<h2 id="why" class="kicker">Why it matters</h2>
+			<div class="grid">
+				<article class="card"><h3>Capabilities are not authority</h3><p>AXF may tell an agent how to run a deploy capability. LexThority asks whether this run is allowed to attempt that effect.</p></article>
+				<article class="card"><h3>Personas are not credentials</h3><p>LexSona can express posture and caution. LexThority evaluates concrete effects against an authority envelope.</p></article>
+				<article class="card"><h3>IAM remains the source of truth</h3><p>LexThority should not replace OAuth, cloud IAM, GitHub permissions, or enterprise brokers. It records and explains the decision layer around them.</p></article>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="boundary">
+			<h2 id="boundary" class="kicker">Stack boundary</h2>
+			<table class="comparison-table">
+				<tbody>
+					<tr><th>LexSona</th><td>Posture, duty, default caution, role-like context.</td></tr>
+					<tr><th>LexThority</th><td>Concrete authority envelope and effect decision engine.</td></tr>
+					<tr><th>AXF</th><td>Workspace bearings, capability declarations, and effect hints.</td></tr>
+					<tr><th>Adapters</th><td>Wrappers around tools such as git, gh, cloud CLIs, and orchestrators.</td></tr>
+					<tr><th>Lex</th><td>Receipts, memory, denials, fallbacks, and learned access reality.</td></tr>
+				</tbody>
+			</table>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="example">
+			<h2 id="example" class="kicker">Current preview shape</h2>
+			<div class="grid">
+				<article class="card"><h3>Classify</h3><p>Classify an attempted command or effect, starting with simple gates like `git push`.</p></article>
+				<article class="card"><h3>Check</h3><p>Evaluate a structured effect request against an envelope and return a decision.</p></article>
+				<article class="card"><h3>Execute dry-run</h3><p>Wrap an attempted command path and produce receipts without pretending to own the whole runtime.</p></article>
+			</div>
+			<div class="code" style="margin-top:18px"><code>npm install
+npm run build
+
+npm run cli -- classify -- git push origin feature/test
+npm run cli -- check examples/effects/git-push.json \
+  --envelope examples/envelopes/thority.local.engineer.json
+npm run cli -- exec --dry-run \
+  --envelope examples/envelopes/thority.local.engineer.json \
+  -- git push origin feature/test</code></div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="anti-drift">
+			<h2 id="anti-drift" class="kicker">Anti-drift rule</h2>
+			<article class="card" style="border-left:3px solid var(--brand)">
+				<p>If LexThority starts scheduling agents, managing swarms, owning credentials, or modeling every standard operating procedure, it is drifting. Its job is the authority decision seam. That narrowness is the point.</p>
+			</article>
+		</section>
+	</main>
+
+	<footer class="container footer">
+		<div>&copy; <span id="year"></span> SmarterGPT.dev</div>
+		<div class="pill">Authority envelopes • Effect receipts • Escalation</div>
+	</footer>
+	<script src="../../assets/app.js"></script>
+</body>
+</html>

@@ -3,21 +3,21 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>lex-serve — FastAPI Orchestration Server</title>
-	<meta name="description" content="FastAPI server for orchestrating lex-pr-runner workflows. Features webhook handling, job queuing, and RESTful API endpoints." />
+	<title>LexRunner Service Integration | SmarterGPT.dev</title>
+	<meta name="description" content="Controlled integration notes for service-hosted LexRunner workflows and private orchestration pilots." />
 	<meta name="color-scheme" content="dark light" />
 	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
 	<link rel="stylesheet" href="../../assets/styles.css" />
 </head>
 <body>
 	<header class="container nav" role="navigation">
-		<div class="logo"><span class="logo-dot" aria-hidden="true"></span><span><a href="/" style="color:inherit;text-decoration:none">SmarterGPT.dev</a></span></div>
+		<div class="logo"><span class="logo-dot" aria-hidden="true"></span><a href="/" style="color:inherit;text-decoration:none"><span>SmarterGPT.dev</span></a></div>
 		<nav class="links" aria-label="Primary">
+			<a class="pill" href="../../stack.html" title="Operating Stack">Stack</a>
 			<a class="pill" href="../lex/index.html" title="Lex">Lex</a>
-			<a class="pill" href="../lex-pr/index.html" title="LexRunner">LexRunner</a>
+			<a class="pill" href="../axf/index.html" title="AXF">AXF</a>
+			<a class="pill" href="../lexthority/index.html" title="LexThority">LexThority</a>
 			<a class="pill" href="../../docs/research/index.html" title="Research">Research</a>
-			<a class="pill" href="../../docs/the-moat/index.html" title="Moat">Moat</a>
-			<a class="pill" href="../../docs/how-to-use/index.html" title="How to Use">Guide</a>
 			<a class="pill" href="../../roadmap.html" title="Roadmap">Roadmap</a>
 		</nav>
 	</header>
@@ -25,177 +25,33 @@
 	<main class="container">
 		<section class="hero">
 			<div class="hero-left">
-				<span class="badge" aria-label="Project status"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg> Production service</span>
-				<h1>lex-serve: FastAPI Orchestration Server</h1>
-				<p class="tagline">Python FastAPI server for orchestrating <strong>LexRunner</strong> workflows. Consumes <a href="../lex/index.html" style="color:inherit;text-decoration:underline">Lex 1.0.0</a> contracts to trigger merge pyramids via webhooks, job queues, and RESTful APIs.</p>
+				<span class="badge">Controlled integration note</span>
+				<h1>Service-hosted runner work is not a public API yet.</h1>
+				<p class="tagline">Earlier material described hosted LexRunner service mechanics too concretely. The current public position is narrower: service integrations are private pilots around controlled LexRunner flow, not a generally available hosted product.</p>
+				<p class="tagline" style="margin-top:12px">Public users should start with Lex and AXF. LexRunner service references are shared only when an integration needs private orchestration details.</p>
 				<div class="cta">
-					<span class="button primary" title="Repository private">Private Repository</span>
-					<a class="button" href="mailto:hello@smartergpt.dev?subject=Lex%20Serve%20Access%20Request" title="Request access">Request Access</a>
-					<a class="button ghost" href="#runbook" title="View Runbook">Runbook</a>
-				</div>
-			</div>
-			<div class="hero-card hero-right">
-				<div class="kicker">Server snapshot</div>
-				<pre class="code runner-snapshot" aria-label="Example API response"><code># Health check
-$ curl https://serve.smartergpt.dev/health
-{"status":"healthy","version":"1.0.0"}
-
-# Trigger workflow
-$ curl -X POST https://serve.smartergpt.dev/api/v1/workflow \
-  -H "Content-Type: application/json" \
-  -d '{"repo":"owner/repo","branch":"main"}'
-{
-  "job_id": "job-abc123",
-  "status": "queued",
-  "created_at": "2024-01-15T10:30:00Z"
-}
-
-# Check job status
-$ curl https://serve.smartergpt.dev/api/v1/jobs/job-abc123
-{
-  "job_id": "job-abc123",
-  "status": "completed",
-  "result": "success"
-}</code></pre>
-				<div class="hr" role="separator"></div>
-				<div class="grid">
-					<div class="tile"><div class="kicker">FastAPI</div><strong>Modern Python</strong><p class="tagline" style="margin-top:6px">Async/await, Pydantic models, OpenAPI schema.</p></div>
-					<div class="tile"><div class="kicker">TLS</div><strong>Origin Certificates</strong><p class="tagline" style="margin-top:6px">Cloudflare origin TLS with strict security.</p></div>
-					<div class="tile"><div class="kicker">Queue</div><strong>Job Management</strong><p class="tagline" style="margin-top:6px">Redis-backed job queue with worker processes.</p></div>
-					<div class="tile"><div class="kicker">Webhooks</div><strong>Event-Driven</strong><p class="tagline" style="margin-top:6px">GitHub webhook integration for PR events.</p></div>
+					<a class="button primary" href="../lexrunner/index.html">LexRunner concept</a>
+					<a class="button" href="../../request-access.html">Request access</a>
+					<a class="button ghost" href="../../stack.html">Stack overview</a>
 				</div>
 			</div>
 		</section>
 
-		<section aria-labelledby="stack">
-			<h2 id="stack" class="kicker">Technology Stack</h2>
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="public">
+			<h2 id="public" class="kicker">What is public</h2>
 			<div class="grid">
-				<article class="card" aria-label="Stack: FastAPI Framework">
-					<h3>FastAPI Framework</h3>
-					<p>High-performance Python web framework with automatic OpenAPI documentation and async request handling.</p>
-				</article>
-				<article class="card" aria-label="Stack: Uvicorn Server">
-					<h3>Uvicorn ASGI Server</h3>
-					<p>Lightning-fast ASGI server implementation with HTTP/1.1 and WebSocket support.</p>
-				</article>
-				<article class="card" aria-label="Stack: Redis Queue">
-					<h3>Redis Job Queue</h3>
-					<p>In-memory data store for job queue management, caching, and pub/sub messaging.</p>
-				</article>
-				<article class="card" aria-label="Stack: Pydantic Models">
-					<h3>Pydantic Validation</h3>
-					<p>Type-safe data validation and serialization using Python type hints.</p>
-				</article>
-				<article class="card" aria-label="Stack: Docker">
-					<h3>Docker Containerization</h3>
-					<p>Multi-stage Docker builds for optimized production deployments.</p>
-				</article>
-				<article class="card" aria-label="Stack: Nginx Proxy">
-					<h3>Nginx Reverse Proxy</h3>
-					<p>Load balancing, SSL termination, and request routing for production traffic.</p>
-				</article>
-			</div>
-		</section>
-
-		<section class="hr" role="separator"></section>
-
-		<section aria-labelledby="tls">
-			<h2 id="tls" class="kicker">Origin TLS Setup</h2>
-			<div class="grid">
-				<article class="card">
-					<h3><span class="step">1)</span> Generate Origin Certificate</h3>
-					<p>Create a Cloudflare Origin Certificate in the SSL/TLS → Origin Server section. Download both the certificate and private key.</p>
-				</article>
-				<article class="card">
-					<h3><span class="step">2)</span> Install Certificates</h3>
-					<p>Place certificates in <code>/etc/ssl/cloudflare/</code> with proper permissions (600). Configure Nginx to use the origin certificate for HTTPS.</p>
-				</article>
-				<article class="card">
-					<h3><span class="step">3)</span> Configure Strict Mode</h3>
-					<p>Set Cloudflare SSL/TLS encryption mode to "Full (strict)" to enforce end-to-end encryption and origin certificate validation.</p>
-				</article>
-			</div>
-		</section>
-
-		<section class="hr" role="separator"></section>
-
-		<section aria-labelledby="runbook" id="runbook">
-			<h2 id="runbook-title" class="kicker">Operational Runbook</h2>
-			<div class="grid">
-				<article class="card">
-					<h3>Service Restart</h3>
-					<pre class="code"><code># Restart the service
-sudo systemctl restart lex-serve
-
-# Check service status
-sudo systemctl status lex-serve
-
-# Verify health endpoint
-curl https://serve.smartergpt.dev/health</code></pre>
-				</article>
-				<article class="card">
-					<h3>View Logs</h3>
-					<pre class="code"><code># Follow live logs
-sudo journalctl -u lex-serve -f
-
-# View recent logs (last 100 lines)
-sudo journalctl -u lex-serve -n 100
-
-# Filter by time range
-sudo journalctl -u lex-serve --since "1 hour ago"</code></pre>
-				</article>
-				<article class="card">
-					<h3>Check Worker Status</h3>
-					<pre class="code"><code># List running workers
-ps aux | grep uvicorn
-
-# Check Redis connection
-redis-cli ping
-
-# Monitor job queue
-redis-cli llen lex-serve:jobs</code></pre>
-				</article>
-			</div>
-		</section>
-
-		<section class="hr" role="separator"></section>
-
-		<section aria-labelledby="deployment">
-			<h2 id="deployment" class="kicker">Deployment & Configuration</h2>
-			<div class="card">
-				<h3>Environment Variables</h3>
-				<pre class="code"><code># Required environment variables
-REDIS_URL=redis://localhost:6379
-GITHUB_WEBHOOK_SECRET=your-webhook-secret-here
-API_KEY=replace-with-your-api-key
-LOG_LEVEL=info
-
-# Optional configuration
-WORKER_COUNT=4
-MAX_QUEUE_SIZE=100
-REQUEST_TIMEOUT=300</code></pre>
-			</div>
-		</section>
-
-		<section class="hr" role="separator"></section>
-
-		<section aria-labelledby="cta">
-			<div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap">
-				<div>
-					<h3 style="margin:0 0 6px">Production-ready orchestration</h3>
-					<p style="margin:0;color:#c8d3ea">Fast, reliable, and scalable workflow automation.</p>
-				</div>
-				<div class="cta">
-					<span class="button primary" title="Repository private">Private Repository</span>
-					<a class="button" href="#runbook" title="View Runbook">View Runbook</a>
-				</div>
+				<article class="card"><h3>Lex</h3><p>Repo-local memory, policy context, CLI, MCP, and API.</p><a class="button" href="../lex/index.html">Open Lex</a></article>
+				<article class="card"><h3>AXF</h3><p>Workspace capability contracts and MCP-capable launch surface.</p><a class="button" href="../axf/index.html">Open AXF</a></article>
+				<article class="card"><h3>LexThority</h3><p>Public preview of authority envelopes, effect decisions, and receipts.</p><a class="button" href="../lexthority/index.html">Open LexThority</a></article>
 			</div>
 		</section>
 	</main>
 
 	<footer class="container footer">
 		<div>&copy; <span id="year"></span> SmarterGPT.dev</div>
-		<div class="pill">Agent-friendly • CI-first • Human-in-the-loop</div>
+		<div class="pill">Private service pilots • Public core first</div>
 	</footer>
 	<script src="../../assets/app.js"></script>
 </body>

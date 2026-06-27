@@ -3,120 +3,39 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>Receipts — Control Deck | SmarterGPT.dev</title>
-	<meta name="description" content="Receipts are durable records of what actually happened—not claims, evidence. When the model says tests passed, the receipt contains the actual output." />
+	<title>Receipts | SmarterGPT.dev</title>
+	<meta name="description" content="Receipts are structured evidence for agent work: memory Frames, capability runs, authority decisions, gate results, and handoff state." />
 	<meta name="color-scheme" content="dark light" />
-	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
 	<link rel="stylesheet" href="../../assets/styles.css" />
-	<style>
-		.concept-page { max-width: 720px; margin: 0 auto; }
-		.concept-page h2 { margin-top: 2.5rem; }
-		.concept-page h3 { margin-top: 2rem; color: var(--accent); }
-		.concept-page p { line-height: 1.8; margin-bottom: 1.25rem; }
-		.concept-page ul, .concept-page ol { padding-left: 1.5rem; margin-bottom: 1.25rem; }
-		.concept-page li { line-height: 1.7; margin-bottom: 0.5rem; }
-		.concept-page blockquote { border-left: 3px solid var(--accent); padding-left: 1.25rem; margin: 1.5rem 0; font-style: italic; font-size: 1.15rem; opacity: 0.95; }
-		.concept-page pre { background: rgba(0,0,0,0.3); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 1.25rem 0; }
-		.concept-page code { font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace; font-size: 0.9em; }
-		.concept-page table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; }
-		.concept-page th, .concept-page td { text-align: left; padding: 12px; border-bottom: 1px solid var(--border); }
-		.concept-page th { font-weight: 600; }
-	</style>
 </head>
 <body>
 	<header class="container nav" role="navigation">
 		<div class="logo"><span class="logo-dot" aria-hidden="true"></span><a href="/" style="color:inherit;text-decoration:none"><span>SmarterGPT.dev</span></a></div>
 		<nav class="links" aria-label="Primary">
-			<a class="pill" href="../../projects/lex/index.html" title="Lex">Lex</a>
-			<a class="pill" href="../../projects/lex-pr/index.html" title="LexRunner">LexRunner</a>
-			<a class="pill" href="../research/index.html" title="Research">Research</a>
-			<a class="pill" href="../the-moat/index.html" title="Moat">Moat</a>
-			<a class="pill" href="../how-to-use/index.html" title="How to Use">Guide</a>
-			<a class="pill" href="../../roadmap.html" title="Roadmap">Roadmap</a>
+			<a class="pill" href="../../stack.html">Stack</a>
+			<a class="pill" href="../../projects/lex/index.html">Lex</a>
+			<a class="pill" href="../../projects/axf/index.html">AXF</a>
+			<a class="pill" href="../../projects/lexthority/index.html">LexThority</a>
+			<a class="pill" href="../research/index.html">Research</a>
+			<a class="pill" href="../../roadmap.html">Roadmap</a>
 		</nav>
 	</header>
-
 	<main class="container">
-		<section class="concept-page">
-			<p style="margin-bottom:8px"><a href="index.html" style="color:var(--accent);text-decoration:none">← Control Deck</a> · <a href="../research/frontier-model-control-stack.html#survive-scrutiny" style="color:var(--muted);text-decoration:none">Back to essay</a></p>
-			<h1>Receipts</h1>
-			<blockquote>Not vibes, but evidence.</blockquote>
-
-			<h2>What it is</h2>
-			<p>A <strong>Receipt</strong> is a durable record of what <em>actually happened</em> during a session or operation. It captures the mode that was active, which tools were invoked, what gates ran and their outcomes, which files were touched, and a summary of results.</p>
-			<p>Receipts are execution traces—they answer the question: "What did the model actually do, and did it work?"</p>
-
-			<h2>Why it exists</h2>
-			<p>Models produce text. Text can claim anything. Without receipts, you're trusting that:</p>
-			<ul>
-				<li>The model ran the tests it says it ran</li>
-				<li>The files it says it read actually exist</li>
-				<li>The changes it made are what it describes</li>
-			</ul>
-			<p>Receipts collapse this trust problem. The claim and the evidence are bundled together. If the model says "tests passed," the receipt contains the actual test output. If it says "file contains X," the receipt shows the read operation that retrieved it.</p>
-			<p>This enables:</p>
-			<ul>
-				<li><strong>Audit</strong> — Reviewers can see exactly what happened</li>
-				<li><strong>Debugging</strong> — When something breaks, trace back to what ran</li>
-				<li><strong>Learning</strong> — Both humans and systems can learn from patterns in receipts</li>
-			</ul>
-
-			<h2>How it shows up</h2>
-			<p>A receipt is a structured artifact produced at the end of an operation. Conceptually, it looks like:</p>
-			<pre><code>{
-  "timestamp": "2025-11-25T14:30:00Z",
-  "mode": "conservative",
-  "tools_invoked": [
-    "read_file",
-    "replace_string_in_file",
-    "run_tests"
-  ],
-  "gates": {
-    "lint": "pass",
-    "typecheck": "pass",
-    "tests": "pass"
-  },
-  "files_touched": [
-    "src/cli.ts",
-    "src/core/gates.ts"
-  ],
-  "summary": "Added error handling to CLI exit path"
-}</code></pre>
-			<p>The exact schema varies by implementation, but the principle is constant: <strong>every consequential action is recorded</strong>.</p>
-
-			<h2>Receipts vs Frames</h2>
-			<p>These are complementary, not competing:</p>
-			<table>
-				<thead>
-					<tr><th>Concept</th><th>What it captures</th><th>When it's written</th></tr>
-				</thead>
-				<tbody>
-					<tr><td><strong>Frame</strong></td><td>Episodic snapshot of intent, context, and what you were working on</td><td>During/after a session</td></tr>
-					<tr><td><strong>Receipt</strong></td><td>Execution trace of what ran and passed/failed</td><td>After an operation completes</td></tr>
-				</tbody>
-			</table>
-			<p>A Frame says: <em>"I was refactoring the auth module, here's the context I had."</em><br>
-			A Receipt says: <em>"Here's exactly what tools ran, what gates passed, and what changed."</em></p>
-			<p>Both feed into the audit trail. Frames provide narrative continuity; Receipts provide verifiable execution history.</p>
-
-			<h2>Implementation in Lex</h2>
-			<p>With <a href="../../projects/lex/index.html">Lex 1.0.0</a>, Frames are the primary contract for receipts. Every Frame includes typed fields for what happened, when, and what modules were touched. LexRunner consumes these Frames to build audit trails across merge operations.</p>
-
-			<div style="margin-top:3rem;padding:20px;background:rgba(0,194,255,0.08);border-radius:8px">
-				<h3 style="margin-top:0">Related Concepts</h3>
-				<div style="display:flex;gap:12px;flex-wrap:wrap">
-					<a class="button" href="gates.html">Gates</a>
-					<a class="button" href="modes.html">Modes</a>
-					<a class="button" href="index.html">Control Deck Overview</a>
-				</div>
+		<section class="hero"><div class="hero-left"><span class="badge">Control Deck</span><h1>Receipts turn agent work into evidence.</h1><p class="tagline">A receipt is a durable record that another agent, human, gate, or audit process can inspect later.</p></div></section>
+		<section class="hr" role="separator"></section>
+		<section aria-labelledby="types">
+			<h2 id="types" class="kicker">Receipt types</h2>
+			<div class="grid">
+				<article class="card"><h3>Memory receipt</h3><p>A Lex Frame records what happened, what is blocked, what module was involved, and what should happen next.</p></article>
+				<article class="card"><h3>Capability receipt</h3><p>An AXF run records which capability executed, with what inputs, and what result or failure came back.</p></article>
+				<article class="card"><h3>Authority receipt</h3><p>A LexThority decision records the effect request, envelope, decision, and escalation reason if blocked.</p></article>
+				<article class="card"><h3>Gate receipt</h3><p>A LexRunner gate records the check, status, artifact, and whether the plan can advance.</p></article>
 			</div>
 		</section>
+		<section class="hr" role="separator"></section>
+		<section aria-labelledby="rule"><h2 id="rule" class="kicker">Working rule</h2><article class="card"><p>If an agent says it did something important, there should be a receipt somewhere: a Frame, command result, authority decision, gate result, or explicit denial.</p></article></section>
 	</main>
-
-	<footer class="container footer">
-		<div>&copy; <span id="year"></span> SmarterGPT.dev</div>
-		<div class="pill">Agent-friendly • CI-first • Human-in-the-loop</div>
-	</footer>
+	<footer class="container footer"><div>&copy; <span id="year"></span> SmarterGPT.dev</div><div class="pill"><a href="index.html">Control Deck</a></div></footer>
 	<script src="../../assets/app.js"></script>
 </body>
 </html>

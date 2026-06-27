@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>AXF - Agent eXoskeleton Framework | SmarterGPT.dev</title>
+	<meta name="description" content="AXF is the Agent eXoskeleton Framework: workspace-native capabilities for build, test, search, diagnosis, and safe agent operation." />
+	<meta name="color-scheme" content="dark light" />
+	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
+	<link rel="stylesheet" href="../../assets/styles.css" />
+</head>
+<body>
+	<header class="container nav" role="navigation">
+		<div class="logo"><span class="logo-dot" aria-hidden="true"></span><a href="/" style="color:inherit;text-decoration:none"><span>SmarterGPT.dev</span></a></div>
+		<nav class="links" aria-label="Primary">
+			<a class="pill" href="../../stack.html" title="Operating Stack">Stack</a>
+			<a class="pill" href="../lex/index.html" title="Lex">Lex</a>
+			<a class="pill" href="index.html" title="AXF">AXF</a>
+			<a class="pill" href="../lexthority/index.html" title="LexThority">LexThority</a>
+			<a class="pill" href="../../docs/research/index.html" title="Research">Research</a>
+			<a class="pill" href="../../roadmap.html" title="Roadmap">Roadmap</a>
+		</nav>
+	</header>
+
+	<main class="container">
+		<section class="hero">
+			<div class="hero-left">
+				<span class="badge">Public source-available • <span class="npm-version" data-npm-package="@smartergpt/axf">npm latest</span></span>
+				<h1>AXF packages local repo know-how as agent capabilities.</h1>
+				<p class="tagline">Every workspace has ceremony: how to build, test, search, diagnose, scaffold, promote, and recover. AXF turns that ceremony into small, self-describing capabilities an agent can inspect and run.</p>
+				<p class="tagline" style="margin-top:12px">It is not a universal command catalog. It is a workspace-owned exoskeleton for the agent operating inside that workspace.</p>
+				<div class="cta">
+					<a class="button primary" href="https://www.npmjs.com/package/@smartergpt/axf">npm package</a>
+					<a class="button" href="https://github.com/Guffawaffle/axf">GitHub</a>
+					<a class="button ghost" href="../../stack.html">Stack context</a>
+				</div>
+			</div>
+			<div class="hero-card hero-right">
+				<div class="kicker">One MCP tool</div>
+				<pre class="code"><code>axf doctor
+axf list
+axf inspect echo say
+axf run echo say --message hello
+
+# MCP entrypoint
+axf mcp</code></pre>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="helps">
+			<h2 id="helps" class="kicker">When AXF helps</h2>
+			<div class="grid">
+				<article class="card"><h3>Repeated repo discovery</h3><p>Agents keep asking which test command, build command, or diagnostic command applies.</p></article>
+				<article class="card"><h3>Local safety rules</h3><p>Important rules live in prose, convention, or human memory instead of inspectable capability metadata.</p></article>
+				<article class="card"><h3>Brittle shell chains</h3><p>Common chores are rebuilt turn after turn instead of promoted into stable capability contracts.</p></article>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="surface">
+			<h2 id="surface" class="kicker">Current surface</h2>
+			<div class="grid">
+				<article class="card"><h3>Scout</h3><p>Inspect a workspace and identify candidate capabilities or missing local bearings.</p></article>
+				<article class="card"><h3>Inspect</h3><p>Ask what a capability is, what arguments it expects, and how AXF would launch it.</p></article>
+				<article class="card"><h3>Run</h3><p>Execute known capabilities through AXF's adapter path instead of raw shell fallback.</p></article>
+				<article class="card"><h3>Scaffold</h3><p>Create draft capabilities and adapters that can be reviewed before becoming active.</p></article>
+				<article class="card"><h3>Promote</h3><p>Move capabilities through lifecycle states when they are ready for agents to rely on.</p></article>
+				<article class="card"><h3>MCP</h3><p>Expose one <code>axf</code> MCP tool that routes into the same capability surface.</p></article>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="roots">
+			<h2 id="roots" class="kicker">Project and execution roots</h2>
+			<article class="card">
+				<p>AXF separates the root used to discover capability manifests from the root where execution should occur. In simple repos they are the same. In more advanced agent setups, the execution root can be a contained work area while the project root remains the canonical capability registry.</p>
+				<div class="code" style="margin-top:14px"><code>{
+  "env": {
+    "AXF_PROJECT_ROOT": "/path/to/project",
+    "AXF_EXECUTION_ROOT": "/path/to/execution-root"
+  }
+}</code></div>
+			</article>
+		</section>
+	</main>
+
+	<footer class="container footer">
+		<div>&copy; <span id="year"></span> SmarterGPT.dev</div>
+		<div class="pill">Source-available • Alpha contract • MCP-ready</div>
+	</footer>
+	<script src="../../assets/app.js"></script>
+</body>
+</html>
