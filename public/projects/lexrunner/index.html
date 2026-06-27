@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>LexRunner - Contained Flow for Agent Work | SmarterGPT.dev</title>
+	<meta name="description" content="LexRunner is the controlled-access flow layer for bounded agent work: deterministic plans, gates, receipts, contained execution roots, and swarm-ready coordination." />
+	<meta name="color-scheme" content="dark light" />
+	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
+	<link rel="stylesheet" href="../../assets/styles.css" />
+</head>
+<body>
+	<header class="container nav" role="navigation">
+		<div class="logo"><span class="logo-dot" aria-hidden="true"></span><a href="/" style="color:inherit;text-decoration:none"><span>SmarterGPT.dev</span></a></div>
+		<nav class="links" aria-label="Primary">
+			<a class="pill" href="../../stack.html" title="Operating Stack">Stack</a>
+			<a class="pill" href="../lex/index.html" title="Lex">Lex</a>
+			<a class="pill" href="../axf/index.html" title="AXF">AXF</a>
+			<a class="pill" href="../lexthority/index.html" title="LexThority">LexThority</a>
+			<a class="pill" href="../../docs/research/index.html" title="Research">Research</a>
+			<a class="pill" href="../../roadmap.html" title="Roadmap">Roadmap</a>
+		</nav>
+	</header>
+
+	<main class="container">
+		<section class="hero">
+			<div class="hero-left">
+				<span class="badge">Controlled-access source • Not public npm</span>
+				<h1>LexRunner coordinates bounded agent flow.</h1>
+				<p class="tagline">LexRunner is the flow layer for multi-step and multi-agent work. It consumes memory, capability, behavior, and authority surfaces, then turns a plan into gated execution with receipts.</p>
+				<p class="tagline" style="margin-top:12px">The next important direction is contained swarm work: separate execution roots where agents can explore in parallel without leaking state, credentials, or half-finished changes into each other.</p>
+				<div class="cta">
+					<a class="button primary" href="../../request-access.html">Request controlled access</a>
+					<a class="button" href="../../stack.html">Stack context</a>
+					<a class="button ghost" href="../../roadmap.html">Roadmap</a>
+				</div>
+			</div>
+			<div class="hero-card hero-right">
+				<div class="kicker">Consumes, does not own</div>
+				<pre class="code"><code>Lex        -> memory and receipts
+AXF        -> workspace capabilities
+LexSona    -> behavioral constraints
+LexThority -> authority decisions
+
+LexRunner  -> flow, gates, isolation, merge</code></pre>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="runner-job">
+			<h2 id="runner-job" class="kicker">What LexRunner owns</h2>
+			<div class="grid">
+				<article class="card"><h3>Plans</h3><p>Turn a work objective into an explicit plan with ordered steps, dependencies, expected artifacts, and review boundaries.</p></article>
+				<article class="card"><h3>Gates</h3><p>Run the right checks before a change advances: tests, lint, policy checks, authority checks, review hooks, and human escalation.</p></article>
+				<article class="card"><h3>Receipts</h3><p>Capture what happened at each step so another agent or human can understand the state without reconstructing the whole run.</p></article>
+				<article class="card"><h3>Containment</h3><p>Give agents a bounded place to work. The design goal is safer than raw worktrees: scoped roots, explicit mounted state, and clear promotion.</p></article>
+				<article class="card"><h3>Coordination</h3><p>Fan out independent work and merge it back through deterministic decisions, not conversational handoffs.</p></article>
+				<article class="card"><h3>Recovery</h3><p>When a tool, permission, test, or policy blocks work, return an actionable explanation instead of continuing blindly.</p></article>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="swarm">
+			<h2 id="swarm" class="kicker">Swarm-ready direction</h2>
+			<p class="section-lede">Agent swarm behavior should not mean every agent shares the same checkout, credentials, and context. The useful version is bounded parallelism.</p>
+			<div class="numbered-list">
+				<article class="card">
+					<h3>Separate execution roots.</h3>
+					<p>Each agent receives a contained working area with an explicit relationship to the project root and a known promotion path.</p>
+				</article>
+				<article class="card">
+					<h3>Per-agent authority envelopes.</h3>
+					<p>A PM-shaped agent, analyst-shaped agent, developer-shaped agent, and operator-shaped agent should not all carry the same authority posture.</p>
+				</article>
+				<article class="card">
+					<h3>Credential reality stays external.</h3>
+					<p>LexRunner should not become an IAM broker. It should discover when the environment cannot perform an effect and report the exact missing operator action.</p>
+				</article>
+				<article class="card">
+					<h3>Promotion is gated.</h3>
+					<p>Artifacts move from contained work into canonical branches, queues, tickets, or reports only after gates and receipts make the decision reviewable.</p>
+				</article>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="not">
+			<h2 id="not" class="kicker">What LexRunner should not become</h2>
+			<table class="comparison-table">
+				<tbody>
+					<tr><th>Not memory</th><td>Lex owns durable memory, Frames, policy context, and recall.</td></tr>
+					<tr><th>Not a persona engine</th><td>LexSona owns behavioral constraints and posture.</td></tr>
+					<tr><th>Not an authority broker</th><td>LexThority owns effect decisions; enterprise IAM remains the source of truth for actual credentials.</td></tr>
+					<tr><th>Not a command catalog</th><td>AXF owns workspace capability declarations and adapter contracts.</td></tr>
+					<tr><th>Not a rigid SOP engine</th><td>Runner should leave room for agent reasoning while bounding effects through gates, receipts, and promotion rules.</td></tr>
+				</tbody>
+			</table>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="access">
+			<div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap">
+				<div>
+					<h3 style="margin:0 0 6px">Current access state</h3>
+					<p style="margin:0;color:#c8d3ea">LexRunner is not published on npm and the source is controlled-access while the containment and swarm model is still settling.</p>
+				</div>
+				<div class="cta">
+					<a class="button primary" href="../../request-access.html">Request access</a>
+					<a class="button" href="../lex/index.html">Start with Lex</a>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer class="container footer">
+		<div>&copy; <span id="year"></span> SmarterGPT.dev</div>
+		<div class="pill">Flow • Gates • Containment • Receipts</div>
+	</footer>
+	<script src="../../assets/app.js"></script>
+</body>
+</html>

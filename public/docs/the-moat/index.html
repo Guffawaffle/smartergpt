@@ -3,21 +3,21 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>The Moat — Policy-Aware Reasoning | SmarterGPT.dev</title>
-	<meta name="description" content="Why shared vocabulary (policy + memory + lex.yaml contracts) enables explainable, receipt-driven reasoning across teams." />
+	<title>Why the Stack Compounds | SmarterGPT.dev</title>
+	<meta name="description" content="The technical advantage of the SmarterGPT stack: shared vocabulary, local memory, declared capabilities, authority receipts, behavior constraints, and reproducible flow." />
 	<meta name="color-scheme" content="dark light" />
 	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
 	<link rel="stylesheet" href="../../assets/styles.css" />
 </head>
 <body>
 	<header class="container nav" role="navigation">
-		<div class="logo"><span class="logo-dot" aria-hidden="true"></span><span><a href="/" style="color:inherit;text-decoration:none">SmarterGPT.dev</a></span></div>
+		<div class="logo"><span class="logo-dot" aria-hidden="true"></span><a href="/" style="color:inherit;text-decoration:none"><span>SmarterGPT.dev</span></a></div>
 		<nav class="links" aria-label="Primary">
+			<a class="pill" href="../../stack.html" title="Operating Stack">Stack</a>
 			<a class="pill" href="../../projects/lex/index.html" title="Lex">Lex</a>
-			<a class="pill" href="../../projects/lex-pr/index.html" title="LexRunner">LexRunner</a>
+			<a class="pill" href="../../projects/axf/index.html" title="AXF">AXF</a>
+			<a class="pill" href="../../projects/lexthority/index.html" title="LexThority">LexThority</a>
 			<a class="pill" href="../research/index.html" title="Research">Research</a>
-			<a class="pill" href="index.html" title="Moat">Moat</a>
-			<a class="pill" href="../how-to-use/index.html" title="How to Use">Guide</a>
 			<a class="pill" href="../../roadmap.html" title="Roadmap">Roadmap</a>
 		</nav>
 	</header>
@@ -25,9 +25,23 @@
 	<main class="container">
 		<section class="hero">
 			<div class="hero-left">
-				<span class="badge" aria-label="Page type"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg> Concept</span>
-				<h1>The Moat: Policy-Aware Reasoning with Receipts</h1>
-				<p class="tagline">The same module vocabulary connects architecture policy, episodic memory, and workflow contracts (<code>lex.yaml</code>), letting assistants answer "why" with citations.</p>
+				<span class="badge">Technical positioning</span>
+				<h1>The stack compounds because every layer writes receipts.</h1>
+				<p class="tagline">The useful advantage is not secret prompts. It is a shared operating vocabulary that agents, tools, humans, and CI can inspect.</p>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="parts">
+			<h2 id="parts" class="kicker">Compounding surfaces</h2>
+			<div class="grid">
+				<article class="card"><h3>Lex remembers</h3><p>Frames and recall let work survive model sessions, context resets, branch switches, and human handoff.</p></article>
+				<article class="card"><h3>AXF declares</h3><p>Capabilities turn local repo ceremony into inspectable actions instead of repeated shell guessing.</p></article>
+				<article class="card"><h3>LexThority decides</h3><p>Authority checks become concrete allow, escalate, or deny decisions tied to effects and envelopes.</p></article>
+				<article class="card"><h3>LexSona constrains</h3><p>Persona and learned corrections become deterministic behavioral constraints, not mood boards.</p></article>
+				<article class="card"><h3>LexRunner coordinates</h3><p>Plans, gates, contained execution roots, and promotion rules make agent swarms reviewable.</p></article>
+				<article class="card"><h3>Receipts connect them</h3><p>Every layer can leave evidence another layer can use: what happened, what failed, what was denied, and what comes next.</p></article>
 			</div>
 		</section>
 
@@ -35,44 +49,41 @@
 
 		<section aria-labelledby="why">
 			<h2 id="why" class="kicker">Why this matters</h2>
-			<div class="grid">
-				<article class="card"><h3>Single Vocabulary</h3><p>Modules in Frames match modules in <code>lexmap.policy.json</code> and workflows in <code>lex.yaml</code>. No drift, no guesswork.</p></article>
-				<article class="card"><h3>Explainability</h3><p>Answers come with receipts: timestamps, blockers, policy edges, and workflow context that explain blockers.</p></article>
-				<article class="card"><h3>Org Scale</h3><p>Frames across teams align with org policy to provide consistent, auditable reasoning.</p></article>
-				<article class="card"><h3>Contract Stability</h3><p>With Lex 2.0.0 and AX guarantees, the contract surfaces are stable. Agents and runners can depend on Frames, policy, and <code>lex.yaml</code> without surprises.</p></article>
+			<div class="numbered-list">
+				<article class="card">
+					<h3>Agents can recover.</h3>
+					<p>A failed command, denied effect, missing credential, or policy conflict should become an actionable next step instead of conversational confusion.</p>
+				</article>
+				<article class="card">
+					<h3>Humans can audit.</h3>
+					<p>Receipts let reviewers inspect the decision chain without reading an entire chat transcript or reverse-engineering tool calls.</p>
+				</article>
+				<article class="card">
+					<h3>Security can stay external.</h3>
+					<p>The stack can cooperate with IAM, CI, and compliance systems without pretending to be the source of truth for credentials or approval.</p>
+				</article>
+				<article class="card">
+					<h3>Capabilities can spread across domains.</h3>
+					<p>The same structure that helps code agents can help analysts, operators, PMs, support teams, and compliance reviewers.</p>
+				</article>
 			</div>
 		</section>
 
 		<section class="hr" role="separator"></section>
 
-		<section aria-labelledby="contracts">
-			<h2 id="contracts" class="kicker">The Contract Surface</h2>
-			<article class="card" style="border-left:3px solid var(--accent)">
-				<p>Lex 1.0.0 provides three stable contract surfaces that form the moat:</p>
-				<ul style="padding-left:20px;margin-top:12px">
-					<li><strong>Frames</strong>: timestamped work session snapshots with module_scope that matches policy vocabulary.</li>
-					<li><strong>lexmap.policy.json</strong>: machine-readable architecture boundaries using the same module IDs.</li>
-					<li><strong>lex.yaml</strong>: intent-level workflow contracts describing what work exists and what policies apply.</li>
-				</ul>
-				<p style="margin-top:12px">Because all three use the same vocabulary, an assistant can cite which policy rule was violated, which Frame observed it, and which workflow it is blocking — all with receipts.</p>
-			</article>
-		</section>
-
-		<section class="hr" role="separator"></section>
-
 		<section aria-labelledby="links">
-			<h2 id="links" class="kicker">Learn More</h2>
+			<h2 id="links" class="kicker">Read next</h2>
 			<div class="grid">
-				<article class="card"><h3>Lex 2.0.0</h3><p><a style="color:var(--accent)" href="../../projects/lex/index.html">About Lex</a> — policy + memory + contracts with shared vocabulary and AX‑native guarantees.</p></article>
-				<article class="card"><h3>lex.yaml Contracts</h3><p><a style="color:var(--accent)" href="../lex-yaml-contracts.html">lex.yaml</a> — intent-level workflow contracts for your repo.</p></article>
-				<article class="card"><h3>Research</h3><p><a style="color:var(--accent)" href="../research/index.html">Adjacency-Constrained Memory</a> — fold radius and policy-aware pruning.</p></article>
+				<article class="card"><h3>Operating stack</h3><p>The current map of the five layers and where they are going.</p><a class="button" href="../../stack.html">Open stack</a></article>
+				<article class="card"><h3>Research</h3><p>Technical notes behind AX, control surfaces, receipts, and bounded autonomy.</p><a class="button" href="../research/index.html">Open research</a></article>
+				<article class="card"><h3>Roadmap</h3><p>Current package status and the near-term development path.</p><a class="button" href="../../roadmap.html">Open roadmap</a></article>
 			</div>
 		</section>
 	</main>
 
 	<footer class="container footer">
 		<div>&copy; <span id="year"></span> SmarterGPT.dev</div>
-		<div class="pill">Agent-friendly • CI-first • Human-in-the-loop</div>
+		<div class="pill">Shared vocabulary • Receipts • Recovery</div>
 	</footer>
 	<script src="../../assets/app.js"></script>
 </body>

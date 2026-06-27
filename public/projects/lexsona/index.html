@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>LexSona - Behavioral Constraints for Agents | SmarterGPT.dev</title>
+	<meta name="description" content="LexSona is the behavioral constraint engine for the SmarterGPT stack. Personas and learned rules produce deterministic constraints; LexSona never executes work." />
+	<meta name="color-scheme" content="dark light" />
+	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
+	<link rel="stylesheet" href="../../assets/styles.css" />
+</head>
+<body>
+	<header class="container nav" role="navigation">
+		<div class="logo"><span class="logo-dot" aria-hidden="true"></span><a href="/" style="color:inherit;text-decoration:none"><span>SmarterGPT.dev</span></a></div>
+		<nav class="links" aria-label="Primary">
+			<a class="pill" href="../../stack.html" title="Operating Stack">Stack</a>
+			<a class="pill" href="../lex/index.html" title="Lex">Lex</a>
+			<a class="pill" href="../axf/index.html" title="AXF">AXF</a>
+			<a class="pill" href="../lexthority/index.html" title="LexThority">LexThority</a>
+			<a class="pill" href="../../docs/research/index.html" title="Research">Research</a>
+			<a class="pill" href="../../roadmap.html" title="Roadmap">Roadmap</a>
+		</nav>
+	</header>
+
+	<main class="container">
+		<section class="hero">
+			<div class="hero-left">
+				<span class="badge">Controlled-access source • Not public npm</span>
+				<h1>LexSona turns persona and correction history into constraints.</h1>
+				<p class="tagline">LexSona is the behavioral constraint engine in the stack. It derives constraints from active personas, baseline rules, and learned corrections, then returns those constraints to the consuming agent or runner.</p>
+				<p class="tagline" style="margin-top:12px">It never executes tools, assembles prompts, runs gates, stores Frames, or silently substitutes a safer persona when memory is missing.</p>
+				<div class="cta">
+					<a class="button primary" href="../../request-access.html">Request access</a>
+					<a class="button" href="../../stack.html">Stack context</a>
+				</div>
+			</div>
+			<div class="hero-card hero-right">
+				<div class="kicker">Dependency chain</div>
+				<pre class="code"><code>Lex can run by itself.
+LexSona needs Lex.
+LexRunner needs both.</code></pre>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="principles">
+			<h2 id="principles" class="kicker">Core principles</h2>
+			<div class="grid">
+				<article class="card"><h3>Returns constraints</h3><p>LexSona derives behavioral constraints. It does not call tools or orchestrate work.</p></article>
+				<article class="card"><h3>Deterministic</h3><p>Same persona, rules, and context should produce the same constraint set.</p></article>
+				<article class="card"><h3>Auditable</h3><p>Rules and derivations are inspectable, including where a learned correction came from.</p></article>
+				<article class="card"><h3>Scoped</h3><p>Behavioral rules are namespaced by project, domain, or module so corrections do not leak everywhere.</p></article>
+				<article class="card"><h3>Offline explicit</h3><p>Offline-safe personas declare confidence ceilings and disclaimers. Connected personas fail loudly without memory.</p></article>
+				<article class="card"><h3>Access-aware future</h3><p>In enterprise settings, Sona identity can shape posture and requested authority without pretending to own IAM.</p></article>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="naming">
+			<h2 id="naming" class="kicker">Persona naming</h2>
+			<article class="card">
+				<p>LexSona uses decision-style persona IDs. The name describes how an agent approaches decisions, not a theatrical character.</p>
+				<div class="code" style="margin-top:14px"><code>quality-first_engineering
+momentum-first_product
+risk-reducer_operations
+scope-warden_security</code></div>
+			</article>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="boundary">
+			<h2 id="boundary" class="kicker">Boundary with LexThority</h2>
+			<div class="grid">
+				<article class="card"><h3>LexSona</h3><p>What posture should this agent take? How cautious should it be? Which behavioral rules apply?</p></article>
+				<article class="card"><h3>LexThority</h3><p>Given this envelope and this effect, may the agent attempt it, should it escalate, or must it deny?</p></article>
+				<article class="card"><h3>Lex</h3><p>What prior corrections, receipts, and denials should be remembered for future behavior?</p></article>
+			</div>
+		</section>
+	</main>
+
+	<footer class="container footer">
+		<div>&copy; <span id="year"></span> SmarterGPT.dev</div>
+		<div class="pill">Behavioral constraints • Personas • Learned rules</div>
+	</footer>
+	<script src="../../assets/app.js"></script>
+</body>
+</html>

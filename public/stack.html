@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>The SmarterGPT Operating Stack | SmarterGPT.dev</title>
+	<meta name="description" content="A technical overview of the SmarterGPT operating stack: Lex, AXF, LexThority, LexSona, and LexRunner, and how they advance agent work beyond software development." />
+	<meta name="color-scheme" content="dark light" />
+	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
+	<link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+	<header class="container nav" role="navigation">
+		<div class="logo"><span class="logo-dot" aria-hidden="true"></span><a href="/" style="color:inherit;text-decoration:none"><span>SmarterGPT.dev</span></a></div>
+		<nav class="links" aria-label="Primary">
+			<a class="pill" href="stack.html" title="Operating Stack">Stack</a>
+			<a class="pill" href="projects/lex/index.html" title="Lex">Lex</a>
+			<a class="pill" href="projects/axf/index.html" title="AXF">AXF</a>
+			<a class="pill" href="projects/lexthority/index.html" title="LexThority">LexThority</a>
+			<a class="pill" href="docs/research/index.html" title="Research">Research</a>
+			<a class="pill" href="roadmap.html" title="Roadmap">Roadmap</a>
+		</nav>
+	</header>
+
+	<main class="container">
+		<section class="stack-hero">
+			<div>
+				<span class="badge">Operating stack</span>
+				<h1>Agents need an operating environment, not just tool access.</h1>
+				<p class="tagline">The current agent ecosystem gives us strong models, MCP transports, IDE copilots, CI, cloud APIs, and workflow engines. Those are necessary. They are not sufficient.</p>
+				<p class="tagline" style="margin-top:12px">SmarterGPT fills the layer between model reasoning and real-world action: what the agent remembers, what the workspace exposes, what authority it has, which behavior rules apply, and how work is coordinated.</p>
+			</div>
+			<figure class="architecture-figure">
+				<img src="assets/hero-architecture.png" alt="Four connected system surfaces around a central decision hub" />
+				<figcaption>The stack separates memory, workspace capabilities, authority, behavior, and orchestration so each layer can fail clearly and be audited independently.</figcaption>
+			</figure>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="landscape">
+			<h2 id="landscape" class="kicker">What exists outside this work</h2>
+			<p class="section-lede">Most teams already have pieces of an agent stack. The problem is that the pieces rarely agree on responsibility.</p>
+			<div class="grid">
+				<article class="card"><h3>Models and IDE agents</h3><p>They reason, edit, and explain. They still forget local facts, repeat setup, and struggle when the repo's rules are implicit.</p></article>
+				<article class="card"><h3>MCP and tool connectors</h3><p>They expose actions. They do not define which action is appropriate for this role, this credential, this workspace, and this risk level.</p></article>
+				<article class="card"><h3>IAM, CI, and workflow engines</h3><p>They enforce important boundaries. They usually report failure after the agent has already chosen an operation, not before it reasons about authority.</p></article>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="gap">
+			<h2 id="gap" class="kicker">The missing layer</h2>
+			<div class="numbered-list">
+				<article class="card">
+					<h3>Memory has to be local and inspectable.</h3>
+					<p>Agents need durable work memory that belongs to the workspace: what happened, why it stopped, which policy was involved, and what should happen next.</p>
+				</article>
+				<article class="card">
+					<h3>Capabilities have to be declared by the workspace.</h3>
+					<p>Every repo has its own build, test, search, diagnose, and release ceremony. Agents should discover those through a contract instead of guessing shell chains.</p>
+				</article>
+				<article class="card">
+					<h3>Authority has to be concrete.</h3>
+					<p>Role-like posture is useful, but the key question is effect-level: this agent, in this envelope, wants to do this operation. Is it allowed, denied, or escalated?</p>
+				</article>
+				<article class="card">
+					<h3>Behavior has to be deterministic.</h3>
+					<p>Personas should not be vibes. They should derive constraints that can be inspected, scoped, and declined when the right memory or confidence is unavailable.</p>
+				</article>
+				<article class="card">
+					<h3>Flow has to be reproducible.</h3>
+					<p>Multi-agent work needs isolated execution environments, explicit gates, receipts, and deterministic plans so swarm behavior does not become unreviewable chaos.</p>
+				</article>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="map">
+			<h2 id="map" class="kicker">How the pieces compose</h2>
+			<table class="comparison-table">
+				<thead>
+					<tr>
+						<th>Layer</th>
+						<th>Current role</th>
+						<th>Status</th>
+						<th>Public surface</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><strong>Lex</strong></td>
+						<td>Memory, policy context, recall, instructions, local SQLite, CLI/MCP/API.</td>
+						<td>Public MIT. <span class="npm-version" data-npm-package="@smartergpt/lex">npm latest</span>.</td>
+						<td><a href="projects/lex/index.html">Project page</a> / <a href="https://github.com/Guffawaffle/lex">GitHub</a></td>
+					</tr>
+					<tr>
+						<td><strong>AXF</strong></td>
+						<td>Workspace-native capability declarations and execution surface.</td>
+						<td>Public source-available alpha. <span class="npm-version" data-npm-package="@smartergpt/axf">npm latest</span>.</td>
+						<td><a href="projects/axf/index.html">Project page</a> / <a href="https://github.com/Guffawaffle/axf">GitHub</a></td>
+					</tr>
+					<tr>
+						<td><strong>LexThority</strong></td>
+						<td>Authority envelopes, effect decisions, escalation, and receipts.</td>
+						<td>Public source-available preview. Not published on npm yet.</td>
+						<td><a href="projects/lexthority/index.html">Sneak peek</a> / <a href="https://github.com/Guffawaffle/lexthority">GitHub</a></td>
+					</tr>
+					<tr>
+						<td><strong>LexSona</strong></td>
+						<td>Behavioral constraints derived from personas and learned rules.</td>
+						<td>Controlled-access source. Not public npm.</td>
+						<td><a href="projects/lexsona/index.html">Concept page</a></td>
+					</tr>
+					<tr>
+						<td><strong>LexRunner</strong></td>
+						<td>Fan-out, gates, merge plans, contained execution, and swarm-style flow.</td>
+						<td>Controlled-access source. Not public npm.</td>
+						<td><a href="projects/lexrunner/index.html">Concept page</a></td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="lmv">
+			<h2 id="lmv" class="kicker">LMV evidence doctrine</h2>
+			<p class="section-lede">LMV is the evidence-backed operational memory layer now being upstreamed into Lex and AXF. It makes the difference between remembered context and validated knowledge explicit.</p>
+			<table class="comparison-table">
+				<thead>
+					<tr>
+						<th>Precept</th>
+						<th>Stack behavior</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr><td>Evidence is not truth.</td><td>Evidence references are typed witnesses, not final authority.</td></tr>
+					<tr><td>Memory is not evidence.</td><td>Frames can guide inquiry without pretending to close validation.</td></tr>
+					<tr><td>Recall is not certainty.</td><td>Agents verify current files, logs, tests, receipts, or runtime state before major action.</td></tr>
+					<tr><td>Uncertainty is part of truth.</td><td>Unknown, partial, stale, and invalidated states remain valid records.</td></tr>
+					<tr><td>Contradiction is signal.</td><td>Conflicting Frames link together instead of silently overwriting each other.</td></tr>
+					<tr><td>Forgetting is a feature.</td><td>Retention can expire, demote, supersede, or promote memory.</td></tr>
+					<tr><td>Assimilation must add distinctiveness.</td><td>Durable memory should change future behavior or prevent repeated work.</td></tr>
+					<tr><td>Provenance is dignity.</td><td>Claims cite files, commands, logs, receipts, commits, PRs, URLs, or upstream Frames.</td></tr>
+					<tr><td>Boundaries are consent.</td><td>Frames and capabilities state scope, data class, trust zone, and authorization limits.</td></tr>
+					<tr><td>Power requires audit.</td><td>Meaningful effects emit structured records with actor, scope, reason, result, and validation.</td></tr>
+					<tr><td>The operator remains sovereign.</td><td>Stop conditions and escalation protect destructive, secret-bearing, remote, or unbounded actions.</td></tr>
+					<tr><td>Failure under discipline is inquiry.</td><td>Failed bounded experiments can be preserved when their result changes future action.</td></tr>
+				</tbody>
+			</table>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="future">
+			<h2 id="future" class="kicker">Where this goes</h2>
+			<div class="grid">
+				<article class="card">
+					<h3>Safer agent swarms</h3>
+					<p>LexRunner should be able to spin up contained, worktree-like execution environments where agents can explore in parallel without sharing unsafe state or credentials.</p>
+				</article>
+				<article class="card">
+					<h3>IAM-aware autonomy without IAM reinvention</h3>
+					<p>LexThority should not become an identity provider. It should consume the environment and existing broker reality, then produce clear allow/escalate/deny receipts when authority is missing.</p>
+				</article>
+				<article class="card">
+					<h3>Job-duty bounded tools</h3>
+					<p>Different agents should operate with different posture and access: PM, analyst, developer, operator. LexSona expresses behavioral duty; LexThority gates concrete effects.</p>
+				</article>
+			</div>
+		</section>
+
+		<section class="hr" role="separator"></section>
+
+		<section aria-labelledby="beyond">
+			<h2 id="beyond" class="kicker">Applications outside development</h2>
+			<p class="section-lede">Development is just the first domain because it has observable artifacts. The same operating stack applies anywhere agents touch tools under policy.</p>
+			<div class="grid">
+				<article class="card"><h3>Healthcare operations</h3><p>Separate PHI-sensitive memory, tool capability, credential reality, and escalation receipts instead of relying on prompt-only boundaries.</p></article>
+				<article class="card"><h3>Finance and analytics</h3><p>Agents can run known analysis capabilities, cite datasets and assumptions, and escalate when they lack authority to query or export.</p></article>
+				<article class="card"><h3>Security and compliance</h3><p>Every attempted effect can become an auditable receipt: what was attempted, why it was allowed or denied, and which operator decision remains.</p></article>
+			</div>
+		</section>
+	</main>
+
+	<footer class="container footer">
+		<div>&copy; <span id="year"></span> SmarterGPT.dev</div>
+		<div class="pill">Bounded autonomy with receipts</div>
+	</footer>
+	<script src="assets/app.js"></script>
+</body>
+</html>

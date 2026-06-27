@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const current = window.location.pathname || '/';
     const normalize = (p) => {
       // Remove duplicate slashes, strip trailing index.html and trailing slashes
-      let x = (p || '/').replace(/\\+/g, '/');
+      let x = (p || '/').replace(/\/+/g, '/');
       x = x.replace(/index\.html$/i, '');
       if (x.length > 1) x = x.replace(/\/+$/, '/');
       return x;
@@ -45,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const name = (fd.get('name') || '').toString().trim();
         const email = (fd.get('email') || '').toString().trim();
         const org = (fd.get('org') || '').toString().trim();
+        const interest = (fd.get('interest') || '').toString().trim();
         const use = (fd.get('use') || '').toString().trim();
         const github = (fd.get('github') || '').toString().trim();
 
@@ -54,11 +55,12 @@ document.addEventListener('DOMContentLoaded', () => {
           return;
         }
 
-        const subject = encodeURIComponent('LexRunner Access Request');
+        const subject = encodeURIComponent('SmarterGPT Controlled Access Request');
         const bodyLines = [
           `Name: ${name}`,
           `Email: ${email}`,
           org ? `Organization: ${org}` : '',
+          interest ? `Interest: ${interest}` : '',
           github ? `GitHub: ${github}` : '',
           '',
           'Intended Use / Goals:',
@@ -80,5 +82,48 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   } catch (_) {
     // ignore
+  }
+
+  // Hydrate package version badges from the npm registry.
+  // Static fallback text remains visible if the registry is unavailable.
+  try {
+    const nodes = Array.from(document.querySelectorAll('[data-npm-package]'));
+    const packages = [...new Set(nodes.map((node) => node.getAttribute('data-npm-package')).filter(Boolean))];
+    const cache = new Map();
+
+    packages.forEach(async (pkg) => {
+      try {
+        const response = await fetch(`https://registry.npmjs.org/${encodeURIComponent(pkg)}`, {
+          headers: { Accept: 'application/json' }
+        });
+
+        if (response.status === 404) {
+          cache.set(pkg, { state: 'missing', label: 'not published on npm' });
+        } else if (!response.ok) {
+          throw new Error(`npm registry returned ${response.status}`);
+        } else {
+          const data = await response.json();
+          const latest = data?.['dist-tags']?.latest || data?.version;
+          cache.set(pkg, {
+            state: 'loaded',
+            label: latest ? `npm ${latest}` : 'npm package'
+          });
+        }
+      } catch (_) {
+        cache.set(pkg, { state: 'error', label: 'npm status unavailable' });
+      }
+
+      nodes
+        .filter((node) => node.getAttribute('data-npm-package') === pkg)
+        .forEach((node) => {
+          const result = cache.get(pkg);
+          if (!result) return;
+          node.textContent = result.label;
+          node.setAttribute('data-state', result.state);
+          node.setAttribute('title', `${pkg}: ${result.label}`);
+        });
+    });
+  } catch (_) {
+    // no-op if fetch or DOM APIs are unavailable
   }
 });

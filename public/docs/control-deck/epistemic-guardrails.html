@@ -3,140 +3,39 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>Epistemic Guardrails — Control Deck | SmarterGPT.dev</title>
-	<meta name="description" content="Epistemic Guardrails make 'I don't know' a valued output, not a failure. Honest uncertainty over false confidence." />
+	<title>Epistemic Guardrails | SmarterGPT.dev</title>
+	<meta name="description" content="Epistemic guardrails make uncertainty, missing context, and confidence limits explicit in agent work." />
 	<meta name="color-scheme" content="dark light" />
-	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
 	<link rel="stylesheet" href="../../assets/styles.css" />
-	<style>
-		.concept-page { max-width: 720px; margin: 0 auto; }
-		.concept-page h2 { margin-top: 2.5rem; }
-		.concept-page h3 { margin-top: 2rem; color: var(--accent); }
-		.concept-page p { line-height: 1.8; margin-bottom: 1.25rem; }
-		.concept-page ul, .concept-page ol { padding-left: 1.5rem; margin-bottom: 1.25rem; }
-		.concept-page li { line-height: 1.7; margin-bottom: 0.5rem; }
-		.concept-page blockquote { border-left: 3px solid var(--accent); padding-left: 1.25rem; margin: 1.5rem 0; font-style: italic; font-size: 1.15rem; opacity: 0.95; }
-		.concept-page pre { background: rgba(0,0,0,0.3); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 1.25rem 0; }
-		.concept-page code { font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace; font-size: 0.9em; }
-		.concept-page table { width: 100%; border-collapse: collapse; margin: 1.25rem 0; }
-		.concept-page th, .concept-page td { text-align: left; padding: 12px; border-bottom: 1px solid var(--border); }
-		.concept-page th { font-weight: 600; }
-	</style>
 </head>
 <body>
 	<header class="container nav" role="navigation">
 		<div class="logo"><span class="logo-dot" aria-hidden="true"></span><a href="/" style="color:inherit;text-decoration:none"><span>SmarterGPT.dev</span></a></div>
 		<nav class="links" aria-label="Primary">
-			<a class="pill" href="../../projects/lex/index.html" title="Lex">Lex</a>
-			<a class="pill" href="../../projects/lex-pr/index.html" title="LexRunner">LexRunner</a>
-			<a class="pill" href="../research/index.html" title="Research">Research</a>
-			<a class="pill" href="../the-moat/index.html" title="Moat">Moat</a>
-			<a class="pill" href="../how-to-use/index.html" title="How to Use">Guide</a>
-			<a class="pill" href="../../roadmap.html" title="Roadmap">Roadmap</a>
+			<a class="pill" href="../../stack.html">Stack</a>
+			<a class="pill" href="../../projects/lex/index.html">Lex</a>
+			<a class="pill" href="../../projects/axf/index.html">AXF</a>
+			<a class="pill" href="../../projects/lexthority/index.html">LexThority</a>
+			<a class="pill" href="../research/index.html">Research</a>
+			<a class="pill" href="../../roadmap.html">Roadmap</a>
 		</nav>
 	</header>
-
 	<main class="container">
-		<section class="concept-page">
-			<p style="margin-bottom:8px"><a href="index.html" style="color:var(--accent);text-decoration:none">← Control Deck</a> · <a href="../research/frontier-model-control-stack.html#stop-pretending" style="color:var(--muted);text-decoration:none">Back to essay</a></p>
-			<h1>Epistemic Guardrails</h1>
-			<blockquote>Making "I don't know" a valued output, not a failure.</blockquote>
-
-			<h2>What it is</h2>
-			<p><strong>Epistemic Guardrails</strong> are mechanisms that reward honest uncertainty over false confidence. They create space for a model to say "I'm not sure" or "I need clarification" instead of producing plausible-sounding but potentially wrong outputs.</p>
-			<p>These guardrails address one of the deepest failure modes in AI systems: the pressure to always produce an answer, even when the right response is a question.</p>
-
-			<h2>Why it exists</h2>
-			<p>Models face a fundamental tension:</p>
-			<ul>
-				<li>Users expect confident, helpful responses</li>
-				<li>Many situations genuinely warrant uncertainty</li>
-				<li>Ambiguous prompts push models toward hallucination</li>
-			</ul>
-			<p>Without epistemic guardrails, models optimize for <em>appearing</em> competent rather than <em>being</em> accurate. They'll pick an interpretation instead of asking which one you meant. They'll fabricate details instead of admitting gaps.</p>
-			<p>Epistemic guardrails flip this incentive. Uncertainty surfacing becomes a feature, not a bug.</p>
-
-			<h2>How it shows up</h2>
-
-			<h3>The Red-Flag Mechanism</h3>
-			<p>When a model encounters something it can't handle well, it can produce an explicit escalation:</p>
-			<pre><code>{
-  "status": "escalate",
-  "reason": "Ambiguous specification",
-  "what_i_know": [
-    "The function should validate user input",
-    "Two validation approaches are possible"
-  ],
-  "what_i_dont_know": [
-    "Which validation approach is preferred",
-    "Whether performance or strictness should be prioritized"
-  ],
-  "suggested_questions": [
-    "Should validation reject or sanitize invalid input?",
-    "Is there a performance budget for this function?"
-  ]
-}</code></pre>
-			<p>This is a <strong>first-class output</strong>, not a failure mode. The model has done valuable work: identifying ambiguity and framing the decision for a human.</p>
-
-			<h3>Escalation Paths</h3>
-			<p>Not everything needs model judgment. Epistemic guardrails define when to hand off:</p>
-			<table>
-				<thead>
-					<tr><th>Situation</th><th>Response</th></tr>
-				</thead>
-				<tbody>
-					<tr><td>High-risk module + low confidence</td><td>Escalate to human reviewer</td></tr>
-					<tr><td>Security-critical change</td><td>Always escalate</td></tr>
-					<tr><td>Missing specification</td><td>Ask clarifying questions</td></tr>
-					<tr><td>Conflicting requirements</td><td>Surface both interpretations</td></tr>
-				</tbody>
-			</table>
-
-			<h3>Ambiguity Surfacing</h3>
-			<p>Instead of silently picking one interpretation:</p>
-			<p><strong>Without guardrails:</strong><br>
-			<em>"I'll implement the validation using strict mode."</em></p>
-			<p><strong>With guardrails:</strong><br>
-			<em>"The spec is ambiguous about validation strictness. Option A (strict) rejects all edge cases. Option B (permissive) sanitizes and accepts. Which approach should I use?"</em></p>
-
-			<h2>Epistemic State in Lex</h2>
-			<p><a href="../../projects/lex/index.html">Lex 1.0.0</a> Frames include fields for capturing uncertainty: <code>blockers</code>, <code>merge_blockers</code>, and <code>status_snapshot.next_action</code>. When an agent doesn't know something, it records that state—the Frame becomes a receipt of honest uncertainty, not a guess.</p>
-			<p>The second response is more useful because it <em>names the decision</em> instead of hiding it.</p>
-
-			<h2>Relationship to Modes</h2>
-			<p><a href="modes.html">Exploratory mode</a> has relaxed confidence requirements—it's explicitly for brainstorming where uncertainty is expected.</p>
-			<p><a href="modes.html">Conservative mode</a> has stricter requirements—if confidence is low, escalation is mandatory.</p>
-			<p>The mode determines the threshold, but the mechanism is the same: uncertainty is surfaced, not suppressed.</p>
-
-			<h2>The Key Insight</h2>
-			<table>
-				<thead>
-					<tr><th>Without Guardrails</th><th>With Guardrails</th></tr>
-				</thead>
-				<tbody>
-					<tr><td>Always produce an answer</td><td>Produce the <em>right</em> output (answer OR escalation)</td></tr>
-					<tr><td>Confidence is mandatory</td><td>Honest uncertainty is valued</td></tr>
-					<tr><td>Ambiguity is resolved silently</td><td>Ambiguity is surfaced explicitly</td></tr>
-					<tr><td>The model decides alone</td><td>The model collaborates on decisions</td></tr>
-				</tbody>
-			</table>
-			<p>A model that says "I don't know—here are the questions I'd need answered" is being maximally helpful, not failing.</p>
-
-			<div style="margin-top:3rem;padding:20px;background:rgba(0,194,255,0.08);border-radius:8px">
-				<h3 style="margin-top:0">Related Concepts</h3>
-				<div style="display:flex;gap:12px;flex-wrap:wrap">
-					<a class="button" href="modes.html">Modes</a>
-					<a class="button" href="policy-surface.html">Policy Surface</a>
-					<a class="button" href="index.html">Control Deck Overview</a>
-				</div>
+		<section class="hero"><div class="hero-left"><span class="badge">Control Deck</span><h1>Uncertainty should be a first-class output.</h1><p class="tagline">Good agent tooling makes missing context, low confidence, blocked access, and unsupported assumptions visible before they become silent errors.</p></div></section>
+		<section class="hr" role="separator"></section>
+		<section aria-labelledby="patterns">
+			<h2 id="patterns" class="kicker">Guardrail patterns</h2>
+			<div class="grid">
+				<article class="card"><h3>Confidence ceilings</h3><p>LexSona-style constraints can cap how assertive a response should be when memory is offline or evidence is thin.</p></article>
+				<article class="card"><h3>Recoverable failures</h3><p>Lex and AXF should return structured errors that tell the agent what to inspect, install, request, or retry.</p></article>
+				<article class="card"><h3>Authority denials</h3><p>LexThority should explain whether a denial came from scope, missing credential, missing approval, or forbidden effect.</p></article>
+				<article class="card"><h3>Handoff Frames</h3><p>When work stops, Lex should preserve the next action and blocker so the next run does not invent state.</p></article>
 			</div>
 		</section>
+		<section class="hr" role="separator"></section>
+		<section aria-labelledby="rule"><h2 id="rule" class="kicker">Working rule</h2><article class="card"><p>An agent that can say exactly what it does not know is safer and more useful than an agent that smooths over missing context.</p></article></section>
 	</main>
-
-	<footer class="container footer">
-		<div>&copy; <span id="year"></span> SmarterGPT.dev</div>
-		<div class="pill">Agent-friendly • CI-first • Human-in-the-loop</div>
-	</footer>
+	<footer class="container footer"><div>&copy; <span id="year"></span> SmarterGPT.dev</div><div class="pill"><a href="index.html">Control Deck</a></div></footer>
 	<script src="../../assets/app.js"></script>
 </body>
 </html>

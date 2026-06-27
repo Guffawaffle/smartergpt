@@ -3,97 +3,15 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>What is Merge Pyramid? — SmarterGPT.dev</title>
-	<meta name="description" content="Learn about the Merge Pyramid concept: layered validation and gates for content and code evolution." />
-	<meta name="color-scheme" content="dark light" />
-	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
+	<meta http-equiv="refresh" content="0; url=../../projects/lexrunner/index.html" />
+	<title>Merge Pyramid moved | SmarterGPT.dev</title>
+	<meta name="description" content="Merge Pyramid content now lives under the LexRunner flow concept page." />
 	<link rel="stylesheet" href="../../assets/styles.css" />
 </head>
 <body>
-	<header class="container nav" role="navigation">
-		<div class="logo"><span class="logo-dot" aria-hidden="true"></span><span><a href="/" style="color:inherit;text-decoration:none">SmarterGPT.dev</a></span></div>
-		<nav class="links" aria-label="Primary">
-			<a class="pill" href="../../projects/lex/index.html" title="Lex">Lex</a>
-			<a class="pill" href="../../projects/lex-pr/index.html" title="LexRunner">LexRunner</a>
-			<a class="pill" href="../research/index.html" title="Research">Research</a>
-			<a class="pill" href="../the-moat/index.html" title="Moat">Moat</a>
-			<a class="pill" href="../how-to-use/index.html" title="How to Use">Guide</a>
-			<a class="pill" href="../../roadmap.html" title="Roadmap">Roadmap</a>
-		</nav>
-	</header>
-
-	<main class="container">
-		<section class="hero">
-			<div class="hero-left">
-				<span class="badge" aria-label="Concept overview"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg> Concept</span>
-				<h1>What is Merge Pyramid?</h1>
-				<p class="tagline">Merge Pyramid is a layered validation strategy that ensures content and code quality through progressive gates before integration.</p>
-				<p class="tagline" style="margin-top:12px">The strategy works because <strong>Lex 2.0.0</strong> provides stable contracts and AX guarantees (Frames, policy, <code>lex.yaml</code>) that runners can depend on without breaking.</p>
-			</div>
-		</section>
-
-		<section class="hr" role="separator"></section>
-
-		<section aria-labelledby="layers">
-			<h2 id="layers" class="kicker">The Three Layers</h2>
-			<div class="grid">
-				<article class="card">
-					<h3><span class="step">Layer 1:</span> Local Gates</h3>
-					<p>Pre-integration validation runs on the developer's machine or in CI. Includes linting, type-checking, unit tests, and formatting checks. Catches issues early before they enter the merge pipeline.</p>
-				</article>
-				<article class="card">
-					<h3><span class="step">Layer 2:</span> Integration Gates</h3>
-					<p>Post-merge validation ensures compatibility when combining multiple branches. Runs integration tests, builds full artifacts, and validates cross-component interactions. Prevents conflicts in the combined codebase.</p>
-				</article>
-				<article class="card">
-					<h3><span class="step">Layer 3:</span> Deployment Gates</h3>
-					<p>Final validation before production deployment. Executes smoke tests, security scans, performance benchmarks, and deployment readiness checks. Ensures the pyramid is stable at the apex.</p>
-				</article>
-			</div>
-		</section>
-
-		<section class="hr" role="separator"></section>
-
-		<section aria-labelledby="rationale">
-			<h2 id="rationale" class="kicker">Why Pyramid?</h2>
-			<div class="card">
-				<h3>Progressive Quality Assurance</h3>
-				<p>The pyramid structure reflects increasing confidence and scope at each layer. Fast, focused checks at the base catch most issues early. Slower, comprehensive checks at higher layers validate integration and deployment readiness. This approach minimizes feedback loops while maximizing quality.</p>
-			</div>
-		</section>
-
-		<section class="hr" role="separator"></section>
-
-		<section aria-labelledby="diagram">
-			<h2 id="diagram" class="kicker">Visual Overview</h2>
-			<div class="card" style="text-align:center;padding:48px 24px">
-				<div style="color:var(--muted);font-style:italic">
-					📊 Diagram placeholder: Merge Pyramid visualization
-				</div>
-				<p style="margin-top:16px;color:#c8d3ea">A visual representation of the three-layer validation strategy will be added here.</p>
-			</div>
-		</section>
-
-		<section class="hr" role="separator"></section>
-
-		<section aria-labelledby="cta">
-			<div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap">
-				<div>
-					<h3 style="margin:0 0 6px">Ready to build your pyramid?</h3>
-					<p style="margin:0;color:#c8d3ea">Start with Lex contracts, then let LexRunner handle the merge logic.</p>
-				</div>
-				<div class="cta">
-					<a class="button primary" href="../../projects/lex/index.html" title="Get Lex">Get Lex 2.0.0</a>
-					<a class="button" href="../../projects/lex-pr/index.html" title="Learn about LexRunner">LexRunner</a>
-				</div>
-			</div>
-		</section>
+	<main class="container" style="padding-block:64px">
+		<h1>Merge Pyramid is now part of LexRunner flow.</h1>
+		<p class="tagline">The current concept page is <a href="../../projects/lexrunner/index.html">LexRunner: Contained Flow for Agent Work</a>.</p>
 	</main>
-
-	<footer class="container footer">
-		<div>&copy; <span id="year"></span> SmarterGPT.dev</div>
-		<div class="pill">Agent-friendly • CI-first • Human-in-the-loop</div>
-	</footer>
-	<script src="../../assets/app.js"></script>
 </body>
 </html>

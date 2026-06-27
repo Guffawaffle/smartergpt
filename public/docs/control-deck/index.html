@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>The Control Deck | SmarterGPT.dev</title>
-	<meta name="description" content="Not bigger, better constrained. An architecture for AI collaboration that treats model limitations as design constraints to build around." />
+	<title>Control Deck | SmarterGPT.dev</title>
+	<meta name="description" content="The operating concepts behind the SmarterGPT stack: receipts, gates, modes, policy surface, epistemic guardrails, and scope." />
 	<meta name="color-scheme" content="dark light" />
 	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
 	<link rel="stylesheet" href="../../assets/styles.css" />
@@ -13,11 +13,11 @@
 	<header class="container nav" role="navigation">
 		<div class="logo"><span class="logo-dot" aria-hidden="true"></span><a href="/" style="color:inherit;text-decoration:none"><span>SmarterGPT.dev</span></a></div>
 		<nav class="links" aria-label="Primary">
+			<a class="pill" href="../../stack.html" title="Operating Stack">Stack</a>
 			<a class="pill" href="../../projects/lex/index.html" title="Lex">Lex</a>
-			<a class="pill" href="../../projects/lex-pr/index.html" title="LexRunner">LexRunner</a>
+			<a class="pill" href="../../projects/axf/index.html" title="AXF">AXF</a>
+			<a class="pill" href="../../projects/lexthority/index.html" title="LexThority">LexThority</a>
 			<a class="pill" href="../research/index.html" title="Research">Research</a>
-			<a class="pill" href="../the-moat/index.html" title="Moat">Moat</a>
-			<a class="pill" href="../how-to-use/index.html" title="How to Use">Guide</a>
 			<a class="pill" href="../../roadmap.html" title="Roadmap">Roadmap</a>
 		</nav>
 	</header>
@@ -25,150 +25,56 @@
 	<main class="container">
 		<section class="hero">
 			<div class="hero-left">
-				<span class="badge" aria-label="Page type"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg> Architecture</span>
-				<h1>The Control Deck</h1>
-				<p class="tagline"><strong>Not bigger, better constrained.</strong> An architecture for AI collaboration that treats model limitations not as embarrassments to hide, but as design constraints to build around.</p>
-				<p class="tagline" style="margin-top:12px">Implemented through the <strong>Cognitive Trinity</strong>: <a href="../research/index.html" style="color:inherit;text-decoration:underline">Lex (mind) + LexRunner (body) + LexSona (soul)</a>.</p>
-				<p style="font-size:0.85rem;color:var(--muted);margin-top:8px"><em>Note: Research papers use "Control Stack" — same concepts, different name.</em></p>
+				<span class="badge">Concept reference</span>
+				<h1>The Control Deck is the vocabulary around bounded autonomy.</h1>
+				<p class="tagline">These concepts explain how agents can act with room to reason while still producing reviewable work: receipts, gates, modes, policy surfaces, epistemic guardrails, and scope.</p>
 			</div>
 		</section>
 
 		<section class="hr" role="separator"></section>
 
 		<section aria-labelledby="concepts">
-			<h2 id="concepts" class="kicker">Core Concepts</h2>
-			<p style="margin-bottom:24px;color:var(--muted)">The Control Deck is built from six interlocking ideas. Each one reinforces the others.</p>
+			<h2 id="concepts" class="kicker">Core concepts</h2>
 			<div class="grid">
-				<a href="receipts.html" class="card" style="text-decoration:none;color:inherit">
-					<h3 style="color:var(--accent)">Receipts</h3>
-					<p>Durable records of what <em>actually happened</em>—not claims, evidence. When the model says "tests passed," the receipt contains the actual test output.</p>
-				</a>
-				<a href="gates.html" class="card" style="text-decoration:none;color:inherit">
-					<h3 style="color:var(--accent)">Gates</h3>
-					<p>Objective checks that must pass before a change is accepted. If I'm wrong, the gates tell us. If I'm right, we have evidence.</p>
-				</a>
-				<a href="modes.html" class="card" style="text-decoration:none;color:inherit">
-					<h3 style="color:var(--accent)">Modes</h3>
-					<p>Behavioral profiles defining risk tolerance and allowed actions. Different tasks warrant different guardrails—not one-size-fits-all.</p>
-				</a>
-				<a href="policy-surface.html" class="card" style="text-decoration:none;color:inherit">
-					<h3 style="color:var(--accent)">Policy Surface</h3>
-					<p>Machine-readable encoding of human judgment about risk and scope. Your judgment, applied consistently across sessions.</p>
-				</a>
-				<a href="epistemic-guardrails.html" class="card" style="text-decoration:none;color:inherit">
-					<h3 style="color:var(--accent)">Epistemic Guardrails</h3>
-					<p>Mechanisms that make "I don't know" a valued output, not a failure. Honest uncertainty over false confidence.</p>
-				</a>
-				<a href="scope-and-blast-radius.html" class="card" style="text-decoration:none;color:inherit">
-					<h3 style="color:var(--accent)">Scope & Blast Radius</h3>
-					<p>Constraints on what can change and how much. The narrower the lane, the more reliable the work.</p>
-				</a>
+				<a href="receipts.html" class="card" style="text-decoration:none;color:inherit"><h3>Receipts</h3><p>Structured evidence of what was attempted, decided, blocked, or completed.</p></a>
+				<a href="gates.html" class="card" style="text-decoration:none;color:inherit"><h3>Gates</h3><p>Checks that decide whether work can advance, must stop, or needs escalation.</p></a>
+				<a href="modes.html" class="card" style="text-decoration:none;color:inherit"><h3>Modes</h3><p>Operating posture for the current job: exploration, implementation, review, or operation.</p></a>
+				<a href="policy-surface.html" class="card" style="text-decoration:none;color:inherit"><h3>Policy Surface</h3><p>Machine-readable boundaries that help agents reason before they act.</p></a>
+				<a href="epistemic-guardrails.html" class="card" style="text-decoration:none;color:inherit"><h3>Epistemic Guardrails</h3><p>Rules that make uncertainty and missing context explicit instead of hidden.</p></a>
+				<a href="scope-and-blast-radius.html" class="card" style="text-decoration:none;color:inherit"><h3>Scope and Blast Radius</h3><p>How much state, authority, and surface area a run is allowed to affect.</p></a>
 			</div>
 		</section>
 
 		<section class="hr" role="separator"></section>
 
-		<!-- PILOT Loop - Differentiator -->
-		<section aria-labelledby="pilot">
-			<h2 id="pilot" class="kicker">The PILOT Loop</h2>
-			<p style="margin-bottom:20px;color:var(--muted)">The Control Deck orchestrates work through a structured planning cycle. The model <em>never</em> directly edits—it plans and allocates.</p>
-			<div class="card" style="overflow-x:auto">
-				<table style="width:100%;border-collapse:collapse;font-size:0.95rem">
-					<thead>
-						<tr style="border-bottom:1px solid var(--border);text-align:left">
-							<th style="padding:12px 16px;font-weight:600">Phase</th>
-							<th style="padding:12px 16px;font-weight:600">What it does</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr style="border-bottom:1px solid var(--border)">
-							<td style="padding:12px 16px"><strong style="color:var(--brand)">P</strong>erceive</td>
-							<td style="padding:12px 16px;color:var(--muted)">Parse intent, extract features, classify risk</td>
-						</tr>
-						<tr style="border-bottom:1px solid var(--border)">
-							<td style="padding:12px 16px"><strong style="color:var(--brand)">I</strong>ntegrate</td>
-							<td style="padding:12px 16px;color:var(--muted)">Pull Lex state, check version contracts, validate scope</td>
-						</tr>
-						<tr style="border-bottom:1px solid var(--border)">
-							<td style="padding:12px 16px"><strong style="color:var(--brand)">L</strong>ayout</td>
-							<td style="padding:12px 16px;color:var(--muted)">Design task graph, assign providers, set budgets</td>
-						</tr>
-						<tr style="border-bottom:1px solid var(--border)">
-							<td style="padding:12px 16px"><strong style="color:var(--brand)">O</strong>rchestrate</td>
-							<td style="padding:12px 16px;color:var(--muted)">Emit plan to LexRunner, configure gates</td>
-						</tr>
-						<tr>
-							<td style="padding:12px 16px"><strong style="color:var(--brand)">T</strong>rack</td>
-							<td style="padding:12px 16px;color:var(--muted)">Consume Receipts, decide: accept / re-plan / escalate</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<p style="margin-top:16px;font-size:0.9rem;color:var(--muted)">📖 Full documentation in the <a href="https://github.com/Guffawaffle/lex/blob/main/docs/control-stack/pilot/index.md" target="_blank" rel="noopener">Lex repo</a></p>
+		<section aria-labelledby="mapping">
+			<h2 id="mapping" class="kicker">Where they appear in the stack</h2>
+			<table class="comparison-table">
+				<tbody>
+					<tr><th>Lex</th><td>Stores Frames, recalls context, and records receipts for work state.</td></tr>
+					<tr><th>AXF</th><td>Declares capabilities and can attach metadata about expected effects and safety.</td></tr>
+					<tr><th>LexThority</th><td>Evaluates authority envelopes and writes allow, escalate, or deny receipts.</td></tr>
+					<tr><th>LexSona</th><td>Returns behavioral constraints that shape the mode and posture of a run.</td></tr>
+					<tr><th>LexRunner</th><td>Coordinates flow through gates, contained execution roots, and promotion decisions.</td></tr>
+				</tbody>
+			</table>
 		</section>
 
 		<section class="hr" role="separator"></section>
 
-		<section aria-labelledby="insight">
-			<h2 id="insight" class="kicker">The Key Insight</h2>
-			<article class="card" style="border-left:3px solid var(--accent)">
-				<p style="font-size:1.1rem;line-height:1.7;margin:0">Models don't need superhuman judgment—they need <strong>guardrails that encode the judgment their principals already have</strong> about risk, scope, and acceptable behavior.</p>
-			</article>
-			<div class="grid" style="margin-top:24px">
-				<div class="card">
-					<h4 style="margin-top:0">Give them...</h4>
-					<ul style="margin:0;padding-left:1.25rem;color:var(--muted)">
-						<li>Explicit scope instead of ambiguous prompts</li>
-						<li>Required gates instead of optional validation</li>
-						<li>Structured modes instead of one-size-fits-all</li>
-						<li>Audit trails instead of ephemeral outputs</li>
-					</ul>
-				</div>
-				<div class="card">
-					<h4 style="margin-top:0">And you get...</h4>
-					<ul style="margin:0;padding-left:1.25rem;color:var(--muted)">
-						<li>Work reviewable in minutes, not hours</li>
-						<li>Changes reversible with <code>git revert</code></li>
-						<li>Trustworthy results because the receipts are there</li>
-						<li>Models that succeed at narrow tasks</li>
-					</ul>
-				</div>
-			</div>
-		</section>
-
-		<section class="hr" role="separator"></section>
-
-		<section aria-labelledby="essay">
-			<h2 id="essay" class="kicker">The Full Story</h2>
-			<article class="card" style="background:linear-gradient(135deg, rgba(0,194,255,0.08) 0%, rgba(0,194,255,0.02) 100%)">
-				<h3 style="margin-top:0">📖 Not Bigger, Better Constrained</h3>
-				<p style="margin-bottom:16px;color:var(--muted)">For the complete narrative—told from a frontier model's perspective—read the essay that explains <em>why</em> constraints are what models actually want.</p>
-				<a class="button primary" href="../research/frontier-model-control-stack.html" title="Read the essay">Read the Essay →</a>
-			</article>
-		</section>
-
-		<section class="hr" role="separator"></section>
-
-		<section aria-labelledby="implementation">
-			<h2 id="implementation" class="kicker">Implementation</h2>
+		<section aria-labelledby="not">
+			<h2 id="not" class="kicker">What this avoids</h2>
 			<div class="grid">
-				<article class="card">
-					<h3 style="margin-top:0">Lex 1.0.0 (Open Source)</h3>
-					<p style="color:var(--muted)">The contract-bearing mind. Frames for episodic memory, <code>lexmap.policy.json</code> for module boundaries, <code>lex.yaml</code> for workflow contracts. Stable on npm.</p>
-					<a class="button" href="../../projects/lex/index.html" title="Learn about Lex">Explore Lex →</a>
-				</article>
-				<article class="card">
-					<h3 style="margin-top:0">LexRunner (Private)</h3>
-					<p style="color:var(--muted)">Consumes Lex contracts to implement merge pyramids with deterministic execution. The body that reads from the mind's contract surfaces.</p>
-					<a class="button" href="../../projects/lex-pr/index.html" title="Learn about LexRunner">Explore LexRunner →</a>
-				</article>
+				<article class="card"><h3>Prompt-only governance</h3><p>Important constraints should live in inspectable files and receipts, not only in system prompt text.</p></article>
+				<article class="card"><h3>Rigid SOP automation</h3><p>Agents should still reason. The deck bounds effects and records decisions without reducing every run to a brittle script.</p></article>
+				<article class="card"><h3>Unbounded tool access</h3><p>Tools and credentials stay governed by existing systems; the stack makes the agent's intent and failures clearer.</p></article>
 			</div>
 		</section>
 	</main>
 
 	<footer class="container footer">
 		<div>&copy; <span id="year"></span> SmarterGPT.dev</div>
-		<div class="pill">Agent-friendly • CI-first • Human-in-the-loop</div>
+		<div class="pill">Receipts • Gates • Modes • Scope</div>
 	</footer>
 	<script src="../../assets/app.js"></script>
 </body>
