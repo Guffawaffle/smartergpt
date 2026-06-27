@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>LexThority - Authority Seam for Agent Work | SmarterGPT.dev</title>
-	<meta name="description" content="LexThority is the authority seam for agent work: authority envelopes, effect requests, allow/escalate/deny decisions, and receipts." />
+	<title>LexThority - Pre-Alpha Authority Seam Research | SmarterGPT.dev</title>
+	<meta name="description" content="LexThority is pre-alpha authority seam research for agent work: authority envelopes, effect requests, escalation, and receipts." />
 	<meta name="color-scheme" content="dark light" />
 	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
 	<link rel="stylesheet" href="../../assets/styles.css" />
@@ -25,10 +25,10 @@
 	<main class="container">
 		<section class="hero">
 			<div class="hero-left">
-				<span class="badge">Public preview • Source-available • Not on npm yet</span>
-				<h1>LexThority is the authority seam for agent work.</h1>
+				<span class="badge">Pre-alpha design preview • Source-available • Not on npm yet</span>
+				<h1>LexThority is pre-alpha authority seam research.</h1>
 				<p class="tagline">Agents should be free to operate inside the environment they are given. They also need a concrete way to ask whether an effect is allowed before they mutate something important.</p>
-				<p class="tagline" style="margin-top:12px">LexThority does not manage identity, credentials, scheduling, or swarms. It evaluates authority envelopes and effect requests, then returns allow, escalate, or deny with a receipt.</p>
+				<p class="tagline" style="margin-top:12px">LexThority does not manage identity, credentials, scheduling, or swarms. The current preview explores authority envelopes, effect requests, escalation, and receipts, but the boundary is expected to change.</p>
 				<div class="cta">
 					<a class="button primary" href="https://github.com/Guffawaffle/lexthority">GitHub preview</a>
 					<a class="button" href="../../stack.html">Stack context</a>
@@ -55,9 +55,9 @@ EffectReceipt
 		<section aria-labelledby="why">
 			<h2 id="why" class="kicker">Why it matters</h2>
 			<div class="grid">
-				<article class="card"><h3>Capabilities are not authority</h3><p>AXF may tell an agent how to run a deploy capability. LexThority asks whether this run is allowed to attempt that effect.</p></article>
-				<article class="card"><h3>Personas are not credentials</h3><p>LexSona can express posture and caution. LexThority evaluates concrete effects against an authority envelope.</p></article>
-				<article class="card"><h3>IAM remains the source of truth</h3><p>LexThority should not replace OAuth, cloud IAM, GitHub permissions, or enterprise brokers. It records and explains the decision layer around them.</p></article>
+				<article class="card"><h3>Capabilities are not authority</h3><p>AXF may tell an agent how to run a deploy capability. LexThority explores where the authority boundary should sit before a run mutates something important.</p></article>
+				<article class="card"><h3>Personas are not credentials</h3><p>LexSona can express posture and caution. LexThority is exploring how that posture relates to concrete effects, envelopes, and receipts.</p></article>
+				<article class="card"><h3>IAM remains the source of truth</h3><p>LexThority should not replace OAuth, cloud IAM, GitHub permissions, or enterprise brokers. The research question is how agents should describe and record boundary crossings around those systems.</p></article>
 			</div>
 		</section>
 
@@ -68,7 +68,7 @@ EffectReceipt
 			<table class="comparison-table">
 				<tbody>
 					<tr><th>LexSona</th><td>Posture, duty, default caution, role-like context.</td></tr>
-					<tr><th>LexThority</th><td>Concrete authority envelope and effect decision engine.</td></tr>
+					<tr><th>LexThority</th><td>Pre-alpha authority boundary research.</td></tr>
 					<tr><th>AXF</th><td>Workspace bearings, capability declarations, and effect hints.</td></tr>
 					<tr><th>Adapters</th><td>Wrappers around tools such as git, gh, cloud CLIs, and orchestrators.</td></tr>
 					<tr><th>Lex</th><td>Receipts, memory, denials, fallbacks, and learned access reality.</td></tr>
@@ -101,7 +101,7 @@ npm run cli -- exec --dry-run \
 		<section aria-labelledby="anti-drift">
 			<h2 id="anti-drift" class="kicker">Anti-drift rule</h2>
 			<article class="card" style="border-left:3px solid var(--brand)">
-				<p>If LexThority starts scheduling agents, managing swarms, owning credentials, or modeling every standard operating procedure, it is drifting. Its job is the authority decision seam. That narrowness is the point.</p>
+				<p>If LexThority starts scheduling agents, managing swarms, owning credentials, or modeling every standard operating procedure, it is drifting. The current research target is the boundary around meaningful effects, not the whole runtime.</p>
 			</article>
 		</section>
 	</main>

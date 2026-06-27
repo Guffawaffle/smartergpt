@@ -4,7 +4,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>Agent eXperience (AX) | SmarterGPT.dev</title>
-	<meta name="description" content="AX: Designing Systems Where Agents Are First-Class Users. The discipline of building tools, APIs, and workflows that agents can operate reliably without human babysitting." />
+	<meta name="description" content="AX and AXMM: designing systems, tools, APIs, and workflows that agents can operate reliably with structured outputs, recoverable errors, memory, and durable evidence trails." />
 	<meta name="color-scheme" content="dark light" />
 	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
 	<link rel="stylesheet" href="../../assets/styles.css" />
@@ -307,7 +307,7 @@
 				<a href="#what-its-like-to-be-an-agent-in-your-stack">What It's Like</a>
 				<a href="agent-experience-ax-model-addendum.html">From the inside</a>
 				<a href="#five-principles">5 Principles</a>
-				<a href="#maturity-model">Maturity</a>
+				<a href="#axmm">AXMM</a>
 				<a href="#ax-contract">Contract</a>
 				<a href="#why-it-matters">Why It Matters</a>
 			</nav>
@@ -337,6 +337,10 @@
 				<blockquote>
 					<p>Could an agent operate this system reliably, without a human babysitting every step?</p>
 				</blockquote>
+
+				<p>That question needs a measuring stick. We call it <strong>AXMM: the Agent eXperience Maturity Model</strong>.</p>
+
+				<p>AXMM is a standard-style rubric for judging whether a tool, repo, workflow, or platform is actually operable by agents. It is not a formal ISO standard. It is written in that spirit: stable terms, observable requirements, conformance language, and testable claims.</p>
 
 				<p>If the honest answer is "no," then we do not really have an AI-native system. We have a human system with some AI sprinkled around the edges.</p>
 
@@ -461,6 +465,7 @@
 					<li>Every CLI that matters has a <code>--json</code> flag</li>
 					<li>MCP tools and HTTP endpoints return typed, schema-validated structures</li>
 					<li>Errors follow a known schema, not ad-hoc strings</li>
+					<li>Machine mode keeps output channels separate: final result on <code>stdout</code>, progress and diagnostics on <code>stderr</code> or a declared diagnostic sink</li>
 				</ul>
 				<p style="margin-bottom:0"><strong>Bad AX:</strong> "See the README for details" with no structured summary. APIs where you have to regex the response to figure out what happened.</p>
 			</div>
@@ -533,9 +538,22 @@
 				<p style="margin-bottom:0"><strong>Bad AX:</strong> "Do whatever you think is best." Unlimited tool access. Constraints that change silently. <strong>Unobserved constraint violations</strong>—the agent broke the rule, but no one saw it happen.</p>
 			</div>
 
-			<h2 id="maturity-model">AX Maturity Model</h2>
+			<span id="maturity-model" aria-hidden="true"></span>
+			<h2 id="axmm">AXMM: Agent eXperience Maturity Model</h2>
 
-			<p>A simple way to think about how AX-native your system is:</p>
+			<p>AXMM is the maturity scale for agent-operable systems. It treats AX as a conformance surface, not taste. A system should be able to say what level it meets, which guarantees are enforced, and which gaps are tracked.</p>
+
+			<div class="highlight-box" id="machine-output-contract">
+				<h3 style="margin-top:0">Machine-Mode Channel Contract</h3>
+				<p>This is a hard AXMM requirement, not CLI polish:</p>
+				<ul style="margin-bottom:0">
+					<li><code>stdout</code> is the final declared machine-consumable result.</li>
+					<li><code>stderr</code> is progress, diagnostics, warnings, human-readable chatter, and live narration.</li>
+					<li>The exit code is process status.</li>
+					<li>A receipt, log file, Frame, or declared evidence sink is the durable evidence trail.</li>
+				</ul>
+				<p style="margin-top:18px;margin-bottom:0"><strong>In machine mode, stdout MUST contain only the declared machine result.</strong> Progress, warnings, diagnostics, human narration, and live status MUST go to stderr or a declared diagnostic sink.</p>
+			</div>
 
 			<div class="maturity-grid">
 				<div class="maturity-card level-0">
@@ -543,38 +561,38 @@
 						<span class="level-num">0</span>
 						<span class="level-name">Agent-Hostile</span>
 					</div>
-					<div class="maturity-desc">Unstructured output only. No error recovery paths. No memory or context layer. Implicit, undocumented expectations.</div>
+					<div class="maturity-desc">Unstructured output only. Logs, progress, and results are mixed together. No error recovery paths. No memory or context layer. Implicit, undocumented expectations.</div>
 				</div>
 				<div class="maturity-card level-1">
 					<div class="maturity-level">
 						<span class="level-num">1</span>
 						<span class="level-name">Agent-Tolerant</span>
 					</div>
-					<div class="maturity-desc">Some structured output (<code>--json</code> exists). Basic error messages. Documentation exists but agents have to scrape it. Memory is ad-hoc or manual.</div>
+					<div class="maturity-desc">Some structured output (<code>--json</code> exists), but logs or warnings may still contaminate machine results. Basic error messages. Documentation exists but agents have to scrape it. Memory is ad-hoc or manual.</div>
 				</div>
 				<div class="maturity-card level-2">
 					<div class="maturity-level">
 						<span class="level-num">2</span>
 						<span class="level-name">Agent-Friendly</span>
 					</div>
-					<div class="maturity-desc">Structured outputs are the default. Errors include recovery hints. There is a proper memory layer with recall. Constraints are documented and mostly followed.</div>
+					<div class="maturity-desc">Structured outputs are the default. Machine-mode stdout is stable. Errors include recovery hints. There is a proper memory layer with recall. Constraints are documented and mostly followed.</div>
 				</div>
 				<div class="maturity-card level-3">
 					<div class="maturity-level">
 						<span class="level-num">3</span>
 						<span class="level-name">Agent-Native</span>
 					</div>
-					<div class="maturity-desc">Deterministic preparation around stochastic calls. Memory is integrated into workflows. Constraints and guardrails are the main teaching mechanism. MCP/API/CLI are designed as agent-facing surfaces <em>first</em>. AX is a release-criteria concept.</div>
+					<div class="maturity-desc">Output channels, exit codes, and evidence receipts are contractual. Deterministic preparation surrounds stochastic calls. Memory is integrated into workflows. Constraints and guardrails are the main teaching mechanism. MCP/API/CLI are designed as agent-facing surfaces <em>first</em>. AXMM is release criteria.</div>
 				</div>
 			</div>
 
 			<div class="highlight-box">
-				<p style="margin:0"><strong style="color:var(--ok)">Our target for Lex and LexRunner is Level 3: Agent-Native.</strong></p>
+				<p style="margin:0"><strong style="color:var(--ok)">Our target for Lex, AXF, and LexRunner is AXMM Level 3: Agent-Native.</strong></p>
 			</div>
 
 			<h2 id="ax-contract">AX As A Real Contract, Not Just Vibes</h2>
 
-			<p>For AX to matter, it cannot just be a philosophy. It has to become a <strong>contract</strong>.</p>
+			<p>For AXMM to matter, it cannot just be a philosophy. It has to become a <strong>contract</strong>.</p>
 
 			<p>In our stack, that takes the form of a small AX contract file (for example <code>AX-CONTRACT.md</code>) that says, in plain language:</p>
 			<ul>
@@ -582,6 +600,8 @@
 				<li>What we do not guarantee yet</li>
 				<li>How we enforce those guarantees (tests, schemas, CI checks)</li>
 			</ul>
+
+			<p>That contract now needs to include channel discipline. A CLI that prints valid JSON after progress chatter on <code>stdout</code> is not agent-native. It is making the agent spend tokens, retries, and tool calls to recover structure the tool should have preserved.</p>
 
 			<p>Once AX v0.1 is adopted, all new features and changes must comply with the contract. Retrofitting old features to meet AX is a priority, not a "nice later."</p>
 
