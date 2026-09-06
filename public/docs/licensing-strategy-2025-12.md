@@ -1,5 +1,10 @@
 # Licensing Strategy Update — December 2025
 
+> Historical planning record. Its licensing and secrecy strategy is superseded by
+> the 2026-09-06 [open-source stewardship direction](../licensing.html). Preserve
+> this history without treating its prior policy or safety claims as current evidence.
+
+
 **Date:** December 13, 2025
 **Files Updated:** `/srv/www/smartergpt/roadmap.html`
 
