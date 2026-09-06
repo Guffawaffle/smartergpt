@@ -117,8 +117,10 @@ Use relative paths from the current file:
 ## 5) Deployment
 
 - **Branch:** `production` is the default and deployed branch.
-- **Process:** Push to `production` → files in `/public/` are immediately live.
-- **No build step** — HTML is served directly.
+- **Process:** The Build & Deploy workflow copies `/public/` to `dist` and publishes to Cloudflare Pages on a push to `production`.
+- **Verification:** Wait for that exact commit's deployment to succeed, then inspect the live page's actual changed text. A successful HTTP response or a license keyword alone does not verify release-status copy.
+- **Release status:** Check the homepage, roadmap, stack, licensing, access and affected project pages together. Preserve historical documents and distinguish public package access from hosted-system authority.
+- **No application build step** — HTML is served directly.
 
 ---
 
