@@ -4,7 +4,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>SmarterGPT - An Operating Stack for Agent Work</title>
-	<meta name="description" content="SmarterGPT builds Lex, AXF, LexThority, LexSona, and LexRunner: a local-first operating stack for agent memory, workspace capabilities, authority-boundary research, behavior, and orchestration." />
+	<meta name="description" content="SmarterGPT builds Lex, AXF, ContextForge, LexSona, and LexRunner: a local-first operating stack for agent memory, workspace capabilities, authority-boundary research, behavior, and orchestration." />
 	<meta name="color-scheme" content="dark light" />
 	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
 	<link rel="stylesheet" href="assets/styles.css" />
@@ -16,7 +16,7 @@
 			<a class="pill" href="stack.html" title="Operating Stack">Stack</a>
 			<a class="pill" href="projects/lex/index.html" title="Lex">Lex</a>
 			<a class="pill" href="projects/axf/index.html" title="AXF">AXF</a>
-			<a class="pill" href="projects/lexthority/index.html" title="LexThority">LexThority</a>
+			<a class="pill" href="projects/context-forge/index.html" title="ContextForge">ContextForge</a>
 			<a class="pill" href="docs/research/index.html" title="Research">Research</a>
 			<a class="pill" href="roadmap.html" title="Roadmap">Roadmap</a>
 		</nav>
@@ -37,7 +37,7 @@
 				<div class="status-row" aria-label="Current public status">
 					<span class="status-chip public">Lex public MIT <span class="npm-version" data-npm-package="@smartergpt/lex">npm latest</span></span>
 					<span class="status-chip public">AXF Apache-2.0 source <span class="npm-version" data-npm-package="@smartergpt/axf">npm latest</span></span>
-					<span class="status-chip public">LexThority pre-alpha design preview</span>
+					<span class="status-chip controlled">ContextForge proposed context linker</span>
 					<span class="status-chip public">LexRunner and LexSona open source • Released on npm</span>
 				</div>
 			</div>
@@ -62,8 +62,8 @@
 					<p>Agent eXoskeleton Framework. Workspace-owned capabilities that tell agents how this repo builds, tests, searches, diagnoses, and operates.</p>
 				</article>
 				<article class="stack-card">
-					<h3>LexThority</h3>
-					<p>Pre-alpha authority seam research. Explore how bounded agent autonomy, effect boundaries, escalation, and receipts should fit together.</p>
+					<h3><a href="projects/context-forge/index.html">ContextForge</a></h3>
+					<p>Proposed context-linking library. Assemble resolved policy and typed inputs into deterministic bundles with explanations. Architecture only; not released.</p>
 				</article>
 				<article class="stack-card">
 					<h3>LexSona</h3>
@@ -120,7 +120,7 @@
 		<section class="hr" role="separator"></section>
 
 		<section aria-labelledby="today">
-			<h2 id="today" class="kicker">Available Today</h2>
+			<h2 id="today" class="kicker">Public releases and upcoming work</h2>
 			<div class="grid">
 				<article class="card">
 					<h3>Use Lex in real repos</h3>
@@ -139,11 +139,11 @@
 					</div>
 				</article>
 				<article class="card">
-					<h3>Preview LexThority</h3>
-					<p>LexThority is public as a pre-alpha design preview for the authority seam. The concept is useful, but the boundary is still expected to change.</p>
+					<h3>Follow ContextForge</h3>
+					<p>ContextForge is the proposed pure context linker. Ownership and input contracts await ratification; no implementation or npm package is released.</p>
 					<div class="cta" style="margin-top:14px">
-						<a class="button primary" href="projects/lexthority/index.html">Preview</a>
-						<a class="button" href="https://github.com/Guffawaffle/lexthority">GitHub</a>
+						<a class="button" href="projects/context-forge/index.html">Proposal</a>
+						<a class="button" href="https://github.com/Guffawaffle/lex/issues/837">Ownership decision</a>
 					</div>
 				</article>
 			</div>
@@ -167,7 +167,7 @@
 			<div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap">
 				<div>
 					<h3 style="margin:0 0 6px">Start with the public core.</h3>
-					<p style="margin:0;color:#c8d3ea">Install Lex for memory and policy, add AXF when agents need reliable workspace actions, and follow LexThority as the authority concept takes shape.</p>
+					<p style="margin:0;color:#c8d3ea">Install Lex for memory and policy, add AXF when agents need reliable workspace actions, and follow ContextForge as the proposed context-linking boundary takes shape.</p>
 				</div>
 				<div class="cta">
 					<a class="button primary" href="docs/how-to-use/index.html">Guide</a>

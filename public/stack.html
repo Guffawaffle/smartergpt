@@ -4,7 +4,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>The SmarterGPT Operating Stack | SmarterGPT.dev</title>
-	<meta name="description" content="A technical overview of the SmarterGPT operating stack: Lex, AXF, LexThority, LexSona, and LexRunner, and how they advance agent work beyond software development." />
+	<meta name="description" content="A technical overview of the SmarterGPT operating stack: Lex, AXF, ContextForge, LexSona, and LexRunner, and how they advance agent work beyond software development." />
 	<meta name="color-scheme" content="dark light" />
 	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
 	<link rel="stylesheet" href="assets/styles.css" />
@@ -16,7 +16,7 @@
 			<a class="pill" href="stack.html" title="Operating Stack">Stack</a>
 			<a class="pill" href="projects/lex/index.html" title="Lex">Lex</a>
 			<a class="pill" href="projects/axf/index.html" title="AXF">AXF</a>
-			<a class="pill" href="projects/lexthority/index.html" title="LexThority">LexThority</a>
+			<a class="pill" href="projects/context-forge/index.html" title="ContextForge">ContextForge</a>
 			<a class="pill" href="docs/research/index.html" title="Research">Research</a>
 			<a class="pill" href="roadmap.html" title="Roadmap">Roadmap</a>
 		</nav>
@@ -103,10 +103,16 @@
 						<td><a href="projects/axf/index.html">Project page</a> / <a href="https://github.com/Guffawaffle/axf">GitHub</a></td>
 					</tr>
 					<tr>
+						<td><strong>ContextForge</strong></td>
+						<td>Proposed deterministic context linking with inclusion, omission and provenance explanations.</td>
+						<td>Architecture only; ratification pending. No implementation or npm release.</td>
+						<td><a href="projects/context-forge/index.html">Proposal page</a> / <a href="https://github.com/Guffawaffle/lex/issues/837">Ownership decision</a></td>
+					</tr>
+					<tr>
 						<td><strong>LexThority</strong></td>
-						<td>Pre-alpha authority-boundary research: envelopes, effect decisions, escalation, and receipts.</td>
-						<td>Public source-available design preview. Not published on npm yet.</td>
-						<td><a href="projects/lexthority/index.html">Sneak peek</a> / <a href="https://github.com/Guffawaffle/lexthority">GitHub</a></td>
+						<td>Historical authority-boundary research: envelopes, effect decisions, escalation, and receipts.</td>
+						<td>Historical research; no active product commitment.</td>
+						<td><a href="projects/lexthority/index.html">Historical research</a> / <a href="https://github.com/Guffawaffle/lexthority">GitHub</a></td>
 					</tr>
 					<tr>
 						<td><strong>LexSona</strong></td>
@@ -164,7 +170,7 @@
 				</article>
 				<article class="card">
 					<h3>IAM-aware autonomy without IAM reinvention</h3>
-					<p>LexThority is still pre-alpha. The useful direction is not replacing identity providers, but finding the right boundary between available credentials, bounded workspaces, agent judgment, escalation, and receipts.</p>
+					<p>LexThority is historical research with no active product commitment. Authentication and effect authorization remain separate engineering responsibilities, enforced by trusted hosts, identity providers and protected execution boundaries.</p>
 				</article>
 				<article class="card">
 					<h3>Job-duty bounded tools</h3>

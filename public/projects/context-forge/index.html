@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>ContextForge - Context Linking and Explanations | SmarterGPT.dev</title>
+	<meta name="description" content="ContextForge is a proposed pure library for linking resolved policy and separately typed context into deterministic, explainable bundles. Architecture proposal; not released." />
+	<meta name="color-scheme" content="dark light" />
+	<link rel="stylesheet" href="../../assets/styles.css" />
+</head>
+<body>
+	<header class="container nav" role="navigation">
+		<div class="logo"><span class="logo-dot" aria-hidden="true"></span><a href="/" style="color:inherit;text-decoration:none"><span>SmarterGPT.dev</span></a></div>
+		<nav class="links" aria-label="Primary">
+			<a class="pill" href="../../stack.html">Stack</a>
+			<a class="pill" href="../lex/index.html">Lex</a>
+			<a class="pill" href="../axf/index.html">AXF</a>
+			<a class="pill" href="index.html">ContextForge</a>
+			<a class="pill" href="../../docs/research/index.html">Research</a>
+			<a class="pill" href="../../roadmap.html">Roadmap</a>
+		</nav>
+	</header>
+	<main class="container">
+		<section class="hero">
+			<div class="hero-left">
+				<span class="badge">Architecture proposal • Ratification pending • Not released</span>
+				<h1>ContextForge links context and explains what belongs.</h1>
+				<p class="tagline">Agents need policy, facts, memory, behavior and a mission together without losing the boundaries between them. ContextForge is the proposed library that assembles those explicit inputs into a deterministic context bundle.</p>
+				<p class="tagline" style="margin-top:12px">Each inclusion and omission would have an explanation: where the item came from, which dependency required it, and whether a size budget affected it.</p>
+				<div class="cta">
+					<a class="button primary" href="https://github.com/Guffawaffle/lex/issues/837">Follow the ownership proposal</a>
+					<a class="button" href="../../stack.html">Stack context</a>
+				</div>
+			</div>
+			<div class="hero-card hero-right">
+				<div class="kicker">Proposed flow</div>
+				<pre class="code"><code>Resolved Lex policy + typed context inputs
+                    |
+                    v
+             ContextForge
+                    |
+                    v
+      Context bundle + explanations
+
+          authorizesExecution: false</code></pre>
+			</div>
+		</section>
+		<section class="hr" role="separator"></section>
+		<section aria-labelledby="responsibility">
+			<h2 id="responsibility" class="kicker">One proposed responsibility</h2>
+			<div class="grid">
+				<article class="card"><h3>Preserve the input boundaries</h3><p>Lex resolves policy. Domain owners supply facts, behavior, memory, identity, mission and capability requirements. ContextForge would link those values without redefining their meaning.</p></article>
+				<article class="card"><h3>Keep required context together</h3><p>Required dependencies come before relevance scoring or size reduction. Missing mandatory inputs remain visible and block readiness; optional material can be minimized.</p></article>
+				<article class="card"><h3>Make selection explainable</h3><p>The bundle would record stable explanations for inclusion, exclusion, provenance and minimization. Identical explicit inputs should produce identical output.</p></article>
+			</div>
+		</section>
+		<section class="hr" role="separator"></section>
+		<section aria-labelledby="status">
+			<h2 id="status" class="kicker">Current status</h2>
+			<article class="card"><p>ContextForge currently has a local architecture proposal, no executable implementation, no public source repository and no npm release. <a href="https://github.com/Guffawaffle/lex/issues/837">Lex #837</a> must ratify ownership and the exact released input contracts before implementation begins. A later LexRunner consumer is downstream work.</p><p>The proposed core performs no provider calls, storage access, credential handling or effects. It returns context, diagnostics and explanations; its output cannot authorize execution. Generated instructions and prompts belong to future adapters outside the core.</p></article>
+		</section>
+		<section class="hr" role="separator"></section>
+		<section aria-labelledby="authority">
+			<h2 id="authority" class="kicker">Authorization stays separate</h2>
+			<article class="card"><p>ContextForge does not replace authentication, tenant isolation, protected approvals or effect authorization. <a href="../lexthority/index.html">LexThority</a> is retained as historical authority research with no active product commitment. Those enforcement responsibilities remain necessary regardless of the name or shape of a future authority component.</p></article>
+		</section>
+	</main>
+	<footer class="container footer">
+		<div>&copy; <span id="year"></span> SmarterGPT.dev · Founded by Joseph Gustavson (Guffawaffle) · <a href="../../licensing.html">Licensing and stewardship</a></div>
+		<div class="pill">Proposed context linker • Explanations • No execution authority</div>
+	</footer>
+	<script src="../../assets/app.js"></script>
+</body>
+</html>
