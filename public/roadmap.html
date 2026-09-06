@@ -4,7 +4,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>Status and Roadmap | SmarterGPT.dev</title>
-	<meta name="description" content="Current status and near-term roadmap for the SmarterGPT operating stack: Lex, AXF, LexThority, LexSona, and LexRunner." />
+	<meta name="description" content="Current status and near-term roadmap for the SmarterGPT operating stack: Lex, AXF, ContextForge, LexSona, and LexRunner." />
 	<meta name="color-scheme" content="dark light" />
 	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
 	<link rel="stylesheet" href="assets/styles.css" />
@@ -16,7 +16,7 @@
 			<a class="pill" href="stack.html" title="Operating Stack">Stack</a>
 			<a class="pill" href="projects/lex/index.html" title="Lex">Lex</a>
 			<a class="pill" href="projects/axf/index.html" title="AXF">AXF</a>
-			<a class="pill" href="projects/lexthority/index.html" title="LexThority">LexThority</a>
+			<a class="pill" href="projects/context-forge/index.html" title="ContextForge">ContextForge</a>
 			<a class="pill" href="docs/research/index.html" title="Research">Research</a>
 			<a class="pill" href="roadmap.html" title="Roadmap">Roadmap</a>
 		</nav>
@@ -27,7 +27,7 @@
 			<div class="hero-left">
 				<span class="badge">Publication status • September 6, 2026</span>
 				<h1>The roadmap is moving from tools to an operating stack.</h1>
-				<p class="tagline">Lex, AXF, LexSona and LexRunner have public source repositories and npm releases. AXF, LexSona and LexRunner are open source under Apache-2.0; Lex remains MIT. LexThority remains a public authority preview. Behavior and containment boundaries continue to evolve.</p>
+				<p class="tagline">Lex, AXF, LexSona and LexRunner have public source repositories and npm releases. AXF, LexSona and LexRunner are open source under Apache-2.0; Lex remains MIT. ContextForge is a proposed context linker. LexThority is historical research with no active product commitment. Behavior and containment boundaries continue to evolve.</p>
 				<p class="tagline" style="margin-top:12px">The near-term work is not another prompt pattern. It is the layer that lets agents remember, discover workspace capabilities, ask for authority, inherit behavior, and coordinate bounded work.</p>
 				<div class="cta">
 					<a class="button primary" href="stack.html">Stack overview</a>
@@ -70,9 +70,15 @@
 						<td><a href="https://github.com/Guffawaffle/axf">GitHub</a></td>
 					</tr>
 					<tr>
+						<td><strong>ContextForge</strong></td>
+						<td>Proposed pure context linker; ownership and input contracts await ratification.</td>
+						<td>No npm release or executable implementation.</td>
+						<td><a href="projects/context-forge/index.html">Proposal page</a> / <a href="https://github.com/Guffawaffle/lex/issues/837">Public decision</a></td>
+					</tr>
+					<tr>
 						<td><strong>LexThority</strong></td>
-						<td>Public source-available preview for authority envelopes and effect receipts.</td>
-						<td>Not published on npm yet.</td>
+						<td>Historical authority research; no active product commitment.</td>
+						<td>No npm release.</td>
 						<td><a href="https://github.com/Guffawaffle/lexthority">GitHub</a></td>
 					</tr>
 					<tr>
@@ -105,8 +111,8 @@
 					<p>AXF should make local repo know-how discoverable and runnable without turning every capability into raw shell improvisation. Expect more adapter examples and lifecycle hardening.</p>
 				</article>
 				<article class="card">
-					<h3>3. Mature LexThority around effect decisions.</h3>
-					<p>The authority layer should classify attempted effects, evaluate them against envelopes, and produce allow, escalate, or deny receipts without pretending to replace enterprise IAM.</p>
+					<h3>3. Ratify ContextForge and its input contracts.</h3>
+					<p>Confirm ownership and exact released Lex and domain contracts before implementing the pure context linker. Deterministic bundles and explanations come first; a LexRunner consumer follows. Authentication and effect authorization remain independent work.</p>
 				</article>
 				<article class="card">
 					<h3>4. Separate LexSona behavior from LexRunner flow.</h3>
@@ -137,7 +143,7 @@
 
 	<footer class="container footer">
 		<div>&copy; <span id="year"></span> SmarterGPT.dev</div>
-		<div class="pill">Open source • Public npm releases • Authority preview</div>
+		<div class="pill">Open source • Public npm releases • ContextForge proposal</div>
 	</footer>
 	<script src="assets/app.js"></script>
 </body>

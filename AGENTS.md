@@ -122,6 +122,11 @@ Use relative paths from the current file:
 - **Release status:** Check the homepage, roadmap, stack, licensing, access and affected project pages together. Preserve historical documents and distinguish public package access from hosted-system authority.
 - **No application build step** — HTML is served directly.
 
+### Current project positioning
+
+- LexThority is historical research with no active product commitment, per Joseph's 2026-09-06 direction. Keep its historical page and source links; do not market it as an active product or remove independent authorization requirements.
+- ContextForge is the proposed pure context-linking library tracked in Lex #837. Ownership ratification and implementation remain pending; do not advertise an npm package, public source repository, or execution authority.
+
 ---
 
 ## 6) External Links

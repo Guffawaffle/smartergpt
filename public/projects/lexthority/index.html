@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>LexThority - Pre-Alpha Authority Seam Research | SmarterGPT.dev</title>
-	<meta name="description" content="LexThority is pre-alpha authority seam research for agent work: authority envelopes, effect requests, escalation, and receipts." />
+	<title>LexThority - Historical Authority Research | SmarterGPT.dev</title>
+	<meta name="description" content="LexThority is historical authority research with no active product commitment. Earlier design notes explore authority envelopes, effect requests, escalation, and receipts." />
 	<meta name="color-scheme" content="dark light" />
 	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
 	<link rel="stylesheet" href="../../assets/styles.css" />
@@ -16,7 +16,7 @@
 			<a class="pill" href="../../stack.html" title="Operating Stack">Stack</a>
 			<a class="pill" href="../lex/index.html" title="Lex">Lex</a>
 			<a class="pill" href="../axf/index.html" title="AXF">AXF</a>
-			<a class="pill" href="index.html" title="LexThority">LexThority</a>
+			<a class="pill" href="../context-forge/index.html" title="ContextForge">ContextForge</a>
 			<a class="pill" href="../../docs/research/index.html" title="Research">Research</a>
 			<a class="pill" href="../../roadmap.html" title="Roadmap">Roadmap</a>
 		</nav>
@@ -25,12 +25,12 @@
 	<main class="container">
 		<section class="hero">
 			<div class="hero-left">
-				<span class="badge">Pre-alpha design preview • Source-available • Not on npm yet</span>
-				<h1>LexThority is pre-alpha authority seam research.</h1>
-				<p class="tagline">Agents should be free to operate inside the environment they are given. They also need a concrete way to ask whether an effect is allowed before they mutate something important.</p>
-				<p class="tagline" style="margin-top:12px">LexThority does not manage identity, credentials, scheduling, or swarms. The current preview explores authority envelopes, effect requests, escalation, and receipts, but the boundary is expected to change.</p>
+				<span class="badge">Historical research • No active product commitment</span>
+				<h1>LexThority is historical authority research.</h1>
+				<p class="tagline">LexThority is retained as historical research, with no active product commitment. The design notes below document an earlier exploration; they are not an active product roadmap or a supported installation recommendation.</p>
+				<p class="tagline" style="margin-top:12px">Authentication and effect authorization remain necessary across the stack. ContextForge is a separate proposed context-linking library; it does not inherit authority responsibilities or authorize execution.</p>
 				<div class="cta">
-					<a class="button primary" href="https://github.com/Guffawaffle/lexthority">GitHub preview</a>
+					<a class="button primary" href="https://github.com/Guffawaffle/lexthority">Historical source</a>
 					<a class="button" href="../../stack.html">Stack context</a>
 				</div>
 			</div>
@@ -68,7 +68,7 @@ EffectReceipt
 			<table class="comparison-table">
 				<tbody>
 					<tr><th>LexSona</th><td>Posture, duty, default caution, role-like context.</td></tr>
-					<tr><th>LexThority</th><td>Pre-alpha authority boundary research.</td></tr>
+					<tr><th>LexThority</th><td>Historical authority boundary research.</td></tr>
 					<tr><th>AXF</th><td>Workspace bearings, capability declarations, and effect hints.</td></tr>
 					<tr><th>Adapters</th><td>Wrappers around tools such as git, gh, cloud CLIs, and orchestrators.</td></tr>
 					<tr><th>Lex</th><td>Receipts, memory, denials, fallbacks, and learned access reality.</td></tr>
@@ -79,7 +79,7 @@ EffectReceipt
 		<section class="hr" role="separator"></section>
 
 		<section aria-labelledby="example">
-			<h2 id="example" class="kicker">Current preview shape</h2>
+			<h2 id="example" class="kicker">Historical prototype shape</h2>
 			<div class="grid">
 				<article class="card"><h3>Classify</h3><p>Classify an attempted command or effect, starting with simple gates like `git push`.</p></article>
 				<article class="card"><h3>Check</h3><p>Evaluate a structured effect request against an envelope and return a decision.</p></article>
@@ -101,7 +101,7 @@ npm run cli -- exec --dry-run \
 		<section aria-labelledby="anti-drift">
 			<h2 id="anti-drift" class="kicker">Anti-drift rule</h2>
 			<article class="card" style="border-left:3px solid var(--brand)">
-				<p>If LexThority starts scheduling agents, managing swarms, owning credentials, or modeling every standard operating procedure, it is drifting. The current research target is the boundary around meaningful effects, not the whole runtime.</p>
+				<p>If LexThority starts scheduling agents, managing swarms, owning credentials, or modeling every standard operating procedure, it is drifting. The earlier research target was the boundary around meaningful effects, not the whole runtime.</p>
 			</article>
 		</section>
 	</main>
