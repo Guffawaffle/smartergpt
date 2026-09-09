@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>How to Use the Public SmarterGPT Core | SmarterGPT.dev</title>
-	<meta name="description" content="Install Lex, add repo-local memory, expose policy context, and introduce AXF workspace capabilities for agent work." />
+	<title>Start with a Reviewable Integration Plan | SmarterGPT.dev</title>
+	<meta name="description" content="Discover GitHub PRs, freeze a plan and preview gates with one LexRunner package." />
 	<meta name="color-scheme" content="dark light" />
 	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
 	<link rel="stylesheet" href="../../assets/styles.css" />
@@ -22,83 +22,55 @@
 		</nav>
 	</header>
 
-	<main class="container">
-		<section class="hero">
-			<div class="hero-left">
-				<span class="badge">Guide • Lex <span class="npm-version" data-npm-package="@smartergpt/lex">npm latest</span> • AXF <span class="npm-version" data-npm-package="@smartergpt/axf">npm latest</span></span>
-				<h1>Start with memory, then add capabilities.</h1>
-				<p class="tagline">The public path is simple: install Lex for repo-local memory and policy context. Add AXF when the agent needs reliable workspace actions. Follow ContextForge as the proposed context-linking library develops.</p>
-			</div>
-		</section>
-
-		<section class="hr" role="separator"></section>
-
-		<section aria-labelledby="install">
-			<h2 id="install" class="kicker">Install</h2>
-			<div class="grid">
-				<article class="card">
-					<h3>Lex CLI</h3>
-					<div class="code" style="margin-top:12px"><code>npm install -g @smartergpt/lex
-lex init --yes
-lex doctor</code></div>
-				</article>
-				<article class="card">
-					<h3>Lex MCP</h3>
-					<div class="code" style="margin-top:12px"><code>npm install -g @smartergpt/lex-mcp
-npx @smartergpt/lex-mcp</code></div>
-				</article>
-				<article class="card">
-					<h3>AXF</h3>
-					<div class="code" style="margin-top:12px"><code>npm install -g @smartergpt/axf
-axf doctor
-axf list</code></div>
-				</article>
-			</div>
-		</section>
-
-		<section class="hr" role="separator"></section>
-
-		<section aria-labelledby="steps">
-			<h2 id="steps" class="kicker">Working loop</h2>
-			<div class="numbered-list">
-				<article class="card">
-					<h3>1. Initialize Lex in the workspace.</h3>
-					<p>Let Lex create the local structure it needs, then keep its files in the repo when the memory and policy should travel with the project.</p>
-				</article>
-				<article class="card">
-					<h3>2. Capture real work state.</h3>
-					<p>Use Frames for meaningful checkpoints: what changed, what is blocked, what module is involved, and what the next agent should do.</p>
-				</article>
-				<article class="card">
-					<h3>3. Add policy only where it pays rent.</h3>
-					<p>A small <code>lexmap.policy.json</code> is better than a giant aspirational one. Start with module ownership, forbidden edges, and known risk boundaries.</p>
-				</article>
-				<article class="card">
-					<h3>4. Promote repeated work into AXF.</h3>
-					<p>If agents keep rediscovering the same build, test, search, or diagnostic command, make it an inspectable AXF capability.</p>
-				</article>
-				<article class="card">
-					<h3>5. Route authority questions explicitly.</h3>
-					<p>For actions with side effects, start modeling the effect and envelope. Keep those decisions at the protected authority boundary. LexThority remains historical research, not an active product commitment.</p>
-				</article>
-			</div>
-		</section>
-
-		<section class="hr" role="separator"></section>
-
-		<section aria-labelledby="links">
-			<h2 id="links" class="kicker">Reference links</h2>
-			<div class="grid">
-				<article class="card"><h3>Lex</h3><p>Memory, policy context, CLI, MCP, and API.</p><a class="button" href="../../projects/lex/index.html">Project page</a></article>
-				<article class="card"><h3>AXF</h3><p>Workspace-owned capabilities and adapter contracts.</p><a class="button" href="../../projects/axf/index.html">Project page</a></article>
-				<article class="card"><h3>ContextForge</h3><p>Proposed context linking and explanations; not released.</p><a class="button" href="../../projects/context-forge/index.html">Proposal page</a></article>
-			</div>
-		</section>
-	</main>
+    <main class="container">
+        <section class="hero" style="display:block">
+            <span class="badge">Start here · GitHub PR integration</span>
+            <h1>Make your next integration reviewable.</h1>
+            <p class="tagline">Start with LexRunner: discover open PRs, freeze their dependencies into a plan, and inspect the order and gates before execution. Install one package for this workflow.</p>
+            <div class="cta"><a class="button primary" href="#trial">Try a plan</a><a class="button" href="#other-work">Need memory or workspace actions?</a></div>
+        </section>
+        <section class="hr" role="separator"></section>
+        <section aria-labelledby="trial">
+            <h2 id="trial">Your first useful result: an inspected plan</h2>
+            <p>Use an existing local GitHub checkout with open PRs, Git and Node.js 24 or newer. This is useful when PRs depend on one another or integration order is hard to track. For occasional independent PRs, you may not need it.</p>
+            <h3>1. Install and discover</h3>
+            <pre class="code"><code>npm install --save-dev @smartergpt/lexrunner@2.1.0
+npx lexrunner --version
+npx lexrunner weave discover --json</code></pre>
+            <p>Run from the repository root. Installation updates your package manifest, lockfile and dependencies. Discovery reads GitHub. Private repositories need an authorized <code>GITHUB_TOKEN</code> supplied securely to the process; signing into <code>gh</code> alone does not export it. Follow your repository's package-manager policy.</p>
+            <h3>2. Freeze and inspect</h3>
+            <pre class="code"><code>npx lexrunner weave plan --from-github --output plan.json --json
+npx lexrunner schema validate plan.json --json
+npx lexrunner weave merge-order plan.json --json</code></pre>
+            <p>Choose an unused output filename. Planning reads GitHub again and writes the plan locally. Open it and check the target, selected PRs, recorded heads, dependencies and gate commands. Drafts are included by default; filter the selection when needed. The printed JSON is a summary, so save the plan with <code>--output</code>.</p>
+            <h3>3. Preview the gates</h3>
+            <pre class="code"><code>npx lexrunner gate run plan.json --dry-run --json</code></pre>
+            <p>Stop here for your first trial. You have a validated plan and preview; gate commands have not run and no PR has merged. Preview paths may write local diagnostics. Generated <code>lint</code>, <code>typecheck</code> and <code>test</code> gates still need to match real checks in your repository.</p>
+            <p>Next, run the reviewed gate commands, obtain independent review for the exact candidates, check current heads and repository protections, then integrate with explicit authorization. The walkthrough separates these steps and their effects.</p>
+            <div class="cta"><a class="button primary" href="https://github.com/SmarterGPT/lexrunner/blob/main/MERGE_WEAVE_QUICKSTART.md">Complete merge-weave walkthrough</a></div>
+        </section>
+        <section class="hr" role="separator"></section>
+        <section aria-labelledby="interface">
+            <h2 id="interface">CLI first; MCP when your agent needs it</h2>
+            <p>The commands above need no MCP connection and no separate Lex, AXF, LexSona or policy-host service installation. npm installs LexRunner's dependencies.</p>
+            <p>For agent-driven planning and integration, use the LexRunner MCP server shipped in the same package. Use AXF MCP when the task is discovering and running workspace capabilities. Connect each for a specific need; you do not need both to begin.</p>
+            <p>Keep merge mutations disabled for an initial MCP connection. That is not a sandbox: plan tools can write files and gate tools can execute commands. Your client must control those calls. See <a href="https://github.com/SmarterGPT/lexrunner/blob/main/docs/first-use-compatibility.md">MCP setup and component compatibility</a>.</p>
+            <p>LexRunner 2.1.0 deliberately pins Lex 4.0.3 as a dependency. A newer standalone Lex is not a reason to override that pin. Shared stores or cross-component runtime setup need their own compatibility evidence.</p>
+        </section>
+        <section class="hr" role="separator"></section>
+        <section aria-labelledby="other-work">
+            <h2 id="other-work">Start from the work you need</h2>
+            <div class="grid">
+                <article class="card"><h3>Remember work across sessions</h3><p>Use Lex for Frames, recall and policy context. Choose its CLI or MCP interface for your workflow.</p><a class="button" href="../../projects/lex/index.html">Lex setup and docs</a></article>
+                <article class="card"><h3>Reuse workspace actions</h3><p>Use AXF to declare how a repository builds, tests and operates, so agents can discover its capabilities.</p><a class="button" href="../../projects/axf/index.html">AXF setup and docs</a></article>
+                <article class="card"><h3>Explore the architecture</h3><p>Components remain independently useful. Context Forge is not a prerequisite for this trial and has no public npm release.</p><a class="button" href="../../stack.html">Component reference</a></article>
+            </div>
+        </section>
+    </main>
 
 	<footer class="container footer">
 		<div>&copy; <span id="year"></span> SmarterGPT.dev</div>
-		<div class="pill">Install • Remember • Declare • Promote • Gate</div>
+		<div class="pill">Discover • Plan • Inspect • Preview • Review</div>
 	</footer>
 	<script src="../../assets/app.js"></script>
 </body>

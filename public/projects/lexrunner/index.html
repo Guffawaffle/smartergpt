@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>LexRunner - Contained Flow for Agent Work | SmarterGPT.dev</title>
-	<meta name="description" content="LexRunner is the flow layer for bounded agent work: deterministic plans, gates, receipts, contained execution roots, and swarm-ready coordination." />
+	<title>LexRunner - Reviewable PR Integration | SmarterGPT.dev</title>
+	<meta name="description" content="Freeze GitHub PR dependencies into an inspectable plan, run reviewed gates and integrate with explicit authority. Start with the LexRunner CLI walkthrough." />
 	<meta name="color-scheme" content="dark light" />
 	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
 	<link rel="stylesheet" href="../../assets/styles.css" />
@@ -13,6 +13,7 @@
 	<header class="container nav" role="navigation">
 		<div class="logo"><span class="logo-dot" aria-hidden="true"></span><a href="/" style="color:inherit;text-decoration:none"><span>SmarterGPT.dev</span></a></div>
 		<nav class="links" aria-label="Primary">
+			<a class="pill" href="../../docs/how-to-use/index.html">Start here</a>
 			<a class="pill" href="../../stack.html" title="Operating Stack">Stack</a>
 			<a class="pill" href="../lex/index.html" title="Lex">Lex</a>
 			<a class="pill" href="../axf/index.html" title="AXF">AXF</a>
@@ -26,24 +27,25 @@
 		<section class="hero">
 			<div class="hero-left">
 				<span class="badge">Open source • Apache-2.0 • <span class="npm-version" data-npm-package="@smartergpt/lexrunner">npm 2.1.0</span></span>
-				<h1>LexRunner coordinates bounded agent flow.</h1>
-				<p class="tagline">LexRunner is the flow layer for multi-step and multi-agent work. It consumes memory, capability, behavior, and authority surfaces, then turns a plan into gated execution with receipts.</p>
-				<p class="tagline" style="margin-top:12px">The next important direction is contained swarm work: separate execution roots where agents can explore in parallel without leaking state, credentials, or half-finished changes into each other.</p>
+				<h1>Freeze, inspect and integrate GitHub PRs.</h1>
+				<p class="tagline">LexRunner turns changing PRs into a frozen dependency plan, runs reviewed gates and preserves results for review before authorized integration.</p>
+				<p class="tagline" style="margin-top:12px">Start with the CLI and one package. The first-use guide takes you through discovery, planning and a gate preview before command execution or merging.</p>
 				<div class="cta">
-					<a class="button primary" href="https://www.npmjs.com/package/@smartergpt/lexrunner">npm package</a>
+					<a class="button primary" href="../../docs/how-to-use/index.html">Try your first plan</a>
+					<a class="button" href="https://www.npmjs.com/package/@smartergpt/lexrunner">npm package</a>
 					<a class="button" href="https://github.com/SmarterGPT/lexrunner">GitHub</a>
 					<a class="button" href="../../stack.html">Stack context</a>
 					<a class="button ghost" href="../../roadmap.html">Roadmap</a>
 				</div>
 			</div>
 			<div class="hero-card hero-right">
-				<div class="kicker">Consumes, does not own</div>
-				<pre class="code"><code>Lex        -> memory and receipts
-AXF        -> workspace capabilities
-LexSona    -> behavioral constraints
-Authority -> independent effect decisions
+				<div class="kicker">First useful workflow</div>
+				<pre class="code"><code>Discover PRs
+Freeze a plan
+Inspect dependency order
+Preview gates
 
-LexRunner  -> flow, gates, isolation, merge</code></pre>
+Then run checks, review and authorize integration</code></pre>
 			</div>
 		</section>
 
@@ -64,7 +66,8 @@ LexRunner  -> flow, gates, isolation, merge</code></pre>
 		<section class="hr" role="separator"></section>
 
 		<section aria-labelledby="swarm">
-			<h2 id="swarm" class="kicker">Swarm-ready direction</h2>
+			<h2 id="swarm" class="kicker">Advanced agent work</h2>
+			<p>Assisted execution has separate setup and authority requirements. The tested headless application boundary is not a production supervisor; public headless launch and Stage 5 fault-injection remain unproven. Read the <a href="https://github.com/SmarterGPT/lexrunner/blob/main/docs/architecture/headless-supervisor.md">current execution limits</a> before adopting this surface.</p>
 			<p class="section-lede">Agent swarm behavior should not mean every agent shares the same checkout, credentials, and context. The useful version is bounded parallelism.</p>
 			<div class="numbered-list">
 				<article class="card">

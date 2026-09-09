@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>SmarterGPT - An Operating Stack for Agent Work</title>
-	<meta name="description" content="SmarterGPT builds Lex, AXF, ContextForge, LexSona, and LexRunner: a local-first operating stack for agent memory, workspace capabilities, authority-boundary research, behavior, and orchestration." />
+	<title>SmarterGPT - Reviewable Integration for Agent Work</title>
+	<meta name="description" content="Turn concurrent GitHub pull requests into a frozen, reviewable integration plan. Start with LexRunner; add memory and workspace capabilities when needed." />
 	<meta name="color-scheme" content="dark light" />
 	<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%2300c2ff'/%3E%3Ctext x='50' y='58' text-anchor='middle' font-size='56' font-family='system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif' fill='white'%3EL%3C/text%3E%3C/svg%3E" />
 	<link rel="stylesheet" href="assets/styles.css" />
@@ -13,6 +13,7 @@
 	<header class="container nav" role="navigation">
 		<div class="logo"><span class="logo-dot" aria-hidden="true"></span><a href="/" style="color:inherit;text-decoration:none"><span>SmarterGPT.dev</span></a></div>
 		<nav class="links" aria-label="Primary">
+			<a class="pill" href="docs/how-to-use/index.html">Start here</a>
 			<a class="pill" href="stack.html" title="Operating Stack">Stack</a>
 			<a class="pill" href="projects/lex/index.html" title="Lex">Lex</a>
 			<a class="pill" href="projects/axf/index.html" title="AXF">AXF</a>
@@ -26,13 +27,13 @@
 		<section class="stack-hero">
 			<div>
 				<span class="badge" aria-label="Project status"><svg width="10" height="10" viewBox="0 0 10 10" fill="none" aria-hidden="true"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg> Local-first agent infrastructure</span>
-				<h1>An operating stack for agent work.</h1>
-				<p class="tagline">SmarterGPT is building the pieces agents need after the model call: durable memory, workspace-native capabilities, emerging authority boundaries, behavioral posture, and deterministic orchestration.</p>
-				<p class="tagline" style="margin-top:12px">The first application is software development. The same pattern applies to analyst workflows, operations, compliance review, support, and any environment where agents need bounded autonomy instead of a pile of prompts.</p>
+				<h1>Turn parallel PRs into a reviewable plan.</h1>
+				<p class="tagline">Discover GitHub PRs, freeze their dependencies, inspect the integration order, and run reviewed gates. Merge only when the exact changes have passed review and you have authority.</p>
+				<p class="tagline" style="margin-top:12px">Start with one LexRunner package. Your first result is an inspected plan and gate preview; add memory and workspace capabilities when the work calls for them.</p>
 				<div class="cta">
-					<a class="button primary" href="stack.html">Explore the stack</a>
-					<a class="button" href="projects/lex/index.html">Start with Lex</a>
-					<a class="button ghost" href="request-access.html">Controlled access</a>
+					<a class="button primary" href="docs/how-to-use/index.html">Try your first plan</a>
+					<a class="button" href="docs/how-to-use/index.html#other-work">Find your workflow</a>
+					<a class="button ghost" href="stack.html">Architecture reference</a>
 				</div>
 				<div class="status-row" aria-label="Current public status">
 					<span class="status-chip public">Lex public MIT <span class="npm-version" data-npm-package="@smartergpt/lex">npm latest</span></span>
@@ -51,7 +52,7 @@
 
 		<section aria-labelledby="stack">
 			<h2 id="stack" class="kicker">Current Stack</h2>
-			<p class="section-lede">The public surface is intentionally technical. Each piece has one job, a clear boundary, and a different maturity level.</p>
+			<p class="section-lede">Add components for a specific need. The first integration-plan workflow uses LexRunner; this reference explains the other pieces.</p>
 			<div class="stack-grid">
 				<article class="stack-card">
 					<h3>Lex</h3>
@@ -166,8 +167,8 @@
 		<section aria-labelledby="cta">
 			<div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap">
 				<div>
-					<h3 style="margin:0 0 6px">Start with the public core.</h3>
-					<p style="margin:0;color:#c8d3ea">Install Lex for memory and policy, add AXF when agents need reliable workspace actions, and follow ContextForge as the proposed context-linking boundary takes shape.</p>
+					<h3 style="margin:0 0 6px">Start with a reviewable plan.</h3>
+					<p style="margin:0;color:#c8d3ea">Follow the GitHub integration trial, or choose Lex for memory and AXF for repeatable workspace actions. You do not need the whole stack to begin.</p>
 				</div>
 				<div class="cta">
 					<a class="button primary" href="docs/how-to-use/index.html">Guide</a>
