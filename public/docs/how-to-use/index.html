@@ -46,7 +46,7 @@ npx lexrunner weave merge-order plan.json --json</code></pre>
             <h3>3. Preview the gates</h3>
             <pre class="code"><code>npx lexrunner gate run plan.json --dry-run --json</code></pre>
             <p>Stop here for your first trial. You have a validated plan and preview; gate commands have not run and no PR has merged. Preview paths may write local diagnostics. Generated <code>lint</code>, <code>typecheck</code> and <code>test</code> gates still need to match real checks in your repository.</p>
-            <p>Next, run the reviewed gate commands, obtain independent review for the exact candidates, check current heads and repository protections, then integrate with explicit authorization. The walkthrough separates these steps and their effects.</p>
+            <p>You can next run reviewed gate commands. Integration needs separate preparation: generated GitHub plans use names such as <code>PR-123</code>, while the current local merge runtime expects Git refs and a clean checkout. Do not pass this plan straight to <code>weave apply --execute</code>. Use the inspected plan in your repository's reviewed integration process; the walkthrough explains the current boundary.</p>
             <div class="cta"><a class="button primary" href="https://github.com/SmarterGPT/lexrunner/blob/main/MERGE_WEAVE_QUICKSTART.md">Complete merge-weave walkthrough</a></div>
         </section>
         <section class="hr" role="separator"></section>
