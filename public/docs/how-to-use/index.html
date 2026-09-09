@@ -34,10 +34,11 @@
             <h2 id="trial">Your first useful result: an inspected plan</h2>
             <p>Use an existing local GitHub checkout with open PRs, Git and Node.js 24 or newer. This is useful when PRs depend on one another or integration order is hard to track. For occasional independent PRs, you may not need it.</p>
             <h3>1. Install and discover</h3>
-            <pre class="code"><code><!--email_off-->npm install --save-dev @smartergpt/lexrunner@2.3.0<!--/email_off-->
+            <pre class="code"><code><!--email_off-->npm install --save-dev @smartergpt/lexrunner@2.4.0<!--/email_off-->
 npx lexrunner --version
 npx lexrunner weave discover --json</code></pre>
             <p>Run from the repository root. Installation updates your package manifest, lockfile and dependencies. Discovery reads GitHub. Private repositories need an authorized <code>GITHUB_TOKEN</code> supplied securely to the process; signing into <code>gh</code> alone does not export it. Follow your repository's package-manager policy.</p>
+            <p>Use <code>npx lexrunner --help</code> for the main work and integration families. Use <code>npx lexrunner --help-all</code> for every command family and compatibility alias, or <code>npx lexrunner &lt;command&gt; --help</code> for complete options and nested operations. Help does not execute those operations or grant authority.</p>
             <h3>2. Freeze and inspect</h3>
             <pre class="code"><code>npx lexrunner weave plan --from-github --output plan.json --json
 npx lexrunner schema validate plan.json --json
@@ -55,7 +56,7 @@ npx lexrunner weave merge-order plan.json --json</code></pre>
             <p>The commands above need no MCP connection and no separate Lex, AXF, LexSona or policy-host service installation. npm installs LexRunner's dependencies.</p>
             <p>For agent-driven planning and integration, use the LexRunner MCP server shipped in the same package. Use AXF MCP when the task is discovering and running workspace capabilities. Connect each for a specific need; you do not need both to begin.</p>
             <p>Keep merge mutations disabled for an initial MCP connection. That is not a sandbox: plan tools can write files and gate tools can execute commands. Your client must control those calls. See <a href="https://github.com/SmarterGPT/lexrunner/blob/main/docs/first-use-compatibility.md">MCP setup and component compatibility</a>.</p>
-            <p>LexRunner 2.3.0 deliberately pins Lex 4.0.3 as a dependency. A newer standalone Lex is not a reason to override that pin. Shared stores or cross-component runtime setup need their own compatibility evidence.</p>
+            <p>LexRunner 2.4.0 deliberately pins Lex 4.0.3 as a dependency. A newer standalone Lex is not a reason to override that pin. Shared stores or cross-component runtime setup need their own compatibility evidence.</p>
         </section>
         <section class="hr" role="separator"></section>
         <section aria-labelledby="other-work">
